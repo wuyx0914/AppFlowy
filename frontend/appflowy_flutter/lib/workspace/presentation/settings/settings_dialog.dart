@@ -1,29 +1,18 @@
-import 'package:appflowy/env/cloud_env.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:appflowy/plugins/shared/share/constants.dart';
 import 'package:appflowy/shared/appflowy_cache_manager.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/share_log_files.dart';
 import 'package:appflowy/workspace/application/settings/appearance/appearance_cubit.dart';
-import 'package:appflowy/workspace/application/settings/appflowy_cloud_urls_bloc.dart';
 import 'package:appflowy/workspace/application/settings/settings_dialog_bloc.dart';
-import 'package:appflowy/workspace/presentation/settings/pages/setting_ai_view/settings_ai_view.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/settings_account_view.dart';
-import 'package:appflowy/workspace/presentation/settings/pages/settings_billing_view.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/settings_manage_data_view.dart';
-import 'package:appflowy/workspace/presentation/settings/pages/settings_plan_view.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/settings_shortcuts_view.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/settings_workspace_view.dart';
-import 'package:appflowy/workspace/presentation/settings/pages/sites/settings_sites_view.dart';
-import 'package:appflowy/workspace/presentation/settings/shared/af_dropdown_menu_entry.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/settings_category.dart';
-import 'package:appflowy/workspace/presentation/settings/shared/settings_dropdown.dart';
 import 'package:appflowy/workspace/presentation/settings/widgets/feature_flags/feature_flag_page.dart';
-import 'package:appflowy/workspace/presentation/settings/widgets/members/workspace_member_page.dart';
 import 'package:appflowy/workspace/presentation/settings/widgets/settings_menu.dart';
 import 'package:appflowy/workspace/presentation/settings/widgets/settings_notifications_view.dart';
-import 'package:appflowy/workspace/presentation/settings/widgets/web_url_hint_widget.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
@@ -34,7 +23,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'pages/setting_ai_view/local_settings_ai_view.dart';
-import 'widgets/setting_cloud.dart';
 
 @visibleForTesting
 const kSelfHostedTextInputFieldKey =
@@ -143,44 +131,14 @@ class SettingsDialog extends StatelessWidget {
         );
       case SettingsPage.notifications:
         return const SettingsNotificationsView();
-      case SettingsPage.cloud:
-        return SettingCloud(restartAppFlowy: () => restartApp());
       case SettingsPage.shortcuts:
         return const SettingsShortcutsView();
       case SettingsPage.ai:
-        if (user.workspaceType == WorkspaceTypePB.ServerW) {
-          return SettingsAIView(
-            key: ValueKey(workspace.workspaceId),
-            userProfile: user,
-            currentWorkspaceMemberRole: currentWorkspaceMemberRole,
-            workspaceId: workspace.workspaceId,
-          );
-        } else {
-          return LocalSettingsAIView(
-            key: ValueKey(workspace.workspaceId),
-            userProfile: user,
-            workspaceId: workspace.workspaceId,
-          );
-        }
-      case SettingsPage.member:
-        return WorkspaceMembersPage(
+        // Local-only build: always use the local AI settings view.
+        return LocalSettingsAIView(
+          key: ValueKey(workspace.workspaceId),
           userProfile: user,
           workspaceId: workspace.workspaceId,
-        );
-      case SettingsPage.plan:
-        return SettingsPlanView(
-          workspaceId: workspace.workspaceId,
-          user: user,
-        );
-      case SettingsPage.billing:
-        return SettingsBillingView(
-          workspaceId: workspace.workspaceId,
-          user: user,
-        );
-      case SettingsPage.sites:
-        return SettingsSitesPage(
-          workspaceId: workspace.workspaceId,
-          user: user,
         );
       case SettingsPage.featureFlags:
         return const FeatureFlagsPage();
@@ -196,7 +154,7 @@ class SimpleSettingsDialog extends StatefulWidget {
 }
 
 class _SimpleSettingsDialogState extends State<SimpleSettingsDialog> {
-  SettingsPage page = SettingsPage.cloud;
+  SettingsPage page = SettingsPage.account;
 
   @override
   Widget build(BuildContext context) {
@@ -224,9 +182,6 @@ class _SimpleSettingsDialogState extends State<SimpleSettingsDialog> {
               _LanguageSettings(key: ValueKey('language${settings.hashCode}')),
               const VSpace(22.0),
 
-              // self-host cloud
-              _SelfHostSettings(key: ValueKey('selfhost${settings.hashCode}')),
-              const VSpace(22.0),
 
               // support
               _SupportSettings(key: ValueKey('support${settings.hashCode}')),
@@ -248,243 +203,6 @@ class _LanguageSettings extends StatelessWidget {
     return SettingsCategory(
       title: LocaleKeys.settings_workspacePage_language_title.tr(),
       children: const [LanguageDropdown()],
-    );
-  }
-}
-
-class _SelfHostSettings extends StatefulWidget {
-  const _SelfHostSettings({
-    super.key,
-  });
-
-  @override
-  State<_SelfHostSettings> createState() => _SelfHostSettingsState();
-}
-
-class _SelfHostSettingsState extends State<_SelfHostSettings> {
-  final cloudUrlTextController = TextEditingController();
-  final webUrlTextController = TextEditingController();
-
-  AuthenticatorType type = AuthenticatorType.appflowyCloud;
-
-  @override
-  void initState() {
-    super.initState();
-
-    _fetchUrls();
-  }
-
-  @override
-  void dispose() {
-    cloudUrlTextController.dispose();
-    webUrlTextController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return SettingsCategory(
-      title: LocaleKeys.settings_menu_cloudAppFlowy.tr(),
-      children: [
-        Flexible(
-          child: SettingsServerDropdownMenu(
-            selectedServer: type,
-            onSelected: _onSelected,
-          ),
-        ),
-        if (type == AuthenticatorType.appflowyCloudSelfHost) _buildInputField(),
-      ],
-    );
-  }
-
-  Widget _buildInputField() {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        _SelfHostUrlField(
-          textFieldKey: kSelfHostedTextInputFieldKey,
-          textController: cloudUrlTextController,
-          title: LocaleKeys.settings_menu_cloudURL.tr(),
-          hintText: LocaleKeys.settings_menu_cloudURLHint.tr(),
-          onSave: (url) => _saveUrl(
-            cloudUrl: url,
-            webUrl: webUrlTextController.text,
-            type: AuthenticatorType.appflowyCloudSelfHost,
-          ),
-        ),
-        const VSpace(12.0),
-        _SelfHostUrlField(
-          textFieldKey: kSelfHostedWebTextInputFieldKey,
-          textController: webUrlTextController,
-          title: LocaleKeys.settings_menu_webURL.tr(),
-          hintText: LocaleKeys.settings_menu_webURLHint.tr(),
-          hintBuilder: (context) => const WebUrlHintWidget(),
-          onSave: (url) => _saveUrl(
-            cloudUrl: cloudUrlTextController.text,
-            webUrl: url,
-            type: AuthenticatorType.appflowyCloudSelfHost,
-          ),
-        ),
-        const VSpace(12.0),
-        _buildSaveButton(),
-      ],
-    );
-  }
-
-  Widget _buildSaveButton() {
-    return Container(
-      height: 36,
-      constraints: const BoxConstraints(minWidth: 78),
-      child: OutlinedRoundedButton(
-        text: LocaleKeys.button_save.tr(),
-        onTap: () => _saveUrl(
-          cloudUrl: cloudUrlTextController.text,
-          webUrl: webUrlTextController.text,
-          type: AuthenticatorType.appflowyCloudSelfHost,
-        ),
-      ),
-    );
-  }
-
-  void _onSelected(AuthenticatorType type) {
-    if (type == this.type) {
-      return;
-    }
-
-    Log.info('Switching server type to $type');
-
-    setState(() {
-      this.type = type;
-    });
-
-    if (type == AuthenticatorType.appflowyCloud) {
-      cloudUrlTextController.text = kAppflowyCloudUrl;
-      webUrlTextController.text = ShareConstants.defaultBaseWebDomain;
-      _saveUrl(
-        cloudUrl: kAppflowyCloudUrl,
-        webUrl: ShareConstants.defaultBaseWebDomain,
-        type: type,
-      );
-    }
-  }
-
-  Future<void> _saveUrl({
-    required String cloudUrl,
-    required String webUrl,
-    required AuthenticatorType type,
-  }) async {
-    if (cloudUrl.isEmpty || webUrl.isEmpty) {
-      showToastNotification(
-        message: LocaleKeys.settings_menu_pleaseInputValidURL.tr(),
-        type: ToastificationType.error,
-      );
-      return;
-    }
-
-    final isValid = await _validateUrl(cloudUrl) && await _validateUrl(webUrl);
-
-    if (mounted) {
-      if (isValid) {
-        showToastNotification(
-          message: LocaleKeys.settings_menu_changeUrl.tr(args: [cloudUrl]),
-        );
-
-        Navigator.of(context).pop();
-
-        await useBaseWebDomain(webUrl);
-        await useAppFlowyBetaCloudWithURL(cloudUrl, type);
-
-        await runAppFlowy();
-      } else {
-        showToastNotification(
-          message: LocaleKeys.settings_menu_pleaseInputValidURL.tr(),
-          type: ToastificationType.error,
-        );
-      }
-    }
-  }
-
-  Future<bool> _validateUrl(String url) async {
-    return await validateUrl(url).fold(
-      (url) async {
-        return true;
-      },
-      (err) {
-        Log.error(err);
-        return false;
-      },
-    );
-  }
-
-  Future<void> _fetchUrls() async {
-    await Future.wait([
-      getAppFlowyCloudUrl(),
-      getAppFlowyShareDomain(),
-    ]).then((values) {
-      if (values.length != 2) {
-        return;
-      }
-
-      cloudUrlTextController.text = values[0];
-      webUrlTextController.text = values[1];
-
-      if (kAppflowyCloudUrl != values[0]) {
-        setState(() {
-          type = AuthenticatorType.appflowyCloudSelfHost;
-        });
-      }
-    });
-  }
-}
-
-@visibleForTesting
-extension SettingsServerDropdownMenuExtension on AuthenticatorType {
-  String get label {
-    switch (this) {
-      case AuthenticatorType.appflowyCloud:
-        return LocaleKeys.settings_menu_cloudAppFlowy.tr();
-      case AuthenticatorType.appflowyCloudSelfHost:
-        return LocaleKeys.settings_menu_cloudAppFlowySelfHost.tr();
-      default:
-        throw Exception('Unsupported server type: $this');
-    }
-  }
-}
-
-@visibleForTesting
-class SettingsServerDropdownMenu extends StatelessWidget {
-  const SettingsServerDropdownMenu({
-    super.key,
-    required this.selectedServer,
-    required this.onSelected,
-  });
-
-  final AuthenticatorType selectedServer;
-  final void Function(AuthenticatorType type) onSelected;
-
-  // in the settings page from sign in page, we only support appflowy cloud and self-hosted
-  static final supportedServers = [
-    AuthenticatorType.appflowyCloud,
-    AuthenticatorType.appflowyCloudSelfHost,
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return SettingsDropdown<AuthenticatorType>(
-      expandWidth: false,
-      onChanged: onSelected,
-      selectedOption: selectedServer,
-      options: supportedServers
-          .map(
-            (serverType) => buildDropdownMenuEntry<AuthenticatorType>(
-              context,
-              selectedValue: selectedServer,
-              value: serverType,
-              label: serverType.label,
-            ),
-          )
-          .toList(),
     );
   }
 }

@@ -18,7 +18,6 @@ import 'package:collection/collection.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 class ChatEditorStyleCustomizer extends EditorStyleCustomizer {
@@ -70,14 +69,13 @@ class ChatEditorStyleCustomizer extends EditorStyleCustomizer {
           color: theme.colorScheme.primary,
           decoration: TextDecoration.underline,
         ),
-        code: GoogleFonts.robotoMono(
-          textStyle: baseTextStyle(fontFamily).copyWith(
-            fontSize: fontSize,
-            fontWeight: FontWeight.normal,
-            color: Colors.red,
-            backgroundColor:
-                theme.colorScheme.inverseSurface.withValues(alpha: 0.8),
-          ),
+        code: baseTextStyle(fontFamily).copyWith(
+          fontFamily: 'RobotoMono',
+          fontSize: fontSize,
+          fontWeight: FontWeight.normal,
+          color: Colors.red,
+          backgroundColor:
+              theme.colorScheme.inverseSurface.withValues(alpha: 0.8),
         ),
       ),
       textSpanDecorator: customizeAttributeDecorator,

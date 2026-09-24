@@ -5,8 +5,6 @@ import 'package:envied/envied.dart';
 
 part 'cloud_env_test.g.dart';
 
-/// Follow the guide on https://supabase.com/docs/guides/auth/social-login/auth-google to setup the auth provider.
-///
 @Envied(path: '.env.cloud.test')
 abstract class TestEnv {
   /// AppFlowy Cloud Configuration
@@ -17,7 +15,6 @@ abstract class TestEnv {
   )
   static final String afCloudUrl = _TestEnv.afCloudUrl;
 
-  // Supabase Configuration:
   @EnviedField(
     obfuscate: false,
     varName: 'SUPABASE_URL',

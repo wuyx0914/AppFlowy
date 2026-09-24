@@ -1,4 +1,4 @@
-use flowy_ai_pub::cloud::{CompletionMessage, OutputLayout, ResponseFormat};
+use flowy_ai_pub::cloud::{CompletionMessage, MessageRole, OutputLayout, ResponseFormat};
 use langchain_rust::schemas::{Message, MessageType};
 
 pub const OPEN_AI_QA_FLEX_FORMAT: &str = r#"Use Markdown for formatting. Start responses naturally—avoid formal phrases like “Certainly,” “Absolutely,” or “Sure.” Keep the tone conversational, clear, and professional."#;
@@ -53,15 +53,18 @@ pub fn history_prompt(history: Option<Vec<CompletionMessage>>) -> Vec<Message> {
   let mut messages = vec![];
   if let Some(history) = history {
     for message in history {
-      if let Ok(message_type) = serde_json::from_str::<MessageType>(&message.role) {
-        messages.push(Message {
-          content: message.content,
-          message_type,
-          id: None,
-          tool_calls: None,
-          images: None,
-        });
-      }
+      let message_type = match message.role {
+        MessageRole::System | MessageRole::Tool => MessageType::SystemMessage,
+        MessageRole::User => MessageType::HumanMessage,
+        MessageRole::Assistant => MessageType::AIMessage,
+      };
+      messages.push(Message {
+        content: message.content,
+        message_type,
+        id: None,
+        tool_calls: None,
+        images: None,
+      });
     }
   }
 

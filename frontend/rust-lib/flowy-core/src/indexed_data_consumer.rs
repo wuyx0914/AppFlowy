@@ -11,7 +11,7 @@ use flowy_folder::manager::FolderManager;
 use flowy_search_pub::entities::FolderViewObserver;
 use flowy_search_pub::tantivy_state::DocumentTantivyState;
 use flowy_search_pub::tantivy_state_init::get_or_init_document_tantivy_state;
-use flowy_server::af_cloud::define::LoggedUser;
+use flowy_server::define::LoggedUser;
 use lib_infra::async_trait::async_trait;
 use std::path::PathBuf;
 use std::sync::{Arc, Weak};

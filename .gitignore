@@ -28,6 +28,9 @@ frontend/.vscode/settings.json
 pubspec.lock
 !frontend/appflowy_flutter/pubspec.lock
 
+# ignore local-only plan docs (tracked files keep tracked)
+doc/
+
 # ignore tool used for commit linting
 .githooks/gitlint
 .githooks/gitlint.exe

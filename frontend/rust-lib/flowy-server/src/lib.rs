@@ -1,7 +1,7 @@
 pub use server::*;
 
-pub mod af_cloud;
 pub mod local_server;
+pub mod define;
 mod response;
 mod server;
 

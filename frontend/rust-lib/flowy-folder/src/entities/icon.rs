@@ -31,12 +31,12 @@ impl From<IconType> for ViewIconTypePB {
   }
 }
 
-impl From<client_api::entity::workspace_dto::IconType> for ViewIconTypePB {
-  fn from(val: client_api::entity::workspace_dto::IconType) -> Self {
+impl From<flowy_server_pub::workspace_dto::IconType> for ViewIconTypePB {
+  fn from(val: flowy_server_pub::workspace_dto::IconType) -> Self {
     match val {
-      client_api::entity::workspace_dto::IconType::Emoji => ViewIconTypePB::Emoji,
-      client_api::entity::workspace_dto::IconType::Url => ViewIconTypePB::Url,
-      client_api::entity::workspace_dto::IconType::Icon => ViewIconTypePB::Icon,
+      flowy_server_pub::workspace_dto::IconType::Emoji => ViewIconTypePB::Emoji,
+      flowy_server_pub::workspace_dto::IconType::Url => ViewIconTypePB::Url,
+      flowy_server_pub::workspace_dto::IconType::Icon => ViewIconTypePB::Icon,
     }
   }
 }
@@ -67,8 +67,8 @@ impl From<ViewIcon> for ViewIconPB {
   }
 }
 
-impl From<client_api::entity::workspace_dto::ViewIcon> for ViewIconPB {
-  fn from(val: client_api::entity::workspace_dto::ViewIcon) -> Self {
+impl From<flowy_server_pub::workspace_dto::ViewIcon> for ViewIconPB {
+  fn from(val: flowy_server_pub::workspace_dto::ViewIcon) -> Self {
     ViewIconPB {
       ty: val.ty.into(),
       value: val.value,

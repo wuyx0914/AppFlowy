@@ -1,10 +1,8 @@
-import 'package:appflowy/env/cloud_env.dart';
 import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/application/user/settings_user_bloc.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/about/app_version.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/account/account.dart';
-import 'package:appflowy/workspace/presentation/settings/pages/account/email/email_section.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/settings_body.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/settings_category.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
@@ -67,49 +65,7 @@ class _SettingsAccountViewState extends State<SettingsAccountView> {
                 ],
               ),
 
-              // user email
-              // Only show email if the user is authenticated and not using local auth
-              if (isAuthEnabled &&
-                  state.userProfile.userAuthType != AuthTypePB.Local) ...[
-                SettingsCategory(
-                  title: LocaleKeys.newSettings_myAccount_myAccount.tr(),
-                  children: [
-                    SettingsEmailSection(
-                      userProfile: state.userProfile,
-                    ),
-                    ChangePasswordSection(
-                      userProfile: state.userProfile,
-                    ),
-                    AccountSignInOutSection(
-                      userProfile: state.userProfile,
-                      onAction:
-                          state.userProfile.userAuthType == AuthTypePB.Local
-                              ? widget.didLogin
-                              : widget.didLogout,
-                      signIn:
-                          state.userProfile.userAuthType == AuthTypePB.Local,
-                    ),
-                  ],
-                ),
-              ],
-
-              if (isAuthEnabled &&
-                  state.userProfile.userAuthType == AuthTypePB.Local) ...[
-                SettingsCategory(
-                  title: LocaleKeys.settings_accountPage_login_title.tr(),
-                  children: [
-                    AccountSignInOutSection(
-                      userProfile: state.userProfile,
-                      onAction:
-                          state.userProfile.userAuthType == AuthTypePB.Local
-                              ? widget.didLogin
-                              : widget.didLogout,
-                      signIn:
-                          state.userProfile.userAuthType == AuthTypePB.Local,
-                    ),
-                  ],
-                ),
-              ],
+              // Local-only build: no email / password / sign-in sections.
 
               // App version
               SettingsCategory(

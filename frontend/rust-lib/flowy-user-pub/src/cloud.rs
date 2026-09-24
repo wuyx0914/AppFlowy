@@ -1,11 +1,11 @@
-use client_api::entity::GotrueTokenResponse;
-use client_api::entity::billing_dto::RecurringInterval;
-use client_api::entity::billing_dto::SubscriptionPlan;
-use client_api::entity::billing_dto::SubscriptionPlanDetail;
-pub use client_api::entity::billing_dto::SubscriptionStatus;
-use client_api::entity::billing_dto::WorkspaceSubscriptionStatus;
-use client_api::entity::billing_dto::WorkspaceUsageAndLimit;
-pub use client_api::entity::{AFWorkspaceSettings, AFWorkspaceSettingsChange};
+use flowy_server_pub::user_dto::GotrueTokenResponse;
+use flowy_server_pub::billing::RecurringInterval;
+use flowy_server_pub::billing::SubscriptionPlan;
+use flowy_server_pub::billing::SubscriptionPlanDetail;
+pub use flowy_server_pub::billing::SubscriptionStatus;
+use flowy_server_pub::billing::WorkspaceSubscriptionStatus;
+use flowy_server_pub::billing::WorkspaceUsageAndLimit;
+pub use flowy_server_pub::workspace_dto::{AFWorkspaceSettings, AFWorkspaceSettingsChange};
 use collab_entity::{CollabObject, CollabType};
 use flowy_error::{ErrorCode, FlowyError, internal_error};
 use lib_infra::async_trait::async_trait;
@@ -164,7 +164,6 @@ pub trait UserCloudService: Send + Sync + 'static {
   /// After the user is authenticated, the browser will open a deep link to the AppFlowy app (iOS, macOS, etc.),
   /// which will call [Client::sign_in_with_url]generate_sign_in_url_with_email to sign in.
   ///
-  /// For example, the OAuth URL on Google looks like `https://appflowy.io/authorize?provider=google`.
   async fn generate_oauth_url_with_provider(&self, provider: &str) -> Result<String, FlowyError>;
 
   /// Using the user's token to update the user information

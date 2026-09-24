@@ -33,7 +33,6 @@ class DatabaseViewCallbacks {
   final OnRowsDeleted? onRowsDeleted;
 }
 
-/// Read https://docs.appflowy.io/docs/documentation/software-contributions/architecture/frontend/frontend/grid for more information
 class DatabaseViewCache {
   DatabaseViewCache({
     required this.viewId,

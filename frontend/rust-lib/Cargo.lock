@@ -868,12 +868,10 @@ dependencies = [
  "arc-swap",
  "async-trait",
  "base64 0.22.1",
- "brotli",
  "bytes",
  "chrono",
  "client-api-entity",
  "client-websocket",
- "collab",
  "collab-rt-entity",
  "collab-rt-protocol",
  "futures",
@@ -892,7 +890,6 @@ dependencies = [
  "prost 0.13.5",
  "rayon",
  "reqwest 0.12.15",
- "scraper 0.17.1",
  "semver",
  "serde",
  "serde_json",
@@ -908,7 +905,6 @@ dependencies = [
  "url",
  "uuid",
  "wasm-bindgen-futures",
- "yrs",
  "zstd 0.13.2",
 ]
 
@@ -1991,52 +1987,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "event-integration-test"
-version = "0.1.0"
-dependencies = [
- "assert-json-diff",
- "bytes",
- "chrono",
- "collab",
- "collab-database",
- "collab-document",
- "collab-entity",
- "collab-folder",
- "flowy-ai",
- "flowy-ai-pub",
- "flowy-core",
- "flowy-database2",
- "flowy-document",
- "flowy-error",
- "flowy-folder",
- "flowy-folder-pub",
- "flowy-notification",
- "flowy-search",
- "flowy-server",
- "flowy-server-pub",
- "flowy-storage",
- "flowy-storage-pub",
- "flowy-user",
- "flowy-user-pub",
- "futures",
- "lib-dispatch",
- "lib-infra",
- "nanoid",
- "protobuf",
- "rand 0.8.5",
- "semver",
- "serde",
- "serde_json",
- "serial_test",
- "strum 0.25.0",
- "tokio",
- "tracing",
- "uuid",
- "walkdir",
- "zip 2.2.0",
-]
-
-[[package]]
 name = "event-listener"
 version = "5.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2254,7 +2204,9 @@ version = "0.1.0"
 dependencies = [
  "chrono",
  "client-api",
+ "collab-entity",
  "flowy-error",
+ "flowy-server-pub",
  "flowy-sqlite",
  "flowy-user-pub",
  "futures",
@@ -2364,6 +2316,7 @@ dependencies = [
  "collab",
  "collab-entity",
  "flowy-error",
+ "flowy-server-pub",
  "lib-infra",
  "uuid",
 ]
@@ -2386,7 +2339,6 @@ dependencies = [
  "collab-plugins",
  "csv",
  "dashmap 6.0.1",
- "event-integration-test",
  "fancy-regex 0.11.0",
  "flowy-codegen",
  "flowy-database-pub",
@@ -2503,7 +2455,6 @@ version = "0.1.0"
 dependencies = [
  "anyhow",
  "bytes",
- "client-api",
  "collab",
  "collab-database",
  "collab-document",
@@ -2548,6 +2499,7 @@ dependencies = [
  "flowy-folder-pub",
  "flowy-notification",
  "flowy-search-pub",
+ "flowy-server-pub",
  "flowy-sqlite",
  "flowy-user-pub",
  "futures",
@@ -2579,6 +2531,7 @@ dependencies = [
  "collab-folder",
  "diesel",
  "flowy-error",
+ "flowy-server-pub",
  "flowy-sqlite",
  "lib-infra",
  "serde",
@@ -2645,6 +2598,7 @@ dependencies = [
  "collab-folder",
  "dashmap 6.0.1",
  "flowy-error",
+ "flowy-server-pub",
  "lib-infra",
  "once_cell",
  "tantivy",
@@ -2661,7 +2615,6 @@ dependencies = [
  "arc-swap",
  "bytes",
  "chrono",
- "client-api",
  "collab",
  "collab-database",
  "collab-document",
@@ -2700,10 +2653,12 @@ dependencies = [
 name = "flowy-server-pub"
 version = "0.1.0"
 dependencies = [
- "client-api",
+ "chrono",
  "flowy-error",
  "serde",
- "serde_repr",
+ "serde_json",
+ "thiserror 1.0.64",
+ "uuid",
 ]
 
 [[package]]
@@ -2787,6 +2742,7 @@ dependencies = [
  "bytes",
  "client-api-entity",
  "flowy-error",
+ "flowy-server-pub",
  "lib-infra",
  "mime",
  "mime_guess",
@@ -2860,6 +2816,7 @@ dependencies = [
  "collab-folder",
  "flowy-error",
  "flowy-folder-pub",
+ "flowy-server-pub",
  "flowy-sqlite",
  "lib-infra",
  "serde",
@@ -5506,7 +5463,7 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "8a56d757972c98b346a9b766e3f02746cde6dd1cd1d1d563472929fdd74bec4d"
 dependencies = [
  "anyhow",
- "itertools 0.14.0",
+ "itertools 0.12.1",
  "proc-macro2",
  "quote",
  "syn 2.0.94",
@@ -6556,23 +6513,6 @@ checksum = "94143f37725109f92c262ed2cf5e59bce7498c01bcc1502d7b9afe439a4e9f49"
 
 [[package]]
 name = "scraper"
-version = "0.17.1"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c95a930e03325234c18c7071fd2b60118307e025d6fff3e12745ffbf63a3d29c"
-dependencies = [
- "ahash 0.8.11",
- "cssparser 0.31.2",
- "ego-tree 0.6.2",
- "getopts",
- "html5ever 0.26.0",
- "once_cell",
- "selectors 0.25.0",
- "smallvec",
- "tendril",
-]
-
-[[package]]
-name = "scraper"
 version = "0.18.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "585480e3719b311b78a573db1c9d9c4c1f8010c2dee4cc59c2efe58ea4dbc3e1"
@@ -6786,31 +6726,6 @@ dependencies = [
  "ryu",
  "serde",
  "unsafe-libyaml",
-]
-
-[[package]]
-name = "serial_test"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "0e56dd856803e253c8f298af3f4d7eb0ae5e23a737252cd90bb4f3b435033b2d"
-dependencies = [
- "dashmap 5.5.3",
- "futures",
- "lazy_static",
- "log",
- "parking_lot 0.12.1",
- "serial_test_derive",
-]
-
-[[package]]
-name = "serial_test_derive"
-version = "2.0.0"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "91d129178576168c589c9ec973feedf7d3126c01ac2bf08795109aa35b69fb8f"
-dependencies = [
- "proc-macro2",
- "quote",
- "syn 2.0.94",
 ]
 
 [[package]]

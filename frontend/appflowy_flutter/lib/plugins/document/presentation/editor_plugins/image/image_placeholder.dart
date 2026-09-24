@@ -118,7 +118,6 @@ class ImagePlaceholderState extends State<ImagePlaceholder> {
             supportTypes: const [
               UploadImageType.local,
               UploadImageType.url,
-              UploadImageType.unsplash,
             ],
             onSelectedLocalImages: (files) {
               controller.close();
@@ -248,7 +247,6 @@ class ImagePlaceholderState extends State<ImagePlaceholder> {
               supportTypes: const [
                 UploadImageType.local,
                 UploadImageType.url,
-                UploadImageType.unsplash,
               ],
               onSelectedLocalImages: (files) async {
                 context.pop();

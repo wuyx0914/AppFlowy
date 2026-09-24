@@ -1,7 +1,6 @@
 import 'package:appflowy/env/cloud_env.dart';
 import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
-import 'package:appflowy/startup/tasks/appflowy_cloud_task.dart';
 import 'package:appflowy/startup/tasks/deeplink/deeplink_handler.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';
 import 'package:appflowy/user/application/password/password_http_service.dart';
@@ -20,22 +19,7 @@ part 'sign_in_bloc.freezed.dart';
 
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
   SignInBloc(this.authService) : super(SignInState.initial()) {
-    if (isAppFlowyCloudEnabled) {
-      deepLinkStateListener =
-          getIt<AppFlowyCloudDeepLink>().subscribeDeepLinkLoadingState((value) {
-        if (isClosed) return;
-
-        add(SignInEvent.deepLinkStateChange(value));
-      });
-
-      getAppFlowyCloudUrl().then((baseUrl) {
-        passwordService = PasswordHttpService(
-          baseUrl: baseUrl,
-          authToken:
-              '', // the user is not signed in yet, the auth token should be empty
-        );
-      });
-    }
+    // Local-only build: no cloud deep-link login and no password service.
 
     on<SignInEvent>(
       (event, emit) async {
@@ -116,11 +100,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   @override
   Future<void> close() {
     deepLinkStateListener?.call();
-    if (isAppFlowyCloudEnabled && deepLinkStateListener != null) {
-      getIt<AppFlowyCloudDeepLink>().unsubscribeDeepLinkLoadingState(
-        deepLinkStateListener!,
-      );
-    }
     return super.close();
   }
 
@@ -178,9 +157,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     emit(
       result.fold(
         (gotrueTokenResponse) {
-          getIt<AppFlowyCloudDeepLink>().passGotrueTokenResponse(
-            gotrueTokenResponse,
-          );
+          // Local-only build: no cloud deep-link service to pass the token to.
           return state.copyWith(
             isSubmitting: false,
           );
@@ -276,9 +253,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
     emit(
       result.fold(
         (gotrueTokenResponse) {
-          getIt<AppFlowyCloudDeepLink>().passGotrueTokenResponse(
-            gotrueTokenResponse,
-          );
+          // Local-only build: no cloud deep-link service to pass the token to.
           return state.copyWith(
             isSubmitting: false,
           );

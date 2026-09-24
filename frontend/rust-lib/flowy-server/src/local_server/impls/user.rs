@@ -1,12 +1,12 @@
 #![allow(unused_variables)]
 
-use crate::af_cloud::define::LoggedUser;
+use crate::define::LoggedUser;
 use crate::local_server::template::create_workspace::{
   CreateWorkspaceCollab, create_workspace_for_user,
 };
 use crate::local_server::uid::IDGenerator;
 use anyhow::Context;
-use client_api::entity::GotrueTokenResponse;
+use flowy_server_pub::user_dto::GotrueTokenResponse;
 use collab::core::origin::CollabOrigin;
 use collab::preclude::Collab;
 use collab_entity::CollabObject;
@@ -14,8 +14,8 @@ use collab_plugins::CollabKVDB;
 use collab_plugins::local_storage::kv::KVTransactionDB;
 use collab_plugins::local_storage::kv::doc::CollabKVAction;
 use collab_user::core::UserAwareness;
-use flowy_ai_pub::cloud::billing_dto::WorkspaceUsageAndLimit;
-use flowy_ai_pub::cloud::{AFWorkspaceSettings, AFWorkspaceSettingsChange};
+use flowy_server_pub::billing::WorkspaceUsageAndLimit;
+use flowy_server_pub::workspace_dto::{AFWorkspaceSettings, AFWorkspaceSettingsChange};
 use flowy_error::{FlowyError, FlowyResult};
 use flowy_user_pub::DEFAULT_USER_NAME;
 use flowy_user_pub::cloud::{UserCloudService, UserCollabParams};
@@ -282,6 +282,7 @@ impl UserCloudService for LocalServerUserServiceImpl {
     workspace_id: &Uuid,
   ) -> Result<WorkspaceUsageAndLimit, FlowyError> {
     Ok(WorkspaceUsageAndLimit {
+      name: None,
       member_count: 1,
       member_count_limit: 1,
       storage_bytes: i64::MAX,
@@ -289,6 +290,9 @@ impl UserCloudService for LocalServerUserServiceImpl {
       storage_bytes_unlimited: true,
       single_upload_limit: i64::MAX,
       single_upload_unlimited: true,
+      storage_file_count: i64::MAX,
+      storage_file_count_limit: i64::MAX,
+      storage_per_file_limit: i64::MAX,
       ai_responses_count: i64::MAX,
       ai_responses_count_limit: i64::MAX,
       ai_image_responses_count: i64::MAX,

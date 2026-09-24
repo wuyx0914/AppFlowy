@@ -1,5 +1,5 @@
 use crate::services::authenticate_user::AuthenticateUser;
-use client_api::entity::billing_dto::SubscriptionPlan;
+use flowy_server_pub::billing::SubscriptionPlan;
 use flowy_error::{FlowyError, FlowyResult};
 use flowy_user_pub::cloud::UserCloudServiceProvider;
 use std::sync::Weak;

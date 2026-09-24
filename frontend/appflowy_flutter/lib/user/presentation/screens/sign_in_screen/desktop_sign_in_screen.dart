@@ -1,5 +1,4 @@
 import 'package:appflowy/core/frameless_window.dart';
-import 'package:appflowy/env/cloud_env.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/settings/show_settings.dart';
@@ -48,20 +47,10 @@ class _DesktopSignInScreenState extends State<DesktopSignInScreen>
                 ),
                 VSpace(theme.spacing.xxl),
 
-                // continue with email and password
-                isLocalAuthEnabled
-                    ? const SignInAnonymousButtonV3()
-                    : const ContinueWithEmailAndPassword(),
+                // Local-only build: anonymous sign-in only.
+                const SignInAnonymousButtonV3(),
 
                 VSpace(theme.spacing.xxl),
-
-                // third-party sign in.
-                if (isAuthEnabled) ...[
-                  const _OrDivider(),
-                  VSpace(theme.spacing.xxl),
-                  const ThirdPartySignInButtons(),
-                  VSpace(theme.spacing.xxl),
-                ],
 
                 // sign in agreement
                 const SignInAgreement(),
@@ -129,34 +118,6 @@ class DesktopSignInSettingsButton extends StatelessWidget {
           color: theme.textColorScheme.secondary,
         );
       },
-    );
-  }
-}
-
-class _OrDivider extends StatelessWidget {
-  const _OrDivider();
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = AppFlowyTheme.of(context);
-    return Row(
-      children: [
-        Flexible(
-          child: AFDivider(),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(
-            LocaleKeys.signIn_or.tr(),
-            style: theme.textStyle.body.standard(
-              color: theme.textColorScheme.secondary,
-            ),
-          ),
-        ),
-        Flexible(
-          child: AFDivider(),
-        ),
-      ],
     );
   }
 }

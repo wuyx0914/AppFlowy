@@ -630,7 +630,6 @@ class DocumentCoverState extends State<DocumentCover> {
                                   UploadImageType.color,
                                   UploadImageType.local,
                                   UploadImageType.url,
-                                  UploadImageType.unsplash,
                                 ],
                                 onSelectedLocalImages: (files) async {
                                   context.pop();
@@ -766,7 +765,6 @@ class DocumentCoverState extends State<DocumentCover> {
                   UploadImageType.color,
                   UploadImageType.local,
                   UploadImageType.url,
-                  UploadImageType.unsplash,
                 ],
                 onSelectedLocalImages: (files) {
                   popoverController.close();

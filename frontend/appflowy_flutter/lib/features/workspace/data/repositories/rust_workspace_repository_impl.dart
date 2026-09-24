@@ -1,7 +1,5 @@
 import 'package:appflowy/features/workspace/data/repositories/workspace_repository.dart';
 import 'package:appflowy/user/application/user_service.dart';
-import 'package:appflowy/workspace/presentation/settings/widgets/setting_appflowy_cloud.dart'
-    as billing_service;
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
@@ -82,6 +80,7 @@ class RustWorkspaceRepositoryImpl implements WorkspaceRepository {
 
   @override
   Future<bool> isBillingEnabled() async {
-    return billing_service.isBillingEnabled();
+    // Local-only build: billing is never enabled.
+    return false;
   }
 }

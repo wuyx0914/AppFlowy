@@ -6,6 +6,8 @@ edition = "2024"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+collab-entity = { workspace = true }
+flowy-server-pub = { workspace = true }
 lib-infra = { workspace = true }
 flowy-error = { workspace = true }
 client-api = { workspace = true }

@@ -4,7 +4,7 @@ use std::convert::TryInto;
 use crate::entities::parser::*;
 use crate::entities::AuthTypePB;
 use crate::errors::ErrorCode;
-use client_api::entity::GotrueTokenResponse;
+use flowy_server_pub::user_dto::GotrueTokenResponse;
 use flowy_derive::{ProtoBuf, ProtoBuf_Enum};
 use flowy_user_pub::entities::*;
 
@@ -137,9 +137,6 @@ impl From<GotrueTokenResponse> for GotrueTokenResponsePB {
 pub struct OauthSignInPB {
   /// Use this field to store the third party auth information.
   /// Different auth type has different fields.
-  /// Supabase:
-  ///   - map: { "uuid": "xxx" }
-  ///
   #[pb(index = 1)]
   pub map: HashMap<String, String>,
 

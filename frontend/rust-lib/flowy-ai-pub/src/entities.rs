@@ -1,5 +1,5 @@
-use crate::cloud::CollabType;
-use crate::cloud::workspace_dto::ViewIcon;
+use collab_entity::CollabType;
+use flowy_server_pub::workspace_dto::ViewIcon;
 use twox_hash::xxhash64::Hasher;
 use uuid::Uuid;
 pub const RAG_IDS: &str = "rag_ids";

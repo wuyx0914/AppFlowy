@@ -7,19 +7,13 @@ part 'env.g.dart';
 
 @Envied(path: '.env')
 abstract class Env {
-  // This flag is used to decide if users can dynamically configure cloud settings. It turns true when a .env file exists containing the APPFLOWY_CLOUD_URL variable. By default, this is set to false.
-  static bool get enableCustomCloud {
-    return Env.authenticatorType ==
-            AuthenticatorType.appflowyCloudSelfHost.value ||
-        Env.authenticatorType == AuthenticatorType.appflowyCloud.value ||
-        Env.authenticatorType == AuthenticatorType.appflowyCloudDevelop.value &&
-            _Env.afCloudUrl.isEmpty;
-  }
+  // Local-only build: users can never dynamically configure cloud settings.
+  static bool get enableCustomCloud => false;
 
   @EnviedField(
     obfuscate: false,
     varName: 'AUTHENTICATOR_TYPE',
-    defaultValue: 2,
+    defaultValue: 0,
   )
   static const int authenticatorType = _Env.authenticatorType;
 

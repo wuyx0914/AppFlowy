@@ -128,7 +128,6 @@ class _MultiImageMenuState extends State<MultiImageMenu> {
                 supportTypes: const [
                   UploadImageType.local,
                   UploadImageType.url,
-                  UploadImageType.unsplash,
                 ],
                 onSelectedLocalImages: insertLocalImages,
                 onSelectedAIImage: insertAIImage,

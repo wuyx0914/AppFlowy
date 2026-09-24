@@ -1,4 +1,4 @@
-use crate::af_cloud::define::LoggedUser;
+use crate::define::LoggedUser;
 use crate::util::tanvity_local_search;
 use flowy_ai::local_ai::controller::LocalAIController;
 use flowy_error::FlowyError;

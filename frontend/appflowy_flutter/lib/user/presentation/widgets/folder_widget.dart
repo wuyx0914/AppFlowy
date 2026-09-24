@@ -9,7 +9,6 @@ import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/widget/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 import '../../../generated/locale_keys.g.dart';
 import '../../../startup/startup.dart';
@@ -260,9 +259,7 @@ class _FolderCard extends StatelessWidget {
                         child: FlowyText.regular(
                           title,
                           fontSize: FontSizes.s14,
-                          fontFamily: GoogleFonts.poppins(
-                            fontWeight: FontWeight.w500,
-                          ).fontFamily,
+                          fontFamily: null,
                           overflow: TextOverflow.ellipsis,
                         ),
                       ),
@@ -300,9 +297,7 @@ class _FolderCard extends StatelessWidget {
                     subtitle,
                     overflow: TextOverflow.ellipsis,
                     fontSize: FontSizes.s12,
-                    fontFamily: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w300,
-                    ).fontFamily,
+                    fontFamily: null,
                   ),
                 ],
               ),

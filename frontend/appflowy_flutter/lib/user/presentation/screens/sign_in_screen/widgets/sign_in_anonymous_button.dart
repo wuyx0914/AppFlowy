@@ -1,4 +1,3 @@
-import 'package:appflowy/env/cloud_env.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
@@ -64,42 +63,6 @@ class SignInAnonymousButtonV2 extends StatelessWidget {
               },
             ),
           ),
-        );
-      },
-    );
-  }
-}
-
-class ChangeCloudModeButton extends StatelessWidget {
-  const ChangeCloudModeButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = AppFlowyTheme.of(context);
-    return AFGhostIconTextButton(
-      text: LocaleKeys.signIn_switchToAppFlowyCloud.tr(),
-      textColor: (context, isHovering, disabled) {
-        return theme.textColorScheme.secondary;
-      },
-      size: AFButtonSize.s,
-      padding: EdgeInsets.symmetric(
-        horizontal: theme.spacing.m,
-        vertical: theme.spacing.xs,
-      ),
-      onTap: () async {
-        await useAppFlowyBetaCloudWithURL(
-          kAppflowyCloudUrl,
-          AuthenticatorType.appflowyCloud,
-        );
-        await runAppFlowy();
-      },
-      iconBuilder: (context, isHovering, disabled) {
-        return FlowySvg(
-          FlowySvgs.cloud_mode_m,
-          size: Size.square(20),
-          color: theme.textColorScheme.secondary,
         );
       },
     );

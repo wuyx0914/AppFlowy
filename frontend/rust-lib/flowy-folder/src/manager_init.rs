@@ -64,8 +64,6 @@ impl FolderManager {
             .await?
         } else if create_if_not_exist {
           // 2. if the folder doesn't exist and create_if_not_exist is true, create a default folder
-          // Currently, this branch is only used when the server type is supabase. For appflowy cloud,
-          // the default workspace is already created when the user sign up.
           self
             .create_default_folder(uid, workspace_id, collab_db, folder_notifier)
             .await?

@@ -1,4 +1,4 @@
-use client_api::entity::billing_dto::{
+use flowy_server_pub::billing::{
   Currency, RecurringInterval, SubscriptionPlan, SubscriptionPlanDetail,
   WorkspaceSubscriptionStatus, WorkspaceUsageAndLimit,
 };
@@ -375,7 +375,7 @@ impl From<RecurringIntervalPB> for RecurringInterval {
 impl From<RecurringInterval> for RecurringIntervalPB {
   fn from(r: RecurringInterval) -> Self {
     match r {
-      RecurringInterval::Month => RecurringIntervalPB::Month,
+      RecurringInterval::None | RecurringInterval::Month => RecurringIntervalPB::Month,
       RecurringInterval::Year => RecurringIntervalPB::Year,
     }
   }

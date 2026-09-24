@@ -213,6 +213,7 @@ impl Chat {
                   QuestionStreamValue::SuggestedQuestion {
                     context_suggested_questions: _,
                   } => {},
+                  QuestionStreamValue::AnswerStreamDone { .. } | QuestionStreamValue::RateLimit { .. } => {},
                   QuestionStreamValue::FollowUp {
                     should_generate_related_question,
                   } => {

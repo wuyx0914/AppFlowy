@@ -6,10 +6,11 @@ edition = "2024"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+flowy-server-pub = { workspace = true }
 lib-infra = { workspace = true }
 collab = { workspace = true }
 collab-folder = { workspace = true }
-flowy-error = { workspace = true }
+flowy-error = { workspace = true, features = ["impl_from_tantivy"] }
 client-api = { workspace = true }
 uuid.workspace = true
 tokio.workspace = true

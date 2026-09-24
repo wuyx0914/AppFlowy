@@ -7,7 +7,6 @@ import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
 import 'package:appflowy/util/navigator_context_extension.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/workspace/_sidebar_workspace_icon.dart';
-import 'package:appflowy/workspace/presentation/settings/widgets/members/workspace_member_bloc.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -195,30 +194,21 @@ class _WorkspaceMenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => WorkspaceMemberBloc(
-        userProfile: userProfile,
+    // Local-only build: no member bloc is needed for the workspace list.
+    return FlowyOptionTile.text(
+      height: 60,
+      showTopBorder: showTopBorder,
+      showBottomBorder: false,
+      leftIcon: _WorkspaceMenuItemIcon(workspace: workspace),
+      trailing: _WorkspaceMenuItemTrailing(
         workspace: workspace,
-      )..add(const WorkspaceMemberEvent.initial()),
-      child: BlocBuilder<WorkspaceMemberBloc, WorkspaceMemberState>(
-        builder: (context, state) {
-          return FlowyOptionTile.text(
-            height: 60,
-            showTopBorder: showTopBorder,
-            showBottomBorder: false,
-            leftIcon: _WorkspaceMenuItemIcon(workspace: workspace),
-            trailing: _WorkspaceMenuItemTrailing(
-              workspace: workspace,
-              currentWorkspace: currentWorkspace,
-            ),
-            onTap: () => onWorkspaceSelected(workspace),
-            content: Expanded(
-              child: _WorkspaceMenuItemContent(
-                workspace: workspace,
-              ),
-            ),
-          );
-        },
+        currentWorkspace: currentWorkspace,
+      ),
+      onTap: () => onWorkspaceSelected(workspace),
+      content: Expanded(
+        child: _WorkspaceMenuItemContent(
+          workspace: workspace,
+        ),
       ),
     );
   }
@@ -235,7 +225,7 @@ class _WorkspaceMenuItemContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final memberCount = workspace.memberCount.toInt();
+    // Local-only build: member counts don't apply, only show the name.
     return Padding(
       padding: const EdgeInsets.only(left: 12),
       child: Column(
@@ -247,15 +237,6 @@ class _WorkspaceMenuItemContent extends StatelessWidget {
             fontSize: 14,
             fontWeight: FontWeight.w500,
             overflow: TextOverflow.ellipsis,
-          ),
-          FlowyText(
-            memberCount == 0
-                ? ''
-                : LocaleKeys.settings_appearance_members_membersCount.plural(
-                    memberCount,
-                  ),
-            fontSize: 10.0,
-            color: Theme.of(context).hintColor,
           ),
         ],
       ),
@@ -333,16 +314,11 @@ class _WorkspaceMenuItemTrailing extends StatelessWidget {
   }
 
   void _showMoreOptions(BuildContext context) {
-    final actions =
-        context.read<WorkspaceMemberBloc>().state.myRole == AFRolePB.Owner
-            ? [
-                // only the owner can update workspace properties
-                WorkspaceMenuMoreOption.rename,
-                WorkspaceMenuMoreOption.delete,
-              ]
-            : [
-                WorkspaceMenuMoreOption.leave,
-              ];
+    // Local-only build: the local user is always the workspace owner.
+    final actions = [
+      WorkspaceMenuMoreOption.rename,
+      WorkspaceMenuMoreOption.delete,
+    ];
 
     showMobileBottomSheet(
       context,
@@ -377,7 +353,7 @@ class _WorkspaceMenuItemTrailing extends StatelessWidget {
         _deleteWorkspace(context, bottomSheetContext);
         break;
       case WorkspaceMenuMoreOption.leave:
-        _leaveWorkspace(context, bottomSheetContext);
+        // Local-only build: leaving a workspace is not supported.
         break;
     }
   }
@@ -428,25 +404,6 @@ class _WorkspaceMenuItemTrailing extends StatelessWidget {
       (_) async {
         context.read<UserWorkspaceBloc>().add(
               UserWorkspaceEvent.deleteWorkspace(
-                workspaceId: workspace.workspaceId,
-              ),
-            );
-        context.popToHome();
-      },
-    );
-  }
-
-  void _leaveWorkspace(BuildContext context, BuildContext bottomSheetContext) {
-    Navigator.of(bottomSheetContext).pop();
-
-    _showConfirmDialog(
-      context,
-      '${LocaleKeys.settings_workspacePage_leaveWorkspacePrompt_title.tr()}: ${workspace.name}',
-      LocaleKeys.settings_workspacePage_leaveWorkspacePrompt_content.tr(),
-      LocaleKeys.button_confirm.tr(),
-      (_) async {
-        context.read<UserWorkspaceBloc>().add(
-              UserWorkspaceEvent.leaveWorkspace(
                 workspaceId: workspace.workspaceId,
               ),
             );

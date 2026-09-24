@@ -1,4 +1,4 @@
-use crate::af_cloud::define::LoggedUser;
+use crate::define::LoggedUser;
 use crate::local_server::impls::{
   LocalChatServiceImpl, LocalSearchServiceImpl, LocalServerDatabaseCloudServiceImpl,
   LocalServerDocumentCloudServiceImpl, LocalServerFolderCloudServiceImpl,
@@ -52,10 +52,6 @@ impl LocalServer {
 
 #[async_trait]
 impl AppFlowyServer for LocalServer {
-  fn set_token(&self, _token: &str) -> Result<(), Error> {
-    Ok(())
-  }
-
   async fn set_tanvity_state(&self, state: Option<Weak<RwLock<DocumentTantivyState>>>) {
     *self.tanvity_state.write().await = state;
   }

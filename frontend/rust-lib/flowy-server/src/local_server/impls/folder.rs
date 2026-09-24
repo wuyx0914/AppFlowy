@@ -1,10 +1,10 @@
 #![allow(unused_variables)]
 
 use crate::EmbeddingWriter;
-use crate::af_cloud::define::LoggedUser;
+use crate::define::LoggedUser;
 use crate::local_server::util::default_encode_collab_for_collab_type;
-use client_api::entity::PublishInfo;
-use client_api::entity::workspace_dto::PublishInfoView;
+use flowy_server_pub::workspace_dto::PublishInfo;
+use flowy_server_pub::workspace_dto::PublishInfoView;
 use collab::core::origin::CollabOrigin;
 use collab::preclude::Collab;
 use collab_entity::CollabType;

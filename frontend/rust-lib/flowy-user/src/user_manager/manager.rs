@@ -1,4 +1,4 @@
-use client_api::entity::GotrueTokenResponse;
+use flowy_server_pub::user_dto::GotrueTokenResponse;
 use collab_integrate::collab_builder::AppFlowyCollabBuilder;
 use collab_integrate::CollabKVDB;
 use flowy_error::FlowyResult;

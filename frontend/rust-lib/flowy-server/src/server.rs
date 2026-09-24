@@ -1,12 +1,8 @@
-use client_api::ws::ConnectState;
-use client_api::ws::WSConnectStateReceiver;
-use client_api::ws::WebSocketChannel;
 use flowy_search_pub::cloud::SearchCloudService;
 use std::sync::{Arc, Weak};
 
 use anyhow::Error;
 use arc_swap::ArcSwapOption;
-use client_api::collab_sync::ServerCollabMessage;
 use collab::entity::EncodedCollab;
 use collab_entity::CollabType;
 use flowy_ai_pub::cloud::ChatCloudService;
@@ -18,10 +14,8 @@ use flowy_folder_pub::cloud::FolderCloudService;
 use flowy_search_pub::tantivy_state::DocumentTantivyState;
 use flowy_storage_pub::cloud::StorageCloudService;
 use flowy_user_pub::cloud::UserCloudService;
-use flowy_user_pub::entities::UserTokenState;
 use lib_infra::async_trait::async_trait;
 use tokio::sync::RwLock;
-use tokio_stream::wrappers::WatchStream;
 use uuid::Uuid;
 
 #[async_trait]
@@ -60,15 +54,11 @@ where
 /// for managing and accessing user data, folders, collaborative objects, and documents in a cloud environment.
 #[async_trait]
 pub trait AppFlowyServer: Send + Sync + 'static {
-  fn set_token(&self, _token: &str) -> Result<(), Error>;
   async fn set_tanvity_state(&self, state: Option<Weak<RwLock<DocumentTantivyState>>>);
   fn set_ai_model(&self, _ai_model: &str) -> Result<(), Error> {
     Ok(())
   }
 
-  fn subscribe_token_state(&self) -> Option<WatchStream<UserTokenState>> {
-    None
-  }
   /// Enables or disables server sync.
   ///
   /// # Arguments
@@ -124,29 +114,6 @@ pub trait AppFlowyServer: Send + Sync + 'static {
   /// Bridge for the Cloud AI Search features
   ///
   async fn search_service(&self) -> Option<Arc<dyn SearchCloudService>>;
-
-  fn subscribe_ws_state(&self) -> Option<WSConnectStateReceiver> {
-    None
-  }
-
-  fn get_ws_state(&self) -> ConnectState {
-    ConnectState::Lost
-  }
-
-  #[allow(clippy::type_complexity)]
-  fn collab_ws_channel(
-    &self,
-    _object_id: &str,
-  ) -> Result<
-    Option<(
-      Arc<WebSocketChannel<ServerCollabMessage>>,
-      WSConnectStateReceiver,
-      bool,
-    )>,
-    anyhow::Error,
-  > {
-    Ok(None)
-  }
 
   fn file_storage(&self) -> Option<Arc<dyn StorageCloudService>>;
 }

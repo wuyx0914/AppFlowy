@@ -1,6 +1,4 @@
-import 'dart:io';
 
-import 'package:appflowy/env/cloud_env.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/setting/launch_settings_page.dart';
@@ -34,14 +32,9 @@ class MobileSignInScreen extends StatelessWidget {
                 const Spacer(),
                 FlowyLogoTitle(title: LocaleKeys.welcomeText.tr()),
                 VSpace(theme.spacing.xxl),
-                isLocalAuthEnabled
-                    ? const SignInAnonymousButtonV3()
-                    : const ContinueWithEmailAndPassword(),
+                // Local-only build: anonymous sign-in only.
+                const SignInAnonymousButtonV3(),
                 VSpace(theme.spacing.xxl),
-                if (isAuthEnabled) ...[
-                  _buildThirdPartySignInButtons(context),
-                  VSpace(theme.spacing.xxl),
-                ],
                 const SignInAgreement(),
                 const Spacer(),
                 _buildSettingsButton(context),
@@ -50,37 +43,6 @@ class MobileSignInScreen extends StatelessWidget {
           ),
         );
       },
-    );
-  }
-
-  Widget _buildThirdPartySignInButtons(BuildContext context) {
-    final theme = AppFlowyTheme.of(context);
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Expanded(child: Divider()),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: Text(
-                LocaleKeys.signIn_or.tr(),
-                style: TextStyle(
-                  fontSize: 16,
-                  color: theme.textColorScheme.secondary,
-                ),
-              ),
-            ),
-            const Expanded(child: Divider()),
-          ],
-        ),
-        const VSpace(16),
-        // expand third-party sign in buttons on Android by default.
-        // on iOS, the github and discord buttons are collapsed by default.
-        ThirdPartySignInButtons(
-          expanded: Platform.isAndroid,
-        ),
-      ],
     );
   }
 
@@ -110,9 +72,8 @@ class MobileSignInScreen extends StatelessWidget {
           },
         ),
         const HSpace(24),
-        isLocalAuthEnabled
-            ? const ChangeCloudModeButton()
-            : const SignInAnonymousButtonV2(),
+        // Local-only build: the change-cloud-mode button is removed.
+        const SignInAnonymousButtonV2(),
       ],
     );
   }

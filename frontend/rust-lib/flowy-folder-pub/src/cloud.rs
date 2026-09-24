@@ -1,13 +1,10 @@
 use crate::entities::PublishPayload;
 pub use anyhow::Error;
-use client_api::entity::{
-  PublishInfo,
-  guest_dto::{
-    ListSharedViewResponse, RevokeSharedViewAccessRequest, ShareViewWithGuestRequest,
-    SharedViewDetails,
-  },
-  workspace_dto::PublishInfoView,
+use flowy_server_pub::guest_dto::{
+  ListSharedViewResponse, RevokeSharedViewAccessRequest, ShareViewWithGuestRequest,
+  SharedViewDetails,
 };
+use flowy_server_pub::workspace_dto::{PublishInfo, PublishInfoView};
 use collab::entity::EncodedCollab;
 use collab_entity::CollabType;
 pub use collab_folder::{Folder, FolderData, Workspace};

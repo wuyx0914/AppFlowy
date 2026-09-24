@@ -1,4 +1,4 @@
-use client_api::entity::guest_dto::RevokeSharedViewAccessRequest;
+use flowy_server_pub::guest_dto::RevokeSharedViewAccessRequest;
 use flowy_error::{FlowyError, FlowyResult};
 use lib_dispatch::prelude::{AFPluginData, AFPluginState, DataResult, data_result_ok};
 use std::str::FromStr;

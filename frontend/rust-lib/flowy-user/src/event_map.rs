@@ -1,4 +1,4 @@
-use client_api::entity::billing_dto::SubscriptionPlan;
+use flowy_server_pub::billing::SubscriptionPlan;
 use flowy_derive::{Flowy_Event, ProtoBuf_Enum};
 use flowy_error::FlowyResult;
 use flowy_user_pub::cloud::UserCloudConfig;
@@ -161,9 +161,6 @@ pub enum UserEvent {
   #[event()]
   OpenAnonUser = 26,
 
-  /// Push a realtime event to the user. Currently, the realtime event
-  /// is only used when the auth type is: [AuthType::Supabase].
-  ///
   #[event(input = "RealtimePayloadPB")]
   PushRealtimeEvent = 27,
 

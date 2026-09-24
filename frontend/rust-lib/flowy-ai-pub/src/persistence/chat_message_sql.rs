@@ -1,6 +1,6 @@
 use crate::cloud::MessageCursor;
-use crate::cloud::chat_dto::ChatAuthorType;
-use client_api::entity::chat_dto::ChatMessage;
+use flowy_server_pub::ai_dto::ChatAuthorType;
+use flowy_server_pub::ai_dto::ChatMessage;
 use flowy_error::{FlowyError, FlowyResult};
 use flowy_sqlite::upsert::excluded;
 use flowy_sqlite::{
@@ -127,6 +127,7 @@ pub fn select_chat_messages(
       query = query.offset(offset_val as i64);
     },
     MessageCursor::NextBack => {},
+    MessageCursor::NextMessage => {},
   }
 
   // Order by message_id in descending order for all queries
@@ -182,6 +183,9 @@ pub fn select_chat_messages(
         ((offset_val as i64) + (messages.len() as i64)) < total_count
       },
       MessageCursor::NextBack => {
+        ((messages.len() as i64) < total_count) && ((messages.len() as u64) == limit_val)
+      },
+      MessageCursor::NextMessage => {
         ((messages.len() as i64) < total_count) && ((messages.len() as u64) == limit_val)
       },
     }

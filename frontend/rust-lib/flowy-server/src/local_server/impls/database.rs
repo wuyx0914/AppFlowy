@@ -1,6 +1,6 @@
 #![allow(unused_variables)]
 
-use crate::af_cloud::define::LoggedUser;
+use crate::define::LoggedUser;
 use crate::local_server::util::default_encode_collab_for_collab_type;
 use collab::entity::EncodedCollab;
 use collab_entity::CollabType;

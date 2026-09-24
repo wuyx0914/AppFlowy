@@ -10,11 +10,10 @@ use flowy_ai::local_ai::controller::LocalAIController;
 use flowy_ai_pub::entities::UnindexedCollab;
 use flowy_error::{FlowyError, FlowyResult};
 use flowy_search_pub::tantivy_state::DocumentTantivyState;
-use flowy_server::af_cloud::define::AIUserServiceImpl;
-use flowy_server::af_cloud::{define::LoggedUser, AppFlowyCloudServer};
+use flowy_server::define::AIUserServiceImpl;
+use flowy_server::define::LoggedUser;
 use flowy_server::local_server::LocalServer;
 use flowy_server::{AppFlowyEncryption, AppFlowyServer, EmbeddingWriter, EncryptionImpl};
-use flowy_server_pub::AuthenticatorType;
 use flowy_sqlite::kv::KVStorePreferences;
 use flowy_user_pub::entities::*;
 use lib_infra::async_trait::async_trait;
@@ -38,12 +37,9 @@ pub struct ServerProvider {
 
 // Our little guard wrapper:
 
-/// Determine current server type from ENV
+/// The local-only build always uses the local server.
 pub fn current_server_type() -> AuthType {
-  match AuthenticatorType::from_env() {
-    AuthenticatorType::Local => AuthType::Local,
-    AuthenticatorType::AppFlowyCloud => AuthType::AppFlowyCloud,
-  }
+  AuthType::Local
 }
 
 impl ServerProvider {
@@ -136,36 +132,17 @@ impl ServerProvider {
       return Ok(r.value().clone());
     }
 
-    let server: Arc<dyn AppFlowyServer> = match auth_type {
-      AuthType::Local => {
-        let embedding_writer = self.indexed_data_writer.clone().map(|w| {
-          Arc::new(EmbeddingWriterImpl {
-            indexed_data_writer: w,
-          }) as Arc<dyn EmbeddingWriter>
-        });
-        Arc::new(LocalServer::new(
-          self.logged_user.clone(),
-          self.local_ai.clone(),
-          embedding_writer,
-        ))
-      },
-      AuthType::AppFlowyCloud => {
-        let cfg = self
-          .config
-          .cloud_config
-          .clone()
-          .ok_or_else(|| FlowyError::internal().with_context("Missing cloud config"))?;
-        let ai_user_service = Arc::new(AIUserServiceImpl(Arc::downgrade(&self.logged_user)));
-        Arc::new(AppFlowyCloudServer::new(
-          cfg,
-          self.user_enable_sync.load(Ordering::Acquire),
-          self.config.device_id.clone(),
-          self.config.app_version.clone(),
-          Arc::downgrade(&self.logged_user),
-          ai_user_service,
-        ))
-      },
-    };
+    let _ = auth_type;
+    let embedding_writer = self.indexed_data_writer.clone().map(|w| {
+      Arc::new(EmbeddingWriterImpl {
+        indexed_data_writer: w,
+      }) as Arc<dyn EmbeddingWriter>
+    });
+    let server: Arc<dyn AppFlowyServer> = Arc::new(LocalServer::new(
+      self.logged_user.clone(),
+      self.local_ai.clone(),
+      embedding_writer,
+    ));
 
     self.providers.insert(auth_type, server);
     let guard = self.providers.get(&auth_type).unwrap();

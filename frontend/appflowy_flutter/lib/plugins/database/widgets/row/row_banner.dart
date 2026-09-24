@@ -293,7 +293,6 @@ class _RowCoverState extends State<RowCover> {
                   UploadImageType.color,
                   UploadImageType.local,
                   UploadImageType.url,
-                  UploadImageType.unsplash,
                 ],
                 onSelectedAIImage: (_) => throw UnimplementedError(),
                 onSelectedLocalImages: (files) {

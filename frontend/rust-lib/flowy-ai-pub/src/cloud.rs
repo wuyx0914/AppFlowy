@@ -1,17 +1,17 @@
-use crate::cloud::ai_dto::AvailableModel;
-pub use client_api::entity::QuestionStreamValue;
-pub use client_api::entity::ai_dto::{
+pub use flowy_server_pub::ai_dto::AvailableModel;
+pub use flowy_server_pub::ai_dto::QuestionStreamValue;
+pub use flowy_server_pub::ai_dto::{
   AppFlowyOfflineAI, CompleteTextParams, CompletionMessage, CompletionMetadata, CompletionType,
   CreateChatContext, CustomPrompt, LLMModel, LocalAIConfig, ModelInfo, ModelList, OutputContent,
   OutputLayout, RelatedQuestion, RepeatedRelatedQuestion, ResponseFormat, StringOrMessage,
 };
-pub use client_api::entity::billing_dto::SubscriptionPlan;
-pub use client_api::entity::chat_dto::{
+pub use flowy_server_pub::billing::SubscriptionPlan;
+pub use flowy_server_pub::ai_dto::{
   ChatMessage, ChatMessageType, ChatRAGData, ChatSettings, ContextLoader, MessageCursor,
   RepeatedChatMessage, UpdateChatParams,
 };
-pub use client_api::entity::*;
-pub use client_api::error::{AppResponseError, ErrorCode as AppErrorCode};
+pub use flowy_server_pub::ai_dto::*;
+pub use flowy_server_pub::ai_dto::{AppResponseError, ErrorCode as AppErrorCode};
 use flowy_error::FlowyError;
 use futures::stream::BoxStream;
 use lib_infra::async_trait::async_trait;
@@ -194,3 +194,20 @@ pub trait ChatCloudService: Send + Sync + 'static {
     model: &str,
   ) -> Result<(), FlowyError>;
 }
+
+
+/// Forwarding modules that older code still references via
+/// `flowy_ai_pub::cloud::<module>::...`.
+pub mod ai_dto {
+  pub use flowy_server_pub::ai_dto::*;
+}
+pub mod chat_dto {
+  pub use flowy_server_pub::ai_dto::{ChatAuthorType, ChatMessage, ChatMessageType};
+}
+pub mod search_dto {
+  pub use flowy_server_pub::search_dto::*;
+}
+pub mod workspace_dto {
+  pub use flowy_server_pub::workspace_dto::*;
+}
+pub use collab_entity::CollabType;

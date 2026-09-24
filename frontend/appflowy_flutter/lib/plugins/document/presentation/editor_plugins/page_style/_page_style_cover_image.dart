@@ -9,7 +9,6 @@ import 'package:appflowy/mobile/application/base/mobile_view_page_bloc.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/image_util.dart';
-import 'package:appflowy/plugins/document/presentation/editor_plugins/image/unsplash_image_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/page_style/_page_cover_bottom_sheet.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/page_style/_page_style_util.dart';
 import 'package:appflowy/shared/appflowy_network_image.dart';
@@ -79,17 +78,10 @@ class PageStyleCoverImage extends StatelessWidget {
           ),
           _CoverOptionButton(
             showLeftCorner: false,
-            showRightCorner: false,
+            showRightCorner: true,
             selected: state.coverImage.isPhoto,
             onTap: () => _pickImage(context),
             child: const _PhotoCover(),
-          ),
-          _CoverOptionButton(
-            showLeftCorner: false,
-            showRightCorner: true,
-            selected: state.coverImage.isUnsplashImage,
-            onTap: () => _showUnsplash(context),
-            child: const _UnsplashCover(),
           ),
         ],
       ),
@@ -252,75 +244,6 @@ class PageStyleCoverImage extends StatelessWidget {
             ),
           );
     }
-  }
-
-  void _showUnsplash(BuildContext context) {
-    final pageStyleBloc = context.read<DocumentPageStyleBloc>();
-    final backgroundColor = AFThemeExtension.of(context).background;
-    final maxHeight = MediaQuery.of(context).size.height * 0.6;
-
-    context.pop();
-
-    showMobileBottomSheet(
-      context,
-      showDragHandle: true,
-      showDivider: false,
-      showDoneButton: true,
-      showHeader: true,
-      showRemoveButton: true,
-      title: LocaleKeys.pageStyle_unsplash.tr(),
-      backgroundColor: backgroundColor,
-      onRemove: () {
-        pageStyleBloc.add(
-          DocumentPageStyleEvent.updateCoverImage(
-            PageStyleCover.none(),
-          ),
-        );
-      },
-      builder: (_) {
-        return ConstrainedBox(
-          constraints: BoxConstraints(maxHeight: maxHeight, minHeight: 80),
-          child: BlocProvider.value(
-            value: pageStyleBloc,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: UnsplashImageWidget(
-                type: UnsplashImageType.fullScreen,
-                onSelectUnsplashImage: (url) {
-                  pageStyleBloc.add(
-                    DocumentPageStyleEvent.updateCoverImage(
-                      PageStyleCover(
-                        type: PageStyleCoverImageType.unsplashImage,
-                        value: url,
-                      ),
-                    ),
-                  );
-                },
-              ),
-            ),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class _UnsplashCover extends StatelessWidget {
-  const _UnsplashCover();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        const FlowySvg(FlowySvgs.m_page_style_unsplash_m),
-        const VSpace(4.0),
-        FlowyText(
-          LocaleKeys.pageStyle_unsplash.tr(),
-          fontSize: 12.0,
-        ),
-      ],
-    );
   }
 }
 

@@ -1,6 +1,6 @@
 use chrono::{Duration, NaiveDateTime, Utc};
-use client_api::entity::billing_dto::{RecurringInterval, SubscriptionPlanDetail};
-use client_api::entity::billing_dto::{SubscriptionPlan, WorkspaceUsageAndLimit};
+use flowy_server_pub::billing::{RecurringInterval, SubscriptionPlanDetail};
+use flowy_server_pub::billing::{SubscriptionPlan, WorkspaceUsageAndLimit};
 
 use std::str::FromStr;
 use std::sync::Arc;

@@ -1,5 +1,4 @@
 use anyhow::Context;
-use client_api::entity::billing_dto::SubscriptionPlan;
 use std::sync::{Arc, Weak};
 use tracing::{error, event, info, instrument};
 
@@ -17,7 +16,8 @@ use flowy_error::{FlowyError, FlowyResult};
 use flowy_folder::manager::{FolderInitDataSource, FolderManager};
 use flowy_search::services::manager::SearchManager;
 use flowy_search_pub::tantivy_state_init::close_document_tantivy_state;
-use flowy_server::af_cloud::define::LoggedUser;
+use flowy_server::define::LoggedUser;
+use flowy_server_pub::billing::SubscriptionPlan;
 use flowy_storage::manager::StorageManager;
 use flowy_user::event_map::AppLifeCycle;
 use flowy_user::services::entities::{UserConfig, UserPaths};
@@ -485,19 +485,9 @@ impl AppLifeCycle for AppLifeCycleImpl {
     }
   }
 
-  fn on_subscription_plans_updated(&self, plans: Vec<SubscriptionPlan>) {
-    let mut storage_plan_changed = false;
-    for plan in &plans {
-      match plan {
-        SubscriptionPlan::Pro | SubscriptionPlan::Team => storage_plan_changed = true,
-        _ => {},
-      }
-    }
-    if storage_plan_changed {
-      if let Ok(storage) = self.storage_manager() {
-        storage.enable_storage_write_access();
-      }
-    }
+  fn on_subscription_plans_updated(&self, _plans: Vec<SubscriptionPlan>) {
+    // Local-only build: no subscription plans.
+    let _ = self.storage_manager();
   }
 
   fn on_storage_permission_updated(&self, can_write: bool) {

@@ -10,11 +10,10 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-import 'package:google_fonts/google_fonts.dart';
 
+// Local-only build: only built-in fonts are offered, no Google Fonts list.
 final List<String> _availableFonts = [
   defaultFontFamily,
-  ...GoogleFonts.asMap().keys,
 ];
 
 class FontPickerScreen extends StatelessWidget {

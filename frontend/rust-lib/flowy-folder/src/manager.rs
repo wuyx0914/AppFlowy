@@ -19,11 +19,12 @@ use crate::view_operation::{
   FolderOperationHandler, FolderOperationHandlers, GatherEncodedCollab, ViewData, create_view,
 };
 use arc_swap::ArcSwapOption;
-use client_api::entity::guest_dto::{
+use flowy_server_pub::guest_dto::{
   RevokeSharedViewAccessRequest, ShareViewWithGuestRequest, SharedUser, SharedViewDetails,
 };
-use client_api::entity::workspace_dto::PublishInfoView;
-use client_api::entity::{AFAccessLevel, AFRole, PublishInfo};
+use flowy_server_pub::workspace_dto::PublishInfoView;
+use flowy_server_pub::guest_dto::{AFAccessLevel, AFRole};
+use flowy_server_pub::workspace_dto::PublishInfo;
 use collab::core::collab::{DataSource, IndexContentReceiver};
 use collab::lock::RwLock;
 use collab_entity::{CollabType, EncodedCollab};

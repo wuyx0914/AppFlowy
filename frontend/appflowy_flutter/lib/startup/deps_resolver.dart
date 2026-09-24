@@ -10,8 +10,6 @@ import 'package:appflowy/shared/appflowy_cache_manager.dart';
 import 'package:appflowy/shared/custom_image_cache_manager.dart';
 import 'package:appflowy/shared/easy_localiation_service.dart';
 import 'package:appflowy/startup/startup.dart';
-import 'package:appflowy/startup/tasks/appflowy_cloud_task.dart';
-import 'package:appflowy/user/application/auth/af_cloud_auth_service.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';
 import 'package:appflowy/user/application/prelude.dart';
 import 'package:appflowy/user/application/reminder/reminder_bloc.dart';
@@ -59,19 +57,12 @@ class DependencyResolver {
 }
 
 Future<void> _resolveCloudDeps(GetIt getIt) async {
+  // Local-only build: the shared env is always local and no cloud deep-link
+  // service is registered.
   final env = await AppFlowyCloudSharedEnv.fromEnv();
   Log.info("cloud setting: $env");
   getIt.registerFactory<AppFlowyCloudSharedEnv>(() => env);
   getIt.registerFactory<AIRepository>(() => AppFlowyAIService());
-
-  if (isAppFlowyCloudEnabled) {
-    getIt.registerSingleton(
-      AppFlowyCloudDeepLink(),
-      dispose: (obj) async {
-        await obj.dispose();
-      },
-    );
-  }
 }
 
 void _resolveCommonService(
@@ -104,20 +95,12 @@ void _resolveCommonService(
 }
 
 void _resolveUserDeps(GetIt getIt, IntegrationMode mode) {
-  switch (currentCloudType()) {
-    case AuthenticatorType.local:
-      getIt.registerFactory<AuthService>(
-        () => BackendAuthService(
-          AuthTypePB.Local,
-        ),
-      );
-      break;
-    case AuthenticatorType.appflowyCloud:
-    case AuthenticatorType.appflowyCloudSelfHost:
-    case AuthenticatorType.appflowyCloudDevelop:
-      getIt.registerFactory<AuthService>(() => AppFlowyCloudAuthService());
-      break;
-  }
+  // Local-only build: always use the local backend auth service.
+  getIt.registerFactory<AuthService>(
+    () => BackendAuthService(
+      AuthTypePB.Local,
+    ),
+  );
 
   getIt.registerFactory<AuthRouter>(() => AuthRouter());
 

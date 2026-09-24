@@ -14,12 +14,9 @@ import 'package:appflowy/mobile/presentation/notifications/mobile_notifications_
 import 'package:appflowy/mobile/presentation/notifications/mobile_notifications_screen.dart';
 import 'package:appflowy/mobile/presentation/presentation.dart';
 import 'package:appflowy/mobile/presentation/search/mobile_search_page.dart';
-import 'package:appflowy/mobile/presentation/setting/cloud/appflowy_cloud_page.dart';
 import 'package:appflowy/mobile/presentation/setting/font/font_picker_screen.dart';
 import 'package:appflowy/mobile/presentation/setting/language/language_picker_screen.dart';
 import 'package:appflowy/mobile/presentation/setting/launch_settings_page.dart';
-import 'package:appflowy/mobile/presentation/setting/workspace/add_members_screen.dart';
-import 'package:appflowy/mobile/presentation/setting/workspace/invite_members_screen.dart';
 import 'package:appflowy/plugins/base/color/color_picker_screen.dart';
 import 'package:appflowy/plugins/base/emoji/emoji_picker_screen.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/code_block/code_language_screen.dart';
@@ -62,7 +59,6 @@ GoRouter generateRouter(Widget child) {
       if (UniversalPlatform.isMobile) ...[
         // settings
         _mobileHomeSettingPageRoute(),
-        _mobileCloudSettingAppFlowyCloudPageRoute(),
         _mobileLaunchSettingsPageRoute(),
         _mobileFeatureFlagPageRoute(),
 
@@ -106,8 +102,6 @@ GoRouter generateRouter(Widget child) {
         _mobileNotificationMultiSelectPageRoute(),
 
         // invite members
-        _mobileInviteMembersPageRoute(),
-        _mobileAddMembersPageRoute(),
       ],
 
       // Desktop and Mobile
@@ -236,45 +230,6 @@ GoRoute _mobileNotificationMultiSelectPageRoute() {
       return const MaterialExtendedPage(
         child: MobileNotificationsMultiSelectScreen(),
         name: MobileNotificationsMultiSelectScreen.routeName,
-      );
-    },
-  );
-}
-
-GoRoute _mobileInviteMembersPageRoute() {
-  return GoRoute(
-    parentNavigatorKey: AppGlobals.rootNavKey,
-    path: InviteMembersScreen.routeName,
-    pageBuilder: (context, state) {
-      return const MaterialExtendedPage(
-        child: InviteMembersScreen(),
-        name: InviteMembersScreen.routeName,
-      );
-    },
-  );
-}
-
-GoRoute _mobileAddMembersPageRoute() {
-  return GoRoute(
-    parentNavigatorKey: AppGlobals.rootNavKey,
-    path: AddMembersScreen.routeName,
-    pageBuilder: (context, state) {
-      return const MaterialExtendedPage(
-        child: AddMembersScreen(),
-        name: AddMembersScreen.routeName,
-      );
-    },
-  );
-}
-
-GoRoute _mobileCloudSettingAppFlowyCloudPageRoute() {
-  return GoRoute(
-    parentNavigatorKey: AppGlobals.rootNavKey,
-    path: AppFlowyCloudPage.routeName,
-    pageBuilder: (context, state) {
-      return const MaterialExtendedPage(
-        child: AppFlowyCloudPage(),
-        name: AppFlowyCloudPage.routeName,
       );
     },
   );

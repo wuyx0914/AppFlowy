@@ -105,7 +105,6 @@ class MultiImagePlaceholderState extends State<MultiImagePlaceholder> {
             supportTypes: const [
               UploadImageType.local,
               UploadImageType.url,
-              UploadImageType.unsplash,
             ],
             onSelectedLocalImages: (files) {
               controller.close();
@@ -189,7 +188,6 @@ class MultiImagePlaceholderState extends State<MultiImagePlaceholder> {
               supportTypes: const [
                 UploadImageType.local,
                 UploadImageType.url,
-                UploadImageType.unsplash,
               ],
               onSelectedLocalImages: (files) async {
                 context.pop();

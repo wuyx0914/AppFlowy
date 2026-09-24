@@ -9,7 +9,7 @@ use flowy_document::manager::DocumentManager;
 use flowy_error::{FlowyError, FlowyResult};
 use flowy_folder::manager::FolderManager;
 use flowy_search::services::manager::SearchManager;
-use flowy_server::af_cloud::define::LoggedUser;
+use flowy_server::define::LoggedUser;
 use flowy_sqlite::kv::KVStorePreferences;
 use flowy_storage::manager::StorageManager;
 use flowy_user::services::authenticate_user::AuthenticateUser;
@@ -93,8 +93,6 @@ impl AppFlowyCore {
     #[allow(clippy::if_same_then_else)]
     if cfg!(debug_assertions) {
       /// The profiling can be used to tracing the performance of the application.
-      /// Check out the [Link](https://docs.appflowy.io/docs/documentation/software-contributions/architecture/backend/profiling#enable-profiling)
-      ///  for more information.
       #[cfg(feature = "profiling")]
       console_subscriber::init();
 

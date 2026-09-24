@@ -49,7 +49,6 @@ class AppFlowyCloudMockAuthService implements AuthService {
   }) async {
     final payload = SignInUrlPayloadPB.create()
       ..authenticator = AuthTypePB.Server
-      // don't use nanoid here, the gotrue server will transform the email
       ..email = userEmail;
 
     final deviceId = await getDeviceId();

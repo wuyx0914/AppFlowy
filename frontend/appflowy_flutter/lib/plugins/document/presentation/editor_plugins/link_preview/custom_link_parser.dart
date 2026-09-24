@@ -7,15 +7,10 @@ import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:flutter/material.dart';
 import 'link_parsers/default_parser.dart';
-import 'link_parsers/youtube_parser.dart';
 
 class LinkParser {
   final Set<ValueChanged<LinkInfo>> _listeners = <ValueChanged<LinkInfo>>{};
-  static final Map<String, LinkInfoParser> _hostToParsers = {
-    'www.youtube.com': YoutubeParser(),
-    'youtube.com': YoutubeParser(),
-    'youtu.be': YoutubeParser(),
-  };
+  static final Map<String, LinkInfoParser> _hostToParsers = {};
 
   Future<void> start(String url, {LinkInfoParser? parser}) async {
     final uri = Uri.tryParse(LinkInfoParser.formatUrl(url)) ?? Uri.parse(url);

@@ -1,8 +1,6 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:appflowy/shared/af_role_pb_extension.dart';
-import 'package:appflowy/workspace/presentation/settings/widgets/members/workspace_member_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialog_v2.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
@@ -39,15 +37,8 @@ class _WorkspaceMoreActionListState extends State<WorkspaceMoreActionList> {
 
   @override
   Widget build(BuildContext context) {
-    final myRole = context.read<WorkspaceMemberBloc>().state.myRole;
-    final actions = [];
-    if (myRole.isOwner) {
-      actions.add(WorkspaceMoreAction.rename);
-      actions.add(WorkspaceMoreAction.divider);
-      actions.add(WorkspaceMoreAction.delete);
-    } else if (myRole.canLeave) {
-      actions.add(WorkspaceMoreAction.leave);
-    }
+    // Local-only build: the local user is always the workspace owner.
+    final actions = [WorkspaceMoreAction.rename, WorkspaceMoreAction.divider, WorkspaceMoreAction.delete];
     if (actions.isEmpty) {
       return const SizedBox.shrink();
     }

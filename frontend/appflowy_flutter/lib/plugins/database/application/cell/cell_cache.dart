@@ -4,8 +4,6 @@ import 'cell_controller.dart';
 
 /// CellMemCache is used to cache cell data of each block.
 /// We use CellContext to index the cell in the cache.
-/// Read https://docs.appflowy.io/docs/documentation/software-contributions/architecture/frontend/frontend/grid
-/// for more information
 class CellMemCache {
   CellMemCache();
 

@@ -1,4 +1,3 @@
-import 'package:appflowy/env/cloud_env.dart';
 import 'package:appflowy/env/env.dart';
 import 'package:appflowy/features/workspace/data/repositories/rust_workspace_repository_impl.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
@@ -6,9 +5,7 @@ import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar.dart';
 import 'package:appflowy/mobile/presentation/presentation.dart';
 import 'package:appflowy/mobile/presentation/setting/ai/ai_settings_group.dart';
-import 'package:appflowy/mobile/presentation/setting/cloud/cloud_setting_group.dart';
 import 'package:appflowy/mobile/presentation/setting/user_session_setting_group.dart';
-import 'package:appflowy/mobile/presentation/setting/workspace/workspace_setting_group.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_mobile_state_container.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
 import 'package:appflowy/startup/startup.dart';
@@ -92,17 +89,14 @@ class _MobileHomeSettingPageState extends State<MobileHomeSettingPage> {
                   PersonalInfoSettingGroup(
                     userProfile: userProfile,
                   ),
-                  if (state.userProfile.userAuthType == AuthTypePB.Server)
-                    const WorkspaceSettingGroup(),
+                  // Local-only build: workspace members settings removed.
                   const AppearanceSettingGroup(),
                   const LanguageSettingGroup(),
-                  if (Env.enableCustomCloud) const CloudSettingGroup(),
-                  if (isAuthEnabled)
-                    AiSettingsGroup(
-                      key: ValueKey(currentWorkspaceId),
-                      userProfile: userProfile,
-                      workspaceId: currentWorkspaceId,
-                    ),
+                  AiSettingsGroup(
+                    key: ValueKey(currentWorkspaceId),
+                    userProfile: userProfile,
+                    workspaceId: currentWorkspaceId,
+                  ),
                   const SupportSettingGroup(),
                   const AboutSettingGroup(),
                   UserSessionSettingGroup(

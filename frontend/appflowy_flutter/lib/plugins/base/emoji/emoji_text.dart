@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 // used to prevent loading font from google fonts every time
 List<String>? _cachedFallbackFontFamily;
@@ -37,11 +36,9 @@ class EmojiText extends StatelessWidget {
   }
 
   void _loadFallbackFontFamily() {
+    // Local-only build: rely on the system emoji font instead of Google Fonts.
     if (Platform.isLinux) {
-      final notoColorEmoji = GoogleFonts.notoColorEmoji().fontFamily;
-      if (notoColorEmoji != null) {
-        _cachedFallbackFontFamily = [notoColorEmoji];
-      }
+      _cachedFallbackFontFamily = ['Noto Color Emoji'];
     }
   }
 }

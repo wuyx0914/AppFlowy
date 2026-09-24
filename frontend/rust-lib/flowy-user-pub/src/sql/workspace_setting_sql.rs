@@ -1,4 +1,4 @@
-use client_api::entity::AFWorkspaceSettings;
+use flowy_server_pub::workspace_dto::AFWorkspaceSettings;
 use flowy_error::FlowyError;
 use flowy_sqlite::DBConnection;
 use flowy_sqlite::schema::workspace_setting_table;

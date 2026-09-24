@@ -1,46 +1,50 @@
-pub use client_api::entity::*;
-use serde_repr::Deserialize_repr;
-
-macro_rules! if_native {
-    ($($item:item)*) => {$(
-        #[cfg(not(target_arch = "wasm32"))]
-        $item
-    )*}
+pub mod billing;
+pub mod guest_dto;
+pub mod storage_dto;
+pub mod workspace_dto;
+pub mod ai_dto;
+pub mod user_dto {
+  pub use crate::ai_dto::GotrueTokenResponse;
+}
+pub mod search_dto {
+  pub use crate::ai_dto::{SearchContentType, SearchDocumentResponseItem, SearchResult, SearchSummaryResult, Summary};
 }
 
-macro_rules! if_wasm {
-    ($($item:item)*) => {$(
-        #[cfg(target_arch = "wasm32")]
-        $item
-    )*}
-}
-
-if_native! {
-    mod native;
-    pub mod af_cloud_config {
-      pub use crate::native::af_cloud_config::*;
-    }
-}
-
-if_wasm! {
-    mod wasm;
-    pub mod af_cloud_config {
-      pub use crate::wasm::af_cloud_config::*;
-    }
-}
-
-pub const CLOUT_TYPE_STR: &str = "APPFLOWY_CLOUD_ENV_CLOUD_TYPE";
-
-#[derive(Deserialize_repr, Debug, Clone, PartialEq, Eq)]
+/// The authenticator type of the current build.
+/// The local-only build always uses [AuthenticatorType::Local].
+#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
 #[repr(u8)]
 pub enum AuthenticatorType {
   Local = 0,
-  AppFlowyCloud = 2,
+}
+
+/// Local stub for the removed cloud configuration. Kept only so the
+/// dart-ffi configuration surface keeps compiling; never serialized with
+/// real values in the local-only build.
+pub mod af_cloud_config {
+  use serde::{Deserialize, Serialize};
+
+  #[derive(Debug, Clone, Default, Serialize, Deserialize)]
+  pub struct AFCloudConfiguration {
+    pub base_url: String,
+    pub ws_url: String,
+    pub gotrue_url: String,
+  }
+
+  impl AFCloudConfiguration {
+    pub fn from_env() -> Option<Self> {
+      None
+    }
+
+    pub fn write_env(&self) {
+      // no-op in the local-only build
+    }
+  }
 }
 
 impl AuthenticatorType {
   pub fn write_env(&self) {
-    let s = self.clone() as u8;
+    let s = *self as u8;
     unsafe {
       std::env::set_var(CLOUT_TYPE_STR, s.to_string());
     }
@@ -48,11 +52,8 @@ impl AuthenticatorType {
 
   #[allow(dead_code)]
   fn from_str(s: &str) -> Self {
-    match s {
-      "0" => AuthenticatorType::Local,
-      "2" => AuthenticatorType::AppFlowyCloud,
-      _ => AuthenticatorType::Local,
-    }
+    let _ = s;
+    AuthenticatorType::Local
   }
 
   #[allow(dead_code)]
@@ -61,3 +62,5 @@ impl AuthenticatorType {
     AuthenticatorType::from_str(&cloud_type_str)
   }
 }
+
+pub const CLOUT_TYPE_STR: &str = "APPFLOWY_CLOUD_ENV_CLOUD_TYPE";

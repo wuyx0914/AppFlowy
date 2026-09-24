@@ -1,6 +1,5 @@
 import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/header/cover_editor.dart';
-import 'package:appflowy/plugins/document/presentation/editor_plugins/image/unsplash_image_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/upload_image_menu/widgets/upload_image_file_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy_editor/appflowy_editor.dart' hide ColorOption;
@@ -17,7 +16,6 @@ import 'widgets/embed_image_url_widget.dart';
 enum UploadImageType {
   local,
   url,
-  unsplash,
   color;
 
   String get description => switch (this) {
@@ -25,8 +23,6 @@ enum UploadImageType {
           LocaleKeys.document_imageBlock_upload_label.tr(),
         UploadImageType.url =>
           LocaleKeys.document_imageBlock_embedLink_label.tr(),
-        UploadImageType.unsplash =>
-          LocaleKeys.document_imageBlock_unsplash_label.tr(),
         UploadImageType.color => LocaleKeys.document_plugins_cover_colors.tr(),
       };
 }
@@ -154,15 +150,6 @@ class _UploadImageMenuState extends State<UploadImageMenu> {
           constraints: constraints,
           child: EmbedImageUrlWidget(
             onSubmit: widget.onSelectedNetworkImage,
-          ),
-        );
-      case UploadImageType.unsplash:
-        return Expanded(
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: UnsplashImageWidget(
-              onSelectUnsplashImage: widget.onSelectedNetworkImage,
-            ),
           ),
         );
       case UploadImageType.color:

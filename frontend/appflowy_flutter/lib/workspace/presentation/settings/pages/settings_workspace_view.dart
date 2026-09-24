@@ -45,7 +45,6 @@ import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SettingsWorkspaceView extends StatelessWidget {
   const SettingsWorkspaceView({
@@ -851,7 +850,7 @@ class _FontSelectorDropdown extends StatefulWidget {
 }
 
 class _FontSelectorDropdownState extends State<_FontSelectorDropdown> {
-  late final _options = [defaultFontFamily, ...GoogleFonts.asMap().keys];
+  late final _options = [defaultFontFamily]; // Local-only: built-in fonts only
   final _focusNode = FocusNode();
   final _controller = PopoverController();
   late final ScrollController _scrollController;

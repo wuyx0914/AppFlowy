@@ -1,4 +1,3 @@
-import 'package:appflowy/env/cloud_env.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';
@@ -73,13 +72,9 @@ class SplashScreen extends StatelessWidget {
   }
 
   void _handleUnauthenticated(BuildContext context, Unauthenticated result) {
-    // replace Splash screen as root page
-    if (isAuthEnabled || UniversalPlatform.isMobile) {
-      context.go(SignInScreen.routeName);
-    } else {
-      // if the env is not configured, we will skip to the 'skip login screen'.
-      context.go(SkipLogInScreen.routeName);
-    }
+    // Local-only build: always skip the sign-in screen and go straight to the
+    // anonymous local workspace setup.
+    context.go(SkipLogInScreen.routeName);
   }
 
   Future<void> _registerIfNeeded() async {

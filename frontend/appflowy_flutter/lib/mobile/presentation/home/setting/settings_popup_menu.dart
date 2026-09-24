@@ -2,7 +2,6 @@ import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/presentation.dart';
-import 'package:appflowy/mobile/presentation/setting/workspace/invite_members_screen.dart';
 import 'package:appflowy/shared/popup_menu/appflowy_popup_menu.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:easy_localization/easy_localization.dart';
@@ -13,7 +12,6 @@ import 'package:go_router/go_router.dart';
 
 enum _MobileSettingsPopupMenuItem {
   settings,
-  members,
   trash,
   help,
   helpAndDocumentation,
@@ -47,15 +45,7 @@ class HomePageSettingsPopupMenu extends StatelessWidget {
           svg: FlowySvgs.m_notification_settings_s,
           text: LocaleKeys.settings_popupMenuItem_settings.tr(),
         ),
-        // only show the member items in cloud mode
-        if (userProfile.workspaceType == WorkspaceTypePB.ServerW) ...[
-          const PopupMenuDivider(height: 0.5),
-          _buildItem(
-            value: _MobileSettingsPopupMenuItem.members,
-            svg: FlowySvgs.m_settings_member_s,
-            text: LocaleKeys.settings_popupMenuItem_members.tr(),
-          ),
-        ],
+        // Local-only build: the members menu item is removed.
         const PopupMenuDivider(height: 0.5),
         _buildItem(
           value: _MobileSettingsPopupMenuItem.trash,
@@ -77,9 +67,6 @@ class HomePageSettingsPopupMenu extends StatelessWidget {
       ],
       onSelected: (_MobileSettingsPopupMenuItem value) {
         switch (value) {
-          case _MobileSettingsPopupMenuItem.members:
-            _openMembersPage(context);
-            break;
           case _MobileSettingsPopupMenuItem.trash:
             _openTrashPage(context);
             break;
@@ -116,10 +103,6 @@ class HomePageSettingsPopupMenu extends StatelessWidget {
         text: text,
       ),
     );
-  }
-
-  void _openMembersPage(BuildContext context) {
-    context.push(InviteMembersScreen.routeName);
   }
 
   void _openTrashPage(BuildContext context) {

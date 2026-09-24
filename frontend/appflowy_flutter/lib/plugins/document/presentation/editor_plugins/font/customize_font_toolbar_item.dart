@@ -17,7 +17,6 @@ import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/style_widget/text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ThemeFontFamilySetting extends StatefulWidget {
   const ThemeFontFamilySetting({
@@ -80,9 +79,9 @@ class FontFamilyDropDown extends StatefulWidget {
 }
 
 class _FontFamilyDropDownState extends State<FontFamilyDropDown> {
+  // Local-only build: only built-in fonts are offered, no Google Fonts list.
   final List<String> availableFonts = [
     defaultFontFamily,
-    ...GoogleFonts.asMap().keys,
   ];
   final ValueNotifier<String> query = ValueNotifier('');
 

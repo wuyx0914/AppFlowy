@@ -1,7 +1,7 @@
-use client_api::entity::guest_dto::{
+use flowy_server_pub::guest_dto::{
   RevokeSharedViewAccessRequest, ShareViewWithGuestRequest, SharedUser, SharedViewDetails,
 };
-use client_api::entity::{AFAccessLevel, AFRole};
+use flowy_server_pub::guest_dto::{AFAccessLevel, AFRole};
 use collab_folder::{View, ViewIcon, ViewLayout};
 use flowy_derive::{ProtoBuf, ProtoBuf_Enum};
 use flowy_error::ErrorCode;
@@ -215,14 +215,14 @@ impl std::convert::From<ViewLayout> for ViewLayoutPB {
   }
 }
 
-impl From<client_api::entity::workspace_dto::ViewLayout> for ViewLayoutPB {
-  fn from(val: client_api::entity::workspace_dto::ViewLayout) -> Self {
+impl From<flowy_server_pub::workspace_dto::ViewLayout> for ViewLayoutPB {
+  fn from(val: flowy_server_pub::workspace_dto::ViewLayout) -> Self {
     match val {
-      client_api::entity::workspace_dto::ViewLayout::Document => ViewLayoutPB::Document,
-      client_api::entity::workspace_dto::ViewLayout::Grid => ViewLayoutPB::Grid,
-      client_api::entity::workspace_dto::ViewLayout::Board => ViewLayoutPB::Board,
-      client_api::entity::workspace_dto::ViewLayout::Calendar => ViewLayoutPB::Calendar,
-      client_api::entity::workspace_dto::ViewLayout::Chat => ViewLayoutPB::Chat,
+      flowy_server_pub::workspace_dto::ViewLayout::Document => ViewLayoutPB::Document,
+      flowy_server_pub::workspace_dto::ViewLayout::Grid => ViewLayoutPB::Grid,
+      flowy_server_pub::workspace_dto::ViewLayout::Board => ViewLayoutPB::Board,
+      flowy_server_pub::workspace_dto::ViewLayout::Calendar => ViewLayoutPB::Calendar,
+      flowy_server_pub::workspace_dto::ViewLayout::Chat => ViewLayoutPB::Chat,
     }
   }
 }

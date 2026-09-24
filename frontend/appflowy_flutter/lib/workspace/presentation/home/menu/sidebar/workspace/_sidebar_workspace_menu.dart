@@ -1,5 +1,4 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
-import 'package:appflowy/features/share_tab/presentation/widgets/guest_tag.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/generated/locale_keys.g.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/user/application/auth/auth_service.dart';
 import 'package:appflowy/workspace/application/tabs/tabs_bloc.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/workspace/_sidebar_workspace_actions.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/workspace/_sidebar_workspace_icon.dart';
-import 'package:appflowy/workspace/presentation/settings/widgets/members/workspace_member_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialog_v2.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
@@ -160,38 +158,29 @@ class _WorkspaceMenuItemState extends State<WorkspaceMenuItem> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) => WorkspaceMemberBloc(
-        userProfile: widget.userProfile,
-        workspace: widget.workspace,
-      )..add(const WorkspaceMemberEvent.initial()),
-      child: BlocBuilder<WorkspaceMemberBloc, WorkspaceMemberState>(
-        builder: (context, state) {
-          // settings right icon inside the flowy button will
-          //  cause the popover dismiss intermediately when click the right icon.
-          // so using the stack to put the right icon on the flowy button.
-          return SizedBox(
-            height: 44,
-            child: MouseRegion(
-              onEnter: (_) => isHovered.value = true,
-              onExit: (_) => isHovered.value = false,
-              child: Stack(
-                alignment: Alignment.center,
-                children: [
-                  _WorkspaceInfo(
-                    isSelected: widget.isSelected,
-                    workspace: widget.workspace,
-                  ),
-                  Positioned(left: 4, child: _buildLeftIcon(context)),
-                  Positioned(
-                    right: 4.0,
-                    child: Align(child: _buildRightIcon(context, isHovered)),
-                  ),
-                ],
-              ),
+    // Local-only build: no member bloc; the workspace info is rendered directly.
+    // settings right icon inside the flowy button will
+    //  cause the popover dismiss intermediately when click the right icon.
+    // so using the stack to put the right icon on the flowy button.
+    return SizedBox(
+      height: 44,
+      child: MouseRegion(
+        onEnter: (_) => isHovered.value = true,
+        onExit: (_) => isHovered.value = false,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            _WorkspaceInfo(
+              isSelected: widget.isSelected,
+              workspace: widget.workspace,
             ),
-          );
-        },
+            Positioned(left: 4, child: _buildLeftIcon(context)),
+            Positioned(
+              right: 4.0,
+              child: Align(child: _buildRightIcon(context, isHovered)),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -221,24 +210,23 @@ class _WorkspaceMenuItemState extends State<WorkspaceMenuItem> {
   Widget _buildRightIcon(BuildContext context, ValueNotifier<bool> isHovered) {
     return Row(
       children: [
-        // only the owner can update or delete workspace.
-        if (!context.read<WorkspaceMemberBloc>().state.isLoading)
-          ValueListenableBuilder(
-            valueListenable: isHovered,
-            builder: (context, value, child) {
-              return Padding(
-                padding: const EdgeInsets.only(left: 8.0),
-                child: Opacity(
-                  opacity: value ? 1.0 : 0.0,
-                  child: child,
-                ),
-              );
-            },
-            child: WorkspaceMoreActionList(
-              workspace: widget.workspace,
-              popoverMutex: widget.popoverMutex,
-            ),
+        // Local-only build: the local user is always the workspace owner.
+        ValueListenableBuilder(
+          valueListenable: isHovered,
+          builder: (context, value, child) {
+            return Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: Opacity(
+                opacity: value ? 1.0 : 0.0,
+                child: child,
+              ),
+            );
+          },
+          child: WorkspaceMoreActionList(
+            workspace: widget.workspace,
+            popoverMutex: widget.popoverMutex,
           ),
+        ),
         const HSpace(8.0),
         if (widget.isSelected) ...[
           const Padding(
@@ -267,7 +255,7 @@ class _WorkspaceInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final memberCount = workspace.memberCount.toInt();
+    // Local-only build: member counts and guest roles don't apply.
     return FlowyButton(
       onTap: () => _openWorkspace(context),
       iconPadding: 10.0,
@@ -289,27 +277,9 @@ class _WorkspaceInfo extends StatelessWidget {
                   overflow: TextOverflow.ellipsis,
                   withTooltip: true,
                 ),
-                if (workspace.role != AFRolePB.Guest) ...[
-                  // workspace members count
-                  FlowyText.regular(
-                    memberCount == 0
-                        ? ''
-                        : LocaleKeys.settings_appearance_members_membersCount
-                            .plural(
-                            memberCount,
-                          ),
-                    fontSize: 10.0,
-                    figmaLineHeight: 12.0,
-                    color: Theme.of(context).hintColor,
-                  ),
-                ],
               ],
             ),
           ),
-          if (workspace.role == AFRolePB.Guest) ...[
-            const HSpace(6.0),
-            GuestTag(),
-          ],
         ],
       ),
     );

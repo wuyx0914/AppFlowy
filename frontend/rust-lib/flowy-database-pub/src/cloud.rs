@@ -1,4 +1,4 @@
-pub use client_api::entity::ai_dto::{TranslateItem, TranslateRowResponse};
+pub use flowy_server_pub::ai_dto::{TranslateItem, TranslateRowResponse};
 use collab::entity::EncodedCollab;
 use collab_entity::CollabType;
 use flowy_error::FlowyError;

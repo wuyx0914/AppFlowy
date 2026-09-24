@@ -162,6 +162,7 @@ impl CompletionTask {
                            CompletionStreamValue::Comment{ value } => {
                             let _ = sink.send(format!("comment:{}", value)).await;
                           }
+                          CompletionStreamValue::Complete { .. } | CompletionStreamValue::Metadata { .. } => {},
                         }
                       },
                       Some(Err(error)) => {

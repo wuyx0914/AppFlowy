@@ -28,7 +28,6 @@ abstract mixin class RowLifeCycle {
   void onRowDisposed();
 }
 
-/// Read https://docs.appflowy.io/docs/documentation/software-contributions/architecture/frontend/frontend/grid for more information.
 
 class RowCache {
   RowCache({

@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:appflowy_backend/log.dart';
-import 'package:auto_updater/auto_updater.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -36,15 +35,6 @@ class ApplicationInfo {
     } catch (e) {
       return false;
     }
-  }
-
-  // the latest appcast item
-  static AppcastItem? _latestAppcastItem;
-  static AppcastItem? get latestAppcastItem => _latestAppcastItem;
-  static set latestAppcastItem(AppcastItem? value) {
-    _latestAppcastItem = value;
-
-    isCriticalUpdateNotifier.value = value?.criticalUpdate == true;
   }
 
   // is critical update
