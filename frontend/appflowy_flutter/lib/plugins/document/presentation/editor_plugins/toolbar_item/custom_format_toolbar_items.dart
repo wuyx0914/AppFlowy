@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_page.dart';
 import 'package:appflowy/plugins/document/presentation/editor_style.dart';
 import 'package:appflowy/util/theme_extension.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy_editor/appflowy_editor.dart';
 // ignore: implementation_imports
 import 'package:appflowy_editor/src/editor/toolbar/desktop/items/utils/tooltip_util.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/icon_button.dart';
 import 'package:flutter/material.dart';
 
@@ -106,25 +104,25 @@ class _FormatToolbarItem extends ToolbarItem {
 String _getTooltipText(ToolbarId id) {
   switch (id) {
     case ToolbarId.underline:
-      return '${LocaleKeys.toolbar_underline.tr()}${shortcutTooltips(
+      return '${'下划线'}${shortcutTooltips(
         '⌘ + U',
         'CTRL + U',
         'CTRL + U',
       )}';
     case ToolbarId.bold:
-      return '${LocaleKeys.toolbar_bold.tr()}${shortcutTooltips(
+      return '${'加粗'}${shortcutTooltips(
         '⌘ + B',
         'CTRL + B',
         'CTRL + B',
       )}';
     case ToolbarId.italic:
-      return '${LocaleKeys.toolbar_italic.tr()}${shortcutTooltips(
+      return '${'斜体'}${shortcutTooltips(
         '⌘ + I',
         'CTRL + I',
         'CTRL + I',
       )}';
     case ToolbarId.code:
-      return '${LocaleKeys.document_toolbar_inlineCode.tr()}${shortcutTooltips(
+      return '${'内联代码'}${shortcutTooltips(
         '⌘ + E',
         'CTRL + E',
         'CTRL + E',

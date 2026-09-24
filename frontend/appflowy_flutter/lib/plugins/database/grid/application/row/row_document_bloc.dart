@@ -1,13 +1,11 @@
 import 'package:flutter/foundation.dart';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/code.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -97,7 +95,7 @@ class RowDocumentBloc extends Bloc<RowDocumentEvent, RowDocumentState> {
   Future<ViewPB?> _createRowDocumentView(String viewId) async {
     final result = await ViewBackendService.createOrphanView(
       viewId: viewId,
-      name: LocaleKeys.menuAppHeader_defaultNewPageName.tr(),
+      name: '未命名页面',
       desc: '',
       layoutType: ViewLayoutPB.Document,
     );

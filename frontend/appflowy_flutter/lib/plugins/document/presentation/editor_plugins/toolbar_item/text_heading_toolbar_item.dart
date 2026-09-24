@@ -1,11 +1,9 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/actions/block_action_option_cubit.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy/plugins/document/presentation/editor_style.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -112,7 +110,7 @@ class _TextHeadingActionListState extends State<TextHeadingActionList> {
     return widget.tooltipBuilder?.call(
           context,
           ToolbarId.textHeading.id,
-          LocaleKeys.document_toolbar_textSize.tr(),
+          '文本大小',
           child,
         ) ??
         child;
@@ -189,11 +187,11 @@ enum TextHeadingCommand {
       case text:
         return AppFlowyEditorL10n.current.text;
       case h1:
-        return LocaleKeys.document_toolbar_h1.tr();
+        return '标题 1';
       case h2:
-        return LocaleKeys.document_toolbar_h2.tr();
+        return '标题 2';
       case h3:
-        return LocaleKeys.document_toolbar_h3.tr();
+        return '标题 3';
     }
   }
 

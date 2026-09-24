@@ -1,7 +1,5 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +60,7 @@ final alignToolbarItem = ToolbarItem(
       child = tooltipBuilder(
         context,
         kAlignToolbarItemId,
-        LocaleKeys.document_plugins_optionAction_align.tr(),
+        '对齐',
         child,
       );
     }
@@ -130,19 +128,19 @@ class _AlignButtons extends StatelessWidget {
           const HSpace(4),
           _AlignButton(
             icon: FlowySvgs.toolbar_align_left_s,
-            tooltips: LocaleKeys.document_plugins_optionAction_left.tr(),
+            tooltips: '左',
             onTap: () => onAlignChanged(leftAlignmentKey),
           ),
           const _Divider(),
           _AlignButton(
             icon: FlowySvgs.toolbar_align_center_s,
-            tooltips: LocaleKeys.document_plugins_optionAction_center.tr(),
+            tooltips: '中心',
             onTap: () => onAlignChanged(centerAlignmentKey),
           ),
           const _Divider(),
           _AlignButton(
             icon: FlowySvgs.toolbar_align_right_s,
-            tooltips: LocaleKeys.document_plugins_optionAction_right.tr(),
+            tooltips: '右',
             onTap: () => onAlignChanged(rightAlignmentKey),
           ),
           const HSpace(4),

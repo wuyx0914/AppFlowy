@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/shared/share/publish_color_extension.dart';
 import 'package:appflowy/shared/error_code/error_code_map.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/constants.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/workspace/presentation/settings/pages/sites/settings_si
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -84,7 +82,7 @@ class _PublishedViewSettingsDialogState
       children: [
         Expanded(
           child: FlowyText(
-            LocaleKeys.settings_sites_publishedPage_settings.tr(),
+            '发布设置',
             fontSize: 16.0,
             figmaLineHeight: 22.0,
             fontWeight: FontWeight.w500,
@@ -107,7 +105,7 @@ class _PublishedViewSettingsDialogState
 
   Widget _buildPublishNameLabel() {
     return FlowyText(
-      LocaleKeys.settings_sites_publishedPage_pathName.tr(),
+      '路径名称',
       fontSize: 14.0,
       color: Theme.of(context).hintColor,
     );
@@ -131,7 +129,7 @@ class _PublishedViewSettingsDialogState
         ),
         const HSpace(12.0),
         OutlinedRoundedButton(
-          text: LocaleKeys.button_save.tr(),
+          text: '保存',
           radius: 8.0,
           margin: const EdgeInsets.symmetric(
             horizontal: 16.0,
@@ -148,12 +146,12 @@ class _PublishedViewSettingsDialogState
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         OutlinedRoundedButton(
-          text: LocaleKeys.shareAction_unPublish.tr(),
+          text: '取消发布',
           onTap: _unpublishView,
         ),
         const HSpace(12.0),
         PrimaryRoundedButton(
-          text: LocaleKeys.shareAction_visitSite.tr(),
+          text: '访问网站',
           radius: 8.0,
           margin: const EdgeInsets.symmetric(
             horizontal: 16.0,
@@ -203,7 +201,7 @@ class _PublishedViewSettingsDialogState
     result.fold(
       (s) {
         showToastNotification(
-          message: LocaleKeys.settings_sites_success_updatePathNameSuccess.tr(),
+          message: '更新路径名称成功',
         );
         Navigator.of(context).pop();
       },
@@ -211,7 +209,7 @@ class _PublishedViewSettingsDialogState
         Log.error('update path name failed: $f');
 
         showToastNotification(
-          message: LocaleKeys.settings_sites_error_updatePathNameFailed.tr(),
+          message: '更新路径名称失败',
           type: ToastificationType.error,
           description: f.code.publishErrorMessage,
         );

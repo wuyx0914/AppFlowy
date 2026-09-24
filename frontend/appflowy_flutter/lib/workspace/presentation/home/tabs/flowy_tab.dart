@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/tabs/tabs_bloc.dart';
 import 'package:appflowy/workspace/presentation/home/home_sizes.dart';
 import 'package:appflowy/workspace/presentation/home/home_stack.dart';
 
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/gestures.dart';
@@ -168,9 +166,9 @@ class TabMenu extends StatelessWidget {
           opacity: isPinned ? 0.5 : 1,
           child: _wrapInTooltip(
             shouldWrap: isPinned,
-            message: LocaleKeys.tabMenu_closeDisabledHint.tr(),
+            message: '无法关闭钉选的分页，请先取消钉选',
             child: FlowyButton(
-              text: FlowyText.regular(LocaleKeys.tabMenu_close.tr()),
+              text: FlowyText.regular('关闭'),
               onTap: () => _closeTab(context),
               disable: isPinned,
             ),
@@ -181,11 +179,11 @@ class TabMenu extends StatelessWidget {
           child: _wrapInTooltip(
             shouldWrap: true,
             message: isAllPinned
-                ? LocaleKeys.tabMenu_closeOthersDisabledHint.tr()
-                : LocaleKeys.tabMenu_closeOthersHint.tr(),
+                ? '所有分页都已钉选，找不到要关闭的分页'
+                : '这将关闭所有未钉选的分页，除了这个',
             child: FlowyButton(
               text: FlowyText.regular(
-                LocaleKeys.tabMenu_closeOthers.tr(),
+                '关闭其他分页',
               ),
               onTap: () => _closeOtherTabs(context),
               disable: isAllPinned,
@@ -196,8 +194,8 @@ class TabMenu extends StatelessWidget {
         FlowyButton(
           text: FlowyText.regular(
             isPinned
-                ? LocaleKeys.tabMenu_unpinTab.tr()
-                : LocaleKeys.tabMenu_pinTab.tr(),
+                ? '取消钉选'
+                : '钉选',
           ),
           onTap: () => _togglePin(context),
         ),

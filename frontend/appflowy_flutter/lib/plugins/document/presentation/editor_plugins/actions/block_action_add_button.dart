@@ -1,10 +1,8 @@
 import 'dart:io';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/actions/block_action_button.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -31,19 +29,19 @@ class BlockAddButton extends StatelessWidget {
       richMessage: TextSpan(
         children: [
           TextSpan(
-            text: LocaleKeys.blockActions_addBelowTooltip.tr(),
+            text: '点击下方添加',
             style: context.tooltipTextStyle(),
           ),
           const TextSpan(text: '\n'),
           TextSpan(
             text: Platform.isMacOS
-                ? LocaleKeys.blockActions_addAboveMacCmd.tr()
-                : LocaleKeys.blockActions_addAboveCmd.tr(),
+                ? '+单击'
+                : 'Alt+单击',
             style: context.tooltipTextStyle(),
           ),
           const TextSpan(text: ' '),
           TextSpan(
-            text: LocaleKeys.blockActions_addAboveTooltip.tr(),
+            text: '添加上面',
             style: context.tooltipTextStyle(),
           ),
         ],

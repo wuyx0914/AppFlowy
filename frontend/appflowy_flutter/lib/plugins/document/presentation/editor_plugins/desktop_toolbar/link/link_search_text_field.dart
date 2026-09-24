@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/header/emoji_icon_widget.dart';
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
 import 'package:appflowy/shared/list_extension.dart';
@@ -15,7 +14,6 @@ import 'package:appflowy_editor/src/flutter/scrollable_positioned_list/scrollabl
 // ignore: implementation_imports
 import 'package:appflowy_editor/src/editor/util/link_util.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -94,7 +92,7 @@ class LinkSearchTextField {
         }
       },
       decoration: LinkStyle.buildLinkTextFieldInputDecoration(
-        LocaleKeys.document_toolbar_linkInputHint.tr(),
+        '粘贴链接或搜索页面',
         context,
         showErrorBorder: showError,
         contentPadding: contentPadding,
@@ -142,7 +140,7 @@ class LinkSearchTextField {
               height: 32,
               padding: EdgeInsets.all(8),
               child: FlowyText.semibold(
-                LocaleKeys.inlineActions_recentPages.tr(),
+                '最近的页面',
                 color: AppFlowyTheme.of(context).textColorScheme.tertiary,
                 fontSize: 12,
                 figmaLineHeight: 16,
@@ -196,7 +194,7 @@ class LinkSearchTextField {
   ) {
     final viewName = view.name;
     final displayName = viewName.isEmpty
-        ? LocaleKeys.document_title_placeholder.tr()
+        ? '无标题'
         : viewName;
     final isCurrent = initialViewId == view.id;
     return SizedBox(
@@ -337,8 +335,7 @@ class LinkSearchTextField {
               (view.name.toLowerCase().contains(search.toLowerCase()) ||
                   (view.name.isEmpty && search.isEmpty) ||
                   (view.name.isEmpty &&
-                      LocaleKeys.menuAppHeader_defaultNewPageName
-                          .tr()
+                      '未命名页面'
                           .toLowerCase()
                           .contains(search.toLowerCase()))),
         )

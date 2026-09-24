@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/icon_button.dart';
 import 'package:flowy_infra_ui/widget/flowy_tooltip.dart';
@@ -16,7 +14,7 @@ class PromptInputAttachmentButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.chat_uploadFile.tr(),
+      message: '上传聊天使用的 PDF、md 或 txt 文件',
       child: SizedBox.square(
         dimension: DesktopAIPromptSizes.actionBarButtonSize,
         child: FlowyIconButton(
@@ -49,7 +47,7 @@ class PromptInputMentionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.chat_clickToMention.tr(),
+      message: '点击以提及页面',
       preferBelow: false,
       child: FlowyIconButton(
         width: buttonSize,

@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:appflowy/core/helpers/url_launcher.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_service.dart';
 import 'package:appflowy/shared/custom_image_cache_manager.dart';
 import 'package:appflowy/startup/startup.dart';
@@ -17,7 +16,6 @@ import 'package:appflowy_backend/protobuf/flowy-database2/media_entities.pb.dart
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pb.dart';
 import 'package:cross_file/cross_file.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_impl.dart';
 import 'package:flowy_infra/uuid.dart';
 import 'package:flutter/material.dart';
@@ -74,8 +72,8 @@ Future<(String? path, String? errorMessage)> saveFileToCloudStorage(
     },
     (err) {
       final message = Platform.isIOS
-          ? LocaleKeys.sideBar_storageLimitDialogTitleIOS.tr()
-          : LocaleKeys.sideBar_storageLimitDialogTitle.tr();
+          ? '你已用尽免费存储。'
+          : '你已用尽免费存储。升级以解锁无限制存储';
       if (err.isStorageLimitExceeded) {
         return (null, message);
       }
@@ -105,7 +103,7 @@ Future<void> downloadMediaFile(
   } else {
     if (userProfile == null) {
       showToastNotification(
-        message: LocaleKeys.grid_media_downloadFailedToken.tr(),
+        message: '下载文件失败，用户权杖无效',
       );
       return;
     }
@@ -129,13 +127,13 @@ Future<void> downloadMediaFile(
         if (result != null && context.mounted) {
           showToastNotification(
             type: ToastificationType.error,
-            message: LocaleKeys.grid_media_downloadSuccess.tr(),
+            message: '文件已下载',
           );
         }
       } else if (context.mounted) {
         showToastNotification(
           type: ToastificationType.error,
-          message: LocaleKeys.document_plugins_image_imageDownloadFailed.tr(),
+          message: '图片下载失败，请再试一次',
         );
       }
 
@@ -157,13 +155,13 @@ Future<void> downloadMediaFile(
 
         if (context.mounted) {
           showToastNotification(
-            message: LocaleKeys.grid_media_downloadSuccess.tr(),
+            message: '文件已下载',
           );
         }
       } else if (context.mounted) {
         showToastNotification(
           type: ToastificationType.error,
-          message: LocaleKeys.document_plugins_image_imageDownloadFailed.tr(),
+          message: '图片下载失败，请再试一次',
         );
       }
 

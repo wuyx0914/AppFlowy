@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/desktop_toolbar/link/link_create_menu.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/link_preview/custom_link_parser.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/link_preview/paste_as/paste_as_menu.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/plugins/document/presentation/editor_style.dart';
 import 'package:appflowy/shared/appflowy_network_image.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -262,22 +260,15 @@ enum MentionLinktMenuCommand {
   String get title {
     switch (this) {
       case toURL:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toUrl
-            .tr();
+        return '转换为URL';
       case toBookmark:
-        return LocaleKeys
-            .document_plugins_linkPreview_linkPreviewMenu_toBookmark
-            .tr();
+        return '转换为书签';
       case toEmbed:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toEmbed
-            .tr();
+        return '转换为嵌入';
       case copyLink:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_copyLink
-            .tr();
+        return '复制链接';
       case removeLink:
-        return LocaleKeys
-            .document_plugins_linkPreview_linkPreviewMenu_removeLink
-            .tr();
+        return '移除链接';
     }
   }
 }

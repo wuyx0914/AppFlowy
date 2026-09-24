@@ -6,11 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/select_option_cell_editor_bloc.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller_builder.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/select_option_entities.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -289,7 +287,7 @@ class _Title extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: FlowyText.regular(
-        LocaleKeys.grid_selectOption_panelTitle.tr(),
+        '选择或新建一个标签',
         color: Theme.of(context).hintColor,
       ),
     );
@@ -508,7 +506,7 @@ class _CreateOptionCell extends StatelessWidget {
           child: Row(
             children: [
               FlowyText(
-                LocaleKeys.grid_selectOption_create.tr(),
+                '新建',
                 color: Theme.of(context).hintColor,
               ),
               const HSpace(10),

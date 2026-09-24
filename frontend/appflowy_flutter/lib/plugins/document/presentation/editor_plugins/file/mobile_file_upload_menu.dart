@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/patterns/common_patterns.dart';
 import 'package:appflowy/shared/permission/permission_checker.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy_backend/log.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
@@ -56,11 +54,11 @@ class _MobileFileUploadMenuState extends State<MobileFileUploadMenu> {
               ),
               tabs: [
                 _Tab(
-                  title: LocaleKeys.document_plugins_file_uploadTab.tr(),
+                  title: '上传',
                   isSelected: currentTab == 0,
                 ),
                 _Tab(
-                  title: LocaleKeys.document_plugins_file_networkTab.tr(),
+                  title: '嵌入链接',
                   isSelected: currentTab == 1,
                 ),
               ],
@@ -141,7 +139,7 @@ class _FileUploadLocalState extends State<_FileUploadLocal> {
                   Theme.of(context).colorScheme.primary.withValues(alpha: 0.9),
               margin: const EdgeInsets.all(5),
               text: FlowyText(
-                LocaleKeys.document_plugins_file_uploadMobileGallery.tr(),
+                '来自照片库',
                 textAlign: TextAlign.center,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
@@ -158,7 +156,7 @@ class _FileUploadLocalState extends State<_FileUploadLocal> {
                   Theme.of(context).colorScheme.primary.withValues(alpha: 0.9),
               margin: const EdgeInsets.all(5),
               text: FlowyText(
-                LocaleKeys.document_plugins_file_uploadMobile.tr(),
+                '选择一个文件',
                 textAlign: TextAlign.center,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),
@@ -222,14 +220,14 @@ class _FileUploadNetworkState extends State<_FileUploadNetwork> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FlowyTextField(
-            hintText: LocaleKeys.document_plugins_file_networkHint.tr(),
+            hintText: '粘贴文件链接',
             onChanged: (value) => inputText = value,
             onEditingComplete: submit,
           ),
           if (!isUrlValid) ...[
             const VSpace(4),
             FlowyText(
-              LocaleKeys.document_plugins_file_networkUrlInvalid.tr(),
+              '网址无效。请检查网址并再次尝试。',
               color: Theme.of(context).colorScheme.error,
               maxLines: 3,
               textAlign: TextAlign.start,
@@ -245,7 +243,7 @@ class _FileUploadNetworkState extends State<_FileUploadNetwork> {
               radius: Corners.s8Border,
               margin: const EdgeInsets.all(5),
               text: FlowyText(
-                LocaleKeys.grid_media_embedLink.tr(),
+                '嵌入文件链接',
                 textAlign: TextAlign.center,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),

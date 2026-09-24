@@ -1,11 +1,9 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/selectable_svg_widget.dart';
 import 'package:appflowy/plugins/emoji/emoji_actions_command.dart';
 import 'package:appflowy/plugins/emoji/emoji_menu.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -19,7 +17,7 @@ final _keywords = [
 
 // emoji menu item
 SelectionMenuItem emojiSlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_emoji.tr(),
+  getName: () => '表情符号',
   keywords: _keywords,
   handler: (editorState, menuService, context) => editorState.showEmojiPicker(
     context,

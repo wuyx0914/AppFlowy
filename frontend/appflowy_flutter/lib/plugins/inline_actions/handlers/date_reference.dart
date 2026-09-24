@@ -1,21 +1,19 @@
 import 'package:appflowy/date/date_service.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/string_extension.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mention/mention_block.dart';
 import 'package:appflowy/plugins/inline_actions/inline_actions_result.dart';
 import 'package:appflowy/plugins/inline_actions/service_handler.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 final _keywords = [
-  LocaleKeys.inlineActions_date.tr().toLowerCase(),
+  '日期'.toLowerCase(),
 ];
 
 class DateReferenceService extends InlineActionsDelegate {
   DateReferenceService(this.context) {
     // Initialize locale
-    _locale = context.locale.toLanguageTag();
+    _locale = 'zh_CN';
 
     // Initializes options
     _setOptions();
@@ -45,7 +43,7 @@ class DateReferenceService extends InlineActionsDelegate {
     await _searchDateNLP(search);
 
     return InlineActionsResult(
-      title: LocaleKeys.inlineActions_date.tr(),
+      title: '日期',
       results: options,
     );
   }
@@ -145,17 +143,17 @@ class DateReferenceService extends InlineActionsDelegate {
     try {
       todayItem = _itemFromDate(
         today,
-        LocaleKeys.relativeDates_today.tr(),
+        '今天',
         [DateFormat.yMd(_locale).format(today)],
       );
       tomorrowItem = _itemFromDate(
         tomorrow,
-        LocaleKeys.relativeDates_tomorrow.tr(),
+        '明天',
         [DateFormat.yMd(_locale).format(tomorrow)],
       );
       yesterdayItem = _itemFromDate(
         yesterday,
-        LocaleKeys.relativeDates_yesterday.tr(),
+        '昨天',
         [DateFormat.yMd(_locale).format(yesterday)],
       );
     } catch (e) {
@@ -174,7 +172,7 @@ class DateReferenceService extends InlineActionsDelegate {
   /// Sets Locale on each search to make sure
   /// keywords are localized
   void _setLocale() {
-    final locale = context.locale.toLanguageTag();
+    final locale = 'zh_CN';
 
     if (locale != _locale) {
       _locale = locale;

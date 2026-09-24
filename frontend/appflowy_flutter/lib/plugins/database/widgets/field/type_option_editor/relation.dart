@@ -1,11 +1,9 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/type_option/relation_type_option_cubit.dart';
 import 'package:appflowy/plugins/database/application/field/type_option/type_option_data_parser.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -38,7 +36,7 @@ class RelationTypeOptionEditorFactory implements TypeOptionEditorFactory {
                 height: GridSize.popoverItemHeight,
                 alignment: Alignment.centerLeft,
                 child: FlowyText.regular(
-                  LocaleKeys.grid_relation_relatedDatabasePlaceLabel.tr(),
+                  '相关数据库',
                   color: Theme.of(context).hintColor,
                   fontSize: 11,
                 ),
@@ -62,9 +60,7 @@ class RelationTypeOptionEditorFactory implements TypeOptionEditorFactory {
                         return FlowyText(
                           lineHeight: 1.0,
                           databaseMeta == null
-                              ? LocaleKeys
-                                  .grid_relation_relatedDatabasePlaceholder
-                                  .tr()
+                              ? '没有任何'
                               : databaseMeta.databaseName,
                           color: databaseMeta == null
                               ? Theme.of(context).hintColor

@@ -1,10 +1,8 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/shared_widget.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/publish_info_view_item.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/settings_sites_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -50,7 +48,7 @@ class _SelectHomePageMenuState extends State<SelectHomePageMenu> {
 
   Widget _buildNoPublishedViews() {
     return FlowyText.regular(
-      LocaleKeys.settings_sites_publishedPage_noPublishedPages.tr(),
+      '没有已发布的页面',
       color: Theme.of(context).hintColor,
       overflow: TextOverflow.ellipsis,
     );

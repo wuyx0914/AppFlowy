@@ -1,6 +1,5 @@
 import 'package:appflowy/features/page_access_level/logic/page_access_level_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/base/mobile_view_page_bloc.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_mobile_quick_action_button.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/plugins/shared/share/share_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -118,7 +116,7 @@ class MobileViewBottomSheetBody extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         MobileQuickActionButton(
-          text: LocaleKeys.button_rename.tr(),
+          text: '重命名',
           icon: FlowySvgs.view_item_rename_s,
           iconSize: const Size.square(18),
           enable: isEditable,
@@ -129,8 +127,8 @@ class MobileViewBottomSheetBody extends StatelessWidget {
         _divider(),
         MobileQuickActionButton(
           text: isFavorite
-              ? LocaleKeys.button_removeFromFavorites.tr()
-              : LocaleKeys.button_addToFavorites.tr(),
+              ? '从收藏夹中'
+              : '添加到收藏夹',
           icon: isFavorite ? FlowySvgs.unfavorite_s : FlowySvgs.favorite_s,
           iconSize: const Size.square(18),
           onTap: () => onAction(
@@ -142,7 +140,7 @@ class MobileViewBottomSheetBody extends StatelessWidget {
         _divider(),
         if (view.layout.isDatabaseView || view.layout.isDocumentView) ...[
           MobileQuickActionButton(
-            text: LocaleKeys.disclosureAction_lockPage.tr(),
+            text: '锁定页面',
             icon: FlowySvgs.lock_page_s,
             iconSize: const Size.square(18),
             rightIconBuilder: (context) => _LockPageRightIconBuilder(
@@ -163,7 +161,7 @@ class MobileViewBottomSheetBody extends StatelessWidget {
           _divider(),
         ],
         MobileQuickActionButton(
-          text: LocaleKeys.button_duplicate.tr(),
+          text: '复制',
           icon: FlowySvgs.duplicate_s,
           iconSize: const Size.square(18),
           onTap: () => onAction(
@@ -173,7 +171,7 @@ class MobileViewBottomSheetBody extends StatelessWidget {
         // copy link
         _divider(),
         MobileQuickActionButton(
-          text: LocaleKeys.shareAction_copyLink.tr(),
+          text: '复制链接',
           icon: FlowySvgs.m_copy_link_s,
           iconSize: const Size.square(18),
           onTap: () => onAction(
@@ -184,7 +182,7 @@ class MobileViewBottomSheetBody extends StatelessWidget {
         ..._buildPublishActions(context),
 
         MobileQuickActionButton(
-          text: LocaleKeys.button_delete.tr(),
+          text: '删除',
           textColor: Theme.of(context).colorScheme.error,
           icon: FlowySvgs.trash_s,
           iconColor: Theme.of(context).colorScheme.error,
@@ -211,7 +209,7 @@ class MobileViewBottomSheetBody extends StatelessWidget {
     if (isPublished) {
       return [
         MobileQuickActionButton(
-          text: LocaleKeys.shareAction_updatePathName.tr(),
+          text: '更新路径名称',
           icon: FlowySvgs.view_item_rename_s,
           iconSize: const Size.square(18),
           onTap: () => onAction(
@@ -220,7 +218,7 @@ class MobileViewBottomSheetBody extends StatelessWidget {
         ),
         _divider(),
         MobileQuickActionButton(
-          text: LocaleKeys.shareAction_visitSite.tr(),
+          text: '访问网站',
           icon: FlowySvgs.m_visit_site_s,
           iconSize: const Size.square(18),
           onTap: () => onAction(
@@ -229,7 +227,7 @@ class MobileViewBottomSheetBody extends StatelessWidget {
         ),
         _divider(),
         MobileQuickActionButton(
-          text: LocaleKeys.shareAction_unPublish.tr(),
+          text: '取消发布',
           icon: FlowySvgs.m_unpublish_s,
           iconSize: const Size.square(18),
           onTap: () => onAction(
@@ -241,7 +239,7 @@ class MobileViewBottomSheetBody extends StatelessWidget {
     } else {
       return [
         MobileQuickActionButton(
-          text: LocaleKeys.shareAction_publish.tr(),
+          text: '发布',
           icon: FlowySvgs.m_publish_s,
           onTap: () => onAction(
             MobileViewBottomSheetBodyAction.publish,

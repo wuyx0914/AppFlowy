@@ -1,7 +1,5 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/flowy_tooltip.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +15,7 @@ class TurnIntoMemberWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = AppFlowyTheme.of(context);
     return FlowyTooltip(
-      message: LocaleKeys.shareTab_turnIntoMember.tr(),
+      message: '转为会员',
       child: AFGhostButton.normal(
         onTap: onTap,
         padding: EdgeInsets.all(theme.spacing.s),

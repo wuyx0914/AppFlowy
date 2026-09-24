@@ -2,10 +2,8 @@ import 'dart:io';
 
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
 import 'package:appflowy/startup/startup.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -258,7 +256,7 @@ class GitHubRedirectButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlowyButton(
       leftIconSize: const Size.square(_height),
-      text: FlowyText(LocaleKeys.appName.tr()),
+      text: FlowyText('AppFlowy'),
       useIntrinsicWidth: true,
       leftIcon: const Padding(
         padding: EdgeInsets.all(4.0),

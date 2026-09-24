@@ -1,10 +1,8 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/application/settings/ai/local_ai_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-ai/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/gestures.dart';
@@ -67,7 +65,7 @@ class _RestartPluginButton extends StatelessWidget {
                 children: [
                   TextSpan(
                     text:
-                        LocaleKeys.settings_aiPage_keys_failToLoadLocalAI.tr(),
+                        '启动本地 AI 失败。',
                     style: textStyle,
                   ),
                   TextSpan(
@@ -75,7 +73,7 @@ class _RestartPluginButton extends StatelessWidget {
                     style: textStyle,
                   ),
                   TextSpan(
-                    text: LocaleKeys.settings_aiPage_keys_restartLocalAI.tr(),
+                    text: '重新启动',
                     style: textStyle?.copyWith(
                       fontWeight: FontWeight.w600,
                       decoration: TextDecoration.underline,
@@ -102,7 +100,7 @@ class _LocalAIRunning extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final runningText = LocaleKeys.settings_aiPage_keys_localAIRunning.tr();
+    final runningText = '本地 AI 正在运行中';
 
     return Container(
       decoration: const BoxDecoration(
@@ -180,7 +178,7 @@ class _LackOfResource extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: LocaleKeys.settings_aiPage_keys_laiNotReady.tr(),
+            text: '本地 AI 应用程序未正确安装。',
             style: textStyle,
           ),
           TextSpan(text: ' ', style: _textStyle(context)),
@@ -197,7 +195,7 @@ class _LackOfResource extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: LocaleKeys.settings_aiPage_keys_ollamaNotReady.tr(),
+            text: 'Ollama 服务器尚未就绪。',
             style: textStyle,
           ),
           TextSpan(text: ' ', style: textStyle),
@@ -215,7 +213,7 @@ class _LackOfResource extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: LocaleKeys.settings_aiPage_keys_modelsMissing.tr(),
+            text: '找不到所需的模型:',
             style: textStyle,
           ),
           TextSpan(
@@ -227,7 +225,7 @@ class _LackOfResource extends StatelessWidget {
             style: textStyle,
           ),
           TextSpan(
-            text: LocaleKeys.settings_aiPage_keys_pleaseFollowThese.tr(),
+            text: '请依照这些...',
             style: textStyle,
           ),
           TextSpan(
@@ -235,7 +233,7 @@ class _LackOfResource extends StatelessWidget {
             style: textStyle,
           ),
           TextSpan(
-            text: LocaleKeys.settings_aiPage_keys_instructions.tr(),
+            text: '指示',
             style: textStyle?.copyWith(
               fontWeight: FontWeight.w600,
               decoration: TextDecoration.underline,
@@ -252,7 +250,7 @@ class _LackOfResource extends StatelessWidget {
             style: textStyle,
           ),
           TextSpan(
-            text: LocaleKeys.settings_aiPage_keys_downloadModel.tr(),
+            text: '以下载它们。',
             style: textStyle,
           ),
         ],
@@ -263,7 +261,7 @@ class _LackOfResource extends StatelessWidget {
   List<TextSpan> _downloadInstructions(TextStyle? textStyle) {
     return [
       TextSpan(
-        text: LocaleKeys.settings_aiPage_keys_pleaseFollowThese.tr(),
+        text: '请依照这些...',
         style: textStyle,
       ),
       TextSpan(
@@ -271,7 +269,7 @@ class _LackOfResource extends StatelessWidget {
         style: textStyle,
       ),
       TextSpan(
-        text: LocaleKeys.settings_aiPage_keys_instructions.tr(),
+        text: '指示',
         style: textStyle?.copyWith(
           fontWeight: FontWeight.w600,
           decoration: TextDecoration.underline,
@@ -285,7 +283,7 @@ class _LackOfResource extends StatelessWidget {
       ),
       TextSpan(text: ' ', style: textStyle),
       TextSpan(
-        text: LocaleKeys.settings_aiPage_keys_installOllamaLai.tr(),
+        text: '来设置 Ollama 和 AppFlowy 本地 AI。',
         style: textStyle,
       ),
     ];

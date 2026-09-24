@@ -1,12 +1,10 @@
 import 'package:appflowy/ai/ai.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/user/prelude.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialog_v2.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -65,7 +63,7 @@ class AiPromptModal extends StatelessWidget {
           children: [
             AFModalHeader(
               leading: Text(
-                LocaleKeys.ai_customPrompt_browsePrompts.tr(),
+                '浏览提示',
                 style: theme.textStyle.heading4.prominent(
                   color: theme.textColorScheme.primary,
                 ),
@@ -163,10 +161,10 @@ void showLoadPromptFailedDialog(
 ) {
   showSimpleAFDialog(
     context: context,
-    title: LocaleKeys.ai_customPrompt_invalidDatabase.tr(),
-    content: LocaleKeys.ai_customPrompt_invalidDatabaseHelp.tr(),
+    title: '无效数据库',
+    content: '请确保数据库至少具有两个文本属性:\n ◦ 一个用于提示名称 ◦ 一个用于提示内容\n您也可以选择性地添加属性以用于提示范例和类别。',
     primaryAction: (
-      LocaleKeys.button_ok.tr(),
+      'OK',
       (context) {},
     ),
   );

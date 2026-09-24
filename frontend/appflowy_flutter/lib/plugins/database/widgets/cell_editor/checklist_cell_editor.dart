@@ -1,13 +1,11 @@
 import 'dart:io';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller_builder.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/plugins/database/grid/presentation/widgets/common/type_option_separator.dart';
 import 'package:appflowy/util/debounce.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -422,7 +420,7 @@ class _NewTaskItemState extends State<NewTaskItem> {
                     vertical: 6.0,
                     horizontal: 2.0,
                   ),
-                  hintText: LocaleKeys.grid_checklist_addNew.tr(),
+                  hintText: '添加项',
                 ),
                 onSubmitted: (_) => _createNewTask(context),
                 onChanged: (_) => setState(
@@ -432,7 +430,7 @@ class _NewTaskItemState extends State<NewTaskItem> {
             ),
           ),
           FlowyTextButton(
-            LocaleKeys.grid_checklist_submitNewTask.tr(),
+            '创建',
             fontSize: 11,
             fillColor: isCreateButtonEnabled
                 ? Theme.of(context).colorScheme.primary

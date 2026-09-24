@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_page.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/plugins/document/presentation/editor_style.dart';
 import 'package:appflowy_editor/appflowy_editor.dart'
     hide QuoteBlockComponentBuilder, quoteNode, QuoteBlockKeys;
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
-import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -520,7 +518,7 @@ TodoListBlockComponentBuilder _buildTodoListBlockComponentBuilder(
 ) {
   return TodoListBlockComponentBuilder(
     configuration: configuration.copyWith(
-      placeholderText: (_) => LocaleKeys.blockPlaceholders_todoList.tr(),
+      placeholderText: (_) => '待办',
       textStyle: (node, {TextSpan? textSpan}) => _buildTextStyleInTableCell(
         context,
         node: node,
@@ -551,7 +549,7 @@ BulletedListBlockComponentBuilder _buildBulletedListBlockComponentBuilder(
 ) {
   return BulletedListBlockComponentBuilder(
     configuration: configuration.copyWith(
-      placeholderText: (_) => LocaleKeys.blockPlaceholders_bulletList.tr(),
+      placeholderText: (_) => '列表',
       textStyle: (node, {TextSpan? textSpan}) => _buildTextStyleInTableCell(
         context,
         node: node,
@@ -574,7 +572,7 @@ NumberedListBlockComponentBuilder _buildNumberedListBlockComponentBuilder(
 ) {
   return NumberedListBlockComponentBuilder(
     configuration: configuration.copyWith(
-      placeholderText: (_) => LocaleKeys.blockPlaceholders_numberList.tr(),
+      placeholderText: (_) => '列表',
       textStyle: (node, {TextSpan? textSpan}) => _buildTextStyleInTableCell(
         context,
         node: node,
@@ -609,7 +607,7 @@ QuoteBlockComponentBuilder _buildQuoteBlockComponentBuilder(
 ) {
   return QuoteBlockComponentBuilder(
     configuration: configuration.copyWith(
-      placeholderText: (_) => LocaleKeys.blockPlaceholders_quote.tr(),
+      placeholderText: (_) => '引用',
       textStyle: (node, {TextSpan? textSpan}) => _buildTextStyleInTableCell(
         context,
         node: node,
@@ -680,9 +678,7 @@ HeadingBlockComponentBuilder _buildHeadingBlockComponentBuilder(
       placeholderText: (node) {
         int level = node.attributes[HeadingBlockKeys.level] ?? 6;
         level = level.clamp(1, 6);
-        return LocaleKeys.blockPlaceholders_heading.tr(
-          args: [level.toString()],
-        );
+        return '标题 {level.toString()}';
       },
       textAlign: (node) => _buildTextAlignInTableCell(
         context,
@@ -949,9 +945,7 @@ ToggleListBlockComponentBuilder _buildToggleListBlockComponentBuilder(
           return configuration.placeholderText(node);
         }
         level = level.clamp(1, 6);
-        return LocaleKeys.blockPlaceholders_heading.tr(
-          args: [level.toString()],
-        );
+        return '标题 {level.toString()}';
       },
     ),
     textStyleBuilder: (level) => styleCustomizer.headingStyleBuilder(level),

@@ -1,6 +1,5 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/tasks/rust_sdk.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/presentation/home/toast.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/workspace/presentation/widgets/float_bubble/version_sec
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
 import 'package:device_info_plus/device_info_plus.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/flowy_tooltip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -86,7 +84,7 @@ class _BubbleActionListState extends State<BubbleActionList> {
       ),
       buildChild: (controller) {
         return FlowyTooltip(
-          message: LocaleKeys.questionBubble_getSupport.tr(),
+          message: '取得支持',
           child: MouseRegion(
             cursor: SystemMouseCursors.click,
             child: GestureDetector(
@@ -165,7 +163,7 @@ class _DebugToast {
     debugInfo += await _getDocumentPath();
     await Clipboard.setData(ClipboardData(text: debugInfo));
 
-    showMessageToast(LocaleKeys.questionBubble_debug_success.tr());
+    showMessageToast('已将调试信息复制到剪贴板！');
   }
 
   Future<String> _getDeviceInfo() async {
@@ -209,19 +207,19 @@ extension QuestionBubbleExtension on BubbleAction {
   String get name {
     switch (this) {
       case BubbleAction.whatsNews:
-        return LocaleKeys.questionBubble_whatsNew.tr();
+        return '新功能';
       case BubbleAction.helpAndDocumentation:
-        return LocaleKeys.questionBubble_helpAndDocumentation.tr();
+        return '说明与文档。';
       case BubbleAction.getSupport:
-        return LocaleKeys.questionBubble_getSupport.tr();
+        return '取得支持';
       case BubbleAction.debug:
-        return LocaleKeys.questionBubble_debug_name.tr();
+        return '调试信息';
       case BubbleAction.shortcuts:
-        return LocaleKeys.questionBubble_shortcuts.tr();
+        return '快捷键';
       case BubbleAction.markdown:
-        return LocaleKeys.questionBubble_markdown.tr();
+        return 'Markdown';
       case BubbleAction.github:
-        return LocaleKeys.questionBubble_feedback.tr();
+        return '反馈';
     }
   }
 

@@ -2,13 +2,10 @@ import 'package:appflowy/workspace/application/edit_panel/edit_panel_bloc.dart';
 import 'package:appflowy/workspace/application/edit_panel/edit_context.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/presentation/home/home_sizes.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/bar_title.dart';
 import 'package:flowy_infra_ui/style_widget/close_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
-
 class EditPanel extends StatelessWidget {
   const EditPanel({
     super.key,
@@ -57,7 +54,7 @@ class EditPanelTopBar extends StatelessWidget {
         child: Row(
           children: [
             FlowyBarTitle(
-              title: LocaleKeys.title.tr(),
+              title: '标题',
             ),
             const Spacer(),
             FlowyCloseButton(onPressed: onClose),

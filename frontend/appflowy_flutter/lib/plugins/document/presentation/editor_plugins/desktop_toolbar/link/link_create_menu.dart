@@ -1,11 +1,9 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/toolbar_item/custom_link_toolbar_item.dart';
 import 'package:appflowy/plugins/shared/share/constants.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -131,7 +129,7 @@ class _LinkCreateMenuState extends State<LinkCreateMenu> {
                   ),
                   HSpace(8),
                   FlowyTextButton(
-                    LocaleKeys.document_toolbar_insert.tr(),
+                    '插入',
                     mainAxisAlignment: MainAxisAlignment.center,
                     padding: EdgeInsets.zero,
                     constraints: BoxConstraints(maxWidth: 72, minHeight: 32),
@@ -150,7 +148,7 @@ class _LinkCreateMenuState extends State<LinkCreateMenu> {
                 Padding(
                   padding: const EdgeInsets.only(top: 4),
                   child: FlowyText.regular(
-                    LocaleKeys.document_plugins_file_networkUrlInvalid.tr(),
+                    '网址无效。请检查网址并再次尝试。',
                     color: theme?.textColorScheme.error,
                     fontSize: 12,
                     figmaLineHeight: 16,

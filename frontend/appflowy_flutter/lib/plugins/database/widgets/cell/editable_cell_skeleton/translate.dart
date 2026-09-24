@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/translate_cell_bloc.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/translate_row_bloc.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller.dart';
@@ -13,7 +12,6 @@ import 'package:appflowy/plugins/database/widgets/cell/mobile_row_detail/mobile_
 import 'package:appflowy/plugins/database/widgets/row/cells/cell_container.dart';
 import 'package:appflowy/workspace/presentation/home/toast.dart';
 import 'package:appflowy_backend/dispatch/error.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/icon_button.dart';
@@ -162,7 +160,7 @@ class TranslateCellAccessory extends StatelessWidget {
             if (state.error!.isAIResponseLimitExceeded) {
               showSnackBarMessage(
                 context,
-                LocaleKeys.sideBar_aiResponseLimitDialogTitle.tr(),
+                '已达到 AI 回应限额',
               );
             } else {
               showSnackBarMessage(context, state.error!.msg);
@@ -196,7 +194,7 @@ class TranslateButton extends StatelessWidget {
           },
           finish: (_) {
             return FlowyTooltip(
-              message: LocaleKeys.tooltip_aiGenerate.tr(),
+              message: '生成',
               child: Container(
                 width: 26,
                 height: 26,
@@ -238,7 +236,7 @@ class CopyButton extends StatelessWidget {
     return BlocBuilder<TranslateCellBloc, TranslateCellState>(
       builder: (blocContext, state) {
         return FlowyTooltip(
-          message: LocaleKeys.settings_menu_clickToCopy.tr(),
+          message: '点击复制',
           child: Container(
             width: 26,
             height: 26,
@@ -257,7 +255,7 @@ class CopyButton extends StatelessWidget {
               ),
               onPressed: () {
                 Clipboard.setData(ClipboardData(text: state.content));
-                showMessageToast(LocaleKeys.grid_row_copyProperty.tr());
+                showMessageToast('复制列');
               },
             ),
           ),

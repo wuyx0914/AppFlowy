@@ -1,9 +1,7 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/database/mobile_calendar_events_screen.dart';
 import 'package:appflowy/plugins/database/application/row/row_cache.dart';
 import 'package:calendar_view/calendar_view.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra/time/duration.dart';
@@ -241,7 +239,7 @@ class NewEventButton extends StatelessWidget {
             fillColor: Theme.of(context).colorScheme.surface,
             hoverColor: AFThemeExtension.of(context).lightGreyHover,
             width: 22,
-            tooltipText: LocaleKeys.calendar_newEventButtonTooltip.tr(),
+            tooltipText: '添加新事件',
             radius: Corners.s6Border,
             decoration: BoxDecoration(
               border: Border.fromBorderSide(
@@ -293,7 +291,7 @@ class _DayBadge extends StatelessWidget {
     Color dayTextColor = AFThemeExtension.of(context).onBackground;
     Color monthTextColor = AFThemeExtension.of(context).onBackground;
     final String monthString =
-        DateFormat("MMM ", context.locale.toLanguageTag()).format(date);
+        DateFormat("MMM ", 'zh_CN').format(date);
     final String dayString = date.day.toString();
 
     if (!isInMonth) {

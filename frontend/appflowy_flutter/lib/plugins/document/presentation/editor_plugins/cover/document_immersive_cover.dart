@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/plugins/document/application/prelude.dart';
@@ -20,7 +19,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:auto_size_text_field/auto_size_text_field.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/widget/ignore_parent_gesture.dart';
@@ -174,7 +172,7 @@ class _DocumentImmersiveCoverState extends State<DocumentImmersiveCover> {
         enabledBorder: InputBorder.none,
         disabledBorder: InputBorder.none,
         focusedBorder: InputBorder.none,
-        hintText: LocaleKeys.menuAppHeader_defaultNewPageName.tr(),
+        hintText: '未命名页面',
         contentPadding: EdgeInsets.zero,
       ),
       scrollController: scrollController,
@@ -222,7 +220,7 @@ class _DocumentImmersiveCoverState extends State<DocumentImmersiveCover> {
           showDragHandle: true,
           showDivider: false,
           showHeader: true,
-          title: LocaleKeys.titleBar_pageIcon.tr(),
+          title: '页面图标',
           backgroundColor: AFThemeExtension.of(context).background,
           enableDraggableScrollable: true,
           minChildSize: 0.6,

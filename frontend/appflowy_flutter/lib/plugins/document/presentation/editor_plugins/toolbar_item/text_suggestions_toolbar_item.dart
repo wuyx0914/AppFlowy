@@ -1,6 +1,5 @@
 import 'dart:collection';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/actions/block_action_option_cubit.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy/plugins/document/presentation/editor_style.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/workspace/presentation/home/menu/menu_shared_state.dart
 import 'package:appflowy_editor/appflowy_editor.dart'
     hide QuoteBlockComponentBuilder, quoteNode, QuoteBlockKeys;
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -191,13 +189,13 @@ class _SuggestionsActionListState extends State<SuggestionsActionList> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             buildSubTitle(
-              LocaleKeys.document_toolbar_suggestions.tr(),
+              '建议事项',
               textColor,
             ),
             ...List.generate(suggestionItems.length, (index) {
               return buildItem(suggestionItems[index]);
             }),
-            buildSubTitle(LocaleKeys.document_toolbar_turnInto.tr(), textColor),
+            buildSubTitle('变成', textColor),
             ...List.generate(turnIntoItems.length, (index) {
               return buildItem(turnIntoItems[index]);
             }),
@@ -342,7 +340,7 @@ final textSuggestionItem = SuggestionItem(
 
 final h1SuggestionItem = SuggestionItem(
   type: SuggestionType.h1,
-  title: LocaleKeys.document_toolbar_h1.tr(),
+  title: '标题 1',
   svg: FlowySvgs.type_h1_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -354,7 +352,7 @@ final h1SuggestionItem = SuggestionItem(
 
 final h2SuggestionItem = SuggestionItem(
   type: SuggestionType.h2,
-  title: LocaleKeys.document_toolbar_h2.tr(),
+  title: '标题 2',
   svg: FlowySvgs.type_h2_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -366,7 +364,7 @@ final h2SuggestionItem = SuggestionItem(
 
 final h3SuggestionItem = SuggestionItem(
   type: SuggestionType.h3,
-  title: LocaleKeys.document_toolbar_h3.tr(),
+  title: '标题 3',
   svg: FlowySvgs.type_h3_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -378,7 +376,7 @@ final h3SuggestionItem = SuggestionItem(
 
 final checkboxSuggestionItem = SuggestionItem(
   type: SuggestionType.checkbox,
-  title: LocaleKeys.editor_checkbox.tr(),
+  title: '复选框',
   svg: FlowySvgs.type_todo_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -389,7 +387,7 @@ final checkboxSuggestionItem = SuggestionItem(
 
 final bulletedSuggestionItem = SuggestionItem(
   type: SuggestionType.bulleted,
-  title: LocaleKeys.editor_bulletedListShortForm.tr(),
+  title: '项目符号',
   svg: FlowySvgs.type_bulleted_list_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -400,7 +398,7 @@ final bulletedSuggestionItem = SuggestionItem(
 
 final numberedSuggestionItem = SuggestionItem(
   type: SuggestionType.numbered,
-  title: LocaleKeys.editor_numberedListShortForm.tr(),
+  title: '编号',
   svg: FlowySvgs.type_numbered_list_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -411,7 +409,7 @@ final numberedSuggestionItem = SuggestionItem(
 
 final toggleSuggestionItem = SuggestionItem(
   type: SuggestionType.toggle,
-  title: LocaleKeys.editor_toggleListShortForm.tr(),
+  title: '切换',
   svg: FlowySvgs.type_toggle_list_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -422,7 +420,7 @@ final toggleSuggestionItem = SuggestionItem(
 
 final toggleH1SuggestionItem = SuggestionItem(
   type: SuggestionType.toggleH1,
-  title: LocaleKeys.editor_toggleHeading1ShortForm.tr(),
+  title: '切换标题 1',
   svg: FlowySvgs.type_toggle_h1_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -434,7 +432,7 @@ final toggleH1SuggestionItem = SuggestionItem(
 
 final toggleH2SuggestionItem = SuggestionItem(
   type: SuggestionType.toggleH2,
-  title: LocaleKeys.editor_toggleHeading2ShortForm.tr(),
+  title: '切换标题 2',
   svg: FlowySvgs.type_toggle_h2_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -446,7 +444,7 @@ final toggleH2SuggestionItem = SuggestionItem(
 
 final toggleH3SuggestionItem = SuggestionItem(
   type: SuggestionType.toggleH3,
-  title: LocaleKeys.editor_toggleHeading3ShortForm.tr(),
+  title: '切换标题 3',
   svg: FlowySvgs.type_toggle_h3_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -458,7 +456,7 @@ final toggleH3SuggestionItem = SuggestionItem(
 
 final callOutSuggestionItem = SuggestionItem(
   type: SuggestionType.callOut,
-  title: LocaleKeys.document_plugins_callout.tr(),
+  title: '标注',
   svg: FlowySvgs.type_callout_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -469,7 +467,7 @@ final callOutSuggestionItem = SuggestionItem(
 
 final quoteSuggestionItem = SuggestionItem(
   type: SuggestionType.quote,
-  title: LocaleKeys.editor_quote.tr(),
+  title: '引用',
   svg: FlowySvgs.type_quote_m,
   onTap: (state, keepSelection) => _turnInto(
     state,
@@ -480,7 +478,7 @@ final quoteSuggestionItem = SuggestionItem(
 
 final pateItem = SuggestionItem(
   type: SuggestionType.page,
-  title: LocaleKeys.editor_page.tr(),
+  title: '页面',
   svg: FlowySvgs.icon_document_s,
   onTap: (state, keepSelection) => _turnInto(
     state,

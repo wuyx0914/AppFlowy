@@ -1,13 +1,11 @@
 import 'dart:io';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/type_option/select_option_type_option_bloc.dart';
 import 'package:appflowy/plugins/database/application/field/type_option/select_type_option_actions.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/plugins/database/widgets/cell_editor/select_option_cell_editor.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/select_option_entities.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -78,7 +76,7 @@ class _OptionTitle extends StatelessWidget {
           child: Align(
             alignment: AlignmentDirectional.centerStart,
             child: FlowyText.regular(
-              LocaleKeys.grid_field_optionTitle.tr(),
+              '标签',
               fontSize: 11,
               color: Theme.of(context).hintColor,
             ),
@@ -181,7 +179,7 @@ class _AddOptionButton extends StatelessWidget {
         child: FlowyButton(
           text: FlowyText(
             lineHeight: 1.0,
-            LocaleKeys.grid_field_addSelectOption.tr(),
+            '添加一个标签',
           ),
           onTap: () {
             context

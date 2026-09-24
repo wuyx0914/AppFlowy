@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/search/mobile_search_cell.dart';
 import 'package:appflowy/workspace/application/command_palette/command_palette_bloc.dart';
 import 'package:appflowy/workspace/application/command_palette/search_result_ext.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/workspace/presentation/command_palette/widgets/search_i
 import 'package:appflowy_backend/protobuf/flowy-search/result.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -195,7 +193,7 @@ class _SearchSummaryCellState extends State<SearchSummaryCell> {
 
   void refreshTextPainter() {
     final content = summary.content,
-        ellipsis = ' ...${LocaleKeys.search_seeMore.tr()}';
+        ellipsis = ' ...${'查看更多'}';
     if (!tappedShowMore) {
       _painter = TextPainter(
         text: TextSpan(text: content, style: textStyle),
@@ -265,7 +263,7 @@ class _TextInfo {
                   builder: (context, isHovering, disabled) =>
                       SelectionContainer.disabled(
                     child: Text(
-                      LocaleKeys.search_seeMore.tr(),
+                      '查看更多',
                       style: isHovering ? moreUnderline : more,
                     ),
                   ),
@@ -355,7 +353,7 @@ class ReferenceSources extends StatelessWidget {
             Padding(
               padding: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
               child: Text(
-                LocaleKeys.commandPalette_aiOverviewSource.tr(),
+                '参考来源',
                 style: theme.textStyle.body.enhanced(
                   color: theme.textColorScheme.secondary,
                 ),
@@ -369,7 +367,7 @@ class ReferenceSources extends StatelessWidget {
                 final view = state?.cachedViews[source.id];
 
                 final displayName = source.displayName.isEmpty
-                    ? LocaleKeys.menuAppHeader_defaultNewPageName.tr()
+                    ? '未命名页面'
                     : source.displayName;
                 final spaceM = theme.spacing.m, spaceL = theme.spacing.l;
 

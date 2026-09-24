@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/setting/widgets/mobile_setting_group_widget.dart';
 import 'package:appflowy/mobile/presentation/setting/widgets/mobile_setting_item_widget.dart';
@@ -6,7 +5,6 @@ import 'package:appflowy/mobile/presentation/setting/widgets/mobile_setting_trai
 import 'package:appflowy/mobile/presentation/widgets/flowy_option_tile.dart';
 import 'package:appflowy/workspace/application/settings/ai/settings_ai_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -31,10 +29,10 @@ class AiSettingsGroup extends StatelessWidget {
       child: BlocBuilder<SettingsAIBloc, SettingsAIState>(
         builder: (context, state) {
           return MobileSettingGroup(
-            groupTitle: LocaleKeys.settings_aiPage_title.tr(),
+            groupTitle: 'AI 设置',
             settingItemList: [
               MobileSettingItem(
-                name: LocaleKeys.settings_aiPage_keys_llmModelType.tr(),
+                name: '语言模型类别',
                 trailing: MobileSettingTrailing(
                   text: state.availableModels?.selectedModel.name ?? "",
                 ),
@@ -42,7 +40,7 @@ class AiSettingsGroup extends StatelessWidget {
               ),
               // enable AI search if needed
               // MobileSettingItem(
-              //   name: LocaleKeys.settings_aiPage_keys_enableAISearchTitle.tr(),
+              //   name: 'AI 搜索',
               //   trailing: const Icon(
               //     Icons.chevron_right,
               //   ),
@@ -62,7 +60,7 @@ class AiSettingsGroup extends StatelessWidget {
       showHeader: true,
       showDragHandle: true,
       showDivider: false,
-      title: LocaleKeys.settings_aiPage_keys_llmModelType.tr(),
+      title: '语言模型类别',
       builder: (_) {
         return Column(
           children: (availableModels?.models ?? [])

@@ -1,12 +1,10 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_mobile_quick_action_button.dart';
 import 'package:appflowy/plugins/database/board/application/board_bloc.dart';
 import 'package:appflowy/util/field_type_extension.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_board/appflowy_board.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -116,7 +114,7 @@ class _GroupCardHeaderState extends State<GroupCardHeader> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         MobileQuickActionButton(
-                          text: LocaleKeys.board_column_renameColumn.tr(),
+                          text: '改名',
                           icon: FlowySvgs.edit_s,
                           onTap: () {
                             context.read<BoardBloc>().add(
@@ -129,7 +127,7 @@ class _GroupCardHeaderState extends State<GroupCardHeader> {
                         ),
                         const MobileQuickActionDivider(),
                         MobileQuickActionButton(
-                          text: LocaleKeys.board_column_hideColumn.tr(),
+                          text: '隐藏',
                           icon: FlowySvgs.hide_s,
                           onTap: () {
                             context.read<BoardBloc>().add(

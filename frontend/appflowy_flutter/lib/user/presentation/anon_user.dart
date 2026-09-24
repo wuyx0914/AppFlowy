@@ -1,8 +1,6 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/anon_user_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +28,7 @@ class AnonUserList extends StatelessWidget {
                 Opacity(
                   opacity: 0.6,
                   child: FlowyText.regular(
-                    LocaleKeys.settings_menu_historicalUserListTooltip.tr(),
+                    '此列表显示您的匿名帐户。您可以单击某个帐户来查看其详细信息。单击“开始”按钮即可创建匿名帐户',
                     fontSize: 13,
                     maxLines: null,
                   ),

@@ -1,11 +1,9 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/url_cell_bloc.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/plugins/database/widgets/row/accessory/cell_accessory.dart';
 import 'package:appflowy/plugins/database/widgets/row/cells/cell_container.dart';
 import 'package:appflowy/workspace/presentation/home/toast.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -129,7 +127,7 @@ class _CopyURLAccessoryState extends State<_CopyURLAccessory>
   Widget build(BuildContext context) {
     if (widget.cellDataNotifier.value.isNotEmpty) {
       return FlowyTooltip(
-        message: LocaleKeys.grid_url_copy.tr(),
+        message: '将链接复制到剪贴板',
         preferBelow: false,
         child: _URLAccessoryIconContainer(
           child: FlowySvg(
@@ -150,7 +148,7 @@ class _CopyURLAccessoryState extends State<_CopyURLAccessory>
       return;
     }
     Clipboard.setData(ClipboardData(text: content));
-    showMessageToast(LocaleKeys.grid_row_copyProperty.tr());
+    showMessageToast('复制列');
   }
 }
 
@@ -175,7 +173,7 @@ class _VisitURLAccessoryState extends State<_VisitURLAccessory>
   Widget build(BuildContext context) {
     if (widget.cellDataNotifier.value.isNotEmpty) {
       return FlowyTooltip(
-        message: LocaleKeys.grid_url_launch.tr(),
+        message: '在浏览器中打开链接',
         preferBelow: false,
         child: _URLAccessoryIconContainer(
           child: FlowySvg(

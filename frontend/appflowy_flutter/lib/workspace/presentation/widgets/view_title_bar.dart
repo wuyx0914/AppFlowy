@@ -2,7 +2,6 @@ import 'package:appflowy/features/page_access_level/logic/page_access_level_bloc
 import 'package:appflowy/features/share_tab/data/models/share_section_type.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
 import 'package:appflowy/shared/icon_emoji_picker/tab.dart';
 import 'package:appflowy/startup/plugin/plugin.dart';
@@ -22,7 +21,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart'
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pbenum.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -114,7 +112,7 @@ class ViewTitleBar extends StatelessWidget {
       listener: (context, state) {
         if (state.isLocked) {
           showToastNotification(
-            message: LocaleKeys.lockPage_pageLockedToast.tr(),
+            message: '页面已锁定。除非有人将其解锁，否则无法编辑。',
           );
         }
       },
@@ -322,7 +320,7 @@ class TrashBreadcrumb extends StatelessWidget {
             const FlowySvg(FlowySvgs.trash_s, size: Size.square(14)),
             const HSpace(4.0),
             FlowyText.regular(
-              LocaleKeys.trash_text.tr(),
+              '回收站',
               fontSize: 14.0,
               overflow: TextOverflow.ellipsis,
               figmaLineHeight: 18.0,
@@ -496,7 +494,7 @@ class _ViewTitleState extends State<ViewTitle> {
           Opacity(
             opacity: isEditable ? 1.0 : 0.5,
             child: FlowyText.regular(
-              name.orDefault(LocaleKeys.menuAppHeader_defaultNewPageName.tr()),
+              name.orDefault('未命名页面'),
               fontSize: 14.0,
               overflow: TextOverflow.ellipsis,
               figmaLineHeight: 18.0,
@@ -524,7 +522,7 @@ class LockedPageStatus extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = const Color(0xFFD95A0B);
     return FlowyTooltip(
-      message: LocaleKeys.lockPage_lockTooltip.tr(),
+      message: '页面锁定以防止意外编辑。点击以解锁。',
       child: DecoratedBox(
         decoration: ShapeDecoration(
           shape: RoundedRectangleBorder(
@@ -541,7 +539,7 @@ class LockedPageStatus extends StatelessWidget {
           ),
           iconPadding: 4.0,
           text: FlowyText.regular(
-            LocaleKeys.lockPage_lockPage.tr(),
+            '已锁定',
             color: color,
             fontSize: 12.0,
           ),
@@ -581,7 +579,7 @@ class ReLockedPageStatus extends StatelessWidget {
         ),
         iconPadding: 4.0,
         text: FlowyText.regular(
-          LocaleKeys.lockPage_reLockPage.tr(),
+          '重新锁定',
           fontSize: 12.0,
         ),
         leftIcon: FlowySvg(

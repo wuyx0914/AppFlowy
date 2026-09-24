@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar_actions.dart';
 import 'package:appflowy/mobile/presentation/database/view/database_filter_condition_list.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_mobile_search_text_field.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy/util/field_type_extension.dart';
 import 'package:appflowy/workspace/presentation/widgets/date_picker/widgets/mobile_date_editor.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +99,7 @@ class _Header extends StatelessWidget {
                 ),
               Align(
                 child: FlowyText.medium(
-                  LocaleKeys.grid_settings_filter.tr(),
+                  '筛选',
                   fontSize: 16.0,
                 ),
               ),
@@ -207,7 +205,7 @@ class _ActiveFilters extends StatelessWidget {
             color: Theme.of(context).hintColor,
           ),
           FlowyText(
-            LocaleKeys.grid_filter_empty.tr(),
+            '没有任何作用中的筛选器',
             color: Theme.of(context).hintColor,
           ),
         ],
@@ -273,7 +271,7 @@ class _CreateFilterButton extends StatelessWidget {
         onTap: () {
           if (context.read<FilterEditorBloc>().state.fields.isEmpty) {
             Fluttertoast.showToast(
-              msg: LocaleKeys.grid_filter_cannotFindCreatableField.tr(),
+              msg: '找不到适合用于筛选的字段',
               gravity: ToastGravity.BOTTOM,
             );
           } else {
@@ -291,7 +289,7 @@ class _CreateFilterButton extends StatelessWidget {
               ),
               const HSpace(6.0),
               FlowyText(
-                LocaleKeys.grid_filter_addFilter.tr(),
+                '添加筛选器',
                 fontSize: 15,
               ),
             ],
@@ -332,7 +330,7 @@ class _FilterItem extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12.0),
                   child: FlowyText.medium(
-                    LocaleKeys.grid_filter_where.tr(),
+                    '在哪里',
                     fontSize: 15,
                   ),
                 ),
@@ -614,7 +612,7 @@ class _FilterableFieldList extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: FlowyText(
-            LocaleKeys.grid_settings_filterBy.tr().toUpperCase(),
+            '以……筛选'.toUpperCase(),
             fontSize: 13,
             color: Theme.of(context).hintColor,
           ),
@@ -690,7 +688,7 @@ class _FilterConditionList extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: FlowyText(
-                LocaleKeys.grid_filter_conditon.tr().toUpperCase(),
+                '条件'.toUpperCase(),
                 fontSize: 13,
                 color: Theme.of(context).hintColor,
               ),
@@ -797,7 +795,7 @@ class _DateTimeFilterConditionList extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: FlowyText(
-                    LocaleKeys.grid_filter_conditon.tr().toUpperCase(),
+                    '条件'.toUpperCase(),
                     fontSize: 13,
                     color: Theme.of(context).hintColor,
                   ),
@@ -873,8 +871,8 @@ class _DateTimeFilterIsStartSelector extends StatelessWidget {
             ),
             onTap: (index) => onSelect(index == 0),
             tabs: [
-              _tab(LocaleKeys.grid_dateFilter_startDate.tr()),
-              _tab(LocaleKeys.grid_dateFilter_endDate.tr()),
+              _tab('开始日期'),
+              _tab('结束日期'),
             ],
           ),
         ),
@@ -983,7 +981,7 @@ class _SelectOptionFilterContentEditorState
               }
             },
             onSubmitted: (_) {},
-            hintText: LocaleKeys.grid_selectOption_searchOption.tr(),
+            hintText: '搜索标签',
           ),
         ),
         Expanded(

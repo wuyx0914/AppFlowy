@@ -1,8 +1,6 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/menu/menu_extension.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 // ignore: implementation_imports
@@ -123,8 +121,7 @@ class _LinkReplaceMenuState extends State<LinkReplaceMenu> {
               fontWeight: FontWeight.w400,
             ),
             decoration: LinkStyle.buildLinkTextFieldInputDecoration(
-              LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_pasteHint
-                  .tr(),
+              '粘贴 https://...',
               context,
               showErrorBorder: showErrorText,
             ),
@@ -134,7 +131,7 @@ class _LinkReplaceMenuState extends State<LinkReplaceMenu> {
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: FlowyText.regular(
-              LocaleKeys.document_plugins_file_networkUrlInvalid.tr(),
+              '网址无效。请检查网址并再次尝试。',
               color: AppFlowyTheme.maybeOf(context)?.textColorScheme.error,
               fontSize: 12,
               figmaLineHeight: 16,
@@ -147,7 +144,7 @@ class _LinkReplaceMenuState extends State<LinkReplaceMenu> {
   Widget buildReplaceButton() {
     final fillTheme = AppFlowyTheme.maybeOf(context)?.fillColorScheme;
     return FlowyTextButton(
-      LocaleKeys.button_replace.tr(),
+      '替换',
       padding: EdgeInsets.zero,
       mainAxisAlignment: MainAxisAlignment.center,
       constraints: BoxConstraints(maxWidth: 78, minHeight: 32),

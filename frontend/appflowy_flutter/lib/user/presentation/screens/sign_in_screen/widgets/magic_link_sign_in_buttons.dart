@@ -1,7 +1,5 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/sign_in_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +39,7 @@ class _SignInWithMagicLinkButtonsState
             focusNode: _focusNode,
             controller: controller,
             borderRadius: BorderRadius.circular(4.0),
-            hintText: LocaleKeys.signIn_pleaseInputYourEmail.tr(),
+            hintText: '请输入邮箱地址',
             hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
                   fontSize: 14.0,
                   color: Theme.of(context).hintColor,
@@ -65,7 +63,7 @@ class _SignInWithMagicLinkButtonsState
   void _sendMagicLink(BuildContext context, String email) {
     if (!isEmail(email)) {
       showToastNotification(
-        message: LocaleKeys.signIn_invalidEmail.tr(),
+        message: '请输入一个有效的邮箱地址',
         type: ToastificationType.error,
       );
       return;
@@ -77,8 +75,8 @@ class _SignInWithMagicLinkButtonsState
 
     showConfirmDialog(
       context: context,
-      title: LocaleKeys.signIn_magicLinkSent.tr(),
-      description: LocaleKeys.signIn_magicLinkSentDescription.tr(),
+      title: '魔法链接已经发送到您的邮箱，请检查！',
+      description: '一个验证链接已发送到您的电子邮箱。点击该链接即可完成登录。该链接将在 5 分钟后失效。',
     );
   }
 }
@@ -95,8 +93,8 @@ class _ConfirmButton extends StatelessWidget {
     return BlocBuilder<SignInBloc, SignInState>(
       builder: (context, state) {
         final name = switch (state.loginType) {
-          LoginType.signIn => LocaleKeys.signIn_signInWithMagicLink.tr(),
-          LoginType.signUp => LocaleKeys.signIn_signUpWithMagicLink.tr(),
+          LoginType.signIn => '使用魔法链接登录',
+          LoginType.signUp => '使用魔法链接注册',
         };
         if (UniversalPlatform.isMobile) {
           return ElevatedButton(

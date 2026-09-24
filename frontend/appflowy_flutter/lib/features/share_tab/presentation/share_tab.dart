@@ -6,13 +6,11 @@ import 'package:appflowy/features/share_tab/presentation/widgets/general_access_
 import 'package:appflowy/features/share_tab/presentation/widgets/people_with_access_section.dart';
 import 'package:appflowy/features/share_tab/presentation/widgets/share_with_user_widget.dart';
 import 'package:appflowy/features/share_tab/presentation/widgets/upgrade_to_pro_widget.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/shared_widget.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/code.pbenum.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -213,19 +211,19 @@ class _ShareTabState extends State<ShareTab> {
         controller.clear();
 
         showToastNotification(
-          message: LocaleKeys.shareTab_invitationSent.tr(),
+          message: '邀请已发送',
         );
       }, (error) {
         String message;
         switch (error.code) {
           case ErrorCode.InvalidGuest:
-            message = LocaleKeys.shareTab_emailAlreadyInList.tr();
+            message = '这封电子邮件已经在清单中';
             break;
           case ErrorCode.FreePlanGuestLimitExceeded:
-            message = LocaleKeys.shareTab_upgradeToProToInviteGuests.tr();
+            message = '请升级到专业方案以邀请更多访客';
             break;
           case ErrorCode.PaidPlanGuestLimitExceeded:
-            message = LocaleKeys.shareTab_maxGuestsReached.tr();
+            message = '您已达到最大访客人数';
             break;
           default:
             message = error.msg;
@@ -241,7 +239,7 @@ class _ShareTabState extends State<ShareTab> {
     if (removeResult != null) {
       removeResult.fold((success) {
         showToastNotification(
-          message: LocaleKeys.shareTab_removedGuestSuccessfully.tr(),
+          message: '已成功移除访客',
         );
       }, (error) {
         showToastNotification(
@@ -255,7 +253,7 @@ class _ShareTabState extends State<ShareTab> {
     if (updateAccessLevelResult != null) {
       updateAccessLevelResult.fold((success) {
         showToastNotification(
-          message: LocaleKeys.shareTab_updatedAccessLevelSuccessfully.tr(),
+          message: '已成功更新访问层级',
         );
       }, (error) {
         showToastNotification(
@@ -269,7 +267,7 @@ class _ShareTabState extends State<ShareTab> {
     if (turnIntoMemberResult != null) {
       turnIntoMemberResult.fold((success) {
         showToastNotification(
-          message: LocaleKeys.shareTab_turnedIntoMemberSuccessfully.tr(),
+          message: '已成功转为会员',
         );
       }, (error) {
         showToastNotification(

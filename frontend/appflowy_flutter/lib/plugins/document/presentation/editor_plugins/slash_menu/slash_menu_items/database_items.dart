@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/prelude.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/insert_page_command.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/link_to_page_widget.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/plugins/document/presentation/editor_plugins/base/selec
 import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 import 'slash_menu_item_builder.dart';
 
@@ -50,14 +48,14 @@ final _linkedCalendarKeywords = [
 /// Grid menu item
 SelectionMenuItem gridSlashMenuItem(DocumentBloc documentBloc) {
   return SelectionMenuItem(
-    getName: () => LocaleKeys.document_slashMenu_name_grid.tr(),
+    getName: () => '网格',
     keywords: _gridKeywords,
     handler: (editorState, menuService, context) async {
       // create the view inside current page
       final parentViewId = documentBloc.documentId;
       final value = await ViewBackendService.createView(
         parentViewId: parentViewId,
-        name: LocaleKeys.menuAppHeader_defaultNewPageName.tr(),
+        name: '未命名页面',
         layoutType: ViewLayoutPB.Grid,
       );
       value.map((r) => editorState.insertInlinePage(parentViewId, r));
@@ -73,14 +71,14 @@ SelectionMenuItem gridSlashMenuItem(DocumentBloc documentBloc) {
 
 SelectionMenuItem kanbanSlashMenuItem(DocumentBloc documentBloc) {
   return SelectionMenuItem(
-    getName: () => LocaleKeys.document_slashMenu_name_kanban.tr(),
+    getName: () => '看板',
     keywords: _kanbanKeywords,
     handler: (editorState, menuService, context) async {
       // create the view inside current page
       final parentViewId = documentBloc.documentId;
       final value = await ViewBackendService.createView(
         parentViewId: parentViewId,
-        name: LocaleKeys.menuAppHeader_defaultNewPageName.tr(),
+        name: '未命名页面',
         layoutType: ViewLayoutPB.Board,
       );
       value.map((r) => editorState.insertInlinePage(parentViewId, r));
@@ -96,14 +94,14 @@ SelectionMenuItem kanbanSlashMenuItem(DocumentBloc documentBloc) {
 
 SelectionMenuItem calendarSlashMenuItem(DocumentBloc documentBloc) {
   return SelectionMenuItem(
-    getName: () => LocaleKeys.document_slashMenu_name_calendar.tr(),
+    getName: () => '日历',
     keywords: _calendarKeywords,
     handler: (editorState, menuService, context) async {
       // create the view inside current page
       final parentViewId = documentBloc.documentId;
       final value = await ViewBackendService.createView(
         parentViewId: parentViewId,
-        name: LocaleKeys.menuAppHeader_defaultNewPageName.tr(),
+        name: '未命名页面',
         layoutType: ViewLayoutPB.Calendar,
       );
       value.map((r) => editorState.insertInlinePage(parentViewId, r));
@@ -119,7 +117,7 @@ SelectionMenuItem calendarSlashMenuItem(DocumentBloc documentBloc) {
 
 // linked doc menu item
 final linkToPageSlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_linkedDoc.tr(),
+  getName: () => '链接到页面',
   keywords: _linkedDocKeywords,
   handler: (editorState, menuService, context) => showLinkToPageMenu(
     editorState,
@@ -137,7 +135,7 @@ final linkToPageSlashMenuItem = SelectionMenuItem(
 
 // linked grid & board & calendar menu item
 SelectionMenuItem referencedGridSlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_linkedGrid.tr(),
+  getName: () => '链接网格',
   keywords: _linkedGridKeywords,
   handler: (editorState, menuService, context) => showLinkToPageMenu(
     editorState,
@@ -153,7 +151,7 @@ SelectionMenuItem referencedGridSlashMenuItem = SelectionMenuItem(
 );
 
 SelectionMenuItem referencedKanbanSlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_linkedKanban.tr(),
+  getName: () => '链接看板',
   keywords: _linkedKanbanKeywords,
   handler: (editorState, menuService, context) => showLinkToPageMenu(
     editorState,
@@ -169,7 +167,7 @@ SelectionMenuItem referencedKanbanSlashMenuItem = SelectionMenuItem(
 );
 
 SelectionMenuItem referencedCalendarSlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_linkedCalendar.tr(),
+  getName: () => '链接日历',
   keywords: _linkedCalendarKeywords,
   handler: (editorState, menuService, context) => showLinkToPageMenu(
     editorState,

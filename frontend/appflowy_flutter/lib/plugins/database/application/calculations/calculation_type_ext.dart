@@ -1,22 +1,20 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 extension CalcTypeLabel on CalculationType {
   String get label => switch (this) {
         CalculationType.Average =>
-          LocaleKeys.grid_calculationTypeLabel_average.tr(),
-        CalculationType.Max => LocaleKeys.grid_calculationTypeLabel_max.tr(),
+          '平均的',
+        CalculationType.Max => '最大限度',
         CalculationType.Median =>
-          LocaleKeys.grid_calculationTypeLabel_median.tr(),
-        CalculationType.Min => LocaleKeys.grid_calculationTypeLabel_min.tr(),
-        CalculationType.Sum => LocaleKeys.grid_calculationTypeLabel_sum.tr(),
+          '中位数',
+        CalculationType.Min => '分钟',
+        CalculationType.Sum => '和',
         CalculationType.Count =>
-          LocaleKeys.grid_calculationTypeLabel_count.tr(),
+          '计数',
         CalculationType.CountEmpty =>
-          LocaleKeys.grid_calculationTypeLabel_countEmpty.tr(),
+          '计数为空',
         CalculationType.CountNonEmpty =>
-          LocaleKeys.grid_calculationTypeLabel_countNonEmpty.tr(),
+          '计数不为空',
         _ => throw UnimplementedError(
             'Label for $this has not been implemented',
           ),
@@ -24,9 +22,9 @@ extension CalcTypeLabel on CalculationType {
 
   String get shortLabel => switch (this) {
         CalculationType.CountEmpty =>
-          LocaleKeys.grid_calculationTypeLabel_countEmptyShort.tr(),
+          '空的',
         CalculationType.CountNonEmpty =>
-          LocaleKeys.grid_calculationTypeLabel_countNonEmptyShort.tr(),
+          '已满',
         _ => label,
       };
 }

@@ -1,7 +1,5 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -188,7 +186,7 @@ class _FindMenuState extends State<FindMenu> {
               );
             },
             decoration: _buildInputDecoration(
-              LocaleKeys.findAndReplace_find.tr(),
+              '寻找',
             ),
           ),
         ),
@@ -199,7 +197,7 @@ class _FindMenuState extends State<FindMenu> {
           alignment: Alignment.centerLeft,
           child: FlowyText(
             matches.isEmpty
-                ? LocaleKeys.findAndReplace_noResult.tr()
+                ? '没有结果'
                 : '$selectedIndex of ${matches.length}',
           ),
         ),
@@ -207,7 +205,7 @@ class _FindMenuState extends State<FindMenu> {
         // case sensitive button
         _FindAndReplaceIcon(
           icon: FlowySvgs.text_s,
-          tooltipText: LocaleKeys.findAndReplace_caseSensitive.tr(),
+          tooltipText: '区分大小写',
           onPressed: () => setState(() {
             caseSensitive = !caseSensitive;
             widget.searchService.caseSensitive = caseSensitive;
@@ -219,20 +217,20 @@ class _FindMenuState extends State<FindMenu> {
         _FindAndReplaceIcon(
           onPressed: () => widget.searchService.navigateToMatch(moveUp: true),
           icon: FlowySvgs.arrow_up_s,
-          tooltipText: LocaleKeys.findAndReplace_previousMatch.tr(),
+          tooltipText: '上一个匹配',
         ),
         const HSpace(4.0),
         // next match button
         _FindAndReplaceIcon(
           onPressed: () => widget.searchService.navigateToMatch(),
           icon: FlowySvgs.arrow_down_s,
-          tooltipText: LocaleKeys.findAndReplace_nextMatch.tr(),
+          tooltipText: '下一个匹配',
         ),
         const HSpace(4.0),
         _FindAndReplaceIcon(
           onPressed: widget.onDismiss,
           icon: FlowySvgs.close_s,
-          tooltipText: LocaleKeys.findAndReplace_close.tr(),
+          tooltipText: '关闭',
         ),
         const HSpace(4.0),
       ],
@@ -298,7 +296,7 @@ class _ReplaceMenuState extends State<ReplaceMenu> {
               );
             },
             decoration: _buildInputDecoration(
-              LocaleKeys.findAndReplace_replace.tr(),
+              '替换',
             ),
           ),
         ),
@@ -308,7 +306,7 @@ class _ReplaceMenuState extends State<ReplaceMenu> {
             Icons.find_replace_outlined,
             size: 16,
           ),
-          tooltipText: LocaleKeys.findAndReplace_replace.tr(),
+          tooltipText: '替换',
         ),
         const HSpace(4.0),
         _FindAndReplaceIcon(
@@ -316,7 +314,7 @@ class _ReplaceMenuState extends State<ReplaceMenu> {
             Icons.change_circle_outlined,
             size: 16,
           ),
-          tooltipText: LocaleKeys.findAndReplace_replaceAll.tr(),
+          tooltipText: '全部替换',
           onPressed: () => widget.searchService.replaceAllMatches(
             textController.text,
           ),

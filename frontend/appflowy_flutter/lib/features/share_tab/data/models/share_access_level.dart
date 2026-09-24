@@ -1,6 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 /// The access level a user can have on a shared page.
 enum ShareAccessLevel {
@@ -19,26 +17,26 @@ enum ShareAccessLevel {
   String get title {
     switch (this) {
       case ShareAccessLevel.readOnly:
-        return LocaleKeys.shareTab_accessLevel_view.tr();
+        return '查看';
       case ShareAccessLevel.readAndComment:
-        return LocaleKeys.shareTab_accessLevel_comment.tr();
+        return '评论';
       case ShareAccessLevel.readAndWrite:
-        return LocaleKeys.shareTab_accessLevel_edit.tr();
+        return '编辑';
       case ShareAccessLevel.fullAccess:
-        return LocaleKeys.shareTab_accessLevel_fullAccess.tr();
+        return '完全访问权限';
     }
   }
 
   String get subtitle {
     switch (this) {
       case ShareAccessLevel.readOnly:
-        return LocaleKeys.shareTab_cantMakeChanges.tr();
+        return '无法进行变更';
       case ShareAccessLevel.readAndComment:
-        return LocaleKeys.shareTab_canMakeAnyChanges.tr();
+        return '可以进行任何变更';
       case ShareAccessLevel.readAndWrite:
-        return LocaleKeys.shareTab_canMakeAnyChanges.tr();
+        return '可以进行任何变更';
       case ShareAccessLevel.fullAccess:
-        return LocaleKeys.shareTab_canMakeAnyChanges.tr();
+        return '可以进行任何变更';
     }
   }
 

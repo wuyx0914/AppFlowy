@@ -3,7 +3,6 @@ import 'dart:io';
 
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/search/view_ancestor_cache.dart';
 import 'package:appflowy/plugins/blank/blank.dart';
 import 'package:appflowy/plugins/document/presentation/editor_notification.dart';
@@ -40,7 +39,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/workspace.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart'
     show UserProfilePB;
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -521,7 +519,7 @@ class _SidebarSearchButton extends StatelessWidget {
       richMessage: TextSpan(
         children: [
           TextSpan(
-            text: '${LocaleKeys.search_sidebarSearchIcon.tr()}\n',
+            text: '${'搜索并快速跳至页面'}\n',
             style: context.tooltipTextStyle(),
           ),
           TextSpan(
@@ -546,7 +544,7 @@ class _SidebarSearchButton extends StatelessWidget {
         leftIcon: const FlowySvg(FlowySvgs.search_s),
         iconPadding: 12.0,
         margin: const EdgeInsets.only(left: 8.0),
-        text: FlowyText.regular(LocaleKeys.search_label.tr()),
+        text: FlowyText.regular('搜索'),
       ),
     );
   }

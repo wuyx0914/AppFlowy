@@ -1,21 +1,17 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/code.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 extension PublishNameErrorCodeMap on ErrorCode {
   String? get publishErrorMessage {
     return switch (this) {
       ErrorCode.PublishNameAlreadyExists =>
-        LocaleKeys.settings_sites_error_publishNameAlreadyInUse.tr(),
-      ErrorCode.PublishNameInvalidCharacter => LocaleKeys
-          .settings_sites_error_publishNameContainsInvalidCharacters
-          .tr(),
+        '该路径名称已被使用，请尝试其他路径名称',
+      ErrorCode.PublishNameInvalidCharacter => '该路径名称包含无效的字符，请尝试其他的路径名称',
       ErrorCode.PublishNameTooLong =>
-        LocaleKeys.settings_sites_error_publishNameTooLong.tr(),
+        '路径名称过长，请尝试其他路径名称',
       ErrorCode.UserUnauthorized =>
-        LocaleKeys.settings_sites_error_publishPermissionDenied.tr(),
+        '仅工作空间所有者或页面发布者可管理发布设置',
       ErrorCode.ViewNameInvalid =>
-        LocaleKeys.settings_sites_error_publishNameCannotBeEmpty.tr(),
+        '该路径名称不能为空，请尝试其他路径名称',
       _ => null,
     };
   }
@@ -25,20 +21,20 @@ extension DomainErrorCodeMap on ErrorCode {
   String? get namespaceErrorMessage {
     return switch (this) {
       ErrorCode.CustomNamespaceRequirePlanUpgrade =>
-        LocaleKeys.settings_sites_error_proPlanLimitation.tr(),
+        '您需要升级至 Pro 方案以更新名称空间',
       ErrorCode.CustomNamespaceAlreadyTaken =>
-        LocaleKeys.settings_sites_error_namespaceAlreadyInUse.tr(),
+        '该名称空间已被占用你，请尝试其他名称空间',
       ErrorCode.InvalidNamespace ||
       ErrorCode.InvalidRequest =>
-        LocaleKeys.settings_sites_error_invalidNamespace.tr(),
+        '无效的名称空间，请尝试其他的名称空间',
       ErrorCode.CustomNamespaceTooLong =>
-        LocaleKeys.settings_sites_error_namespaceTooLong.tr(),
+        '该名称空间过长，请尝试其他名称空间',
       ErrorCode.CustomNamespaceTooShort =>
-        LocaleKeys.settings_sites_error_namespaceTooShort.tr(),
+        '该名称空间过短，请尝试其他名称空间',
       ErrorCode.CustomNamespaceReserved =>
-        LocaleKeys.settings_sites_error_namespaceIsReserved.tr(),
+        '该名称空间已被占用，请尝试其他名称空间',
       ErrorCode.CustomNamespaceInvalidCharacter =>
-        LocaleKeys.settings_sites_error_namespaceContainsInvalidCharacters.tr(),
+        '该名称空间包含无效的字符，请尝试其他名称空间',
       _ => null,
     };
   }

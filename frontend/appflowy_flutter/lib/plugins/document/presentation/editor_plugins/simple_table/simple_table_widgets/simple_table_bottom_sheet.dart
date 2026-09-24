@@ -1,11 +1,9 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/string_extension.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mobile_toolbar_v3/aa_menu/_color_list.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/simple_table/simple_table.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/simple_table/simple_table_widgets/_simple_table_bottom_sheet_actions.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -220,7 +218,7 @@ class _SimpleTableCellBottomSheetState
           horizontal: 16.0,
         ),
         child: FlowyText(
-          LocaleKeys.document_plugins_simpleTable_moreActions_textColor.tr(),
+          '文本颜色',
           fontSize: 14.0,
         ),
       ),
@@ -244,9 +242,7 @@ class _SimpleTableCellBottomSheetState
           horizontal: 16.0,
         ),
         child: FlowyText(
-          LocaleKeys
-              .document_plugins_simpleTable_moreActions_cellBackgroundColor
-              .tr(),
+          '保存格背景颜色',
           fontSize: 14.0,
         ),
       ),
@@ -390,7 +386,7 @@ class _SimpleTableBottomSheetState extends State<SimpleTableBottomSheet> {
           showCloseButton: true,
           showDoneButton: false,
           showRemoveButton: false,
-          title: LocaleKeys.document_plugins_simpleTable_headerName_table.tr(),
+          title: '表格',
           onClose: () => Navigator.pop(context),
         );
       case _SimpleTableBottomSheetMenuState.align:
@@ -399,7 +395,7 @@ class _SimpleTableBottomSheetState extends State<SimpleTableBottomSheet> {
           showCloseButton: false,
           showDoneButton: true,
           showRemoveButton: false,
-          title: LocaleKeys.document_plugins_simpleTable_headerName_table.tr(),
+          title: '表格',
           onBack: () => setState(() {
             menuState = _SimpleTableBottomSheetMenuState.tableActionMenu;
           }),

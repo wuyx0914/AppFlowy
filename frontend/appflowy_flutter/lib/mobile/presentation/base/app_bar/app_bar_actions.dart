@@ -1,6 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -83,7 +81,7 @@ class AppBarCancelButton extends StatelessWidget {
     return AppBarButton(
       onTap: (_) => (onTap ?? () => Navigator.pop(context)).call(),
       child: FlowyText(
-        LocaleKeys.button_cancel.tr(),
+        '取消',
         overflow: TextOverflow.ellipsis,
       ),
     );
@@ -104,7 +102,7 @@ class AppBarDoneButton extends StatelessWidget {
       onTap: (_) => onTap(),
       padding: const EdgeInsets.all(12),
       child: FlowyText(
-        LocaleKeys.button_done.tr(),
+        '完成',
         color: Theme.of(context).colorScheme.primary,
         fontWeight: FontWeight.w500,
         textAlign: TextAlign.right,
@@ -135,7 +133,7 @@ class AppBarSaveButton extends StatelessWidget {
       },
       padding: padding,
       child: FlowyText(
-        LocaleKeys.button_save.tr(),
+        '保存',
         color: enable
             ? Theme.of(context).colorScheme.primary
             : Theme.of(context).disabledColor,
@@ -169,7 +167,7 @@ class AppBarFilledDoneButton extends StatelessWidget {
         ),
         onPressed: onTap,
         child: FlowyText.medium(
-          LocaleKeys.button_done.tr(),
+          '完成',
           fontSize: 16,
           color: Theme.of(context).colorScheme.onPrimary,
           overflow: TextOverflow.ellipsis,

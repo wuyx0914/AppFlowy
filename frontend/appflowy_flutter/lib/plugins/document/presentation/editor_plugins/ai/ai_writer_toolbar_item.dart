@@ -1,11 +1,9 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy/plugins/document/presentation/editor_style.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -148,7 +146,7 @@ class _AiWriterToolbarActionListState extends State<AiWriterToolbarActionList> {
           });
         } else {
           showToastNotification(
-            message: LocaleKeys.document_plugins_appflowyAIEditDisabled.tr(),
+            message: '登录以激活 AI 功能',
           );
         }
       },
@@ -158,8 +156,8 @@ class _AiWriterToolbarActionListState extends State<AiWriterToolbarActionList> {
           context,
           _aiWriterToolbarItemId,
           _isAIWriterEnabled(widget.editorState)
-              ? LocaleKeys.document_plugins_aiWriter_userQuestion.tr()
-              : LocaleKeys.document_plugins_appflowyAIEditDisabled.tr(),
+              ? '向AI提问'
+              : '登录以激活 AI 功能',
           child,
         ) ??
         child;
@@ -194,7 +192,7 @@ class ImproveWritingButton extends StatelessWidget {
           _insertAiNode(editorState, AiWriterCommand.improveWriting);
         } else {
           showToastNotification(
-            message: LocaleKeys.document_plugins_appflowyAIEditDisabled.tr(),
+            message: '登录以激活 AI 功能',
           );
         }
       },
@@ -204,8 +202,8 @@ class ImproveWritingButton extends StatelessWidget {
           context,
           _aiWriterToolbarItemId,
           _isAIWriterEnabled(editorState)
-              ? LocaleKeys.document_plugins_aiWriter_improveWriting.tr()
-              : LocaleKeys.document_plugins_appflowyAIEditDisabled.tr(),
+              ? '优化写作'
+              : '登录以激活 AI 功能',
           child,
         ) ??
         child;

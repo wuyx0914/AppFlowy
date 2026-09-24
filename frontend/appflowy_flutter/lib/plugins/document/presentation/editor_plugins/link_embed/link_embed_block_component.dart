@@ -1,6 +1,5 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/callout/callout_block_component.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/link_preview/custom_link_parser.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/link_preview/default_selectable_mixin.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/shared/appflowy_network_image.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -295,9 +293,7 @@ class LinkEmbedBlockComponentState
                             ),
                           ),
                           TextSpan(
-                            text: LocaleKeys
-                                .document_plugins_linkPreview_linkPreviewMenu_unableToDisplay
-                                .tr(),
+                            text: '无法显示',
                             style: TextStyle(
                               color: textScheme.secondary,
                               fontSize: 14,

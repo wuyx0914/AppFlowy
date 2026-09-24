@@ -1,13 +1,11 @@
 import 'dart:io';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/reminder/reminder_bloc.dart';
 import 'package:appflowy/workspace/application/home/home_setting_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -107,7 +105,7 @@ class _NotificationPanelState extends State<NotificationPanel>
       child: Row(
         children: [
           FlowyText.medium(
-            LocaleKeys.notificationHub_title.tr(),
+            '通知',
             fontSize: 16,
             figmaLineHeight: 24,
           ),
@@ -173,13 +171,13 @@ class _NotificationPanelState extends State<NotificationPanel>
             height: 30,
             child: FlowyButton(
               text: FlowyText.regular(
-                LocaleKeys.settings_notifications_settings_markAllAsRead.tr(),
+                '全部标记为已读',
               ),
               leftIcon: FlowySvg(FlowySvgs.m_notification_mark_as_read_s),
               onTap: () {
                 showToastNotification(
                   message:
-                      LocaleKeys.notificationHub_markAllAsReadSucceedToast.tr(),
+                      '已成功将所有项目标记为已读取',
                 );
                 context
                     .read<ReminderBloc>()
@@ -193,14 +191,12 @@ class _NotificationPanelState extends State<NotificationPanel>
             height: 30,
             child: FlowyButton(
               text: FlowyText.regular(
-                LocaleKeys.settings_notifications_settings_archiveAll.tr(),
+                '全部存盘',
               ),
               leftIcon: FlowySvg(FlowySvgs.m_notification_archived_s),
               onTap: () {
                 showToastNotification(
-                  message: LocaleKeys
-                      .notificationHub_markAllAsArchivedSucceedToast
-                      .tr(),
+                  message: '已成功归档全部项目',
                 );
                 context
                     .read<ReminderBloc>()
@@ -218,7 +214,7 @@ class _NotificationPanelState extends State<NotificationPanel>
     return TextSpan(
       children: [
         TextSpan(
-          text: '${LocaleKeys.notificationHub_closeNotification.tr()}\n',
+          text: '${'关闭通知'}\n',
           style: context.tooltipTextStyle(),
         ),
         TextSpan(

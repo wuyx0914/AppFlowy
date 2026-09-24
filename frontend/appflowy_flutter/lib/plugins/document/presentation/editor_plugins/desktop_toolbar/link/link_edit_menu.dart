@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/toolbar_item/custom_link_toolbar_item.dart';
 import 'package:appflowy/plugins/shared/share/constants.dart';
 import 'package:appflowy/user/application/user_service.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 // ignore: implementation_imports
@@ -116,7 +114,7 @@ class _LinkEditMenuState extends State<LinkEditMenu> {
                 top: 16,
                 left: 20,
                 child: FlowyText.semibold(
-                  LocaleKeys.document_toolbar_pageOrURL.tr(),
+                  '页面或网址',
                   color: theme.textColorScheme.tertiary,
                   fontSize: 12,
                   figmaLineHeight: 16,
@@ -126,7 +124,7 @@ class _LinkEditMenuState extends State<LinkEditMenu> {
                 top: 80 + errorHeight,
                 left: 20,
                 child: FlowyText.semibold(
-                  LocaleKeys.document_toolbar_linkName.tr(),
+                  '链接名称',
                   color: theme.textColorScheme.tertiary,
                   fontSize: 12,
                   figmaLineHeight: 16,
@@ -196,7 +194,7 @@ class _LinkEditMenuState extends State<LinkEditMenu> {
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: FlowyText.regular(
-              LocaleKeys.document_plugins_file_networkUrlInvalid.tr(),
+              '网址无效。请检查网址并再次尝试。',
               color: theme?.textColorScheme.error,
               fontSize: 12,
               figmaLineHeight: 16,
@@ -218,7 +216,7 @@ class _LinkEditMenuState extends State<LinkEditMenu> {
               icon: FlowySvg(FlowySvgs.toolbar_link_unlink_m),
               width: 32,
               height: 32,
-              tooltipText: LocaleKeys.editor_removeLink.tr(),
+              tooltipText: '移除链接',
               preferBelow: false,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(8)),
@@ -233,7 +231,7 @@ class _LinkEditMenuState extends State<LinkEditMenu> {
                 border: Border.all(color: LinkStyle.borderColor(context)),
               ),
               child: FlowyTextButton(
-                LocaleKeys.button_cancel.tr(),
+                '取消',
                 padding: EdgeInsets.zero,
                 mainAxisAlignment: MainAxisAlignment.center,
                 constraints: BoxConstraints(maxWidth: 78, minHeight: 32),
@@ -250,7 +248,7 @@ class _LinkEditMenuState extends State<LinkEditMenu> {
               valueListenable: linkNameController,
               builder: (context, _, __) {
                 return FlowyTextButton(
-                  LocaleKeys.settings_appearance_documentSettings_apply.tr(),
+                  '申请',
                   padding: EdgeInsets.zero,
                   mainAxisAlignment: MainAxisAlignment.center,
                   constraints: BoxConstraints(maxWidth: 78, minHeight: 32),
@@ -293,7 +291,7 @@ class _LinkEditMenuState extends State<LinkEditMenu> {
           );
         },
         decoration: LinkStyle.buildLinkTextFieldInputDecoration(
-          LocaleKeys.document_toolbar_linkNameHint.tr(),
+          '输入链接名称',
           context,
         ),
       ),
@@ -313,7 +311,7 @@ class _LinkEditMenuState extends State<LinkEditMenu> {
     } else {
       final viewName = view.name;
       final displayName = viewName.isEmpty
-          ? LocaleKeys.document_title_placeholder.tr()
+          ? '无标题'
           : viewName;
       child = GestureDetector(
         onTap: showSearchResult,

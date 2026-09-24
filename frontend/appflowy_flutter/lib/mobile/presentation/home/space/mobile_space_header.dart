@@ -96,7 +96,7 @@ class MobileSpaceHeader extends StatelessWidget {
 
   // Future<void> _showRenameDialog() async {
   //   await NavigatorTextFieldDialog(
-  //     title: LocaleKeys.space_rename.tr(),
+  //     title: '重命名空间',
   //     value: space.name,
   //     autoSelectAllText: true,
   //     onConfirm: (name, _) {

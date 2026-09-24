@@ -1,10 +1,8 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/header/cover_editor.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/upload_image_menu/widgets/upload_image_file_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy_editor/appflowy_editor.dart' hide ColorOption;
 import 'package:cross_file/cross_file.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -20,10 +18,10 @@ enum UploadImageType {
 
   String get description => switch (this) {
         UploadImageType.local =>
-          LocaleKeys.document_imageBlock_upload_label.tr(),
+          '上传',
         UploadImageType.url =>
-          LocaleKeys.document_imageBlock_embedLink_label.tr(),
-        UploadImageType.color => LocaleKeys.document_plugins_cover_colors.tr(),
+          '内嵌链接',
+        UploadImageType.color => '颜色',
       };
 }
 

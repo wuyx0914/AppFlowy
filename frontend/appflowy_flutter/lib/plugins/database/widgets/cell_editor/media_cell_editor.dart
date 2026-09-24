@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/media_cell_bloc.dart';
 import 'package:appflowy/plugins/database/widgets/media_file_type_ext.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/file/file_block_menu.dart';
@@ -18,7 +17,6 @@ import 'package:appflowy/workspace/presentation/widgets/image_viewer/interactive
 import 'package:appflowy_backend/protobuf/flowy-database2/file_entities.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/media_entities.pb.dart';
 import 'package:cross_file/cross_file.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -199,7 +197,7 @@ class _AddButton extends StatelessWidget {
                     ),
                     const HSpace(8),
                     FlowyText.regular(
-                      LocaleKeys.grid_media_addFileOrImage.tr(),
+                      '添加文件或链接',
                       figmaLineHeight: 20,
                       fontSize: 14,
                     ),
@@ -455,7 +453,7 @@ class _MediaItemMenuState extends State<MediaItemMenu> {
               _showInteractiveViewer();
             },
             icon: FlowySvgs.full_view_s,
-            label: LocaleKeys.grid_media_expand.tr(),
+            label: '展开',
           ),
           MediaMenuItem(
             onTap: () {
@@ -471,7 +469,7 @@ class _MediaItemMenuState extends State<MediaItemMenu> {
               widget.onAction?.call();
             },
             icon: FlowySvgs.cover_s,
-            label: LocaleKeys.grid_media_setAsCover.tr(),
+            label: '设为封面',
           ),
         ],
         MediaMenuItem(
@@ -480,7 +478,7 @@ class _MediaItemMenuState extends State<MediaItemMenu> {
             afLaunchUrlString(widget.file.url);
           },
           icon: FlowySvgs.open_in_browser_s,
-          label: LocaleKeys.grid_media_openInBrowser.tr(),
+          label: '在浏览器中打开',
         ),
         MediaMenuItem(
           onTap: () async {
@@ -488,7 +486,7 @@ class _MediaItemMenuState extends State<MediaItemMenu> {
             widget.onAction?.call();
           },
           icon: FlowySvgs.rename_s,
-          label: LocaleKeys.grid_media_rename.tr(),
+          label: '重命名',
         ),
         if (widget.file.uploadType == FileUploadTypePB.CloudFile) ...[
           MediaMenuItem(
@@ -501,7 +499,7 @@ class _MediaItemMenuState extends State<MediaItemMenu> {
               widget.onAction?.call();
             },
             icon: FlowySvgs.save_as_s,
-            label: LocaleKeys.button_download.tr(),
+            label: '下载',
           ),
         ],
         MediaMenuItem(
@@ -509,7 +507,7 @@ class _MediaItemMenuState extends State<MediaItemMenu> {
             await showConfirmDeletionDialog(
               context: context,
               name: widget.file.name,
-              description: LocaleKeys.grid_media_deleteFileDescription.tr(),
+              description: '您确定要删除此文件吗? 此动作不可逆转。',
               onConfirm: () => context
                   .read<MediaCellBloc>()
                   .add(MediaCellEvent.removeFile(fileId: widget.file.id)),
@@ -517,7 +515,7 @@ class _MediaItemMenuState extends State<MediaItemMenu> {
             widget.onAction?.call();
           },
           icon: FlowySvgs.trash_s,
-          label: LocaleKeys.button_delete.tr(),
+          label: '删除',
         ),
       ],
     );
@@ -531,8 +529,8 @@ class _MediaItemMenuState extends State<MediaItemMenu> {
 
     await showCustomConfirmDialog(
       context: context,
-      title: LocaleKeys.document_plugins_file_renameFile_title.tr(),
-      description: LocaleKeys.document_plugins_file_renameFile_description.tr(),
+      title: '重命名文件',
+      description: '输入此文件的新名称',
       closeOnConfirm: false,
       builder: (dialogContext) {
         renameContext = dialogContext;
@@ -543,7 +541,7 @@ class _MediaItemMenuState extends State<MediaItemMenu> {
           disposeController: false,
         );
       },
-      confirmLabel: LocaleKeys.button_save.tr(),
+      confirmLabel: '保存',
       onConfirm: () => _saveName(context),
     );
   }
@@ -551,7 +549,7 @@ class _MediaItemMenuState extends State<MediaItemMenu> {
   void _saveName(BuildContext context) {
     if (nameController.text.isEmpty) {
       errorMessage.value =
-          LocaleKeys.document_plugins_file_renameFile_nameEmptyError.tr();
+          '文件名称不能为空。';
       return;
     }
 

@@ -1,7 +1,5 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/util/theme_extension.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -87,7 +85,7 @@ class _ChatErrorMessageWidgetState extends State<ChatErrorMessageWidget> {
                   style: Theme.of(context).textTheme.bodyMedium,
                 ),
                 TextSpan(
-                  text: LocaleKeys.chat_retry.tr(),
+                  text: '重试',
                   recognizer: recognizer,
                   mouseCursor: SystemMouseCursors.click,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(

@@ -1,15 +1,13 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/setting_entities.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pbenum.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 extension DatabaseLayoutExtension on DatabaseLayoutPB {
   String get layoutName {
     return switch (this) {
-      DatabaseLayoutPB.Board => LocaleKeys.board_menuName.tr(),
-      DatabaseLayoutPB.Calendar => LocaleKeys.calendar_menuName.tr(),
-      DatabaseLayoutPB.Grid => LocaleKeys.grid_menuName.tr(),
+      DatabaseLayoutPB.Board => '看板',
+      DatabaseLayoutPB.Calendar => '日历',
+      DatabaseLayoutPB.Grid => '网格',
       _ => "",
     };
   }

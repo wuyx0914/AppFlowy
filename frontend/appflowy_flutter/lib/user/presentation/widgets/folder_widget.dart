@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/workspace/application/settings/prelude.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -10,7 +9,6 @@ import 'package:flowy_infra_ui/widget/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-import '../../../generated/locale_keys.g.dart';
 import '../../../startup/startup.dart';
 import '../../../workspace/presentation/home/toast.dart';
 
@@ -86,11 +84,11 @@ class FolderOptionsWidget extends StatelessWidget {
         final subtitle = result.hasData ? result.data! : '';
         return _FolderCard(
           icon: const FlowySvg(FlowySvgs.archive_m),
-          title: LocaleKeys.settings_files_defineWhereYourDataIsStored.tr(),
+          title: '定义数据存储位置',
           subtitle: subtitle,
           trailing: _buildTextButton(
             context,
-            LocaleKeys.settings_files_set.tr(),
+            '设置',
             onPressedOpen,
           ),
         );
@@ -140,12 +138,12 @@ class CreateFolderWidgetState extends State<CreateFolderWidget> {
           ),
         ),
         _FolderCard(
-          title: LocaleKeys.settings_files_location.tr(),
-          subtitle: LocaleKeys.settings_files_locationDesc.tr(),
+          title: '正在新建文件夹',
+          subtitle: '为您的 @:appName 数据文件夹选择一个名称',
           trailing: SizedBox(
             width: 120,
             child: FlowyTextField(
-              hintText: LocaleKeys.settings_files_folderHintText.tr(),
+              hintText: '文件夹名',
               onChanged: (name) => _folderName = name,
               onSubmitted: (name) => setState(
                 () => _folderName = name,
@@ -154,11 +152,11 @@ class CreateFolderWidgetState extends State<CreateFolderWidget> {
           ),
         ),
         _FolderCard(
-          title: LocaleKeys.settings_files_folderPath.tr(),
+          title: '保存文件夹的路径',
           subtitle: _path,
           trailing: _buildTextButton(
             context,
-            LocaleKeys.settings_files_browser.tr(),
+            '浏览',
             () async {
               final dir = await getIt<FilePickerService>().getDirectoryPath();
               if (dir != null) {
@@ -172,11 +170,11 @@ class CreateFolderWidgetState extends State<CreateFolderWidget> {
           padding: const EdgeInsets.symmetric(horizontal: 4.0),
           child: _buildTextButton(
             context,
-            LocaleKeys.settings_files_create.tr(),
+            '新建',
             () async {
               if (_path.isEmpty) {
                 _showToast(
-                  LocaleKeys.settings_files_locationCannotBeEmpty.tr(),
+                  '路径不能为空',
                 );
               } else {
                 await getIt<ApplicationDataStorage>().setCustomPath(_path);
@@ -277,7 +275,7 @@ class _FolderCard extends StatelessWidget {
                             padding: const EdgeInsets.all(10),
                             constraints: const BoxConstraints(maxWidth: 450),
                             child: FlowyText(
-                              LocaleKeys.settings_menu_customPathPrompt.tr(),
+                              '将 @:appName 数据文件夹存储在云同步文件夹（例如 Google Drive）中可能会带来风险。如果同时从多个位置访问或修改此文件夹中的数据库，可能会导致同步冲突和潜在的数据损坏',
                               maxLines: null,
                             ),
                           ),

@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/plugins/base/drag_handler.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
@@ -18,7 +17,6 @@ import 'package:appflowy/workspace/presentation/widgets/date_picker/widgets/remi
 import 'package:appflowy_backend/protobuf/flowy-user/reminder.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -298,8 +296,8 @@ class _MentionDateBlockState extends State<MentionDateBlock> {
             reminder: ReminderPB(
               id: reminderId,
               objectId: viewId,
-              title: LocaleKeys.reminderNotification_title.tr(),
-              message: LocaleKeys.reminderNotification_message.tr(),
+              title: '提醒',
+              message: '记得在你忘记之前检查一下！',
               meta: {
                 ReminderMetaKeys.includeTime: false.toString(),
                 ReminderMetaKeys.blockId: widget.node.id,

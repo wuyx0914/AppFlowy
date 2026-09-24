@@ -1,13 +1,11 @@
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/setting/launch_settings_page.dart';
 import 'package:appflowy/user/application/sign_in_bloc.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/anonymous_sign_in_button.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/widgets.dart';
 import 'package:appflowy/user/presentation/widgets/flowy_logo_title.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +28,7 @@ class MobileSignInScreen extends StatelessWidget {
             child: Column(
               children: [
                 const Spacer(),
-                FlowyLogoTitle(title: LocaleKeys.welcomeText.tr()),
+                FlowyLogoTitle(title: '欢迎使用 @:appName'),
                 VSpace(theme.spacing.xxl),
                 // Local-only build: anonymous sign-in only.
                 const SignInAnonymousButtonV3(),
@@ -53,7 +51,7 @@ class MobileSignInScreen extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         AFGhostIconTextButton(
-          text: LocaleKeys.signIn_settings.tr(),
+          text: '设置',
           textColor: (context, isHovering, disabled) {
             return theme.textColorScheme.secondary;
           },

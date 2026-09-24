@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/sidebar/folder/folder_bloc.dart';
 import 'package:appflowy/workspace/application/tabs/tabs_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/workspace/presentation/home/menu/sidebar/favorites/favo
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/shared_widget.dart';
 import 'package:appflowy/workspace/presentation/home/menu/view/view_item.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -124,17 +122,17 @@ class _FavoriteGroups extends StatelessWidget {
     final today = _buildGroups(
       context,
       state.todayViews,
-      LocaleKeys.sideBar_today.tr(),
+      '今日',
     );
     final thisWeek = _buildGroups(
       context,
       state.thisWeekViews,
-      LocaleKeys.sideBar_thisWeek.tr(),
+      '本周',
     );
     final others = _buildGroups(
       context,
       state.otherViews,
-      LocaleKeys.sideBar_others.tr(),
+      '其他',
     );
 
     return Container(
@@ -167,7 +165,7 @@ class _FavoriteGroups extends StatelessWidget {
                 : _buildGroups(
                     context,
                     state.otherViews,
-                    LocaleKeys.sideBar_others.tr(),
+                    '其他',
                     showHeader: false,
                   ),
           ],

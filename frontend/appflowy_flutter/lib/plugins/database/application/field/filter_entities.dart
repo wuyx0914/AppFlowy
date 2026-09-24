@@ -1,6 +1,5 @@
 import 'dart:typed_data';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/database/view/database_filter_bottom_sheet.dart';
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
 import 'package:appflowy/plugins/database/grid/application/filter/select_option_loader.dart';
@@ -13,7 +12,6 @@ import 'package:appflowy/plugins/database/grid/presentation/widgets/filter/choic
 import 'package:appflowy/plugins/database/widgets/cell_editor/extension.dart';
 import 'package:appflowy/util/int64_extension.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -484,26 +482,26 @@ enum DateTimeFilterCondition {
   String get choiceChipPrefix {
     return switch (this) {
       on => "",
-      before => LocaleKeys.grid_dateFilter_choicechipPrefix_before.tr(),
-      after => LocaleKeys.grid_dateFilter_choicechipPrefix_after.tr(),
-      onOrBefore => LocaleKeys.grid_dateFilter_choicechipPrefix_onOrBefore.tr(),
-      onOrAfter => LocaleKeys.grid_dateFilter_choicechipPrefix_onOrAfter.tr(),
-      between => LocaleKeys.grid_dateFilter_choicechipPrefix_between.tr(),
-      isEmpty => LocaleKeys.grid_dateFilter_choicechipPrefix_isEmpty.tr(),
-      isNotEmpty => LocaleKeys.grid_dateFilter_choicechipPrefix_isNotEmpty.tr(),
+      before => '之前',
+      after => '之后',
+      onOrBefore => '今天或之前',
+      onOrAfter => '今天或之后',
+      between => '之间',
+      isEmpty => '为空',
+      isNotEmpty => '不为空',
     };
   }
 
   String get filterName {
     return switch (this) {
-      on => LocaleKeys.grid_dateFilter_is.tr(),
-      before => LocaleKeys.grid_dateFilter_before.tr(),
-      after => LocaleKeys.grid_dateFilter_after.tr(),
-      onOrBefore => LocaleKeys.grid_dateFilter_onOrBefore.tr(),
-      onOrAfter => LocaleKeys.grid_dateFilter_onOrAfter.tr(),
-      between => LocaleKeys.grid_dateFilter_between.tr(),
-      isEmpty => LocaleKeys.grid_dateFilter_empty.tr(),
-      isNotEmpty => LocaleKeys.grid_dateFilter_notEmpty.tr(),
+      on => '是',
+      before => '之前',
+      after => '之后',
+      onOrBefore => '在或之前',
+      onOrAfter => '在或之后',
+      between => '之间',
+      isEmpty => '为空',
+      isNotEmpty => '不为空',
     };
   }
 

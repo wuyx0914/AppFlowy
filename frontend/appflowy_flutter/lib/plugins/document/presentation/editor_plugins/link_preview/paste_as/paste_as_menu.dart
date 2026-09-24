@@ -1,10 +1,8 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/link_embed/link_embed_block_component.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/link_preview/shared.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/menu/menu_extension.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flutter/material.dart';
@@ -158,8 +156,7 @@ class _PasteAsMenuState extends State<PasteAsMenu> {
               padding: EdgeInsets.all(8),
               child: FlowyText.semibold(
                 color: theme.textColorScheme.primary,
-                LocaleKeys.document_plugins_linkPreview_typeSelection_pasteAs
-                    .tr(),
+                '粘贴为',
               ),
             ),
             ...List.generate(
@@ -245,15 +242,13 @@ extension PasteMenuTypeExtension on PasteMenuType {
   String get title {
     switch (this) {
       case PasteMenuType.mention:
-        return LocaleKeys.document_plugins_linkPreview_typeSelection_mention
-            .tr();
+        return '提及';
       case PasteMenuType.url:
-        return LocaleKeys.document_plugins_linkPreview_typeSelection_URL.tr();
+        return 'URL';
       case PasteMenuType.bookmark:
-        return LocaleKeys.document_plugins_linkPreview_typeSelection_bookmark
-            .tr();
+        return '书签';
       case PasteMenuType.embed:
-        return LocaleKeys.document_plugins_linkPreview_typeSelection_embed.tr();
+        return '嵌入';
     }
   }
 }

@@ -1,11 +1,9 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/sign_in_bloc.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_email.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_magic_link_or_passcode_page.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_password.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_password_page.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,7 +57,7 @@ class _ContinueWithEmailAndPasswordState
           AFTextField(
             key: emailKey,
             controller: controller,
-            hintText: LocaleKeys.signIn_pleaseInputYourEmail.tr(),
+            hintText: '请输入邮箱地址',
             onSubmitted: (value) => _signInWithEmail(
               context,
               value,
@@ -79,7 +77,7 @@ class _ContinueWithEmailAndPasswordState
 
               if (!isEmail(email)) {
                 emailKey.currentState?.syncError(
-                  errorText: LocaleKeys.signIn_invalidEmail.tr(),
+                  errorText: '请输入一个有效的邮箱地址',
                 );
                 return;
               }
@@ -98,7 +96,7 @@ class _ContinueWithEmailAndPasswordState
   void _signInWithEmail(BuildContext context, String email) {
     if (!isEmail(email)) {
       emailKey.currentState?.syncError(
-        errorText: LocaleKeys.signIn_invalidEmail.tr(),
+        errorText: '请输入一个有效的邮箱地址',
       );
       return;
     }

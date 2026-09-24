@@ -1,8 +1,6 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -19,24 +17,24 @@ class ChatWelcomePage extends StatelessWidget {
   final UserProfilePB userProfile;
 
   static final List<String> desktopItems = [
-    LocaleKeys.chat_question1.tr(),
-    LocaleKeys.chat_question2.tr(),
-    LocaleKeys.chat_question3.tr(),
-    LocaleKeys.chat_question4.tr(),
+    '如何使用 Kanban 来管理任务',
+    '介绍一下 GTD 工作法',
+    '为什么使用 Rust',
+    '使用现有食材制定一份菜谱',
   ];
 
   static final List<List<String>> mobileItems = [
     [
-      LocaleKeys.chat_question1.tr(),
-      LocaleKeys.chat_question2.tr(),
+      '如何使用 Kanban 来管理任务',
+      '介绍一下 GTD 工作法',
     ],
     [
-      LocaleKeys.chat_question3.tr(),
-      LocaleKeys.chat_question4.tr(),
+      '为什么使用 Rust',
+      '使用现有食材制定一份菜谱',
     ],
     [
-      LocaleKeys.chat_question5.tr(),
-      LocaleKeys.chat_question6.tr(),
+      '为我的页面创建插图',
+      '为我即将到来的下周拟定待办事项清单',
     ],
   ];
 
@@ -53,7 +51,7 @@ class ChatWelcomePage extends StatelessWidget {
         const VSpace(16),
         FlowyText(
           fontSize: 15,
-          LocaleKeys.chat_questionDetail.tr(args: [userProfile.name]),
+          '{userProfile.name} 你好！我能怎么帮到你？',
         ),
         UniversalPlatform.isDesktop ? const VSpace(32 - 16) : const VSpace(24),
         ...UniversalPlatform.isDesktop

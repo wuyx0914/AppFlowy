@@ -1,9 +1,7 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/type_option/edit_select_option_bloc.dart';
 import 'package:appflowy/plugins/database/widgets/cell_editor/extension.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/select_option_entities.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/scrolling/styled_list.dart';
@@ -108,7 +106,7 @@ class _DeleteTag extends StatelessWidget {
       child: FlowyButton(
         text: FlowyText(
           lineHeight: 1.0,
-          LocaleKeys.grid_selectOption_deleteTag.tr(),
+          '删除标签',
         ),
         leftIcon: const FlowySvg(FlowySvgs.delete_s),
         onTap: () {
@@ -176,7 +174,7 @@ class SelectOptionColorList extends StatelessWidget {
           child: SizedBox(
             height: GridSize.popoverItemHeight,
             child: FlowyText(
-              LocaleKeys.grid_selectOption_colorPanelTitle.tr(),
+              '颜色',
               textAlign: TextAlign.left,
               color: Theme.of(context).hintColor,
             ),

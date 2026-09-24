@@ -1,12 +1,10 @@
 import 'dart:io';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/default_extensions.dart';
 import 'package:appflowy/workspace/application/settings/prelude.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -45,8 +43,7 @@ class CoverImagePickerBloc
                 CoverImagePickerState.networkImage(
                   FlowyResult.failure(
                     FlowyError(
-                      msg: LocaleKeys.document_plugins_cover_couldNotFetchImage
-                          .tr(),
+                      msg: '无法获取到图像',
                     ),
                   ),
                 ),
@@ -74,8 +71,7 @@ class CoverImagePickerBloc
                 CoverImagePickerState.done(
                   FlowyResult.failure(
                     FlowyError(
-                      msg: LocaleKeys.document_plugins_cover_imageSavingFailed
-                          .tr(),
+                      msg: '图像保存失败',
                     ),
                   ),
                 ),
@@ -125,7 +121,7 @@ class CoverImagePickerBloc
 
   Future<String?> _pickImages() async {
     final result = await getIt<FilePickerService>().pickFiles(
-      dialogTitle: LocaleKeys.document_plugins_cover_addLocalImage.tr(),
+      dialogTitle: '添加本地图像',
       type: FileType.image,
       allowedExtensions: defaultImageExtensions,
     );

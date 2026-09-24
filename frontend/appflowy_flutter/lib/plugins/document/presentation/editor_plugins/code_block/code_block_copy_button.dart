@@ -1,13 +1,11 @@
 import 'dart:convert';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/icon_button.dart';
 import 'package:flowy_infra_ui/widget/flowy_tooltip.dart';
@@ -26,7 +24,7 @@ class _CopyButton extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(4),
       child: FlowyTooltip(
-        message: LocaleKeys.document_codeBlock_copyTooltip.tr(),
+        message: '复制代码块的内容',
         child: FlowyIconButton(
           onPressed: () async {
             final delta = node.delta;
@@ -47,7 +45,7 @@ class _CopyButton extends StatelessWidget {
 
             if (context.mounted) {
               showToastNotification(
-                message: LocaleKeys.document_codeBlock_codeCopiedSnackbar.tr(),
+                message: '代码已拷贝到剪贴板',
               );
             }
           },

@@ -2,7 +2,6 @@ import 'package:appflowy/features/share_tab/presentation/share_tab.dart'
     as share_section;
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/home/tab/_round_underline_tab_indicator.dart';
 import 'package:appflowy/plugins/shared/share/export_tab.dart';
 import 'package:appflowy/plugins/shared/share/share_bloc.dart';
@@ -15,7 +14,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pbenum.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,11 +28,11 @@ enum ShareMenuTab {
   String get i18n {
     switch (this) {
       case ShareMenuTab.share:
-        return LocaleKeys.shareAction_shareTab.tr();
+        return '分享';
       case ShareMenuTab.publish:
-        return LocaleKeys.shareAction_publishTab.tr();
+        return '发布';
       case ShareMenuTab.exportAs:
-        return LocaleKeys.shareAction_exportAsTab.tr();
+        return '导出为';
     }
   }
 }
@@ -188,29 +186,29 @@ class _ShareMenuState extends State<ShareMenu>
     final role = workspace.role;
     final title = switch (role) {
       AFRolePB.Owner =>
-        LocaleKeys.shareTab_upgradeToInviteGuest_title_owner.tr(),
+        '升级为邀请嘉宾',
       AFRolePB.Member =>
-        LocaleKeys.shareTab_upgradeToInviteGuest_title_member.tr(),
+        '升级为邀请嘉宾',
       AFRolePB.Guest ||
       _ =>
-        LocaleKeys.shareTab_upgradeToInviteGuest_title_guest.tr(),
+        '升级为邀请嘉宾',
     };
     final description = switch (role) {
       AFRolePB.Owner =>
-        LocaleKeys.shareTab_upgradeToInviteGuest_description_owner.tr(),
+        '您的工作区目前使用的是免费方案。升级至专业版，以允许外部用户作为访客访问此页面。',
       AFRolePB.Member =>
-        LocaleKeys.shareTab_upgradeToInviteGuest_description_member.tr(),
+        '部分受邀者不在您的工作区内。若要将他们邀请为访客，请联系您的工作区拥有者以升级至专业版。',
       AFRolePB.Guest ||
       _ =>
-        LocaleKeys.shareTab_upgradeToInviteGuest_description_guest.tr(),
+        '部分受邀者不在您的工作区内。若要将他们邀请为访客，请联系您的工作区拥有者以升级至专业版。',
     };
     final style = switch (role) {
       AFRolePB.Owner => ConfirmPopupStyle.cancelAndOk,
       AFRolePB.Member || AFRolePB.Guest || _ => ConfirmPopupStyle.onlyOk,
     };
     final confirmLabel = switch (role) {
-      AFRolePB.Owner => LocaleKeys.shareTab_upgrade.tr(),
-      AFRolePB.Member || AFRolePB.Guest || _ => LocaleKeys.button_ok.tr(),
+      AFRolePB.Owner => '升级',
+      AFRolePB.Member || AFRolePB.Guest || _ => 'OK',
     };
 
     if (role == AFRolePB.Owner) {

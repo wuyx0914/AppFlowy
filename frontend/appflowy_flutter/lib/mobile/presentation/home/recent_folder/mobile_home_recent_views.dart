@@ -1,12 +1,10 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/home/recent_folder/mobile_recent_view.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
 import 'package:appflowy/workspace/application/recent/prelude.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -83,7 +81,7 @@ class _RecentViews extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24),
           child: GestureDetector(
             child: FlowyText.semibold(
-              LocaleKeys.sideBar_recent.tr(),
+              '最近的',
               fontSize: 20.0,
             ),
             onTap: () {
@@ -96,7 +94,7 @@ class _RecentViews extends StatelessWidget {
                   return Column(
                     children: [
                       FlowyOptionTile.text(
-                        text: LocaleKeys.button_clear.tr(),
+                        text: '清空',
                         leftIcon: FlowySvg(
                           FlowySvgs.m_delete_s,
                           color: Theme.of(context).colorScheme.error,

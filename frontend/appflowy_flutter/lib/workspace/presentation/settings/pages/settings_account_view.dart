@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/application/user/settings_user_bloc.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/about/app_version.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/workspace/presentation/settings/shared/settings_body.da
 import 'package:appflowy/workspace/presentation/settings/shared/settings_category.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -43,11 +41,11 @@ class _SettingsAccountViewState extends State<SettingsAccountView> {
       child: BlocBuilder<SettingsUserViewBloc, SettingsUserState>(
         builder: (context, state) {
           return SettingsBody(
-            title: LocaleKeys.newSettings_myAccount_title.tr(),
+            title: '我的账户',
             children: [
               // user profile
               SettingsCategory(
-                title: LocaleKeys.newSettings_myAccount_myProfile.tr(),
+                title: '我的个人数据',
                 children: [
                   AccountUserProfile(
                     name: userName,
@@ -69,7 +67,7 @@ class _SettingsAccountViewState extends State<SettingsAccountView> {
 
               // App version
               SettingsCategory(
-                title: LocaleKeys.newSettings_myAccount_aboutAppFlowy.tr(),
+                title: '关于 @:appName',
                 children: const [
                   SettingsAppVersion(),
                 ],

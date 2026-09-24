@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/domain/database_view_service.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
@@ -6,7 +5,6 @@ import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 extension InsertDatabase on EditorState {
   Future<void> insertInlinePage(String parentViewId, ViewPB childView) async {
@@ -125,11 +123,11 @@ extension InsertDatabase on EditorState {
   String _referencedDatabasePrefix(ViewLayoutPB layout) {
     switch (layout) {
       case ViewLayoutPB.Grid:
-        return LocaleKeys.grid_referencedGridPrefix.tr();
+        return '视图';
       case ViewLayoutPB.Board:
-        return LocaleKeys.board_referencedBoardPrefix.tr();
+        return '视图';
       case ViewLayoutPB.Calendar:
-        return LocaleKeys.calendar_referencedCalendarPrefix.tr();
+        return '视图';
       default:
         throw UnimplementedError();
     }

@@ -8,9 +8,7 @@ import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart'
     show SignInPayloadPB, SignUpPayloadPB, UserProfilePB;
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pb.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 
-import '../../../generated/locale_keys.g.dart';
 import 'device_id.dart';
 
 class BackendAuthService implements AuthService {
@@ -68,7 +66,7 @@ class BackendAuthService implements AuthService {
     final userEmail = "anon@appflowy.io";
 
     final request = SignUpPayloadPB.create()
-      ..name = LocaleKeys.defaultUsername.tr()
+      ..name = '我'
       ..email = userEmail
       ..password = password
       // When sign up as guest, the auth type is always local.

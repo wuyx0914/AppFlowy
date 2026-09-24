@@ -1,6 +1,5 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_option_tile.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
@@ -14,7 +13,6 @@ import 'package:appflowy_backend/protobuf/flowy-database2/file_entities.pbenum.d
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/material.dart';
@@ -420,8 +418,8 @@ class FileBlockComponentState extends State<FileBlockComponent>
         Flexible(
           child: FlowyText(
             isDragging
-                ? LocaleKeys.document_plugins_file_placeholderDragging.tr()
-                : LocaleKeys.document_plugins_file_placeholderText.tr(),
+                ? '将文件拖曳以上传'
+                : '上传或嵌入文件',
             overflow: TextOverflow.ellipsis,
             color: Theme.of(context).hintColor,
           ),
@@ -448,7 +446,7 @@ class FileBlockComponentState extends State<FileBlockComponent>
     return [
       FlowyOptionTile.text(
         showTopBorder: false,
-        text: LocaleKeys.editor_copyLink.tr(),
+        text: '复制链接',
         leftIcon: const FlowySvg(
           FlowySvgs.m_field_copy_s,
         ),
@@ -456,7 +454,7 @@ class FileBlockComponentState extends State<FileBlockComponent>
           context.pop();
           showSnackBarMessage(
             context,
-            LocaleKeys.document_plugins_image_copiedToPasteBoard.tr(),
+            '图片链接已复制到剪贴板',
           );
           await getIt<ClipboardService>().setPlainText(url);
         },
@@ -467,7 +465,7 @@ class FileBlockComponentState extends State<FileBlockComponent>
   void showUploadFileMobileMenu() {
     showMobileBottomSheet(
       context,
-      title: LocaleKeys.document_plugins_file_name.tr(),
+      title: '文件',
       showHeader: true,
       showCloseButton: true,
       showDragHandle: true,
@@ -535,7 +533,7 @@ class FileBlockComponentState extends State<FileBlockComponent>
       // show error
       return showSnackBarMessage(
         context,
-        LocaleKeys.document_plugins_file_networkUrlInvalid.tr(),
+        '网址无效。请检查网址并再次尝试。',
       );
     }
 

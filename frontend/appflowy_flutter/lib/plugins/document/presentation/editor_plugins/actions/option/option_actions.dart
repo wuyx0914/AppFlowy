@@ -1,10 +1,7 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy_editor/appflowy_editor.dart'
     hide QuoteBlockKeys, quoteNode;
-import 'package:easy_localization/easy_localization.dart' hide TextDirection;
-import 'package:easy_localization/easy_localization.dart';
 
 export 'align_option_action.dart';
 export 'color_option_action.dart';
@@ -109,33 +106,29 @@ enum OptionAction {
   String get description {
     switch (this) {
       case OptionAction.delete:
-        return LocaleKeys.document_plugins_optionAction_delete.tr();
+        return '删除';
       case OptionAction.duplicate:
-        return LocaleKeys.document_plugins_optionAction_duplicate.tr();
+        return '复制';
       case OptionAction.turnInto:
-        return LocaleKeys.document_plugins_optionAction_turnInto.tr();
+        return '变成';
       case OptionAction.moveUp:
-        return LocaleKeys.document_plugins_optionAction_moveUp.tr();
+        return '上移';
       case OptionAction.moveDown:
-        return LocaleKeys.document_plugins_optionAction_moveDown.tr();
+        return '下移';
       case OptionAction.color:
-        return LocaleKeys.document_plugins_optionAction_color.tr();
+        return '颜色';
       case OptionAction.align:
-        return LocaleKeys.document_plugins_optionAction_align.tr();
+        return '对齐';
       case OptionAction.depth:
-        return LocaleKeys.document_plugins_optionAction_depth.tr();
+        return '深度';
       case OptionAction.copyLinkToBlock:
-        return LocaleKeys.document_plugins_optionAction_copyLinkToBlock.tr();
+        return '粘贴块链接';
       case OptionAction.divider:
         throw UnsupportedError('Divider does not have description');
       case OptionAction.setToPageWidth:
-        return LocaleKeys
-            .document_plugins_simpleTable_moreActions_setToPageWidth
-            .tr();
+        return '设置为页面宽度';
       case OptionAction.distributeColumnsEvenly:
-        return LocaleKeys
-            .document_plugins_simpleTable_moreActions_distributeColumnsWidth
-            .tr();
+        return '平均分配字段';
     }
   }
 }

@@ -3,10 +3,8 @@ import 'dart:io';
 
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/common.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_impl.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -65,9 +63,7 @@ class InteractiveImageToolbar extends StatelessWidget {
                   children: [
                     _ToolbarItem(
                       isDisabled: isFirstIndex,
-                      tooltip: LocaleKeys
-                          .document_imageBlock_interactiveViewer_toolbar_previousImageTooltip
-                          .tr(),
+                      tooltip: '上一张图片',
                       icon: FlowySvgs.arrow_left_s,
                       onTap: () {
                         if (!isFirstIndex) {
@@ -77,9 +73,7 @@ class InteractiveImageToolbar extends StatelessWidget {
                     ),
                     _ToolbarItem(
                       isDisabled: isLastIndex,
-                      tooltip: LocaleKeys
-                          .document_imageBlock_interactiveViewer_toolbar_nextImageTooltip
-                          .tr(),
+                      tooltip: '下一张图片',
                       icon: FlowySvgs.arrow_right_s,
                       onTap: () {
                         if (!isLastIndex) {
@@ -93,9 +87,7 @@ class InteractiveImageToolbar extends StatelessWidget {
               _renderToolbarItems(
                 children: [
                   _ToolbarItem(
-                    tooltip: LocaleKeys
-                        .document_imageBlock_interactiveViewer_toolbar_zoomOutTooltip
-                        .tr(),
+                    tooltip: '缩小',
                     icon: FlowySvgs.minus_s,
                     onTap: onZoomOut,
                   ),
@@ -113,9 +105,7 @@ class InteractiveImageToolbar extends StatelessWidget {
                       ],
                     ),
                     child: FlowyTooltip(
-                      message: LocaleKeys
-                          .document_imageBlock_interactiveViewer_toolbar_changeZoomLevelTooltip
-                          .tr(),
+                      message: '更改缩放级别',
                       child: FlowyHover(
                         resetHoverOnRebuild: false,
                         style: HoverStyle(
@@ -128,9 +118,7 @@ class InteractiveImageToolbar extends StatelessWidget {
                             width: 40,
                             child: Center(
                               child: FlowyText(
-                                LocaleKeys
-                                    .document_imageBlock_interactiveViewer_toolbar_scalePercentage
-                                    .tr(args: [currentScale.toString()]),
+                                '{currentScale.toString()}%',
                                 color: Colors.white,
                               ),
                             ),
@@ -140,9 +128,7 @@ class InteractiveImageToolbar extends StatelessWidget {
                     ),
                   ),
                   _ToolbarItem(
-                    tooltip: LocaleKeys
-                        .document_imageBlock_interactiveViewer_toolbar_zoomInTooltip
-                        .tr(),
+                    tooltip: '放大',
                     icon: FlowySvgs.add_s,
                     onTap: onZoomIn,
                   ),
@@ -153,9 +139,7 @@ class InteractiveImageToolbar extends StatelessWidget {
                 children: [
                   if (onDelete != null)
                     _ToolbarItem(
-                      tooltip: LocaleKeys
-                          .document_imageBlock_interactiveViewer_toolbar_deleteImageTooltip
-                          .tr(),
+                      tooltip: '删除图片',
                       icon: FlowySvgs.delete_s,
                       onTap: () {
                         onDelete!();
@@ -165,12 +149,8 @@ class InteractiveImageToolbar extends StatelessWidget {
                   if (!UniversalPlatform.isMobile) ...[
                     _ToolbarItem(
                       tooltip: currentImage.isNotInternal
-                          ? LocaleKeys
-                              .document_imageBlock_interactiveViewer_toolbar_openLocalImage
-                              .tr()
-                          : LocaleKeys
-                              .document_imageBlock_interactiveViewer_toolbar_downloadImage
-                              .tr(),
+                          ? '打开图片'
+                          : '下载图片',
                       icon: currentImage.isNotInternal
                           ? currentImage.isLocal
                               ? FlowySvgs.folder_m
@@ -185,9 +165,7 @@ class InteractiveImageToolbar extends StatelessWidget {
               _renderToolbarItems(
                 children: [
                   _ToolbarItem(
-                    tooltip: LocaleKeys
-                        .document_imageBlock_interactiveViewer_toolbar_closeViewer
-                        .tr(),
+                    tooltip: '关闭交互式查看器',
                     icon: FlowySvgs.close_viewer_s,
                     onTap: () => Navigator.of(context).pop(),
                   ),
@@ -229,7 +207,7 @@ class InteractiveImageToolbar extends StatelessWidget {
       if (userProfile == null) {
         return showSnapBar(
           context,
-          LocaleKeys.document_plugins_image_imageDownloadFailedToken.tr(),
+          '图片下载因缺少用户凭证而失败，请再试一次\n',
         );
       }
 
@@ -253,7 +231,7 @@ class InteractiveImageToolbar extends StatelessWidget {
         } else if (context.mounted) {
           showSnapBar(
             context,
-            LocaleKeys.document_plugins_image_imageDownloadFailed.tr(),
+            '图片下载失败，请再试一次',
           );
         }
       }

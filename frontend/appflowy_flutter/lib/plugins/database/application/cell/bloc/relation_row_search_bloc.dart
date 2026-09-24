@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/dispatch/dispatch.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:bloc/bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -64,8 +62,7 @@ class RelationRowSearchBloc
         (row) =>
             row.name.toLowerCase().contains(filter.toLowerCase()) ||
             (row.name.isEmpty &&
-                LocaleKeys.grid_row_titlePlaceholder
-                    .tr()
+                '无标题'
                     .toLowerCase()
                     .contains(filter.toLowerCase())),
       );

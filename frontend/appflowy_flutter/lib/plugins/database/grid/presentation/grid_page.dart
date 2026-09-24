@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:appflowy/features/page_access_level/logic/page_access_level_bloc.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/row/row_service.dart';
 import 'package:appflowy/plugins/database/application/tab_bar_bloc.dart';
 import 'package:appflowy/plugins/database/domain/sort_service.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy/workspace/application/action_navigation/navigation_acti
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/scrolling/styled_scrollview.dart';
@@ -541,13 +539,9 @@ class _GridRowsState extends State<_GridRows> {
         if (state.sorts.isNotEmpty) {
           showCancelAndDeleteDialog(
             context: context,
-            title: LocaleKeys.grid_sort_sortsActive.tr(
-              namedArgs: {
-                'intention': LocaleKeys.grid_row_reorderRowDescription.tr(),
-              },
-            ),
-            description: LocaleKeys.grid_sort_removeSorting.tr(),
-            confirmLabel: LocaleKeys.button_remove.tr(),
+            title: '在排序时无法重新排列列',
+            description: '您想删除排序吗？',
+            confirmLabel: '移除',
             closeOnAction: true,
             onDelete: () {
               SortBackendService(viewId: widget.viewId).deleteAllSorts();

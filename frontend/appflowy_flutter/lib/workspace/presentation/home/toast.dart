@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +60,7 @@ void showSnackBarMessage(
       action: !showCancel
           ? null
           : SnackBarAction(
-              label: LocaleKeys.button_cancel.tr(),
+              label: '取消',
               textColor: Colors.white,
               onPressed: () {
                 ScaffoldMessenger.of(context).hideCurrentSnackBar();

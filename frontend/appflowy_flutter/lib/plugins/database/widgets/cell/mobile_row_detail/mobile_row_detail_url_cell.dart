@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/url_cell_bloc.dart';
 import 'package:appflowy/plugins/database/widgets/row/accessory/cell_accessory.dart';
 import 'package:appflowy/plugins/database/widgets/row/cells/cell_container.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,7 +52,7 @@ class MobileRowDetailURLCellSkin extends IEditableURLCellSkin {
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
               child: Text(
                 content.isEmpty
-                    ? LocaleKeys.grid_row_textPlaceholder.tr()
+                    ? '空'
                     : content,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontSize: 16,

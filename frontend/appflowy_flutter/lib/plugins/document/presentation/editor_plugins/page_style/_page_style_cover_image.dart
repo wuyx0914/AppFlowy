@@ -4,7 +4,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/base/mobile_view_page_bloc.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
@@ -20,7 +19,6 @@ import 'package:appflowy/util/string_extension.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/snap_bar.dart';
@@ -145,7 +143,7 @@ class PageStyleCoverImage extends StatelessWidget {
 
     return Row(
       children: [
-        FlowyText(LocaleKeys.pageStyle_image.tr()),
+        FlowyText('图像'),
         const Spacer(),
         Container(
           width: 40,
@@ -183,7 +181,7 @@ class PageStyleCoverImage extends StatelessWidget {
           ),
         );
       },
-      title: LocaleKeys.pageStyle_presets.tr(),
+      title: '缺省',
       backgroundColor: AFThemeExtension.of(context).background,
       builder: (_) {
         return BlocProvider.value(
@@ -234,7 +232,7 @@ class PageStyleCoverImage extends StatelessWidget {
       if (result == null) {
         return showSnapBar(
           context,
-          LocaleKeys.document_plugins_image_imageUploadFailed.tr(),
+          '图片上传失败',
         );
       }
 
@@ -258,7 +256,7 @@ class _PhotoCover extends StatelessWidget {
         const FlowySvg(FlowySvgs.m_page_style_photo_m),
         const VSpace(4.0),
         FlowyText(
-          LocaleKeys.pageStyle_photo.tr(),
+          '图片',
           fontSize: 12.0,
         ),
       ],
@@ -280,7 +278,7 @@ class _PresetCover extends StatelessWidget {
         ),
         const VSpace(4.0),
         FlowyText(
-          LocaleKeys.pageStyle_presets.tr(),
+          '缺省',
           fontSize: 12.0,
         ),
       ],

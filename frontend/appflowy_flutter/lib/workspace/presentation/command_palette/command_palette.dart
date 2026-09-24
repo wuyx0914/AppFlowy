@@ -1,6 +1,5 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/plugin/plugin.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/application/command_palette/command_palette_bloc.dart';
@@ -14,7 +13,6 @@ import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pbenum.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -287,7 +285,7 @@ class NoSearchResultsHint extends StatelessWidget {
           ),
           const VSpace(8),
           Text(
-            LocaleKeys.search_noResultForSearching.tr(),
+            '没有找到符合的结果',
             style: theme.textStyle.body.enhanced(color: textColor),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
@@ -296,11 +294,11 @@ class NoSearchResultsHint extends StatelessWidget {
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-              text: LocaleKeys.search_noResultForSearchingHintWithoutTrash.tr(),
+              text: '尝试不同的问题或关键字。\n 部分页面可能在',
               style: theme.textStyle.caption.standard(color: textColor),
               children: [
                 TextSpan(
-                  text: LocaleKeys.trash_text.tr(),
+                  text: '回收站',
                   style: theme.textStyle.caption.underline(color: textColor),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {

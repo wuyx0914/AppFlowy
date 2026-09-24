@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_appearance_cubit.dart';
 import 'package:appflowy/shared/google_fonts_extension.dart';
 import 'package:appflowy/util/font_family_extension.dart';
@@ -11,7 +10,6 @@ import 'package:appflowy/workspace/presentation/settings/shared/setting_list_til
 import 'package:appflowy/workspace/presentation/settings/shared/setting_value_dropdown.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/style_widget/text_field.dart';
@@ -37,7 +35,7 @@ class _ThemeFontFamilySettingState extends State<ThemeFontFamilySetting> {
   @override
   Widget build(BuildContext context) {
     return SettingListTile(
-      label: LocaleKeys.settings_appearance_fontFamily_label.tr(),
+      label: '字体系列',
       resetButtonKey: ThemeFontFamilySetting.resetButtonKey,
       onResetRequested: () {
         context.read<AppearanceSettingsCubit>().resetFontFamily();
@@ -119,7 +117,7 @@ class _FontFamilyDropDownState extends State<FontFamilyDropDown> {
               padding: const EdgeInsets.all(8.0),
               child: FlowyTextField(
                 key: ThemeFontFamilySetting.textFieldKey,
-                hintText: LocaleKeys.settings_appearance_fontFamily_search.tr(),
+                hintText: '搜索',
                 debounceDuration: const Duration(milliseconds: 300),
                 onChanged: (value) {
                   setState(() {

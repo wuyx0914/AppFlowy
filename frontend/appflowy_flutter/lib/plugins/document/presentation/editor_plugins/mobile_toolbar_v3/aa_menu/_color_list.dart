@@ -1,12 +1,10 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/font_colors.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mobile_toolbar_v3/_get_selection_color.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mobile_toolbar_v3/aa_menu/_toolbar_theme.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -27,7 +25,7 @@ Future<void> showTextColorAndBackgroundColorPicker(
     barrierColor: Colors.transparent,
     backgroundColor: theme.toolbarMenuBackgroundColor,
     elevation: 20,
-    title: LocaleKeys.grid_selectOption_colorPanelTitle.tr(),
+    title: '颜色',
     padding: const EdgeInsets.fromLTRB(10, 4, 10, 8),
     builder: (context) {
       return _TextColorAndBackgroundColor(
@@ -78,7 +76,7 @@ class _TextColorAndBackgroundColorState
             left: 6.0,
           ),
           child: FlowyText(
-            LocaleKeys.editor_textColor.tr(),
+            '文字颜色',
             fontSize: 14.0,
           ),
         ),
@@ -115,7 +113,7 @@ class _TextColorAndBackgroundColorState
             left: 6.0,
           ),
           child: FlowyText(
-            LocaleKeys.editor_backgroundColor.tr(),
+            '背景颜色',
             fontSize: 14.0,
           ),
         ),

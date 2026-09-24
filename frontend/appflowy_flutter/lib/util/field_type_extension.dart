@@ -1,31 +1,29 @@
 import 'dart:ui';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:protobuf/protobuf.dart';
 
 extension FieldTypeExtension on FieldType {
   String get i18n => switch (this) {
-        FieldType.RichText => LocaleKeys.grid_field_textFieldName.tr(),
-        FieldType.Number => LocaleKeys.grid_field_numberFieldName.tr(),
-        FieldType.DateTime => LocaleKeys.grid_field_dateFieldName.tr(),
+        FieldType.RichText => '文本',
+        FieldType.Number => '数字',
+        FieldType.DateTime => '日期',
         FieldType.SingleSelect =>
-          LocaleKeys.grid_field_singleSelectFieldName.tr(),
+          '单项选择器',
         FieldType.MultiSelect =>
-          LocaleKeys.grid_field_multiSelectFieldName.tr(),
-        FieldType.Checkbox => LocaleKeys.grid_field_checkboxFieldName.tr(),
-        FieldType.Checklist => LocaleKeys.grid_field_checklistFieldName.tr(),
-        FieldType.URL => LocaleKeys.grid_field_urlFieldName.tr(),
+          '多项选择器',
+        FieldType.Checkbox => '勾选框',
+        FieldType.Checklist => '清单',
+        FieldType.URL => '链接',
         FieldType.LastEditedTime =>
-          LocaleKeys.grid_field_updatedAtFieldName.tr(),
-        FieldType.CreatedTime => LocaleKeys.grid_field_createdAtFieldName.tr(),
-        FieldType.Relation => LocaleKeys.grid_field_relationFieldName.tr(),
-        FieldType.Summary => LocaleKeys.grid_field_summaryFieldName.tr(),
-        FieldType.Time => LocaleKeys.grid_field_timeFieldName.tr(),
-        FieldType.Translate => LocaleKeys.grid_field_translateFieldName.tr(),
-        FieldType.Media => LocaleKeys.grid_field_mediaFieldName.tr(),
+          '修改时间',
+        FieldType.CreatedTime => '创建时间',
+        FieldType.Relation => '关系',
+        FieldType.Summary => 'AI 总结',
+        FieldType.Time => '时间',
+        FieldType.Translate => 'AI 翻译',
+        FieldType.Media => '文件和媒体',
         _ => throw UnimplementedError(),
       };
 

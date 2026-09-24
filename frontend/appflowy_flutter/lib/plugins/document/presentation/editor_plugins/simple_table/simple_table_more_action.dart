@@ -1,12 +1,10 @@
 import 'dart:async';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/simple_table/simple_table.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -143,41 +141,37 @@ enum SimpleTableMoreAction {
   String get name {
     return switch (this) {
       SimpleTableMoreAction.align =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_align.tr(),
+        '对齐',
       SimpleTableMoreAction.backgroundColor =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_color.tr(),
+        '颜色',
       SimpleTableMoreAction.enableHeaderColumn =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_headerColumn.tr(),
+        '标题字段',
       SimpleTableMoreAction.enableHeaderRow =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_headerRow.tr(),
+        '标题列',
       SimpleTableMoreAction.insertLeft =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_insertLeft.tr(),
+        '插入左侧',
       SimpleTableMoreAction.insertRight =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_insertRight.tr(),
+        '插入右侧',
       SimpleTableMoreAction.insertBelow =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_insertBelow.tr(),
+        '在下面插入',
       SimpleTableMoreAction.insertAbove =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_insertAbove.tr(),
+        '插入上方',
       SimpleTableMoreAction.clearContents =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_clearContents.tr(),
+        '清除内容',
       SimpleTableMoreAction.delete =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_delete.tr(),
+        '删除',
       SimpleTableMoreAction.duplicate =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_duplicate.tr(),
+        '副本',
       SimpleTableMoreAction.setToPageWidth =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_setToPageWidth.tr(),
-      SimpleTableMoreAction.distributeColumnsEvenly => LocaleKeys
-          .document_plugins_simpleTable_moreActions_distributeColumnsWidth
-          .tr(),
+        '设置为页面宽度',
+      SimpleTableMoreAction.distributeColumnsEvenly => '平均分配字段',
       SimpleTableMoreAction.duplicateRow =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_duplicateRow.tr(),
-      SimpleTableMoreAction.duplicateColumn => LocaleKeys
-          .document_plugins_simpleTable_moreActions_duplicateColumn
-          .tr(),
+        '副本列',
+      SimpleTableMoreAction.duplicateColumn => '副本字段',
       SimpleTableMoreAction.duplicateTable =>
-        LocaleKeys.document_plugins_simpleTable_moreActions_duplicateTable.tr(),
+        '副本表格',
       SimpleTableMoreAction.copyLinkToBlock =>
-        LocaleKeys.document_plugins_optionAction_copyLinkToBlock.tr(),
+        '粘贴块链接',
       SimpleTableMoreAction.bold ||
       SimpleTableMoreAction.textColor ||
       SimpleTableMoreAction.textBackgroundColor ||

@@ -1,10 +1,8 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/header/emoji_icon_widget.dart';
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
 import 'package:appflowy/util/string_extension.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +25,7 @@ class PublishInfoViewItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final name = publishInfoView.view.name.orDefault(
-      LocaleKeys.menuAppHeader_defaultNewPageName.tr(),
+      '未命名页面',
     );
     final tooltipMessage =
         extraTooltipMessage != null ? '$extraTooltipMessage\n$name' : name;

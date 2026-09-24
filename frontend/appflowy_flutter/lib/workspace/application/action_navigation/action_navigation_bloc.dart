@@ -1,10 +1,8 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/action_navigation/navigation_action.dart';
 import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:bloc/bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'action_navigation_bloc.freezed.dart';
@@ -29,7 +27,7 @@ class ActionNavigationBloc
               Log.error('Open view failed: ${action.objectId}');
               if (showErrorToast) {
                 showToastNotification(
-                  message: LocaleKeys.search_pageNotExist.tr(),
+                  message: '这个页面不存在',
                   type: ToastificationType.error,
                 );
               }

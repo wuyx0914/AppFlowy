@@ -1,6 +1,4 @@
 import 'package:appflowy/ai/ai.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +17,7 @@ class BrowsePromptsButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.ai_customPrompt_browsePrompts.tr(),
+      message: '浏览提示',
       child: BlocProvider(
         create: (context) => AiPromptSelectorCubit(),
         child: Builder(
@@ -48,7 +46,7 @@ class BrowsePromptsButton extends StatelessWidget {
                     padding: const EdgeInsetsDirectional.all(4.0),
                     child: Center(
                       child: FlowyText(
-                        LocaleKeys.ai_customPrompt_browsePrompts.tr(),
+                        '浏览提示',
                         fontSize: 12,
                         figmaLineHeight: 16,
                         color: Theme.of(context).hintColor,

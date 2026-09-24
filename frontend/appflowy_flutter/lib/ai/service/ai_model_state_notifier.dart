@@ -1,12 +1,10 @@
 import 'package:appflowy/ai/ai.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/ai_chat/application/ai_model_switch_listener.dart';
 import 'package:appflowy/workspace/application/settings/ai/local_llm_listener.dart';
 import 'package:appflowy_backend/dispatch/dispatch.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-ai/entities.pb.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:universal_platform/universal_platform.dart';
 
 typedef OnModelStateChangedCallback = void Function(AIModelState state);
@@ -166,7 +164,7 @@ class AIModelStateNotifier {
 
   static AIModelState _defaultState() => AIModelState(
         type: AiType.cloud,
-        hintText: LocaleKeys.chat_inputMessageHint.tr(),
+        hintText: '问 @:appName AI',
         tooltip: null,
         isEditable: true,
         localAIEnabled: false,
@@ -186,21 +184,17 @@ class AIModelStateNotifier {
 
     final enabled = _localAIState!.enabled;
     final running = _localAIState!.isReady;
-    final hintKey = enabled
-        ? (running
-            ? LocaleKeys.chat_inputLocalAIMessageHint
-            : LocaleKeys.settings_aiPage_keys_localAIInitializing)
-        : LocaleKeys.settings_aiPage_keys_localAIDisabled;
-    final tooltipKey = enabled
-        ? (running
-            ? null
-            : LocaleKeys.settings_aiPage_keys_localAINotReadyTextFieldPrompt)
-        : LocaleKeys.settings_aiPage_keys_localAIDisabledTextFieldPrompt;
+    final hintText = enabled
+        ? (running ? '向 AI 提问…' : '本地 AI 初始化中…')
+        : '本地 AI 未启用';
+    final tooltipText = enabled
+        ? (running ? null : '本地 AI 尚未就绪，请先启动本地 AI 或切换到云端模型')
+        : '本地 AI 未启用，无法使用 AI 功能';
 
     return AIModelState(
       type: AiType.local,
-      hintText: hintKey.tr(),
-      tooltip: tooltipKey?.tr(),
+      hintText: hintText,
+      tooltip: tooltipText,
       isEditable: running,
       localAIEnabled: enabled,
     );
@@ -210,5 +204,5 @@ class AIModelStateNotifier {
 extension AIModelPBExtension on AIModelPB {
   bool get isDefault => name == 'Auto';
   String get i18n =>
-      isDefault ? LocaleKeys.chat_switchModel_autoModel.tr() : name;
+      isDefault ? '自动' : name;
 }

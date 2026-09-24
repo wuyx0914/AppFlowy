@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/colors.dart';
 import 'package:appflowy/shared/flowy_error_page.dart';
 import 'package:appflowy/shared/loading.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy/workspace/presentation/settings/shared/settings_body.da
 import 'package:appflowy/workspace/presentation/widgets/toggle/toggle.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -85,7 +83,7 @@ class _SettingsPlanViewState extends State<SettingsPlanView> {
             },
             ready: (state) => SettingsBody(
               autoSeparate: false,
-              title: LocaleKeys.settings_planPage_title.tr(),
+              title: '价格方案',
               children: [
                 _PlanUsageSummary(
                   usage: state.workspaceUsage,
@@ -95,7 +93,7 @@ class _SettingsPlanViewState extends State<SettingsPlanView> {
                 _CurrentPlanBox(subscriptionInfo: state.subscriptionInfo),
                 const VSpace(16),
                 FlowyText(
-                  LocaleKeys.settings_planPage_planUsage_addons_title.tr(),
+                  '附加组件',
                   fontSize: 18,
                   color: AFThemeExtension.of(context).strongText,
                   fontWeight: FontWeight.w600,
@@ -105,28 +103,14 @@ class _SettingsPlanViewState extends State<SettingsPlanView> {
                   children: [
                     Flexible(
                       child: _AddOnBox(
-                        title: LocaleKeys
-                            .settings_planPage_planUsage_addons_aiMax_title
-                            .tr(),
-                        description: LocaleKeys
-                            .settings_planPage_planUsage_addons_aiMax_description
-                            .tr(),
-                        price: LocaleKeys
-                            .settings_planPage_planUsage_addons_aiMax_price
-                            .tr(
-                          args: [SubscriptionPlanPB.AiMax.priceAnnualBilling],
-                        ),
-                        priceInfo: LocaleKeys
-                            .settings_planPage_planUsage_addons_aiMax_priceInfo
-                            .tr(),
+                        title: 'AI Max',
+                        description: '每月享有 50 张人工智能图片，并由高端人工智能模型提供无限的 AI 回应。',
+                        price: '{SubscriptionPlanPB.AiMax.priceAnnualBilling}',
+                        priceInfo: '每位用户每月，按年计费',
                         recommend: '',
                         buttonText: state.subscriptionInfo.hasAIMax
-                            ? LocaleKeys
-                                .settings_planPage_planUsage_addons_activeLabel
-                                .tr()
-                            : LocaleKeys
-                                .settings_planPage_planUsage_addons_addLabel
-                                .tr(),
+                            ? '已添加'
+                            : '添加',
                         isActive: state.subscriptionInfo.hasAIMax,
                         plan: SubscriptionPlanPB.AiMax,
                       ),
@@ -211,9 +195,7 @@ class _CurrentPlanBoxState extends State<_CurrentPlanBox> {
                         ConstrainedBox(
                           constraints: const BoxConstraints(maxWidth: 220),
                           child: FlowyGradientButton(
-                            label: LocaleKeys
-                                .settings_planPage_planUsage_currentPlan_upgrade
-                                .tr(),
+                            label: '变更计划',
                             onPressed: () => _openPricingDialog(
                               context,
                               context.read<SettingsPlanBloc>().workspaceId,
@@ -229,11 +211,7 @@ class _CurrentPlanBoxState extends State<_CurrentPlanBox> {
               if (widget.subscriptionInfo.isCanceled) ...[
                 const VSpace(12),
                 FlowyText(
-                  LocaleKeys
-                      .settings_planPage_planUsage_currentPlan_canceledInfo
-                      .tr(
-                    args: [_canceledDate(context)],
-                  ),
+                  '您的方案已取消，您将在 {_canceledDate(context)} 时降级为免费方案。',
                   maxLines: 5,
                   fontSize: 12,
                   color: Theme.of(context).colorScheme.error,
@@ -258,8 +236,7 @@ class _CurrentPlanBoxState extends State<_CurrentPlanBox> {
             ),
             child: Center(
               child: FlowyText.semibold(
-                LocaleKeys.settings_planPage_planUsage_currentPlan_bannerLabel
-                    .tr(),
+                '目前方案',
                 fontSize: 14,
                 color: Colors.white,
               ),
@@ -310,7 +287,7 @@ class _PlanUsageSummary extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FlowyText.semibold(
-          LocaleKeys.settings_planPage_planUsage_title.tr(),
+          '方案使用摘要',
           maxLines: 2,
           fontSize: 16,
           overflow: TextOverflow.ellipsis,
@@ -322,17 +299,10 @@ class _PlanUsageSummary extends StatelessWidget {
           children: [
             Expanded(
               child: _UsageBox(
-                title: LocaleKeys.settings_planPage_planUsage_storageLabel.tr(),
-                unlimitedLabel: LocaleKeys
-                    .settings_planPage_planUsage_unlimitedStorageLabel
-                    .tr(),
+                title: '保存空间',
+                unlimitedLabel: '无限保存空间',
                 unlimited: usage.storageBytesUnlimited,
-                label: LocaleKeys.settings_planPage_planUsage_storageUsage.tr(
-                  args: [
-                    usage.currentBlobInGb,
-                    usage.totalBlobInGb,
-                  ],
-                ),
+                label: '{usage.currentBlobInGb} / {usage.currentBlobInGb} GB',
                 value: usage.storageBytes.toInt() /
                     usage.storageBytesLimit.toInt(),
               ),
@@ -340,17 +310,10 @@ class _PlanUsageSummary extends StatelessWidget {
             Expanded(
               child: _UsageBox(
                 title:
-                    LocaleKeys.settings_planPage_planUsage_aiResponseLabel.tr(),
+                    'AI 回应',
                 label:
-                    LocaleKeys.settings_planPage_planUsage_aiResponseUsage.tr(
-                  args: [
-                    usage.aiResponsesCount.toString(),
-                    usage.aiResponsesCountLimit.toString(),
-                  ],
-                ),
-                unlimitedLabel: LocaleKeys
-                    .settings_planPage_planUsage_unlimitedAILabel
-                    .tr(),
+                    '{usage.aiResponsesCount.toString()} / {usage.aiResponsesCount.toString()}',
+                unlimitedLabel: '无限回应',
                 unlimited: usage.aiResponsesUnlimited,
                 value: usage.aiResponsesCount.toInt() /
                     usage.aiResponsesCountLimit.toInt(),
@@ -367,9 +330,9 @@ class _PlanUsageSummary extends StatelessWidget {
               _ToggleMore(
                 value: false,
                 label:
-                    LocaleKeys.settings_planPage_planUsage_memberProToggle.tr(),
+                    '更多成员、无限 AI 和来宾访问权',
                 badgeLabel:
-                    LocaleKeys.settings_planPage_planUsage_proBadge.tr(),
+                    '专业版',
                 onTap: () async {
                   context.read<SettingsPlanBloc>().add(
                         const SettingsPlanEvent.addSubscription(
@@ -383,9 +346,9 @@ class _PlanUsageSummary extends StatelessWidget {
             if (!subscriptionInfo.hasAIMax && !usage.aiResponsesUnlimited) ...[
               _ToggleMore(
                 value: false,
-                label: LocaleKeys.settings_planPage_planUsage_aiMaxToggle.tr(),
+                label: '无限的 AI 和访问高端模型',
                 badgeLabel:
-                    LocaleKeys.settings_planPage_planUsage_proBadge.tr(),
+                    '专业版',
                 onTap: () async {
                   context.read<SettingsPlanBloc>().add(
                         const SettingsPlanEvent.addSubscription(
@@ -748,21 +711,19 @@ class _AddOnBox extends StatelessWidget {
 //                     children: [
 //                       const VSpace(18),
 //                       FlowyText.semibold(
-//                         LocaleKeys.settings_planPage_planUsage_deal_title.tr(),
+//                         '扩展您的团队!',
 //                         fontSize: 24,
 //                         color: Theme.of(context).colorScheme.tertiary,
 //                       ),
 //                       const VSpace(8),
 //                       FlowyText.medium(
-//                         LocaleKeys.settings_planPage_planUsage_deal_info.tr(),
+//                         '升级即可享受专业版和团队方案 10% 的折扣！通过强大的新功能，包括 @:appName AI，提升工作区生产力。',
 //                         maxLines: 6,
 //                         color: Theme.of(context).colorScheme.tertiary,
 //                       ),
 //                       const VSpace(8),
 //                       FlowyGradientButton(
-//                         label: LocaleKeys
 //                             .settings_planPage_planUsage_deal_viewPlans
-//                             .tr(),
 //                         fontWeight: FontWeight.w500,
 //                         backgroundColor: isLM ? null : Colors.white,
 //                         textColor: isLM
@@ -795,7 +756,7 @@ class _AddOnBox extends StatelessWidget {
 //               ),
 //               child: Center(
 //                 child: FlowyText.semibold(
-//                   LocaleKeys.settings_planPage_planUsage_deal_bannerLabel.tr(),
+//                   '新年优惠!',
 //                   fontSize: 16,
 //                   color: Colors.white,
 //                 ),
@@ -825,7 +786,7 @@ class _AddOnBox extends StatelessWidget {
 //           crossAxisAlignment: CrossAxisAlignment.start,
 //           children: [
 //             FlowyText.semibold(
-//               LocaleKeys.settings_planPage_planUsage_aiCredit_title.tr(),
+//               '添加 @:appName AI 额度',
 //               fontSize: 18,
 //               color: AFThemeExtension.of(context).secondaryTextColor,
 //             ),
@@ -842,23 +803,18 @@ class _AddOnBox extends StatelessWidget {
 //                       crossAxisAlignment: CrossAxisAlignment.start,
 //                       children: [
 //                         FlowyText.semibold(
-//                           LocaleKeys.settings_planPage_planUsage_aiCredit_price
 //                               .tr(args: ['5\$]),
 //                           fontSize: 24,
 //                         ),
 //                         FlowyText.medium(
-//                           LocaleKeys
 //                               .settings_planPage_planUsage_aiCredit_priceDescription
-//                               .tr(),
 //                           fontSize: 14,
 //                           color:
 //                               AFThemeExtension.of(context).secondaryTextColor,
 //                         ),
 //                         const VSpace(8),
 //                         FlowyGradientButton(
-//                           label: LocaleKeys
 //                               .settings_planPage_planUsage_aiCredit_purchase
-//                               .tr(),
 //                         ),
 //                       ],
 //                     ),
@@ -872,8 +828,6 @@ class _AddOnBox extends StatelessWidget {
 //                     mainAxisSize: MainAxisSize.min,
 //                     children: [
 //                       FlowyText.regular(
-//                         LocaleKeys.settings_planPage_planUsage_aiCredit_info
-//                             .tr(),
 //                         overflow: TextOverflow.ellipsis,
 //                         maxLines: 5,
 //                       ),
@@ -882,14 +836,10 @@ class _AddOnBox extends StatelessWidget {
 //                         separatorBuilder: () => const VSpace(4),
 //                         children: [
 //                           _AIStarItem(
-//                             label: LocaleKeys
 //                                 .settings_planPage_planUsage_aiCredit_infoItemOne
-//                                 .tr(),
 //                           ),
 //                           _AIStarItem(
-//                             label: LocaleKeys
 //                                 .settings_planPage_planUsage_aiCredit_infoItemTwo
-//                                 .tr(),
 //                           ),
 //                         ],
 //                       ),

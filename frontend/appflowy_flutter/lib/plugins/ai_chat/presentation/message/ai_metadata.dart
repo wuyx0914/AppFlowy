@@ -1,11 +1,9 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/ai_chat/application/chat_entity.dart';
 import 'package:appflowy/workspace/application/view/view_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
@@ -51,10 +49,7 @@ class _AIMessageMetadataState extends State<AIMessageMetadata> {
               hoverColor: Colors.transparent,
               radius: BorderRadius.circular(8.0),
               text: FlowyText(
-                LocaleKeys.chat_referenceSource.plural(
-                  widget.sources.length,
-                  namedArgs: {'count': '${widget.sources.length}'},
-                ),
+                '找到 {} 个来源',
                 fontSize: 12,
                 color: Theme.of(context).hintColor,
               ),

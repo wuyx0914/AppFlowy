@@ -1,7 +1,6 @@
 import 'package:appflowy/env/env.dart';
 import 'package:appflowy/features/workspace/data/repositories/rust_workspace_repository_impl.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar.dart';
 import 'package:appflowy/mobile/presentation/presentation.dart';
 import 'package:appflowy/mobile/presentation/setting/ai/ai_settings_group.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';
 import 'package:appflowy/workspace/application/user/user_workspace_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -51,7 +49,7 @@ class _MobileHomeSettingPageState extends State<MobileHomeSettingPage> {
 
         return Scaffold(
           appBar: FlowyAppBar(
-            titleText: LocaleKeys.settings_title.tr(),
+            titleText: '设置',
           ),
           body: userProfile == null
               ? _buildErrorWidget(errorMsg)
@@ -64,8 +62,8 @@ class _MobileHomeSettingPageState extends State<MobileHomeSettingPage> {
   Widget _buildErrorWidget(String? errorMsg) {
     return FlowyMobileStateContainer.error(
       emoji: '🛸',
-      title: LocaleKeys.settings_mobile_userprofileError.tr(),
-      description: LocaleKeys.settings_mobile_userprofileErrorDescription.tr(),
+      title: '无法加载用户配置文件',
+      description: '请尝试注销并重新登录以检查问题是否仍然存在。',
       errorMsg: errorMsg,
     );
   }
@@ -91,7 +89,6 @@ class _MobileHomeSettingPageState extends State<MobileHomeSettingPage> {
                   ),
                   // Local-only build: workspace members settings removed.
                   const AppearanceSettingGroup(),
-                  const LanguageSettingGroup(),
                   AiSettingsGroup(
                     key: ValueKey(currentWorkspaceId),
                     userProfile: userProfile,

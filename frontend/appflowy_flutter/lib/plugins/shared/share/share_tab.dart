@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
 import 'package:appflowy/plugins/shared/share/share_bloc.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,7 +41,7 @@ class _ShareTabHeader extends StatelessWidget {
         const FlowySvg(FlowySvgs.share_tab_icon_s),
         const HSpace(6),
         FlowyText.medium(
-          LocaleKeys.shareAction_shareTabTitle.tr(),
+          '邀请他人来协作',
           figmaLineHeight: 18.0,
         ),
       ],
@@ -59,7 +57,7 @@ class _ShareTabDescription extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 2.0),
       child: FlowyText.regular(
-        LocaleKeys.shareAction_shareTabDescription.tr(),
+        '与任何人轻松协作',
         fontSize: 13.0,
         figmaLineHeight: 18.0,
         color: Theme.of(context).hintColor,
@@ -97,7 +95,7 @@ class _ShareTabContent extends StatelessWidget {
                 vertical: 9.0,
                 horizontal: 14.0,
               ),
-              text: LocaleKeys.button_copyLink.tr(),
+              text: '复制链接',
               figmaLineHeight: 18.0,
               leftIcon: FlowySvg(
                 FlowySvgs.share_tab_copy_s,
@@ -117,7 +115,7 @@ class _ShareTabContent extends StatelessWidget {
     );
 
     showToastNotification(
-      message: LocaleKeys.message_copy_success.tr(),
+      message: '已复制',
     );
   }
 }

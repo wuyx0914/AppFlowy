@@ -1,10 +1,8 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
 import 'package:appflowy/plugins/database/grid/application/simple_text_filter_bloc.dart';
 import 'package:appflowy/plugins/database/grid/application/sort/sort_editor_bloc.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/plugins/database/grid/presentation/widgets/header/desktop_field_cell.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/scrolling/styled_list.dart';
@@ -96,7 +94,7 @@ class _SortTextFieldDelegate extends SliverPersistentHeaderDelegate {
       color: Theme.of(context).cardColor,
       height: fixHeight,
       child: FlowyTextField(
-        hintText: LocaleKeys.grid_settings_sortBy.tr(),
+        hintText: '排序',
         onChanged: (text) {
           context
               .read<SimpleTextFilterBloc<FieldInfo>>()

@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/buttons/base_styled_button.dart';
@@ -32,7 +30,7 @@ class DocumentBanner extends StatelessWidget {
           child: Row(
             children: [
               FlowyText.medium(
-                LocaleKeys.deletePagePrompt_text.tr(),
+                '此页面已被移动至垃圾桶',
                 color: colorScheme.tertiary,
                 fontSize: 14,
               ),
@@ -47,7 +45,7 @@ class DocumentBanner extends StatelessWidget {
                 borderRadius: Corners.s8Border,
                 onPressed: onRestore,
                 child: FlowyText.medium(
-                  LocaleKeys.deletePagePrompt_restore.tr(),
+                  '恢复页面',
                   color: colorScheme.tertiary,
                   fontSize: 13,
                 ),
@@ -64,15 +62,13 @@ class DocumentBanner extends StatelessWidget {
                 onPressed: () => showConfirmDeletionDialog(
                   context: context,
                   name: viewName.trim().isEmpty
-                      ? LocaleKeys.menuAppHeader_defaultNewPageName.tr()
+                      ? '未命名页面'
                       : viewName,
-                  description: LocaleKeys
-                      .deletePagePrompt_deletePermanentDescription
-                      .tr(),
+                  description: '你确定要永久删除此页面吗？此操作无法撤销。',
                   onConfirm: onDelete,
                 ),
                 child: FlowyText.medium(
-                  LocaleKeys.deletePagePrompt_deletePermanent.tr(),
+                  '彻底删除',
                   color: colorScheme.tertiary,
                   fontSize: 13,
                 ),

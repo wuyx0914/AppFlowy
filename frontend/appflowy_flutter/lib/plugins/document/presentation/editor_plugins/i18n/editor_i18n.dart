@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class EditorI18n extends AppFlowyEditorL10n {
   // static AppFlowyEditorLocalizations current = EditorI18n();
@@ -8,666 +6,666 @@ class EditorI18n extends AppFlowyEditorL10n {
 
   @override
   String get bold {
-    return LocaleKeys.editor_bold.tr();
+    return '加粗';
   }
 
   /// `Bulleted List`
   @override
   String get bulletedList {
-    return LocaleKeys.editor_bulletedList.tr();
+    return '符号列表';
   }
 
   /// `Checkbox`
   @override
   String get checkbox {
-    return LocaleKeys.editor_checkbox.tr();
+    return '复选框';
   }
 
   /// `Embed Code`
   @override
   String get embedCode {
-    return LocaleKeys.editor_embedCode.tr();
+    return '嵌入代码';
   }
 
   /// `H1`
   @override
   String get heading1 {
-    return LocaleKeys.editor_heading1.tr();
+    return '一级标题';
   }
 
   /// `H2`
   @override
   String get heading2 {
-    return LocaleKeys.editor_heading2.tr();
+    return '二级标题';
   }
 
   /// `H3`
   @override
   String get heading3 {
-    return LocaleKeys.editor_heading3.tr();
+    return '三级标题';
   }
 
   /// `Highlight`
   @override
   String get highlight {
-    return LocaleKeys.editor_highlight.tr();
+    return '强调';
   }
 
   /// `Color`
   @override
   String get color {
-    return LocaleKeys.editor_color.tr();
+    return '颜色';
   }
 
   /// `Image`
   @override
   String get image {
-    return LocaleKeys.editor_image.tr();
+    return '图像';
   }
 
   /// `Italic`
   @override
   String get italic {
-    return LocaleKeys.editor_italic.tr();
+    return '斜体';
   }
 
   /// `Link`
   @override
   String get link {
-    return LocaleKeys.editor_link.tr();
+    return '链接';
   }
 
   /// `Numbered List`
   @override
   String get numberedList {
-    return LocaleKeys.editor_numberedList.tr();
+    return '编号列表';
   }
 
   /// `Quote`
   @override
   String get quote {
-    return LocaleKeys.editor_quote.tr();
+    return '引用';
   }
 
   /// `Strikethrough`
   @override
   String get strikethrough {
-    return LocaleKeys.editor_strikethrough.tr();
+    return '删除线';
   }
 
   /// `Text`
   @override
   String get text {
-    return LocaleKeys.editor_text.tr();
+    return '文本';
   }
 
   /// `Underline`
   @override
   String get underline {
-    return LocaleKeys.editor_underline.tr();
+    return '下划线';
   }
 
   /// `Default`
   @override
   String get fontColorDefault {
-    return LocaleKeys.editor_fontColorDefault.tr();
+    return '默认';
   }
 
   /// `Gray`
   @override
   String get fontColorGray {
-    return LocaleKeys.editor_fontColorGray.tr();
+    return '灰色';
   }
 
   /// `Brown`
   @override
   String get fontColorBrown {
-    return LocaleKeys.editor_fontColorBrown.tr();
+    return '棕色';
   }
 
   /// `Orange`
   @override
   String get fontColorOrange {
-    return LocaleKeys.editor_fontColorOrange.tr();
+    return '橙色';
   }
 
   /// `Yellow`
   @override
   String get fontColorYellow {
-    return LocaleKeys.editor_fontColorYellow.tr();
+    return '黄色';
   }
 
   /// `Green`
   @override
   String get fontColorGreen {
-    return LocaleKeys.editor_fontColorGreen.tr();
+    return '绿色';
   }
 
   /// `Blue`
   @override
   String get fontColorBlue {
-    return LocaleKeys.editor_fontColorBlue.tr();
+    return '蓝色';
   }
 
   /// `Purple`
   @override
   String get fontColorPurple {
-    return LocaleKeys.editor_fontColorPurple.tr();
+    return '紫色';
   }
 
   /// `Pink`
   @override
   String get fontColorPink {
-    return LocaleKeys.editor_fontColorPink.tr();
+    return '粉色';
   }
 
   /// `Red`
   @override
   String get fontColorRed {
-    return LocaleKeys.editor_fontColorRed.tr();
+    return '红色';
   }
 
   /// `Default background`
   @override
   String get backgroundColorDefault {
-    return LocaleKeys.editor_backgroundColorDefault.tr();
+    return '默认背景颜色';
   }
 
   /// `Gray background`
   @override
   String get backgroundColorGray {
-    return LocaleKeys.editor_backgroundColorGray.tr();
+    return '灰色背景';
   }
 
   /// `Brown background`
   @override
   String get backgroundColorBrown {
-    return LocaleKeys.editor_backgroundColorBrown.tr();
+    return '棕色背景';
   }
 
   /// `Orange background`
   @override
   String get backgroundColorOrange {
-    return LocaleKeys.editor_backgroundColorOrange.tr();
+    return '橙色背景';
   }
 
   /// `Yellow background`
   @override
   String get backgroundColorYellow {
-    return LocaleKeys.editor_backgroundColorYellow.tr();
+    return '黄色背景';
   }
 
   /// `Green background`
   @override
   String get backgroundColorGreen {
-    return LocaleKeys.editor_backgroundColorGreen.tr();
+    return '绿色背景';
   }
 
   /// `Blue background`
   @override
   String get backgroundColorBlue {
-    return LocaleKeys.editor_backgroundColorBlue.tr();
+    return '蓝色背景';
   }
 
   /// `Purple background`
   @override
   String get backgroundColorPurple {
-    return LocaleKeys.editor_backgroundColorPurple.tr();
+    return '紫色背景';
   }
 
   /// `Pink background`
   @override
   String get backgroundColorPink {
-    return LocaleKeys.editor_backgroundColorPink.tr();
+    return '粉色背景';
   }
 
   /// `Red background`
   @override
   String get backgroundColorRed {
-    return LocaleKeys.editor_backgroundColorRed.tr();
+    return '红色背景';
   }
 
   /// `Done`
   @override
   String get done {
-    return LocaleKeys.editor_done.tr();
+    return '完成';
   }
 
   /// `Cancel`
   @override
   String get cancel {
-    return LocaleKeys.editor_cancel.tr();
+    return '取消';
   }
 
   /// `Tint 1`
   @override
   String get tint1 {
-    return LocaleKeys.editor_tint1.tr();
+    return '色彩 1';
   }
 
   /// `Tint 2`
   @override
   String get tint2 {
-    return LocaleKeys.editor_tint2.tr();
+    return '色彩 2';
   }
 
   /// `Tint 3`
   @override
   String get tint3 {
-    return LocaleKeys.editor_tint3.tr();
+    return '色彩 3';
   }
 
   /// `Tint 4`
   @override
   String get tint4 {
-    return LocaleKeys.editor_tint4.tr();
+    return '色彩 4';
   }
 
   /// `Tint 5`
   @override
   String get tint5 {
-    return LocaleKeys.editor_tint5.tr();
+    return '色彩 5';
   }
 
   /// `Tint 6`
   @override
   String get tint6 {
-    return LocaleKeys.editor_tint6.tr();
+    return '色彩 6';
   }
 
   /// `Tint 7`
   @override
   String get tint7 {
-    return LocaleKeys.editor_tint7.tr();
+    return '色彩 7';
   }
 
   /// `Tint 8`
   @override
   String get tint8 {
-    return LocaleKeys.editor_tint8.tr();
+    return '色彩 8';
   }
 
   /// `Tint 9`
   @override
   String get tint9 {
-    return LocaleKeys.editor_tint9.tr();
+    return '色彩 9';
   }
 
   /// `Purple`
   @override
   String get lightLightTint1 {
-    return LocaleKeys.editor_lightLightTint1.tr();
+    return '紫色';
   }
 
   /// `Pink`
   @override
   String get lightLightTint2 {
-    return LocaleKeys.editor_lightLightTint2.tr();
+    return '粉色';
   }
 
   /// `Light Pink`
   @override
   String get lightLightTint3 {
-    return LocaleKeys.editor_lightLightTint3.tr();
+    return '浅粉色';
   }
 
   /// `Orange`
   @override
   String get lightLightTint4 {
-    return LocaleKeys.editor_lightLightTint4.tr();
+    return '橙色';
   }
 
   /// `Yellow`
   @override
   String get lightLightTint5 {
-    return LocaleKeys.editor_lightLightTint5.tr();
+    return '黄色';
   }
 
   /// `Lime`
   @override
   String get lightLightTint6 {
-    return LocaleKeys.editor_lightLightTint6.tr();
+    return '鲜绿色';
   }
 
   /// `Green`
   @override
   String get lightLightTint7 {
-    return LocaleKeys.editor_lightLightTint7.tr();
+    return '绿色';
   }
 
   /// `Aqua`
   @override
   String get lightLightTint8 {
-    return LocaleKeys.editor_lightLightTint8.tr();
+    return '淡绿色';
   }
 
   /// `Blue`
   @override
   String get lightLightTint9 {
-    return LocaleKeys.editor_lightLightTint9.tr();
+    return '蓝色';
   }
 
   /// `URL`
   @override
   String get urlHint {
-    return LocaleKeys.editor_urlHint.tr();
+    return 'URL';
   }
 
   /// `Heading 1`
   @override
   String get mobileHeading1 {
-    return LocaleKeys.editor_mobileHeading1.tr();
+    return '标题 1';
   }
 
   /// `Heading 2`
   @override
   String get mobileHeading2 {
-    return LocaleKeys.editor_mobileHeading2.tr();
+    return '标题 2';
   }
 
   /// `Heading 3`
   @override
   String get mobileHeading3 {
-    return LocaleKeys.editor_mobileHeading3.tr();
+    return '标题 3';
   }
 
   /// `Text Color`
   @override
   String get textColor {
-    return LocaleKeys.editor_textColor.tr();
+    return '文字颜色';
   }
 
   /// `Background Color`
   @override
   String get backgroundColor {
-    return LocaleKeys.editor_backgroundColor.tr();
+    return '背景颜色';
   }
 
   /// `Add your link`
   @override
   String get addYourLink {
-    return LocaleKeys.editor_addYourLink.tr();
+    return '添加您的链接';
   }
 
   /// `Open link`
   @override
   String get openLink {
-    return LocaleKeys.editor_openLink.tr();
+    return '打开链接';
   }
 
   /// `Copy link`
   @override
   String get copyLink {
-    return LocaleKeys.editor_copyLink.tr();
+    return '复制链接';
   }
 
   /// `Remove link`
   @override
   String get removeLink {
-    return LocaleKeys.editor_removeLink.tr();
+    return '移除链接';
   }
 
   /// `Edit link`
   @override
   String get editLink {
-    return LocaleKeys.editor_editLink.tr();
+    return '编辑链接';
   }
 
   /// `Text`
   @override
   String get linkText {
-    return LocaleKeys.editor_linkText.tr();
+    return '文本';
   }
 
   /// `Please enter text`
   @override
   String get linkTextHint {
-    return LocaleKeys.editor_linkTextHint.tr();
+    return '请输入文本';
   }
 
   /// `Please enter URL`
   @override
   String get linkAddressHint {
-    return LocaleKeys.editor_linkAddressHint.tr();
+    return '请输入 URL';
   }
 
   /// `Highlight color`
   @override
   String get highlightColor {
-    return LocaleKeys.editor_highlightColor.tr();
+    return '高亮颜色';
   }
 
   /// `Clear highlight color`
   @override
   String get clearHighlightColor {
-    return LocaleKeys.editor_clearHighlightColor.tr();
+    return '清除高亮颜色';
   }
 
   /// `Custom color`
   @override
   String get customColor {
-    return LocaleKeys.editor_customColor.tr();
+    return '定制颜色';
   }
 
   /// `Hex value`
   @override
   String get hexValue {
-    return LocaleKeys.editor_hexValue.tr();
+    return '十六进制值';
   }
 
   /// `Opacity`
   @override
   String get opacity {
-    return LocaleKeys.editor_opacity.tr();
+    return '不透明度';
   }
 
   /// `Reset to default color`
   @override
   String get resetToDefaultColor {
-    return LocaleKeys.editor_resetToDefaultColor.tr();
+    return '重置为默认颜色';
   }
 
   /// `LTR`
   @override
   String get ltr {
-    return LocaleKeys.editor_ltr.tr();
+    return '从左到右';
   }
 
   /// `RTL`
   @override
   String get rtl {
-    return LocaleKeys.editor_rtl.tr();
+    return '从右到左';
   }
 
   /// `Auto`
   @override
   String get auto {
-    return LocaleKeys.editor_auto.tr();
+    return '自动';
   }
 
   /// `Cut`
   @override
   String get cut {
-    return LocaleKeys.editor_cut.tr();
+    return '剪切';
   }
 
   /// `Copy`
   @override
   String get copy {
-    return LocaleKeys.editor_copy.tr();
+    return '复制';
   }
 
   /// `Paste`
   @override
   String get paste {
-    return LocaleKeys.editor_paste.tr();
+    return '粘贴';
   }
 
   /// `Find`
   @override
   String get find {
-    return LocaleKeys.editor_find.tr();
+    return '查找';
   }
 
   /// `Previous match`
   @override
   String get previousMatch {
-    return LocaleKeys.editor_previousMatch.tr();
+    return '上一个匹配';
   }
 
   /// `Next match`
   @override
   String get nextMatch {
-    return LocaleKeys.editor_nextMatch.tr();
+    return '下一个匹配';
   }
 
   /// `Close`
   @override
   String get closeFind {
-    return LocaleKeys.editor_closeFind.tr();
+    return '关闭';
   }
 
   /// `Replace`
   @override
   String get replace {
-    return LocaleKeys.editor_replace.tr();
+    return '替换';
   }
 
   /// `Replace all`
   @override
   String get replaceAll {
-    return LocaleKeys.editor_replaceAll.tr();
+    return '替换全部';
   }
 
   /// `Regex`
   @override
   String get regex {
-    return LocaleKeys.editor_regex.tr();
+    return '正则表达式';
   }
 
   /// `Case sensitive`
   @override
   String get caseSensitive {
-    return LocaleKeys.editor_caseSensitive.tr();
+    return '区分大小写';
   }
 
   /// `Upload Image`
   @override
   String get uploadImage {
-    return LocaleKeys.editor_uploadImage.tr();
+    return '上传图片';
   }
 
   /// `URL Image`
   @override
   String get urlImage {
-    return LocaleKeys.editor_urlImage.tr();
+    return 'URL 图片';
   }
 
   /// `Incorrect Link`
   @override
   String get incorrectLink {
-    return LocaleKeys.editor_incorrectLink.tr();
+    return '错误链接';
   }
 
   /// `Upload`
   @override
   String get upload {
-    return LocaleKeys.editor_upload.tr();
+    return '上传';
   }
 
   /// `Choose an image`
   @override
   String get chooseImage {
-    return LocaleKeys.editor_chooseImage.tr();
+    return '选择图像';
   }
 
   /// `Loading`
   @override
   String get loading {
-    return LocaleKeys.editor_loading.tr();
+    return '加载中';
   }
 
   /// `Could not load the image`
   @override
   String get imageLoadFailed {
-    return LocaleKeys.editor_imageLoadFailed.tr();
+    return '无法加载图像';
   }
 
   /// `Divider`
   @override
   String get divider {
-    return LocaleKeys.editor_divider.tr();
+    return '分隔线';
   }
 
   /// `Table`
   @override
   String get table {
-    return LocaleKeys.editor_table.tr();
+    return '表格';
   }
 
   /// `Add before`
   @override
   String get colAddBefore {
-    return LocaleKeys.editor_colAddBefore.tr();
+    return '在前面添加';
   }
 
   /// `Add before`
   @override
   String get rowAddBefore {
-    return LocaleKeys.editor_rowAddBefore.tr();
+    return '在前面添加';
   }
 
   /// `Add after`
   @override
   String get colAddAfter {
-    return LocaleKeys.editor_colAddAfter.tr();
+    return '在后面添加';
   }
 
   /// `Add after`
   @override
   String get rowAddAfter {
-    return LocaleKeys.editor_rowAddAfter.tr();
+    return '在后面添加';
   }
 
   /// `Remove`
   @override
   String get colRemove {
-    return LocaleKeys.editor_colRemove.tr();
+    return '移除列';
   }
 
   /// `Remove`
   @override
   String get rowRemove {
-    return LocaleKeys.editor_rowRemove.tr();
+    return '移除行';
   }
 
   /// `Duplicate`
   @override
   String get colDuplicate {
-    return LocaleKeys.editor_colDuplicate.tr();
+    return '复制列';
   }
 
   /// `Duplicate`
   @override
   String get rowDuplicate {
-    return LocaleKeys.editor_rowDuplicate.tr();
+    return '复制行';
   }
 
   /// `Clear Content`
   @override
   String get colClear {
-    return LocaleKeys.editor_colClear.tr();
+    return '清空本列内容';
   }
 
   /// `Clear Content`
   @override
   String get rowClear {
-    return LocaleKeys.editor_rowClear.tr();
+    return '清空本行内容';
   }
 
   /// `Enter a / to insert a block, or start typing`
   @override
   String get slashPlaceHolder {
-    return LocaleKeys.editor_slashPlaceHolder.tr();
+    return '输入 \'/\' 以插入块，或开始键入';
   }
 }

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
 import 'package:appflowy/plugins/database/application/row/row_cache.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy/plugins/database/widgets/cell/card_cell_skeleton/text_c
 import 'package:appflowy/plugins/database/widgets/row/row_detail.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/material.dart';
@@ -82,8 +80,7 @@ class HiddenGroupsColumn extends StatelessWidget {
                           children: [
                             Expanded(
                               child: FlowyText.medium(
-                                LocaleKeys.board_hiddenGroupSection_sectionTitle
-                                    .tr(),
+                                '隐藏组',
                                 overflow: TextOverflow.ellipsis,
                                 color: Theme.of(context).hintColor,
                               ),
@@ -112,8 +109,8 @@ class HiddenGroupsColumn extends StatelessWidget {
   Widget _collapseExpandIcon(BuildContext context, bool isCollapsed) {
     return FlowyTooltip(
       message: isCollapsed
-          ? LocaleKeys.board_hiddenGroupSection_expandTooltip.tr()
-          : LocaleKeys.board_hiddenGroupSection_collapseTooltip.tr(),
+          ? '查看隐藏的组'
+          : '隐藏隐藏组',
       preferBelow: false,
       child: FlowyIconButton(
         width: 20,

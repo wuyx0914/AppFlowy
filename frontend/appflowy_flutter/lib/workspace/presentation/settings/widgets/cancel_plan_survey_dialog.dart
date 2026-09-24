@@ -3,9 +3,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -58,7 +56,7 @@ class _SurveyState extends State<_Survey> {
                       children: [
                         Expanded(
                           child: FlowyText(
-                            LocaleKeys.settings_cancelSurveyDialog_title.tr(),
+                            '很遗憾看到你离开',
                             fontSize: 22.0,
                             overflow: TextOverflow.ellipsis,
                             color: AFThemeExtension.of(context).strongText,
@@ -74,7 +72,7 @@ class _SurveyState extends State<_Survey> {
                     const VSpace(12),
                     // Survey explanation
                     FlowyText(
-                      LocaleKeys.settings_cancelSurveyDialog_description.tr(),
+                      '很遗憾看到您离开。我们非常希望听到您的回馈，以帮助我们改善 @:appName。请花一点时间回答几个问题。',
                       maxLines: 3,
                     ),
                     const VSpace(8),
@@ -223,7 +221,7 @@ class _QAPageState extends State<_QAPage> {
           const VSpace(8),
           FlowyTextField(
             controller: otherController,
-            hintText: LocaleKeys.settings_cancelSurveyDialog_otherHint.tr(),
+            hintText: '在这里写下你的答案',
             onChanged: (value) => setState(() {
               answer = value;
               widget.onAnswerChanged(value);
@@ -247,7 +245,7 @@ class _QAPageState extends State<_QAPage> {
                     horizontal: 16.0,
                     vertical: 9.0,
                   ),
-                  text: FlowyText.regular(LocaleKeys.button_previous.tr()),
+                  text: FlowyText.regular('上一个'),
                   onTap: widget.onPrevious,
                 ),
               ),
@@ -267,8 +265,8 @@ class _QAPageState extends State<_QAPage> {
                 radius: BorderRadius.circular(8),
                 text: FlowyText.regular(
                   widget.isFinalQuestion
-                      ? LocaleKeys.button_submit.tr()
-                      : LocaleKeys.button_next.tr(),
+                      ? '提交'
+                      : '下一个',
                   color: Colors.white,
                 ),
                 disable: !canProceed(),
@@ -290,7 +288,7 @@ class _QAPageState extends State<_QAPage> {
         widget.qa.lastIsOther) {
       return answer != null &&
           answer!.isNotEmpty &&
-          answer != LocaleKeys.settings_cancelSurveyDialog_commonOther.tr();
+          answer != '其他';
     }
 
     return _selectedIndex != -1;
@@ -365,47 +363,47 @@ class _AnswerOption extends StatelessWidget {
 
 final _questionsAndAnswers = [
   _QA(
-    question: LocaleKeys.settings_cancelSurveyDialog_questionOne_question.tr(),
+    question: '是什么促使您取消了您的 @:appName Pro 订阅?',
     answers: [
-      LocaleKeys.settings_cancelSurveyDialog_questionOne_answerOne.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionOne_answerTwo.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionOne_answerThree.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionOne_answerFour.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionOne_answerFive.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_commonOther.tr(),
+      '价格太高',
+      '功能未达预期',
+      '找到更好替代方案',
+      '使用量不足以证明费用合理',
+      '服务问题或技术困难',
+      '其他',
     ],
     lastIsOther: true,
   ),
   _QA(
-    question: LocaleKeys.settings_cancelSurveyDialog_questionTwo_question.tr(),
+    question: '您未来考虑重新订阅 @:appName Pro 的可能性有多大?',
     answers: [
-      LocaleKeys.settings_cancelSurveyDialog_questionTwo_answerOne.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionTwo_answerTwo.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionTwo_answerThree.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionTwo_answerFour.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionTwo_answerFive.tr(),
+      '非常可能',
+      '稍有可能',
+      '不确定',
+      '不太可能',
+      '非常不可能',
     ],
   ),
   _QA(
     question:
-        LocaleKeys.settings_cancelSurveyDialog_questionThree_question.tr(),
+        '您在订阅期间最重视哪个Pro功能?',
     answers: [
-      LocaleKeys.settings_cancelSurveyDialog_questionThree_answerOne.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionThree_answerTwo.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionThree_answerThree.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionThree_answerFour.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_commonOther.tr(),
+      '多用户协作',
+      '更长的历史版本记录时间',
+      '无限的 AI 回应',
+      '访问本地 AI 模型',
+      '其他',
     ],
     lastIsOther: true,
   ),
   _QA(
-    question: LocaleKeys.settings_cancelSurveyDialog_questionFour_question.tr(),
+    question: '您如何描述您对 @:appName 的整体体验?',
     answers: [
-      LocaleKeys.settings_cancelSurveyDialog_questionFour_answerOne.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionFour_answerTwo.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionFour_answerThree.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionFour_answerFour.tr(),
-      LocaleKeys.settings_cancelSurveyDialog_questionFour_answerFive.tr(),
+      '极好',
+      '良好',
+      '一般',
+      '较差',
+      '未满足',
     ],
   ),
 ];

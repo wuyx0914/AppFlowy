@@ -1,6 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 enum SpaceMoreActionType {
@@ -18,19 +16,19 @@ extension ViewMoreActionTypeExtension on SpaceMoreActionType {
   String get name {
     switch (this) {
       case SpaceMoreActionType.delete:
-        return LocaleKeys.space_delete.tr();
+        return '删除';
       case SpaceMoreActionType.rename:
-        return LocaleKeys.space_rename.tr();
+        return '重命名空间';
       case SpaceMoreActionType.changeIcon:
-        return LocaleKeys.space_changeIcon.tr();
+        return '变更图标';
       case SpaceMoreActionType.collapseAllPages:
-        return LocaleKeys.space_collapseAllSubPages.tr();
+        return '折叠所有子页面';
       case SpaceMoreActionType.addNewSpace:
-        return LocaleKeys.space_addNewSpace.tr();
+        return '创建空间';
       case SpaceMoreActionType.manage:
-        return LocaleKeys.space_manage.tr();
+        return '管理空间';
       case SpaceMoreActionType.duplicate:
-        return LocaleKeys.space_duplicate.tr();
+        return '副本空间';
       case SpaceMoreActionType.divider:
         return '';
     }

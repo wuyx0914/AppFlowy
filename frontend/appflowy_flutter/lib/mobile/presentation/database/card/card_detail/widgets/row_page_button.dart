@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/mobile_router.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/text_cell_bloc.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller.dart';
@@ -13,7 +12,6 @@ import 'package:appflowy/workspace/application/view/prelude.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,7 +77,7 @@ class _OpenRowPageButtonState extends State<OpenRowPageButton> {
                   ),
                 ),
             label: FlowyText.medium(
-              LocaleKeys.grid_field_openRowDocument.tr(),
+              '作为页面打开',
               fontSize: 15,
             ),
             icon: const Padding(
@@ -135,7 +133,7 @@ class _OpenRowPageButtonState extends State<OpenRowPageButton> {
       // create view if not exists
       Log.info('Create row page(${widget.documentId})');
       final result = await ViewBackendService.createOrphanView(
-        name: LocaleKeys.menuAppHeader_defaultNewPageName.tr(),
+        name: '未命名页面',
         viewId: widget.documentId,
         layoutType: ViewLayoutPB.Document,
       );

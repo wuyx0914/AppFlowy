@@ -2,10 +2,8 @@ import 'dart:convert';
 
 import 'package:appflowy/core/config/kv.dart';
 import 'package:appflowy/core/config/kv_keys.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:bloc/bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -21,11 +19,11 @@ enum MobileSpaceTabType {
   String get tr {
     switch (this) {
       case MobileSpaceTabType.recent:
-        return LocaleKeys.sideBar_RecentSpace.tr();
+        return '最近';
       case MobileSpaceTabType.spaces:
-        return LocaleKeys.sideBar_Spaces.tr();
+        return '空间';
       case MobileSpaceTabType.favorites:
-        return LocaleKeys.sideBar_favoriteSpace.tr();
+        return '收藏';
       case MobileSpaceTabType.shared:
         return 'Shared';
     }

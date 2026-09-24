@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar.dart';
 import 'package:appflowy/plugins/base/drag_handler.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/date_cell_editor_bloc.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/user/application/reminder/reminder_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/date_picker/mobile_date_picker.dart';
 import 'package:appflowy/workspace/presentation/widgets/date_picker/widgets/mobile_date_header.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,7 +39,7 @@ class _MobileDateCellEditScreenState extends State<MobileDateCellEditScreen> {
 
   Widget _buildFullScreen() {
     return Scaffold(
-      appBar: FlowyAppBar(titleText: LocaleKeys.titleBar_date.tr()),
+      appBar: FlowyAppBar(titleText: '日期'),
       body: _buildDatePicker(),
     );
   }

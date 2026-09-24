@@ -1,7 +1,5 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +47,7 @@ class _SimpleTableBackgroundColorMenuState
         leftIconBuilder: (onHover) => ColorOptionIcon(
           color: backgroundColor ?? Colors.transparent,
         ),
-        text: LocaleKeys.document_plugins_simpleTable_moreActions_color.tr(),
+        text: '颜色',
         onTap: () {},
       ),
     );
@@ -64,7 +62,7 @@ class _SimpleTableBackgroundColorMenuState
       // reset to default background color
       FlowyColorOption(
         color: Colors.transparent,
-        i18n: LocaleKeys.document_plugins_optionAction_defaultColor.tr(),
+        i18n: '默认',
         id: optionActionColorDefaultColor,
       ),
       ...FlowyTint.values.map(

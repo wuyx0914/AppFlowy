@@ -1,14 +1,12 @@
 import 'dart:async';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/type_option_menu_item.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mobile_toolbar_v3/aa_menu/_toolbar_theme.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy/startup/tasks/app_widget.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import 'add_block_menu_item_builder.dart';
@@ -63,7 +61,7 @@ Future<bool?> showAddBlockMenu(
       showHeader: true,
       showDragHandle: true,
       showCloseButton: true,
-      title: LocaleKeys.button_add.tr(),
+      title: '添加',
       barrierColor: Colors.transparent,
       backgroundColor:
           ToolbarColorExtension.of(context).toolbarMenuBackgroundColor,

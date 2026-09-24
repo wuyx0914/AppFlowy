@@ -1,7 +1,5 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
 import 'package:flutter/material.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class ContinueWithEmail extends StatelessWidget {
   const ContinueWithEmail({
@@ -14,7 +12,7 @@ class ContinueWithEmail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AFFilledTextButton.primary(
-      text: LocaleKeys.signIn_continueWithEmail.tr(),
+      text: '继续使用电子邮件信箱',
       size: AFButtonSize.l,
       alignment: Alignment.center,
       onTap: onTap,

@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/extensions/flowy_tint_extension.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/extension.dart';
@@ -45,17 +43,17 @@ enum TableOptionAction {
   String get description {
     switch (this) {
       case TableOptionAction.addAfter:
-        return LocaleKeys.document_plugins_table_addAfter.tr();
+        return '在后面添加';
       case TableOptionAction.addBefore:
-        return LocaleKeys.document_plugins_table_addBefore.tr();
+        return '在前面添加';
       case TableOptionAction.delete:
-        return LocaleKeys.document_plugins_table_delete.tr();
+        return '删除';
       case TableOptionAction.duplicate:
-        return LocaleKeys.document_plugins_table_duplicate.tr();
+        return '创建副本';
       case TableOptionAction.clear:
-        return LocaleKeys.document_plugins_table_clear.tr();
+        return '清空内容';
       case TableOptionAction.bgColor:
-        return LocaleKeys.document_plugins_table_bgColor.tr();
+        return '背景颜色';
     }
   }
 }
@@ -120,7 +118,7 @@ class TableColorOptionAction extends PopoverActionCell {
           // reset to default background color
           FlowyColorOption(
             color: defaultColor,
-            i18n: LocaleKeys.document_plugins_optionAction_defaultColor.tr(),
+            i18n: '默认',
             id: tableCellDefaultColor,
           ),
           ...FlowyTint.values.map(

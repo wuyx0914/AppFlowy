@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/application/document_service.dart';
@@ -17,7 +16,6 @@ import 'package:appflowy/workspace/presentation/home/toast.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_editor/appflowy_editor.dart' hide UploadImageMenu;
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/uuid.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -75,11 +73,9 @@ class MultiImagePlaceholderState extends State<MultiImagePlaceholder> {
               FlowyText(
                 UniversalPlatform.isDesktop
                     ? isDraggingFiles
-                        ? LocaleKeys.document_plugins_image_dropImageToInsert
-                            .tr()
-                        : LocaleKeys.document_plugins_image_addAnImageDesktop
-                            .tr()
-                    : LocaleKeys.document_plugins_image_addAnImageMobile.tr(),
+                        ? '将图片拖曳至此插入'
+                        : '添加图片'
+                    : '点击添加一张或多张图片',
                 color: Theme.of(context).hintColor,
               ),
             ],
@@ -171,7 +167,7 @@ class MultiImagePlaceholderState extends State<MultiImagePlaceholder> {
       final isLocalMode = _isLocalMode();
       showMobileBottomSheet(
         context,
-        title: LocaleKeys.editor_image.tr(),
+        title: '图像',
         showHeader: true,
         showCloseButton: true,
         showDragHandle: true,
@@ -239,7 +235,7 @@ class MultiImagePlaceholderState extends State<MultiImagePlaceholder> {
       // show error
       return showSnackBarMessage(
         context,
-        LocaleKeys.document_imageBlock_error_invalidImage.tr(),
+        '图片无效',
       );
     }
 
@@ -271,7 +267,7 @@ class MultiImagePlaceholderState extends State<MultiImagePlaceholder> {
       // show error
       return showSnackBarMessage(
         context,
-        LocaleKeys.document_imageBlock_error_invalidImage.tr(),
+        '图片无效',
       );
     }
 

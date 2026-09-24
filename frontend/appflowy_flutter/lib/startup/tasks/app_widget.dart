@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:appflowy/mobile/application/mobile_router.dart';
 import 'package:appflowy/plugins/document/application/document_appearance_cubit.dart';
 import 'package:appflowy/shared/clipboard_state.dart';
-import 'package:appflowy/shared/easy_localiation_service.dart';
 import 'package:appflowy/shared/feature_flags.dart';
 import 'package:appflowy/shared/icon_emoji_picker/icon_picker.dart';
 import 'package:appflowy/startup/startup.dart';
@@ -24,7 +23,6 @@ import 'package:appflowy/workspace/presentation/command_palette/command_palette.
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/gestures.dart';
@@ -70,55 +68,7 @@ class InitAppWidgetTask extends LaunchTask {
       child: widget,
     );
 
-    runApp(
-      EasyLocalization(
-        supportedLocales: const [
-          // In alphabetical order
-          Locale('am', 'ET'),
-          Locale('ar', 'SA'),
-          Locale('ca', 'ES'),
-          Locale('cs', 'CZ'),
-          Locale('ckb', 'KU'),
-          Locale('de', 'DE'),
-          Locale('en', 'US'),
-          Locale('en', 'GB'),
-          Locale('es', 'VE'),
-          Locale('eu', 'ES'),
-          Locale('el', 'GR'),
-          Locale('fr', 'FR'),
-          Locale('fr', 'CA'),
-          Locale('he'),
-          Locale('hu', 'HU'),
-          Locale('id', 'ID'),
-          Locale('it', 'IT'),
-          Locale('ja', 'JP'),
-          Locale('ko', 'KR'),
-          Locale('pl', 'PL'),
-          Locale('pt', 'BR'),
-          Locale('ru', 'RU'),
-          Locale('sv', 'SE'),
-          Locale('th', 'TH'),
-          Locale('tr', 'TR'),
-          Locale('uk', 'UA'),
-          Locale('ur'),
-          Locale('vi', 'VN'),
-          Locale('zh', 'CN'),
-          Locale('zh', 'TW'),
-          Locale('fa'),
-          Locale('hin'),
-          Locale('mr', 'IN'),
-        ],
-        path: 'assets/translations',
-        fallbackLocale: const Locale('en', 'US'),
-        useFallbackTranslations: true,
-        child: Builder(
-          builder: (context) {
-            getIt.get<EasyLocalizationService>().init(context);
-            return app;
-          },
-        ),
-      ),
-    );
+    runApp(app);
 
     return;
   }
@@ -241,9 +191,7 @@ class _ApplicationWidgetState extends State<ApplicationWidget> {
                     theme: state.lightTheme,
                     darkTheme: state.darkTheme,
                     themeMode: state.themeMode,
-                    localizationsDelegates: context.localizationDelegates,
-                    supportedLocales: context.supportedLocales,
-                    locale: state.locale,
+                    locale: const Locale('zh', 'CN'),
                     routerConfig: routerConfig,
                     builder: (context, child) {
                       final brightness = Theme.of(context).brightness;

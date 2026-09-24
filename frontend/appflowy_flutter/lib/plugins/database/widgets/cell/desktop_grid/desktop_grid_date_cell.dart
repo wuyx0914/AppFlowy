@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/date_cell_bloc.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/plugins/database/widgets/cell_editor/date_cell_editor.dart';
 import 'package:appflowy/plugins/database/widgets/row/cells/cell_container.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/widgets.dart';
 
@@ -78,7 +76,7 @@ class DesktopGridDateCellSkin extends IEditableDateCellSkin {
               if (state.cellData.reminderId.isNotEmpty) ...[
                 const HSpace(4),
                 FlowyTooltip(
-                  message: LocaleKeys.grid_field_reminderOnDateTooltip.tr(),
+                  message: '此单元格有预定的提醒',
                   child: const FlowySvg(FlowySvgs.clock_alarm_s),
                 ),
               ],

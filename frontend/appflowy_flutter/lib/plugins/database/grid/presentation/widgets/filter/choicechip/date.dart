@@ -1,9 +1,7 @@
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
 import 'package:appflowy/plugins/database/application/field/filter_entities.dart';
 import 'package:appflowy/plugins/database/grid/application/filter/filter_editor_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy/workspace/presentation/widgets/date_picker/desktop_date_picker.dart';
@@ -265,8 +263,8 @@ class DateFilterIsStartList extends StatelessWidget {
       buildChild: (controller) {
         return ConditionButton(
           conditionName: filter.condition.isStart
-              ? LocaleKeys.grid_dateFilter_startDate.tr()
-              : LocaleKeys.grid_dateFilter_endDate.tr(),
+              ? '开始日期'
+              : '结束日期',
           onTap: () => controller.show(),
         );
       },
@@ -290,8 +288,8 @@ class _IsStartWrapper extends ActionCell {
 
   @override
   String get name => inner
-      ? LocaleKeys.grid_dateFilter_startDate.tr()
-      : LocaleKeys.grid_dateFilter_endDate.tr();
+      ? '开始日期'
+      : '结束日期';
 }
 
 class DateFilterConditionList extends StatelessWidget {

@@ -1,13 +1,11 @@
 import 'dart:convert';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/animated_gesture.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/actions/mobile_block_action_buttons.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -109,11 +107,11 @@ class _ErrorBlockComponentWidgetState extends State<ErrorBlockComponentWidget>
         children: [
           const HSpace(12),
           FlowyText.regular(
-            LocaleKeys.document_errorBlock_parseError.tr(args: [node.type]),
+            '解析 {node.type} 区块时发生错误。',
           ),
           const Spacer(),
           OutlinedRoundedButton(
-            text: LocaleKeys.document_errorBlock_copyBlockContent.tr(),
+            text: '拷贝区块内容',
             onTap: _copyBlockContent,
           ),
           const HSpace(12),
@@ -133,7 +131,7 @@ class _ErrorBlockComponentWidgetState extends State<ErrorBlockComponentWidget>
             Padding(
               padding: const EdgeInsets.only(left: 4.0, right: 24.0),
               child: FlowyText.regular(
-                LocaleKeys.document_errorBlock_parseError.tr(args: [node.type]),
+                '解析 {node.type} 区块时发生错误。',
                 maxLines: 3,
               ),
             ),
@@ -141,7 +139,7 @@ class _ErrorBlockComponentWidgetState extends State<ErrorBlockComponentWidget>
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
               child: FlowyText.regular(
-                '(${LocaleKeys.document_errorBlock_clickToCopyTheBlockContent.tr()})',
+                '(${'点击以拷贝区块内容'})',
                 color: Theme.of(context).hintColor,
                 fontSize: 12.0,
               ),
@@ -154,7 +152,7 @@ class _ErrorBlockComponentWidgetState extends State<ErrorBlockComponentWidget>
 
   void _copyBlockContent() {
     showToastNotification(
-      message: LocaleKeys.document_errorBlock_blockContentHasBeenCopied.tr(),
+      message: '块内容已被复制。',
     );
 
     getIt<ClipboardService>().setData(

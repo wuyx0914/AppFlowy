@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:appflowy/ai/ai.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_mobile_quick_action_button.dart';
 import 'package:appflowy/plugins/ai_chat/application/chat_edit_document_service.dart';
@@ -13,7 +12,6 @@ import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-ai/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -365,13 +363,13 @@ class ChatAIMessagePopup extends StatelessWidget {
         }
         if (context.mounted) {
           showToastNotification(
-            message: LocaleKeys.message_copy_success.tr(),
+            message: '已复制',
           );
         }
       },
       icon: FlowySvgs.copy_s,
       iconSize: const Size.square(20),
-      text: LocaleKeys.button_copy.tr(),
+      text: '复制',
     );
   }
 
@@ -383,7 +381,7 @@ class ChatAIMessagePopup extends StatelessWidget {
       },
       icon: FlowySvgs.ai_try_again_s,
       iconSize: const Size.square(20),
-      text: LocaleKeys.chat_regenerate.tr(),
+      text: '请重试',
     );
   }
 
@@ -400,7 +398,7 @@ class ChatAIMessagePopup extends StatelessWidget {
       },
       icon: FlowySvgs.ai_retry_font_s,
       iconSize: const Size.square(20),
-      text: LocaleKeys.chat_changeFormat_actionButton.tr(),
+      text: '变更样式',
     );
   }
 
@@ -419,7 +417,7 @@ class ChatAIMessagePopup extends StatelessWidget {
       },
       icon: FlowySvgs.ai_sparks_s,
       iconSize: const Size.square(20),
-      text: LocaleKeys.chat_switchModel_label.tr(),
+      text: '切换模型',
     );
   }
 
@@ -449,7 +447,7 @@ class ChatAIMessagePopup extends StatelessWidget {
       },
       icon: FlowySvgs.ai_add_to_page_s,
       iconSize: const Size.square(20),
-      text: LocaleKeys.chat_addToPageButton.tr(),
+      text: '添加消息到页面',
     );
   }
 }

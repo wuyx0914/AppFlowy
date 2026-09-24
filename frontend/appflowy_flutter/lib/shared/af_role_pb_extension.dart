@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 extension AFRolePBExtension on AFRolePB {
   bool get isOwner => this == AFRolePB.Owner;
@@ -18,11 +16,11 @@ extension AFRolePBExtension on AFRolePB {
   String get description {
     switch (this) {
       case AFRolePB.Owner:
-        return LocaleKeys.settings_appearance_members_owner.tr();
+        return '所有者';
       case AFRolePB.Member:
-        return LocaleKeys.settings_appearance_members_member.tr();
+        return '成员';
       case AFRolePB.Guest:
-        return LocaleKeys.settings_appearance_members_guest.tr();
+        return '访客';
     }
     throw UnimplementedError('Unknown role: $this');
   }

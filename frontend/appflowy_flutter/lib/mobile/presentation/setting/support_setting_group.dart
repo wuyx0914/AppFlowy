@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:appflowy/core/helpers/url_launcher.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/setting/widgets/mobile_setting_trailing.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
@@ -10,7 +9,6 @@ import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/share_log_files.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/fix_data_widget.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -27,17 +25,17 @@ class SupportSettingGroup extends StatelessWidget {
     return FutureBuilder(
       future: PackageInfo.fromPlatform(),
       builder: (context, snapshot) => MobileSettingGroup(
-        groupTitle: LocaleKeys.settings_mobile_support.tr(),
+        groupTitle: '支持',
         settingItemList: [
           MobileSettingItem(
-            name: LocaleKeys.settings_mobile_joinDiscord.tr(),
+            name: '在 Discord 中加入我们',
             trailing: MobileSettingTrailing(
               text: '',
             ),
             onTap: () => afLaunchUrlString('https://discord.gg/JucBXeU2FE'),
           ),
           MobileSettingItem(
-            name: LocaleKeys.workspace_errorActions_reportIssue.tr(),
+            name: '上报问题',
             trailing: MobileSettingTrailing(
               text: '',
             ),
@@ -46,7 +44,7 @@ class SupportSettingGroup extends StatelessWidget {
                 context,
                 showDragHandle: true,
                 showHeader: true,
-                title: LocaleKeys.workspace_errorActions_reportIssue.tr(),
+                title: '上报问题',
                 backgroundColor: Theme.of(context).colorScheme.surface,
                 builder: (context) {
                   return _ReportIssuesWidget(
@@ -57,7 +55,7 @@ class SupportSettingGroup extends StatelessWidget {
             },
           ),
           MobileSettingItem(
-            name: LocaleKeys.settings_files_clearCache.tr(),
+            name: '清空缓存',
             trailing: MobileSettingTrailing(
               text: '',
             ),
@@ -65,15 +63,15 @@ class SupportSettingGroup extends StatelessWidget {
               await showFlowyMobileConfirmDialog(
                 context,
                 title: FlowyText(
-                  LocaleKeys.settings_files_areYouSureToClearCache.tr(),
+                  '您确定要清除缓存吗？',
                   maxLines: 2,
                 ),
                 content: FlowyText(
-                  LocaleKeys.settings_files_clearCacheDesc.tr(),
+                  '如果您遇到图片无法加载或字体无法正确显示的问题，请尝试清除缓存。此操作不会删除您的用户数据。',
                   fontSize: 12,
                   maxLines: 4,
                 ),
-                actionButtonTitle: LocaleKeys.button_yes.tr(),
+                actionButtonTitle: '是',
                 onActionButtonPressed: () async {
                   await getIt<FlowyCacheManager>().clearAllCache();
                   // check the workspace and space health
@@ -82,7 +80,7 @@ class SupportSettingGroup extends StatelessWidget {
                   );
                   if (context.mounted) {
                     showToastNotification(
-                      message: LocaleKeys.settings_files_clearCacheSuccess.tr(),
+                      message: '缓存清除成功！',
                     );
                   }
                 },
@@ -109,7 +107,7 @@ class _ReportIssuesWidget extends StatelessWidget {
       children: [
         FlowyOptionTile.text(
           showTopBorder: false,
-          text: LocaleKeys.workspace_errorActions_reportIssueOnGithub.tr(),
+          text: '在 Github 上报告问题',
           onTap: () {
             final String os = Platform.operatingSystem;
             afLaunchUrlString(
@@ -119,7 +117,7 @@ class _ReportIssuesWidget extends StatelessWidget {
         ),
         FlowyOptionTile.text(
           showTopBorder: false,
-          text: LocaleKeys.workspace_errorActions_exportLogFiles.tr(),
+          text: '导出日志文件',
           onTap: () => shareLogFiles(context),
         ),
       ],

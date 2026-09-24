@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/application/sidebar/folder/folder_bloc.dart';
 import 'package:appflowy/workspace/application/sidebar/space/space_bloc.dart';
@@ -14,7 +13,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/cupertino.dart';
@@ -51,7 +49,7 @@ class _SpacePermissionSwitchState extends State<SpacePermissionSwitch> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FlowyText.regular(
-          LocaleKeys.space_permission.tr(),
+          '空间许可',
           fontSize: 14.0,
           color: Theme.of(context).hintColor,
           figmaLineHeight: 18.0,
@@ -127,13 +125,13 @@ class SpacePermissionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final (title, desc, icon) = switch (permission) {
       SpacePermission.publicToAll => (
-          LocaleKeys.space_publicPermission.tr(),
-          LocaleKeys.space_publicPermissionDescription.tr(),
+          '民众',
+          '所有具有完全访问权的工作区成员',
           FlowySvgs.space_permission_public_s
         ),
       SpacePermission.private => (
-          LocaleKeys.space_privatePermission.tr(),
-          LocaleKeys.space_privatePermissionDescription.tr(),
+          '私人',
+          '只有您可以访问此空间',
           FlowySvgs.space_permission_private_s
         ),
     };
@@ -191,7 +189,7 @@ class SpaceCancelOrConfirmButton extends StatelessWidget {
       children: [
         AFOutlinedTextButton.normal(
           size: UniversalPlatform.isDesktop ? AFButtonSize.m : AFButtonSize.l,
-          text: LocaleKeys.button_cancel.tr(),
+          text: '取消',
           textStyle: theme.textStyle.body.standard(
             color: theme.textColorScheme.primary,
           ),
@@ -450,7 +448,7 @@ class _ConfirmPopupState extends State<ConfirmPopup> {
               Navigator.of(context).pop();
             }
           },
-          confirmButtonName: widget.confirmLabel ?? LocaleKeys.button_ok.tr(),
+          confirmButtonName: widget.confirmLabel ?? 'OK',
           confirmButtonColor: widget.confirmButtonColor ??
               Theme.of(context).colorScheme.primary,
         );
@@ -467,7 +465,7 @@ class _ConfirmPopupState extends State<ConfirmPopup> {
             }
           },
           confirmButtonName:
-              widget.confirmLabel ?? LocaleKeys.space_delete.tr(),
+              widget.confirmLabel ?? '删除',
           confirmButtonColor:
               widget.confirmButtonColor ?? Theme.of(context).colorScheme.error,
           confirmButtonBuilder: widget.confirmButtonBuilder,
@@ -576,7 +574,7 @@ class CurrentSpace extends StatelessWidget {
           ),
           Expanded(
             child: FlowyTooltip(
-              message: LocaleKeys.space_movePageToSpace.tr(),
+              message: '将页面移动到空间',
               child: GestureDetector(
                 onTap: onTapBlankArea,
               ),
@@ -707,7 +705,7 @@ class _SpaceSearchFieldState extends State<SpaceSearchField> {
         onChanged: (text) => widget.onSearch(context, text),
         padding: EdgeInsets.zero,
         focusNode: focusNode,
-        placeholder: LocaleKeys.search_label.tr(),
+        placeholder: '搜索',
         prefixIcon: const FlowySvg(FlowySvgs.magnifier_s),
         prefixInsets: const EdgeInsets.only(left: 12.0, right: 8.0),
         suffixIcon: const Icon(Icons.close),

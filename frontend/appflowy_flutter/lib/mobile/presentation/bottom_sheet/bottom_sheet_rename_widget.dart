@@ -1,5 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -60,7 +58,7 @@ class _MobileBottomSheetRenameWidgetState
           ),
           const HSpace(12.0),
           FlowyTextButton(
-            LocaleKeys.button_edit.tr(),
+            '编辑',
             constraints: const BoxConstraints.tightFor(height: 42),
             padding: const EdgeInsets.symmetric(
               horizontal: 16.0,

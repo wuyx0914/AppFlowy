@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:calendar_view/calendar_view.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 extension GroupName on GroupPB {
   String generateGroupName(DatabaseController databaseController) {
@@ -65,12 +63,7 @@ extension GroupName on GroupPB {
                   ? "MMM dd y"
                   : "dd y";
 
-              return LocaleKeys.board_dateCondition_weekOf.tr(
-                args: [
-                  DateFormat(beginningOfWeekFormat).format(beginningOfWeek),
-                  DateFormat(endOfWeekFormat).format(endOfWeek),
-                ],
-              );
+              return '第 {DateFormat(beginningOfWeekFormat).format(beginningOfWeek)} 周 - {DateFormat(beginningOfWeekFormat).format(beginningOfWeek)}';
             case DateConditionPB.Month:
               return DateFormat("MMM y").format(targetDateTime);
             case DateConditionPB.Year:
@@ -84,13 +77,13 @@ extension GroupName on GroupPB {
               final nowDay = DateTime.now().withoutTime;
               final diff = targetDateTimeDay.difference(nowDay).inDays;
               return switch (diff) {
-                0 => LocaleKeys.board_dateCondition_today.tr(),
-                -1 => LocaleKeys.board_dateCondition_yesterday.tr(),
-                1 => LocaleKeys.board_dateCondition_tomorrow.tr(),
-                -7 => LocaleKeys.board_dateCondition_lastSevenDays.tr(),
-                2 => LocaleKeys.board_dateCondition_nextSevenDays.tr(),
-                -30 => LocaleKeys.board_dateCondition_lastThirtyDays.tr(),
-                8 => LocaleKeys.board_dateCondition_nextThirtyDays.tr(),
+                0 => '今天',
+                -1 => '昨天',
+                1 => '明天',
+                -7 => '过去 7 天',
+                2 => '未来 7 天',
+                -30 => '过去 30 天',
+                8 => '未来 30 天',
                 _ => DateFormat("MMM y").format(targetDateTimeDay)
               };
             default:

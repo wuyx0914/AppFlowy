@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/sign_in_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,17 +25,17 @@ class SwitchSignInSignUpButton extends StatelessWidget {
                 FlowyText(
                   switch (state.loginType) {
                     LoginType.signIn =>
-                      LocaleKeys.signIn_dontHaveAnAccount.tr(),
+                      '没有账户?',
                     LoginType.signUp =>
-                      LocaleKeys.signIn_alreadyHaveAnAccount.tr(),
+                      '已经有账户了？',
                   },
                   fontSize: 12,
                 ),
                 const HSpace(4),
                 FlowyText(
                   switch (state.loginType) {
-                    LoginType.signIn => LocaleKeys.signIn_createAccount.tr(),
-                    LoginType.signUp => LocaleKeys.signIn_logIn.tr(),
+                    LoginType.signIn => '新建账户',
+                    LoginType.signUp => '登陆',
                   },
                   color: Colors.blue,
                   fontSize: 12,

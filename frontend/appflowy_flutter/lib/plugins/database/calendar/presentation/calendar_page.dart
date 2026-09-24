@@ -1,6 +1,5 @@
 import 'package:appflowy/features/page_access_level/logic/page_access_level_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/database/card/card.dart';
 import 'package:appflowy/mobile/presentation/presentation.dart';
@@ -15,7 +14,6 @@ import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:calendar_view/calendar_view.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -279,7 +277,7 @@ class _CalendarPageState extends State<CalendarPage> {
             onTap: UniversalPlatform.isMobile
                 ? () => showMobileBottomSheet(
                       context,
-                      title: LocaleKeys.calendar_quickJumpYear.tr(),
+                      title: '跳转到',
                       showHeader: true,
                       showCloseButton: true,
                       builder: (_) => SizedBox(
@@ -300,7 +298,7 @@ class _CalendarPageState extends State<CalendarPage> {
             child: Row(
               children: [
                 FlowyText.medium(
-                  DateFormat('MMMM y', context.locale.toLanguageTag())
+                  DateFormat('MMMM y', 'zh_CN')
                       .format(currentMonth),
                 ),
                 if (UniversalPlatform.isMobile) ...[
@@ -315,17 +313,17 @@ class _CalendarPageState extends State<CalendarPage> {
             width: CalendarSize.navigatorButtonWidth,
             height: CalendarSize.navigatorButtonHeight,
             icon: const FlowySvg(FlowySvgs.arrow_left_s),
-            tooltipText: LocaleKeys.calendar_navigation_previousMonth.tr(),
+            tooltipText: '上一月',
             hoverColor: AFThemeExtension.of(context).lightGreyHover,
             onPressed: () => _calendarState?.currentState?.previousPage(),
           ),
           FlowyTextButton(
-            LocaleKeys.calendar_navigation_today.tr(),
+            '今天',
             fillColor: Colors.transparent,
             fontWeight: FontWeight.w400,
             fontSize: 10,
             fontColor: AFThemeExtension.of(context).textColor,
-            tooltip: LocaleKeys.calendar_navigation_jumpToday.tr(),
+            tooltip: '跳转到今天',
             padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
             hoverColor: AFThemeExtension.of(context).lightGreyHover,
             onPressed: () =>
@@ -335,7 +333,7 @@ class _CalendarPageState extends State<CalendarPage> {
             width: CalendarSize.navigatorButtonWidth,
             height: CalendarSize.navigatorButtonHeight,
             icon: const FlowySvg(FlowySvgs.arrow_right_s),
-            tooltipText: LocaleKeys.calendar_navigation_nextMonth.tr(),
+            tooltipText: '下一月',
             hoverColor: AFThemeExtension.of(context).lightGreyHover,
             onPressed: () => _calendarState?.currentState?.nextPage(),
           ),
@@ -350,7 +348,7 @@ class _CalendarPageState extends State<CalendarPage> {
 
   Widget _headerWeekDayBuilder(day) {
     // incoming day starts from Monday, the symbols start from Sunday
-    final symbols = DateFormat.EEEE(context.locale.toLanguageTag()).dateSymbols;
+    final symbols = DateFormat.EEEE('zh_CN').dateSymbols;
     String weekDayString = symbols.WEEKDAYS[(day + 1) % 7];
 
     if (UniversalPlatform.isMobile) {
@@ -478,12 +476,9 @@ class _UnscheduledEventsButtonState extends State<UnscheduledEventsButton> {
                 }
               },
               child: FlowyTooltip(
-                message: LocaleKeys.calendar_settings_noDateHint.plural(
-                  state.unscheduleEvents.length,
-                  namedArgs: {'count': '${state.unscheduleEvents.length}'},
-                ),
+                message: '计划外事件将显示在此处',
                 child: FlowyText.regular(
-                  "${LocaleKeys.calendar_settings_noDateTitle.tr()} (${state.unscheduleEvents.length})",
+                  "${'没有日期'} (${state.unscheduleEvents.length})",
                   fontSize: 10,
                 ),
               ),
@@ -515,7 +510,7 @@ class _UnscheduledEventsButtonState extends State<UnscheduledEventsButton> {
           return Column(
             children: [
               FlowyText(
-                LocaleKeys.calendar_settings_unscheduledEventsTitle.tr(),
+                '未安排的事件',
               ),
               UnscheduleEventsList(
                 databaseController: widget.databaseController,
@@ -544,7 +539,7 @@ class UnscheduleEventsList extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
           child: FlowyText(
-            LocaleKeys.calendar_settings_clickToAdd.tr(),
+            '单击以添加到日历',
             fontSize: 10,
             color: Theme.of(context).hintColor,
             overflow: TextOverflow.ellipsis,
@@ -628,7 +623,7 @@ class DesktopUnscheduledEventTile extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
         text: FlowyText(
           event.title.isEmpty
-              ? LocaleKeys.calendar_defaultNewCalendarTitle.tr()
+              ? '未命名'
               : event.title,
           fontSize: 11,
         ),
@@ -652,7 +647,7 @@ class MobileUnscheduledEventTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return MobileSettingItem(
       name: event.title.isEmpty
-          ? LocaleKeys.calendar_defaultNewCalendarTitle.tr()
+          ? '未命名'
           : event.title,
       onTap: onPressed,
     );

@@ -1,12 +1,10 @@
 import 'dart:math';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/desktop_toolbar/link/link_create_menu.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/link_preview/paste_as/paste_as_menu.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -80,7 +78,7 @@ class _MentionLinkErrorPreviewState extends State<MentionLinkErrorPreview> {
                     ),
                     FlowyIconButton(
                       icon: FlowySvg(FlowySvgs.toolbar_link_m),
-                      tooltipText: LocaleKeys.editor_copyLink.tr(),
+                      tooltipText: '复制链接',
                       preferBelow: false,
                       width: 36,
                       height: 32,
@@ -136,7 +134,7 @@ class _MentionLinkErrorPreviewState extends State<MentionLinkErrorPreview> {
       child: FlowyIconButton(
         icon: FlowySvg(FlowySvgs.turninto_m),
         isSelected: isConvertButtonSelected,
-        tooltipText: LocaleKeys.editor_convertTo.tr(),
+        tooltipText: '转换为',
         preferBelow: false,
         width: 36,
         height: 32,
@@ -216,19 +214,13 @@ enum MentionLinktErrorMenuCommand {
   String get title {
     switch (this) {
       case toURL:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toUrl
-            .tr();
+        return '转换为URL';
       case toBookmark:
-        return LocaleKeys
-            .document_plugins_linkPreview_linkPreviewMenu_toBookmark
-            .tr();
+        return '转换为书签';
       case toEmbed:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toEmbed
-            .tr();
+        return '转换为嵌入';
       case removeLink:
-        return LocaleKeys
-            .document_plugins_linkPreview_linkPreviewMenu_removeLink
-            .tr();
+        return '移除链接';
     }
   }
 }

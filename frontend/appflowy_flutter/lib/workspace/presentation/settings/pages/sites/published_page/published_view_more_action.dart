@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/constants.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/published_page/published_view_settings_dialog.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/settings_sites_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -170,11 +168,11 @@ enum _ActionType {
   customUrl;
 
   String get name => switch (this) {
-        _ActionType.viewSite => LocaleKeys.shareAction_visitSite.tr(),
-        _ActionType.copySiteLink => LocaleKeys.shareAction_copyLink.tr(),
-        _ActionType.settings => LocaleKeys.settings_popupMenuItem_settings.tr(),
-        _ActionType.unpublish => LocaleKeys.shareAction_unPublish.tr(),
-        _ActionType.customUrl => LocaleKeys.settings_sites_customUrl.tr(),
+        _ActionType.viewSite => '访问网站',
+        _ActionType.copySiteLink => '复制链接',
+        _ActionType.settings => '设置',
+        _ActionType.unpublish => '取消发布',
+        _ActionType.customUrl => '自定义 URL',
       };
 
   FlowySvgData get leftIconSvg => switch (this) {

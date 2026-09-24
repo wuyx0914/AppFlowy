@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/notifications/mobile_notifications_screen.dart';
 import 'package:appflowy/mobile/presentation/widgets/navigation_bar_button.dart';
 import 'package:appflowy/shared/popup_menu/appflowy_popup_menu.dart';
@@ -13,7 +12,6 @@ import 'package:appflowy/workspace/presentation/notifications/number_red_dot.dar
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -330,7 +328,7 @@ class _NotificationNavigationBar extends StatelessWidget {
             Expanded(
               child: NavigationBarButton(
                 icon: FlowySvgs.m_notification_action_mark_as_read_s,
-                text: LocaleKeys.settings_notifications_action_markAsRead.tr(),
+                text: '标为已读',
                 onTap: () => _onMarkAsRead(context),
               ),
             ),
@@ -338,7 +336,7 @@ class _NotificationNavigationBar extends StatelessWidget {
             Expanded(
               child: NavigationBarButton(
                 icon: FlowySvgs.m_notification_action_archive_s,
-                text: LocaleKeys.settings_notifications_action_archive.tr(),
+                text: '归档',
                 onTap: () => _onArchive(context),
               ),
             ),
@@ -355,9 +353,7 @@ class _NotificationNavigationBar extends StatelessWidget {
     }
 
     showToastNotification(
-      message: LocaleKeys
-          .settings_notifications_markAsReadNotifications_allSuccess
-          .tr(),
+      message: '成功全部标为已读',
     );
 
     getIt<ReminderBloc>()
@@ -372,8 +368,7 @@ class _NotificationNavigationBar extends StatelessWidget {
     }
 
     showToastNotification(
-      message: LocaleKeys.settings_notifications_archiveNotifications_allSuccess
-          .tr(),
+      message: '已成功存盘所有通知',
     );
 
     getIt<ReminderBloc>()

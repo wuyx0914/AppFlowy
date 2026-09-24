@@ -1,9 +1,7 @@
 import 'dart:io';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/header/custom_cover_picker_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/snap_bar.dart';
@@ -42,7 +40,7 @@ class _CoverImagePickerState extends State<CoverImagePicker> {
                 (s) {},
                 (e) => showSnapBar(
                   context,
-                  LocaleKeys.document_plugins_cover_invalidImageUrl.tr(),
+                  '无效的图像网址',
                 ),
               );
             },
@@ -51,8 +49,7 @@ class _CoverImagePickerState extends State<CoverImagePicker> {
                 (l) => widget.onFileSubmit(l),
                 (r) => showSnapBar(
                   context,
-                  LocaleKeys.document_plugins_cover_failedToAddImageToGallery
-                      .tr(),
+                  '无法将图片添加到库',
                 ),
               );
             },
@@ -137,7 +134,7 @@ class _NetworkImageUrlInputState extends State<NetworkImageUrlInput> {
           flex: 4,
           child: FlowyTextField(
             controller: urlController,
-            hintText: LocaleKeys.document_plugins_cover_enterImageUrl.tr(),
+            hintText: '输入图像网址',
           ),
         ),
         const SizedBox(
@@ -155,7 +152,7 @@ class _NetworkImageUrlInputState extends State<NetworkImageUrlInput> {
                 ? Theme.of(context).disabledColor
                 : Theme.of(context).colorScheme.primary,
             height: 36,
-            title: LocaleKeys.document_plugins_cover_add.tr(),
+            title: '添加',
             borderRadius: Corners.s8Border,
           ),
         ),
@@ -180,14 +177,14 @@ class ImagePickerActionButtons extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         FlowyTextButton(
-          LocaleKeys.document_plugins_cover_back.tr(),
+          '返回',
           hoverColor: Theme.of(context).colorScheme.secondaryContainer,
           fillColor: Colors.transparent,
           mainAxisAlignment: MainAxisAlignment.end,
           onPressed: () => onBackPressed(),
         ),
         FlowyTextButton(
-          LocaleKeys.document_plugins_cover_saveToGallery.tr(),
+          '保存至库',
           onPressed: () => onSave(),
           hoverColor: Theme.of(context).colorScheme.secondaryContainer,
           fillColor: Colors.transparent,
@@ -235,13 +232,13 @@ class _CoverImagePreviewWidgetState extends State<CoverImagePreviewWidget> {
                 width: 3,
               ),
               FlowyText(
-                LocaleKeys.document_plugins_cover_pasteImageUrl.tr(),
+                '粘贴图片网址',
               ),
             ],
           ),
           const VSpace(10),
           FlowyText(
-            LocaleKeys.document_plugins_cover_or.tr(),
+            '或',
             fontWeight: FontWeight.w300,
           ),
           const VSpace(10),
@@ -259,7 +256,7 @@ class _CoverImagePreviewWidgetState extends State<CoverImagePreviewWidget> {
             ),
             text: FlowyText(
               lineHeight: 1.0,
-              LocaleKeys.document_plugins_cover_pickFromFiles.tr(),
+              '从文件中选取',
             ),
           ),
         ],

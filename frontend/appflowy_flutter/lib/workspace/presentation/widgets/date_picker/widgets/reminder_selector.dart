@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/widgets/date_picker/utils/layout.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/date_entities.pbenum.dart';
 import 'package:calendar_view/calendar_view.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 
 typedef OnReminderSelected = void Function(ReminderOption option);
@@ -86,7 +84,7 @@ class ReminderSelector extends StatelessWidget {
         child: SizedBox(
           height: DatePickerSize.itemHeight,
           child: FlowyButton(
-            text: FlowyText(LocaleKeys.datePicker_reminderLabel.tr()),
+            text: FlowyText('提醒'),
             rightIcon: Row(
               children: [
                 FlowyText.regular(selectedOption.label),
@@ -138,31 +136,31 @@ enum ReminderOption {
       [ReminderOption.none, ReminderOption.custom].contains(this);
 
   String get label => switch (this) {
-        ReminderOption.none => LocaleKeys.datePicker_reminderOptions_none.tr(),
+        ReminderOption.none => '无',
         ReminderOption.atTimeOfEvent =>
-          LocaleKeys.datePicker_reminderOptions_atTimeOfEvent.tr(),
+          '活动时间',
         ReminderOption.fiveMinsBefore =>
-          LocaleKeys.datePicker_reminderOptions_fiveMinsBefore.tr(),
+          '5 分钟以前',
         ReminderOption.tenMinsBefore =>
-          LocaleKeys.datePicker_reminderOptions_tenMinsBefore.tr(),
+          '10 分钟以前',
         ReminderOption.fifteenMinsBefore =>
-          LocaleKeys.datePicker_reminderOptions_fifteenMinsBefore.tr(),
+          '15 分钟以前',
         ReminderOption.thirtyMinsBefore =>
-          LocaleKeys.datePicker_reminderOptions_thirtyMinsBefore.tr(),
+          '30 分钟以前',
         ReminderOption.oneHourBefore =>
-          LocaleKeys.datePicker_reminderOptions_oneHourBefore.tr(),
+          '1 小时以前',
         ReminderOption.twoHoursBefore =>
-          LocaleKeys.datePicker_reminderOptions_twoHoursBefore.tr(),
+          '2 小时以前',
         ReminderOption.onDayOfEvent =>
-          LocaleKeys.datePicker_reminderOptions_onDayOfEvent.tr(),
+          '活动当天',
         ReminderOption.oneDayBefore =>
-          LocaleKeys.datePicker_reminderOptions_oneDayBefore.tr(),
+          '1 天以前',
         ReminderOption.twoDaysBefore =>
-          LocaleKeys.datePicker_reminderOptions_twoDaysBefore.tr(),
+          '2 天以前',
         ReminderOption.oneWeekBefore =>
-          LocaleKeys.datePicker_reminderOptions_oneWeekBefore.tr(),
+          '1 周以前',
         ReminderOption.custom =>
-          LocaleKeys.datePicker_reminderOptions_custom.tr(),
+          '自订',
       };
 
   static ReminderOption fromDateDifference(

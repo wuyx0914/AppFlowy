@@ -1,9 +1,7 @@
 import 'package:appflowy/features/page_access_level/logic/page_access_level_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/flowy_tooltip.dart';
@@ -48,7 +46,7 @@ class _LockPageActionState extends State<LockPageAction> {
         ),
         iconPadding: 10.0,
         textBuilder: (onHover) => FlowyText(
-          LocaleKeys.disclosureAction_lockPage.tr(),
+          '锁定页面',
           figmaLineHeight: 18.0,
         ),
         rightIconBuilder: (_) => _buildSwitch(
@@ -103,7 +101,7 @@ class LockPageButtonWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.lockPage_lockedOperationTooltip.tr(),
+      message: '页面已锁定以防止意外编辑。',
       child: IgnorePointer(
         child: child,
       ),

@@ -1,11 +1,9 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/setting/widgets/mobile_setting_trailing.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
 import 'package:appflowy/util/theme_mode_extension.dart';
 import 'package:appflowy/workspace/application/settings/appearance/appearance_cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +18,7 @@ class ThemeSetting extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeMode = context.watch<AppearanceSettingsCubit>().state.themeMode;
     return MobileSettingItem(
-      name: LocaleKeys.settings_appearance_themeMode_label.tr(),
+      name: '主题模式',
       trailing: MobileSettingTrailing(
         text: themeMode.labelText,
       ),
@@ -30,14 +28,14 @@ class ThemeSetting extends StatelessWidget {
           showHeader: true,
           showDragHandle: true,
           showDivider: false,
-          title: LocaleKeys.settings_appearance_themeMode_label.tr(),
+          title: '主题模式',
           builder: (context) {
             final themeMode =
                 context.read<AppearanceSettingsCubit>().state.themeMode;
             return Column(
               children: [
                 FlowyOptionTile.checkbox(
-                  text: LocaleKeys.settings_appearance_themeMode_system.tr(),
+                  text: '系统自适应',
                   leftIcon: const FlowySvg(
                     FlowySvgs.m_theme_mode_system_s,
                   ),
@@ -51,7 +49,7 @@ class ThemeSetting extends StatelessWidget {
                 ),
                 FlowyOptionTile.checkbox(
                   showTopBorder: false,
-                  text: LocaleKeys.settings_appearance_themeMode_light.tr(),
+                  text: '日间模式',
                   leftIcon: const FlowySvg(
                     FlowySvgs.m_theme_mode_light_s,
                   ),
@@ -65,7 +63,7 @@ class ThemeSetting extends StatelessWidget {
                 ),
                 FlowyOptionTile.checkbox(
                   showTopBorder: false,
-                  text: LocaleKeys.settings_appearance_themeMode_dark.tr(),
+                  text: '夜间模式',
                   leftIcon: const FlowySvg(
                     FlowySvgs.m_theme_mode_dark_s,
                   ),

@@ -1,5 +1,4 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/type_option/relation_type_option_cubit.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/plugins/database/grid/presentation/widgets/common/type_option_separator.dart';
@@ -13,7 +12,6 @@ import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -151,7 +149,7 @@ class _RelationCellEditorContentState
                       padding: const EdgeInsets.all(6.0) +
                           GridSize.typeOptionContentInsets,
                       child: FlowyText.regular(
-                        LocaleKeys.grid_relation_emptySearchResult.tr(),
+                        '找不到任何记录',
                         color: Theme.of(context).hintColor,
                       ),
                     ),
@@ -162,10 +160,7 @@ class _RelationCellEditorContentState
                       padding: const EdgeInsets.symmetric(horizontal: 6.0) +
                           GridSize.typeOptionContentInsets,
                       child: FlowyText.regular(
-                        LocaleKeys.grid_relation_linkedRowListLabel.plural(
-                          selected.length,
-                          namedArgs: {'count': '${selected.length}'},
-                        ),
+                        '{} 个关联数据列',
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
                         color: Theme.of(context).hintColor,
@@ -187,7 +182,7 @@ class _RelationCellEditorContentState
                       padding: const EdgeInsets.symmetric(horizontal: 6.0) +
                           GridSize.typeOptionContentInsets,
                       child: FlowyText.regular(
-                        LocaleKeys.grid_relation_unlinkedRowListLabel.tr(),
+                        '链接另一个数据列',
                         fontSize: 11,
                         overflow: TextOverflow.ellipsis,
                         color: Theme.of(context).hintColor,
@@ -229,7 +224,7 @@ class _CellEditorTitle extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             FlowyText.regular(
-              LocaleKeys.grid_relation_inRelatedDatabase.tr(),
+              '在',
               fontSize: 11,
               color: Theme.of(context).hintColor,
             ),
@@ -295,7 +290,7 @@ class _SearchField extends StatelessWidget {
         child: FlowyTextField(
           focusNode: focusNode,
           controller: textEditingController,
-          hintText: LocaleKeys.grid_relation_rowSearchTextFieldPlaceholder.tr(),
+          hintText: '搜索',
           hintStyle: Theme.of(context)
               .textTheme
               .bodySmall
@@ -431,7 +426,7 @@ class _RowListItem extends StatelessWidget {
                 Expanded(
                   child: FlowyText(
                     row.name.trim().isEmpty
-                        ? LocaleKeys.grid_title_placeholder.tr()
+                        ? '无标题'
                         : row.name,
                     color: row.name.trim().isEmpty
                         ? Theme.of(context).hintColor
@@ -523,7 +518,7 @@ class _RelationCellEditorDatabasePicker extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.fromLTRB(6, 6, 6, 0),
                 child: FlowyText(
-                  LocaleKeys.grid_relation_noDatabaseSelected.tr(),
+                  '未选取数据库，请先从下方清单中选择一个:',
                   maxLines: null,
                   fontSize: 10,
                   color: Theme.of(context).hintColor,

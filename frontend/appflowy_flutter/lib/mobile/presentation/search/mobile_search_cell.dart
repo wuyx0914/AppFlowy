@@ -1,11 +1,9 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/command_palette/command_palette_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy/workspace/presentation/command_palette/widgets/search_icon.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-search/result.pb.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,7 +26,7 @@ class MobileSearchResultCell extends StatelessWidget {
     final theme = AppFlowyTheme.of(context);
     final commandPaletteState = context.read<CommandPaletteBloc>().state;
     final displayName = item.displayName.isEmpty
-        ? LocaleKeys.menuAppHeader_defaultNewPageName.tr()
+        ? '未命名页面'
         : item.displayName;
     final titleStyle = theme.textStyle.heading4
         .standard(color: theme.textColorScheme.primary)

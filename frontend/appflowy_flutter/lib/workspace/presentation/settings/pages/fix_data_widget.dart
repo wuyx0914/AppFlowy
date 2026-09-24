@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/user_service.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy/workspace/application/view/view_service.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class FixDataWidget extends StatelessWidget {
@@ -17,13 +15,12 @@ class FixDataWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingsCategory(
-      title: LocaleKeys.settings_manageDataPage_data_fixYourData.tr(),
+      title: '修复数据',
       children: [
         SingleSettingAction(
           labelMaxLines: 4,
-          label: LocaleKeys.settings_manageDataPage_data_fixYourDataDescription
-              .tr(),
-          buttonLabel: LocaleKeys.settings_manageDataPage_data_fixButton.tr(),
+          label: '如果您在使用数据时遇到问题，您可以在这里尝试修复它。',
+          buttonLabel: '修复',
           onPressed: () {
             WorkspaceDataManager.checkWorkspaceHealth(dryRun: true);
           },

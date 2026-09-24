@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/prelude.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/common.dart';
 import 'package:appflowy/shared/custom_image_cache_manager.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/workspace/application/settings/application_data_storage
 import 'package:appflowy/workspace/presentation/home/toast.dart';
 import 'package:appflowy_backend/dispatch/error.dart';
 import 'package:appflowy_backend/log.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/uuid.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,8 +59,8 @@ Future<(String? path, String? errorMessage)> saveImageToCloudStorage(
     },
     (err) {
       final message = Platform.isIOS
-          ? LocaleKeys.sideBar_storageLimitDialogTitleIOS.tr()
-          : LocaleKeys.sideBar_storageLimitDialogTitle.tr();
+          ? '你已用尽免费存储。'
+          : '你已用尽免费存储。升级以解锁无限制存储';
       if (err.isStorageLimitExceeded) {
         return (null, message);
       } else {
@@ -111,7 +109,7 @@ Future<List<ImageBlockData>> extractAndUploadImages(
   if (context.mounted && hasError) {
     showSnackBarMessage(
       context,
-      LocaleKeys.document_imageBlock_error_multipleImagesFailed.tr(),
+      '部分图片上传失败，请再试一次',
     );
   }
 

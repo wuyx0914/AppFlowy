@@ -1,7 +1,5 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 /// Windows / Linux : ctrl + shift + e
@@ -17,7 +15,7 @@ final CommandShortcutEvent insertInlineMathEquationCommand =
   key: 'Insert inline math equation',
   command: 'ctrl+shift+e',
   macOSCommand: 'cmd+shift+e',
-  getDescription: LocaleKeys.document_plugins_mathEquation_name.tr,
+  getDescription: () => '数学方程',
   handler: (editorState) {
     final selection = editorState.selection;
     if (selection == null || selection.isCollapsed || !selection.isSingle) {

@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/share_bloc.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/string_extension.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra_ui/widget/rounded_button.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +47,7 @@ class DatabaseShareButton extends StatelessWidget {
   void _handleExportData(BuildContext context) {
     showSnackBarMessage(
       context,
-      LocaleKeys.settings_files_exportFileSuccess.tr(),
+      '导出成功!',
     );
   }
 
@@ -100,7 +98,7 @@ class DatabaseShareActionListState extends State<DatabaseShareActionList> {
       buildChild: (controller) => Listener(
         onPointerDown: (_) => controller.show(),
         child: RoundedTextButton(
-          title: LocaleKeys.shareAction_buttonText.tr(),
+          title: '分享',
           padding: const EdgeInsets.symmetric(horizontal: 12.0),
           fontSize: 14.0,
           textColor: Theme.of(context).colorScheme.onPrimary,
@@ -149,7 +147,7 @@ class ShareActionWrapper extends ActionCell {
   String get name {
     switch (inner) {
       case ShareAction.csv:
-        return LocaleKeys.shareAction_csv.tr();
+        return 'CSV';
     }
   }
 }

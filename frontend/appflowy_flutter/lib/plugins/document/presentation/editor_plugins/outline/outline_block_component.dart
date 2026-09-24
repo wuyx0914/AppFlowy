@@ -1,10 +1,8 @@
 import 'dart:async';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/actions/mobile_block_action_buttons.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -166,7 +164,7 @@ class _OutlineBlockWidgetState extends State<OutlineBlockWidget>
         child = Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            LocaleKeys.document_plugins_outline_addHeadingToCreateOutline.tr(),
+            '添加标题以创建目录。',
             style: configuration.placeholderTextStyle(node),
           ),
         );
@@ -174,7 +172,7 @@ class _OutlineBlockWidgetState extends State<OutlineBlockWidget>
         child = Align(
           alignment: Alignment.centerLeft,
           child: Text(
-            LocaleKeys.document_plugins_outline_noMatchHeadings.tr(),
+            '未找到匹配的标题',
             style: configuration.placeholderTextStyle(node),
           ),
         );
@@ -222,7 +220,7 @@ class _OutlineBlockWidgetState extends State<OutlineBlockWidget>
           textDirection: textDirection,
           children: [
             Text(
-              LocaleKeys.document_outlineBlock_placeholder.tr(),
+              '目录',
               style: Theme.of(context).textTheme.titleLarge,
             ),
             const VSpace(8.0),

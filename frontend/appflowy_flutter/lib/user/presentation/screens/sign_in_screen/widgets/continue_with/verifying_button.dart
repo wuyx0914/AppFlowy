@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +26,7 @@ class VerifyingButton extends StatelessWidget {
               ),
               HSpace(theme.spacing.l),
               Text(
-                LocaleKeys.signIn_verifying.tr(),
+                '正在验证…',
                 style: theme.textStyle.body.enhanced(
                   color: theme.textColorScheme.onFill,
                 ),

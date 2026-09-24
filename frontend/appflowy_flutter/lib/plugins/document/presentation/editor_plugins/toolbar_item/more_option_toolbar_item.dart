@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_page.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/desktop_toolbar/desktop_floating_toolbar.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 // ignore: implementation_imports
 import 'package:appflowy_editor/src/editor/toolbar/desktop/items/utils/tooltip_util.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -130,7 +128,7 @@ class _MoreOptionActionListState extends State<MoreOptionActionList> {
     return widget.tooltipBuilder?.call(
           context,
           _kMoreOptionItemId,
-          LocaleKeys.document_toolbar_moreOptions.tr(),
+          '更多选项',
           child,
         ) ??
         child;
@@ -357,17 +355,17 @@ enum MoreOptionCommand {
   String get title {
     switch (this) {
       case suggestions:
-        return LocaleKeys.document_toolbar_turnInto.tr();
+        return '变成';
       case link:
-        return LocaleKeys.document_toolbar_link.tr();
+        return '关联';
       case textAlign:
-        return LocaleKeys.button_align.tr();
+        return '对齐';
       case font:
-        return LocaleKeys.document_toolbar_font.tr();
+        return '字体';
       case strikethrough:
-        return LocaleKeys.editor_strikethrough.tr();
+        return '删除线';
       case formula:
-        return LocaleKeys.document_toolbar_equation.tr();
+        return '方程序';
     }
   }
 

@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/ai/operations/ai_writer_entities.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/selectable_svg_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 import 'slash_menu_item_builder.dart';
 
@@ -16,10 +14,10 @@ final _keywords = [
 ];
 
 SelectionMenuItem aiWriterSlashMenuItem = SelectionMenuItem(
-  getName: LocaleKeys.document_slashMenu_name_aiWriter.tr,
+  getName: () => '向AI提问',
   keywords: [
     ..._keywords,
-    LocaleKeys.document_slashMenu_name_aiWriter.tr(),
+    '向AI提问',
   ],
   handler: (editorState, _, __) async =>
       _insertAiWriter(editorState, AiWriterCommand.userQuestion),
@@ -32,10 +30,10 @@ SelectionMenuItem aiWriterSlashMenuItem = SelectionMenuItem(
 );
 
 SelectionMenuItem continueWritingSlashMenuItem = SelectionMenuItem(
-  getName: LocaleKeys.document_plugins_aiWriter_continueWriting.tr,
+  getName: () => '继续写作',
   keywords: [
     ..._keywords,
-    LocaleKeys.document_plugins_aiWriter_continueWriting.tr(),
+    '继续写作',
   ],
   handler: (editorState, _, __) async =>
       _insertAiWriter(editorState, AiWriterCommand.continueWriting),

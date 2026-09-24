@@ -1,9 +1,7 @@
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../../../generated/locale_keys.g.dart';
 import '../../../mobile/presentation/base/app_bar/app_bar.dart';
 import '../../../shared/icon_emoji_picker/tab.dart';
 
@@ -31,7 +29,7 @@ class MobileEmojiPickerScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: FlowyAppBar(
-        titleText: title ?? LocaleKeys.titleBar_pageIcon.tr(),
+        titleText: title ?? '页面图标',
       ),
       body: SafeArea(
         child: FlowyIconEmojiPicker(

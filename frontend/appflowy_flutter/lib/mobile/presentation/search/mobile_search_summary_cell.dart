@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/home/tab/mobile_space_tab.dart';
 import 'package:appflowy/mobile/presentation/search/mobile_search_cell.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/startup/tasks/app_widget.dart';
 import 'package:appflowy/workspace/application/command_palette/command_palette_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-search/result.pb.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -236,7 +234,7 @@ class _TextInfo {
                       ),
                     ),
                     HSpace(8),
-                    Text(LocaleKeys.search_showMore.tr(), style: more),
+                    Text('显示更多', style: more),
                   ],
                 ),
               ),
@@ -288,7 +286,7 @@ class _TextInfo {
                         ),
                         HSpace(8),
                         Text(
-                          LocaleKeys.commandPalette_aiAskFollowUp.tr(),
+                          '询问后续问题',
                           style: theme.textStyle.heading4.standard(
                             color: theme.textColorScheme.primary,
                           ),

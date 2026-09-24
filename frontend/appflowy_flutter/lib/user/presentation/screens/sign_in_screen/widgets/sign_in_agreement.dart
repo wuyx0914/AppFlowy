@@ -1,7 +1,5 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -24,22 +22,22 @@ class SignInAgreement extends StatelessWidget {
       text: TextSpan(
         children: [
           TextSpan(
-            text: LocaleKeys.web_signInAgreement.tr(),
+            text: '点击上方「继续」，即表示您同意 AppFlowy 的…',
             style: textStyle,
           ),
           TextSpan(
-            text: '${LocaleKeys.web_termOfUse.tr()} ',
+            text: '${'条款'} ',
             style: underlinedTextStyle,
             mouseCursor: SystemMouseCursors.click,
             recognizer: TapGestureRecognizer()
               ..onTap = () => afLaunchUrlString('https://appflowy.com/terms'),
           ),
           TextSpan(
-            text: '${LocaleKeys.web_and.tr()} ',
+            text: '${'和'} ',
             style: textStyle,
           ),
           TextSpan(
-            text: LocaleKeys.web_privacyPolicy.tr(),
+            text: '隐私权政策',
             style: underlinedTextStyle,
             mouseCursor: SystemMouseCursors.click,
             recognizer: TapGestureRecognizer()

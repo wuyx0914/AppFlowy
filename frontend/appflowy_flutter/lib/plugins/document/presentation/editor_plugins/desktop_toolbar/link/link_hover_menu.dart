@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/desktop_toolbar/desktop_floating_toolbar.dart';
@@ -19,7 +18,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -378,7 +376,7 @@ class _LinkHoverMenuState extends State<LinkHoverMenu> {
                     ),
                     FlowyIconButton(
                       icon: FlowySvg(FlowySvgs.toolbar_link_m),
-                      tooltipText: LocaleKeys.editor_copyLink.tr(),
+                      tooltipText: '复制链接',
                       preferBelow: false,
                       width: 36,
                       height: 32,
@@ -386,7 +384,7 @@ class _LinkHoverMenuState extends State<LinkHoverMenu> {
                     ),
                     FlowyIconButton(
                       icon: FlowySvg(FlowySvgs.toolbar_link_edit_m),
-                      tooltipText: LocaleKeys.editor_editLink.tr(),
+                      tooltipText: '编辑链接',
                       hoverColor: hoverColor,
                       preferBelow: false,
                       width: 36,
@@ -396,7 +394,7 @@ class _LinkHoverMenuState extends State<LinkHoverMenu> {
                     buildConvertButton(),
                     FlowyIconButton(
                       icon: FlowySvg(FlowySvgs.toolbar_link_unlink_m),
-                      tooltipText: LocaleKeys.editor_removeLink.tr(),
+                      tooltipText: '移除链接',
                       hoverColor: hoverColor,
                       preferBelow: false,
                       width: 36,
@@ -449,7 +447,7 @@ class _LinkHoverMenuState extends State<LinkHoverMenu> {
     if (isPage && view != null) {
       text = view.name;
       if (text.isEmpty) {
-        text = LocaleKeys.document_title_placeholder.tr();
+        text = '无标题';
       }
     } else {
       text = href;
@@ -470,7 +468,7 @@ class _LinkHoverMenuState extends State<LinkHoverMenu> {
     final button = FlowyIconButton(
       icon: FlowySvg(FlowySvgs.turninto_m),
       isSelected: isConvertButtonSelected,
-      tooltipText: LocaleKeys.editor_convertTo.tr(),
+      tooltipText: '转换为',
       preferBelow: false,
       hoverColor: hoverColor,
       width: 36,
@@ -596,15 +594,11 @@ enum LinkConvertMenuCommand {
   String get title {
     switch (this) {
       case toMention:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toMetion
-            .tr();
+        return '转换为提及';
       case toBookmark:
-        return LocaleKeys
-            .document_plugins_linkPreview_linkPreviewMenu_toBookmark
-            .tr();
+        return '转换为书签';
       case toEmbed:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toEmbed
-            .tr();
+        return '转换为嵌入';
     }
   }
 
@@ -627,7 +621,7 @@ extension LinkExtension on BuildContext {
         .setData(ClipboardServiceData(plainText: link));
     if (mounted) {
       showToastNotification(
-        message: LocaleKeys.shareAction_copyLinkSuccess.tr(),
+        message: '链接已复制到剪贴板',
       );
     }
   }

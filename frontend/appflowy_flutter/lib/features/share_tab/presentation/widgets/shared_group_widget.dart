@@ -2,10 +2,8 @@ import 'package:appflowy/features/share_tab/data/models/share_access_level.dart'
 import 'package:appflowy/features/share_tab/data/models/shared_group.dart';
 import 'package:appflowy/features/share_tab/presentation/widgets/access_level_list_widget.dart';
 import 'package:appflowy/features/share_tab/presentation/widgets/edit_access_level_widget.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/workspace/_sidebar_workspace_icon.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class SharedGroupWidget extends StatelessWidget {
@@ -54,11 +52,7 @@ class SharedGroupWidget extends StatelessWidget {
       children: [
         Flexible(
           child: Text(
-            LocaleKeys.shareTab_anyoneAtWorkspace.tr(
-              namedArgs: {
-                'workspace': group.name,
-              },
-            ),
+            '{group.name} 中的任何人',
             style: theme.textStyle.body.standard(
               color: theme.textColorScheme.primary,
             ),
@@ -77,7 +71,7 @@ class SharedGroupWidget extends StatelessWidget {
   Widget _buildSubtitle(BuildContext context) {
     final theme = AppFlowyTheme.of(context);
     return Text(
-      LocaleKeys.shareTab_anyoneInGroupWithLinkCanEdit.tr(),
+      '拥有链接的群组中的任何人都可以编辑',
       textAlign: TextAlign.left,
       style: theme.textStyle.caption.standard(
         color: theme.textColorScheme.secondary,

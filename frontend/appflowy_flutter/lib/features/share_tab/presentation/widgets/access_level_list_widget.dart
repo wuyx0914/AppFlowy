@@ -1,8 +1,6 @@
 import 'package:appflowy/features/share_tab/data/models/models.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class AccessLevelListCallbacks {
@@ -95,13 +93,13 @@ class AccessLevelListWidget extends StatelessWidget {
         if (additionalUserManagementOptions
             .contains(AdditionalUserManagementOptions.turnIntoMember))
           AFTextMenuItem(
-            title: LocaleKeys.shareTab_turnIntoMember.tr(),
+            title: '转为会员',
             onTap: callbacks.onTurnIntoMember,
           ),
         if (additionalUserManagementOptions
             .contains(AdditionalUserManagementOptions.removeAccess))
           AFTextMenuItem(
-            title: LocaleKeys.shareTab_removeAccess.tr(),
+            title: '移除访问权',
             titleColor: theme.textColorScheme.error,
             onTap: callbacks.onRemoveAccess,
           ),

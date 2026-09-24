@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
 import 'package:appflowy/plugins/database/application/setting/group_bloc.dart';
@@ -10,7 +9,6 @@ import 'package:appflowy/util/field_type_extension.dart';
 import 'package:appflowy/workspace/presentation/widgets/toggle/toggle.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
@@ -64,7 +62,7 @@ class DatabaseGroupList extends StatelessWidget {
                   child: FlowyButton(
                     resetHoverOnRebuild: false,
                     text: FlowyText(
-                      LocaleKeys.board_showUngrouped.tr(),
+                      '显示未分组的项目',
                       lineHeight: 1.0,
                     ),
                     onTap: () {
@@ -90,7 +88,7 @@ class DatabaseGroupList extends StatelessWidget {
                 padding:
                     const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                 child: FlowyText(
-                  LocaleKeys.board_groupBy.tr(),
+                  '通过...分组',
                   textAlign: TextAlign.left,
                   color: Theme.of(context).hintColor,
                 ),
@@ -115,7 +113,7 @@ class DatabaseGroupList extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
                   child: FlowyText(
-                    LocaleKeys.board_groupCondition.tr(),
+                    '群组条件',
                     textAlign: TextAlign.left,
                     color: Theme.of(context).hintColor,
                   ),

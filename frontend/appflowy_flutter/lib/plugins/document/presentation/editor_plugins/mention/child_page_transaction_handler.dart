@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mention/mention_block.dart';
 import 'package:appflowy/plugins/trash/application/trash_service.dart';
 import 'package:appflowy/shared/clipboard_state.dart';
@@ -6,7 +5,6 @@ import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/snap_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -100,8 +98,7 @@ class ChildPageTransactionHandler extends MentionTransactionHandler {
         Log.error(error);
         if (context.mounted) {
           showToastNotification(
-            message: LocaleKeys.document_plugins_subPage_errors_failedDeletePage
-                .tr(),
+            message: '删除页面失败',
           );
         }
       },
@@ -210,7 +207,7 @@ class ChildPageTransactionHandler extends MentionTransactionHandler {
         if (context.mounted) {
           showSnapBar(
             context,
-            LocaleKeys.document_plugins_subPage_errors_failedDuplicatePage.tr(),
+            '拷贝页面失败',
           );
         }
       },

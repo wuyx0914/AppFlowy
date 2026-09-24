@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:typed_data';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/field_controller.dart';
 import 'package:appflowy/plugins/database/application/field/field_editor_bloc.dart';
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
@@ -17,7 +16,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy/workspace/presentation/widgets/toggle/toggle.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -172,7 +170,7 @@ class _EditFieldButton extends StatelessWidget {
         leftIcon: const FlowySvg(FlowySvgs.edit_s),
         text: FlowyText(
           lineHeight: 1.0,
-          LocaleKeys.grid_field_editProperty.tr(),
+          '编辑列属性',
         ),
         onTap: onTap,
       ),
@@ -292,24 +290,24 @@ enum FieldAction {
   String title(FieldInfo fieldInfo) {
     switch (this) {
       case FieldAction.insertLeft:
-        return LocaleKeys.grid_field_insertLeft.tr();
+        return '左侧插入';
       case FieldAction.insertRight:
-        return LocaleKeys.grid_field_insertRight.tr();
+        return '右侧插入';
       case FieldAction.toggleVisibility:
         if (fieldInfo.visibility != null &&
             fieldInfo.visibility == FieldVisibility.AlwaysHidden) {
-          return LocaleKeys.grid_field_show.tr();
+          return '展示';
         } else {
-          return LocaleKeys.grid_field_hide.tr();
+          return '隐藏';
         }
       case FieldAction.duplicate:
-        return LocaleKeys.grid_field_duplicate.tr();
+        return '复制';
       case FieldAction.clearData:
-        return LocaleKeys.grid_field_clear.tr();
+        return '清空单元格';
       case FieldAction.delete:
-        return LocaleKeys.grid_field_delete.tr();
+        return '删除';
       case FieldAction.wrap:
-        return LocaleKeys.grid_field_wrapCellContent.tr();
+        return '文本换行';
     }
   }
 
@@ -344,9 +342,9 @@ enum FieldAction {
         PopoverContainer.of(context).closeAll();
         showCancelAndConfirmDialog(
           context: context,
-          title: LocaleKeys.grid_field_label.tr(),
-          description: LocaleKeys.grid_field_clearFieldPromptMessage.tr(),
-          confirmLabel: LocaleKeys.button_confirm.tr(),
+          title: '属性',
+          description: '您确定吗？此列中的所有单元格都将被清空',
+          confirmLabel: '确认',
           onConfirm: (_) {
             FieldBackendService.clearField(
               viewId: viewId,
@@ -359,8 +357,8 @@ enum FieldAction {
         PopoverContainer.of(context).closeAll();
         showConfirmDeletionDialog(
           context: context,
-          name: LocaleKeys.grid_field_label.tr(),
-          description: LocaleKeys.grid_field_deleteFieldPromptMessage.tr(),
+          name: '属性',
+          description: '确定要删除这个属性吗? ',
           onConfirm: () {
             FieldBackendService.deleteField(
               viewId: viewId,
@@ -716,7 +714,7 @@ class _SwitchFieldButtonState extends State<SwitchFieldButton> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8.0),
               child: FlowyTooltip(
-                message: LocaleKeys.grid_field_switchPrimaryFieldTooltip.tr(),
+                message: '无法变更主要字段的类型',
                 child: FlowyButton(
                   text: FlowyText(
                     state.field.fieldType.i18n,

@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
 import 'package:appflowy/plugins/database/board/application/board_bloc.dart';
 import 'package:appflowy/plugins/database/board/group_ext.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/util/field_type_extension.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_board/appflowy_board.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -148,8 +146,8 @@ class GroupOptionsButton extends StatelessWidget {
       case GroupOption.delete:
         showConfirmDeletionDialog(
           context: context,
-          name: LocaleKeys.board_column_label.tr(),
-          description: LocaleKeys.board_column_deleteColumnConfirmation.tr(),
+          name: '字段',
+          description: '这将删除该组及其中的所有卡片。你确定你要继续吗？',
           onConfirm: () {
             context
                 .read<BoardBloc>()
@@ -172,7 +170,7 @@ class CreateCardFromTopButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.board_column_addToColumnTopTooltip.tr(),
+      message: '在顶部添加一张新卡片',
       preferBelow: false,
       child: FlowyIconButton(
         width: 20,
@@ -243,8 +241,8 @@ enum GroupOption {
       };
 
   String get text => switch (this) {
-        rename => LocaleKeys.board_column_renameColumn.tr(),
-        hide => LocaleKeys.board_column_hideColumn.tr(),
-        delete => LocaleKeys.board_column_deleteColumn.tr(),
+        rename => '改名',
+        hide => '隐藏',
+        delete => '删除',
       };
 }

@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/favorite/favorite_bloc.dart';
 import 'package:appflowy/workspace/application/sidebar/folder/folder_bloc.dart';
 import 'package:appflowy/workspace/application/tabs/tabs_bloc.dart';
@@ -11,7 +10,6 @@ import 'package:appflowy/workspace/presentation/home/menu/sidebar/favorites/favo
 import 'package:appflowy/workspace/presentation/home/menu/view/view_item.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -166,7 +164,7 @@ class FavoriteHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = AppFlowyTheme.of(context);
     return AFGhostIconTextButton.primary(
-      text: LocaleKeys.sideBar_favorites.tr(),
+      text: '收藏夹',
       mainAxisAlignment: MainAxisAlignment.start,
       size: AFButtonSize.l,
       onTap: onPressed,
@@ -213,7 +211,7 @@ class FavoriteMoreButton extends StatelessWidget {
       child: FlowyButton(
         margin: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 7.0),
         leftIcon: const FlowySvg(FlowySvgs.workspace_three_dots_s),
-        text: FlowyText.regular(LocaleKeys.button_more.tr()),
+        text: FlowyText.regular('更多'),
       ),
     );
   }

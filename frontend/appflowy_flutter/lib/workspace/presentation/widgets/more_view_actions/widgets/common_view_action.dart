@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/sidebar/folder/folder_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
@@ -10,7 +9,6 @@ import 'package:appflowy/workspace/presentation/home/menu/view/view_more_action_
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -60,7 +58,7 @@ class ViewAction extends StatelessWidget {
           await showConfirmDeletionDialog(
             context: context,
             name: view.nameOrDefault,
-            description: LocaleKeys.publish_containsPublishedPage.tr(),
+            description: '此页面包含一个或多个已发布的页面。如果您继续，它们将会被取消发布。您要继续删除吗？',
             onConfirm: () {
               context.read<ViewBloc>().add(const ViewEvent.delete());
             },

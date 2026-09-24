@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:appflowy/features/page_access_level/logic/page_access_level_bloc.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/database/board/mobile_board_page.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
 import 'package:appflowy/plugins/database/application/row/row_controller.dart';
@@ -21,7 +20,6 @@ import 'package:appflowy/util/field_type_extension.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_board/appflowy_board.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -559,7 +557,7 @@ class _BoardColumnFooterState extends State<BoardColumnFooter> {
         );
       },
       child: FlowyTooltip(
-        message: LocaleKeys.board_column_addToColumnBottomTooltip.tr(),
+        message: '在底部添加一张新卡片',
         child: SizedBox(
           height: 36,
           child: FlowyButton(
@@ -568,7 +566,7 @@ class _BoardColumnFooterState extends State<BoardColumnFooter> {
               color: Theme.of(context).hintColor,
             ),
             text: FlowyText(
-              LocaleKeys.board_column_createNewCard.tr(),
+              '新建',
               color: Theme.of(context).hintColor,
             ),
             onTap: () {
@@ -876,7 +874,7 @@ class _BoardTrailingState extends State<BoardTrailing> {
                 ),
               )
             : FlowyTooltip(
-                message: LocaleKeys.board_column_createNewColumn.tr(),
+                message: '添加新组',
                 child: FlowyIconButton(
                   width: 26,
                   icon: const FlowySvg(FlowySvgs.add_s),

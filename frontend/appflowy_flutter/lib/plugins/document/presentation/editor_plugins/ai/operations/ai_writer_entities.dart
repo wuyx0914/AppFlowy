@@ -1,8 +1,6 @@
 import 'package:appflowy/ai/ai.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/protobuf/flowy-ai/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 
@@ -25,13 +23,13 @@ enum SuggestionAction {
   insertBelow;
 
   String get i18n => switch (this) {
-        accept => LocaleKeys.suggestion_accept.tr(),
-        discard => LocaleKeys.suggestion_discard.tr(),
-        close => LocaleKeys.suggestion_close.tr(),
-        tryAgain => LocaleKeys.suggestion_tryAgain.tr(),
-        rewrite => LocaleKeys.suggestion_rewrite.tr(),
-        keep => LocaleKeys.suggestion_keep.tr(),
-        insertBelow => LocaleKeys.suggestion_insertBelow.tr(),
+        accept => '接受',
+        discard => '丢弃',
+        close => '关闭',
+        tryAgain => '再试一次',
+        rewrite => '重新撰写',
+        keep => '保留',
+        insertBelow => '在下面插入',
       };
 
   FlowySvg buildIcon(BuildContext context) {
@@ -77,17 +75,17 @@ enum AiWriterCommand {
       };
 
   String get i18n => switch (this) {
-        userQuestion => LocaleKeys.document_plugins_aiWriter_userQuestion.tr(),
-        explain => LocaleKeys.document_plugins_aiWriter_explain.tr(),
-        // summarize => LocaleKeys.document_plugins_aiWriter_summarize.tr(),
+        userQuestion => '向AI提问',
+        explain => '解释',
+        // summarize => '总结',
         continueWriting =>
-          LocaleKeys.document_plugins_aiWriter_continueWriting.tr(),
+          '继续写作',
         fixSpellingAndGrammar =>
-          LocaleKeys.document_plugins_aiWriter_fixSpelling.tr(),
+          '修正拼写和语法',
         improveWriting =>
-          LocaleKeys.document_plugins_smartEditImproveWriting.tr(),
-        makeShorter => LocaleKeys.document_plugins_aiWriter_makeShorter.tr(),
-        makeLonger => LocaleKeys.document_plugins_aiWriter_makeLonger.tr(),
+          '提高写作水平',
+        makeShorter => '缩短',
+        makeLonger => '扩展',
       };
 
   FlowySvgData get icon => switch (this) {

@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/permission/permission_checker.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/default_extensions.dart';
 import 'package:appflowy_backend/log.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -32,7 +30,7 @@ class UploadImageFileWidget extends StatelessWidget {
         margin: const EdgeInsets.all(4.0),
         alignment: Alignment.center,
         child: FlowyText(
-          LocaleKeys.document_imageBlock_upload_placeholder.tr(),
+          '点击上传图片',
         ),
       ),
       onTap: () => _uploadImage(context),

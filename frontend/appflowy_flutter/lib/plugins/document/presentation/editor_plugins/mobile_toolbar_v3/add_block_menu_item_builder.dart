@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/type_option_menu_item.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/image_placeholder.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/multi_image_block_component/multi_image_placeholder.dart';
@@ -15,7 +14,6 @@ import 'package:appflowy/workspace/presentation/home/menu/menu_shared_state.dart
 import 'package:appflowy_editor/appflowy_editor.dart'
     hide QuoteBlockComponentBuilder, quoteNode, QuoteBlockKeys;
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -94,21 +92,21 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: HeadingBlockKeys.type,
         backgroundColor: colorMap[HeadingBlockKeys.type]!,
-        text: LocaleKeys.editor_heading1.tr(),
+        text: '一级标题',
         icon: FlowySvgs.m_add_block_h1_s,
         onTap: (_, __) => _insertBlock(headingNode(level: 1)),
       ),
       TypeOptionMenuItemValue(
         value: HeadingBlockKeys.type,
         backgroundColor: colorMap[HeadingBlockKeys.type]!,
-        text: LocaleKeys.editor_heading2.tr(),
+        text: '二级标题',
         icon: FlowySvgs.m_add_block_h2_s,
         onTap: (_, __) => _insertBlock(headingNode(level: 2)),
       ),
       TypeOptionMenuItemValue(
         value: HeadingBlockKeys.type,
         backgroundColor: colorMap[HeadingBlockKeys.type]!,
-        text: LocaleKeys.editor_heading3.tr(),
+        text: '三级标题',
         icon: FlowySvgs.m_add_block_h3_s,
         onTap: (_, __) => _insertBlock(headingNode(level: 3)),
       ),
@@ -122,7 +120,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: ParagraphBlockKeys.type,
         backgroundColor: colorMap[ParagraphBlockKeys.type]!,
-        text: LocaleKeys.editor_text.tr(),
+        text: '文本',
         icon: FlowySvgs.m_add_block_paragraph_s,
         onTap: (_, __) => _insertBlock(paragraphNode()),
       ),
@@ -136,7 +134,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: TodoListBlockKeys.type,
         backgroundColor: colorMap[TodoListBlockKeys.type]!,
-        text: LocaleKeys.editor_checkbox.tr(),
+        text: '复选框',
         icon: FlowySvgs.m_add_block_checkbox_s,
         onTap: (_, __) => _insertBlock(todoListNode(checked: false)),
       ),
@@ -150,7 +148,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: SimpleTableBlockKeys.type,
         backgroundColor: colorMap[SimpleTableBlockKeys.type]!,
-        text: LocaleKeys.editor_table.tr(),
+        text: '表格',
         icon: FlowySvgs.slash_menu_icon_simple_table_s,
         onTap: (_, __) => _insertBlock(
           createSimpleTableBlockNode(columnCount: 2, rowCount: 2),
@@ -166,7 +164,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: QuoteBlockKeys.type,
         backgroundColor: colorMap[QuoteBlockKeys.type]!,
-        text: LocaleKeys.editor_quote.tr(),
+        text: '引用',
         icon: FlowySvgs.m_add_block_quote_s,
         onTap: (_, __) => _insertBlock(quoteNode()),
       ),
@@ -181,21 +179,21 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: BulletedListBlockKeys.type,
         backgroundColor: colorMap[BulletedListBlockKeys.type]!,
-        text: LocaleKeys.editor_bulletedListShortForm.tr(),
+        text: '项目符号',
         icon: FlowySvgs.m_add_block_bulleted_list_s,
         onTap: (_, __) => _insertBlock(bulletedListNode()),
       ),
       TypeOptionMenuItemValue(
         value: NumberedListBlockKeys.type,
         backgroundColor: colorMap[NumberedListBlockKeys.type]!,
-        text: LocaleKeys.editor_numberedListShortForm.tr(),
+        text: '编号',
         icon: FlowySvgs.m_add_block_numbered_list_s,
         onTap: (_, __) => _insertBlock(numberedListNode()),
       ),
       TypeOptionMenuItemValue(
         value: ToggleListBlockKeys.type,
         backgroundColor: colorMap[ToggleListBlockKeys.type]!,
-        text: LocaleKeys.editor_toggleListShortForm.tr(),
+        text: '切换',
         icon: FlowySvgs.m_add_block_toggle_s,
         onTap: (_, __) => _insertBlock(toggleListBlockNode()),
       ),
@@ -209,7 +207,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: ToggleListBlockKeys.type,
         backgroundColor: colorMap[ToggleListBlockKeys.type]!,
-        text: LocaleKeys.editor_toggleHeading1ShortForm.tr(),
+        text: '切换标题 1',
         icon: FlowySvgs.toggle_heading1_s,
         iconPadding: const EdgeInsets.all(3),
         onTap: (_, __) => _insertBlock(toggleHeadingNode()),
@@ -217,7 +215,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: ToggleListBlockKeys.type,
         backgroundColor: colorMap[ToggleListBlockKeys.type]!,
-        text: LocaleKeys.editor_toggleHeading2ShortForm.tr(),
+        text: '切换标题 2',
         icon: FlowySvgs.toggle_heading2_s,
         iconPadding: const EdgeInsets.all(3),
         onTap: (_, __) => _insertBlock(toggleHeadingNode(level: 2)),
@@ -225,7 +223,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: ToggleListBlockKeys.type,
         backgroundColor: colorMap[ToggleListBlockKeys.type]!,
-        text: LocaleKeys.editor_toggleHeading3ShortForm.tr(),
+        text: '切换标题 3',
         icon: FlowySvgs.toggle_heading3_s,
         iconPadding: const EdgeInsets.all(3),
         onTap: (_, __) => _insertBlock(toggleHeadingNode(level: 3)),
@@ -240,7 +238,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: ImageBlockKeys.type,
         backgroundColor: colorMap[ImageBlockKeys.type]!,
-        text: LocaleKeys.editor_image.tr(),
+        text: '图像',
         icon: FlowySvgs.m_add_block_image_s,
         onTap: (_, __) async {
           AppGlobals.rootNavKey.currentContext?.pop(true);
@@ -260,7 +258,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: MultiImageBlockKeys.type,
         backgroundColor: colorMap[ImageBlockKeys.type]!,
-        text: LocaleKeys.document_plugins_photoGallery_name.tr(),
+        text: '照片库',
         icon: FlowySvgs.m_add_block_photo_gallery_s,
         onTap: (_, __) async {
           AppGlobals.rootNavKey.currentContext?.pop(true);
@@ -280,7 +278,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: FileBlockKeys.type,
         backgroundColor: colorMap[ImageBlockKeys.type]!,
-        text: LocaleKeys.document_plugins_file_name.tr(),
+        text: '文件',
         icon: FlowySvgs.media_s,
         onTap: (_, __) async {
           AppGlobals.rootNavKey.currentContext?.pop(true);
@@ -301,14 +299,14 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: ParagraphBlockKeys.type,
         backgroundColor: colorMap[MentionBlockKeys.type]!,
-        text: LocaleKeys.editor_date.tr(),
+        text: '日期',
         icon: FlowySvgs.m_add_block_date_s,
         onTap: (_, __) => _insertBlock(dateMentionNode()),
       ),
       TypeOptionMenuItemValue(
         value: ParagraphBlockKeys.type,
         backgroundColor: colorMap[MentionBlockKeys.type]!,
-        text: LocaleKeys.editor_page.tr(),
+        text: '页面',
         icon: FlowySvgs.icon_document_s,
         onTap: (_, __) async {
           AppGlobals.rootNavKey.currentContext?.pop(true);
@@ -339,7 +337,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: DividerBlockKeys.type,
         backgroundColor: colorMap[DividerBlockKeys.type]!,
-        text: LocaleKeys.editor_divider.tr(),
+        text: '分隔线',
         icon: FlowySvgs.m_add_block_divider_s,
         onTap: (_, __) {
           AppGlobals.rootNavKey.currentContext?.pop(true);
@@ -359,7 +357,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: CalloutBlockKeys.type,
         backgroundColor: colorMap[CalloutBlockKeys.type]!,
-        text: LocaleKeys.document_plugins_callout.tr(),
+        text: '标注',
         icon: FlowySvgs.m_add_block_callout_s,
         onTap: (_, __) => _insertBlock(calloutNode()),
       ),
@@ -373,7 +371,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: CodeBlockKeys.type,
         backgroundColor: colorMap[CodeBlockKeys.type]!,
-        text: LocaleKeys.editor_codeBlockShortForm.tr(),
+        text: '代码',
         icon: FlowySvgs.m_add_block_code_s,
         onTap: (_, __) => _insertBlock(codeBlockNode()),
       ),
@@ -387,7 +385,7 @@ class AddBlockMenuItemBuilder {
       TypeOptionMenuItemValue(
         value: MathEquationBlockKeys.type,
         backgroundColor: colorMap[MathEquationBlockKeys.type]!,
-        text: LocaleKeys.editor_mathEquationShortForm.tr(),
+        text: '公式',
         icon: FlowySvgs.m_add_block_formula_s,
         onTap: (_, __) {
           AppGlobals.rootNavKey.currentContext?.pop(true);

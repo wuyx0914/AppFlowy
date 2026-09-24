@@ -1,7 +1,6 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';
 import 'package:appflowy/workspace/application/tabs/tabs_bloc.dart';
@@ -11,7 +10,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialog_v2.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -125,7 +123,7 @@ class _WorkspacesMenuState extends State<WorkspacesMenu> {
       return widget.userProfile.name;
     }
 
-    return LocaleKeys.defaultUsername.tr();
+    return '我';
   }
 }
 
@@ -187,7 +185,7 @@ class _WorkspaceMenuItemState extends State<WorkspaceMenuItem> {
 
   Widget _buildLeftIcon(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.document_plugins_cover_changeIcon.tr(),
+      message: '更改图标',
       child: WorkspaceIcon(
         workspaceName: widget.workspace.name,
         workspaceIcon: widget.workspace.icon,
@@ -323,7 +321,7 @@ class _CreateWorkspaceButton extends StatelessWidget {
             _buildLeftIcon(context),
             const HSpace(8.0),
             FlowyText.regular(
-              LocaleKeys.workspace_create.tr(),
+              '新建工作区',
             ),
           ],
         ),
@@ -352,7 +350,7 @@ class _CreateWorkspaceButton extends StatelessWidget {
       final workspaceBloc = context.read<UserWorkspaceBloc>();
       await showAFTextFieldDialog(
         context: context,
-        title: LocaleKeys.workspace_create.tr(),
+        title: '新建工作区',
         initialValue: '',
         onConfirm: (name) {
           workspaceBloc.add(
@@ -385,12 +383,12 @@ class _ImportNotionButton extends StatelessWidget {
             _buildLeftIcon(context),
             const HSpace(8.0),
             FlowyText.regular(
-              LocaleKeys.workspace_importFromNotion.tr(),
+              '从 Notion 导入',
             ),
           ],
         ),
         rightIcon: FlowyTooltip(
-          message: LocaleKeys.workspace_learnMore.tr(),
+          message: '了解更多',
           preferBelow: true,
           child: FlowyIconButton(
             icon: const FlowySvg(
@@ -473,7 +471,7 @@ class WorkspaceMoreButton extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 6.0, vertical: 7.0),
         leftIcon: const FlowySvg(FlowySvgs.workspace_logout_s),
         iconPadding: 10.0,
-        text: FlowyText.regular(LocaleKeys.button_logout.tr()),
+        text: FlowyText.regular('退出'),
         onTap: () async {
           await getIt<AuthService>().signOut();
           await runAppFlowy();

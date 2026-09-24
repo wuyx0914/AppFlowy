@@ -3,8 +3,6 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 
 import 'package:appflowy/core/helpers/url_launcher.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 enum _FlowyMobileStateContainerType {
@@ -86,14 +84,14 @@ class FlowyMobileStateContainer extends StatelessWidget {
                           );
                         },
                         child: Text(
-                          LocaleKeys.workspace_errorActions_reportIssue.tr(),
+                          '上报问题',
                         ),
                       ),
                       OutlinedButton(
                         onPressed: () =>
                             afLaunchUrlString('https://discord.gg/JucBXeU2FE'),
                         child: Text(
-                          LocaleKeys.workspace_errorActions_reachOut.tr(),
+                          '在 Discord 联系我们',
                         ),
                       ),
                     ],

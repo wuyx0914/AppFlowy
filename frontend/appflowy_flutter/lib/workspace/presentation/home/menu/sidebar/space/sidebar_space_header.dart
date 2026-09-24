@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
 import 'package:appflowy/shared/icon_emoji_picker/icon_picker.dart';
 import 'package:appflowy/workspace/application/sidebar/space/space_bloc.dart';
@@ -15,7 +14,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialog_v2.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart' hide Icon;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -106,7 +104,7 @@ class _SidebarSpaceHeaderState extends State<SidebarSpaceHeader> {
     final textSpan = TextSpan(
       children: [
         TextSpan(
-          text: '${LocaleKeys.space_quicklySwitch.tr()}\n',
+          text: '${'快速切换到下一个空间'}\n',
           style: context.tooltipTextStyle(),
         ),
         TextSpan(
@@ -141,7 +139,7 @@ class _SidebarSpaceHeaderState extends State<SidebarSpaceHeader> {
             ),
             const HSpace(8.0),
             FlowyTooltip(
-              message: LocaleKeys.sideBar_addAPage.tr(),
+              message: '添加页面',
               child: ViewAddButton(
                 parentViewId: widget.space.id,
                 onEditing: (_) {},
@@ -216,9 +214,9 @@ class _SidebarSpaceHeaderState extends State<SidebarSpaceHeader> {
   Future<void> _showRenameDialog() async {
     await showAFTextFieldDialog(
       context: context,
-      title: LocaleKeys.space_rename.tr(),
+      title: '重命名空间',
       initialValue: widget.space.name,
-      hintText: LocaleKeys.space_spaceName.tr(),
+      hintText: '空间名称',
       onConfirm: (name) {
         context.read<SpaceBloc>().add(
               SpaceEvent.rename(
@@ -255,7 +253,7 @@ class _SidebarSpaceHeaderState extends State<SidebarSpaceHeader> {
     showConfirmDeletionDialog(
       context: context,
       name: name,
-      description: LocaleKeys.space_deleteConfirmationDescription.tr(),
+      description: '这个空间中的所有页面都将被删除并移至垃圾桶，任何已发布的页面都会取消发布。',
       onConfirm: () {
         context.read<SpaceBloc>().add(const SpaceEvent.delete(null));
       },

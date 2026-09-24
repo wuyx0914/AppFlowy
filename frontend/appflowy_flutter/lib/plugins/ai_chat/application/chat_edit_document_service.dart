@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_data_pb_extension.dart';
 import 'package:appflowy/plugins/document/application/prelude.dart';
 import 'package:appflowy/shared/markdown_to_document.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_chat_core/flutter_chat_core.dart';
 
@@ -43,7 +41,7 @@ class ChatEditDocumentService {
     }
 
     return ViewBackendService.createView(
-      name: LocaleKeys.chat_addToNewPageName.tr(args: [chatPageName]),
+      name: '从"{chatPageName}"中提取的消息',
       layoutType: ViewLayoutPB.Document,
       parentViewId: parentViewId,
       initialDataBytes: initialBytes,

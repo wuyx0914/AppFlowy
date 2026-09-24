@@ -1,7 +1,6 @@
 import 'package:appflowy/core/frameless_window.dart';
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/user/application/anon_user_bloc.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';
@@ -9,8 +8,6 @@ import 'package:appflowy/user/presentation/router.dart';
 import 'package:appflowy/user/presentation/widgets/widgets.dart';
 import 'package:appflowy/workspace/application/settings/appearance/appearance_cubit.dart';
 import 'package:appflowy_backend/log.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flowy_infra/language.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +41,7 @@ class _SkipLogInScreenState extends State<SkipLogInScreen> {
       children: [
         const Spacer(),
         FlowyLogoTitle(
-          title: LocaleKeys.welcomeText.tr(),
+          title: '欢迎使用 @:appName',
           logoSize: Size.square(UniversalPlatform.isMobile ? 80 : 40),
         ),
         const VSpace(32),
@@ -103,16 +100,7 @@ class SkipLoginPageFooter extends StatelessWidget {
         children: [
           if (!UniversalPlatform.isMobile) const HSpace(placeholderWidth),
           const Expanded(child: SubscribeButtons()),
-          const SizedBox(
-            width: placeholderWidth,
-            height: 28,
-            child: Row(
-              children: [
-                Spacer(),
-                LanguageSelectorOnWelcomePage(),
-              ],
-            ),
-          ),
+          const SizedBox(width: placeholderWidth, height: 28),
         ],
       ),
     );
@@ -132,11 +120,11 @@ class SubscribeButtons extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             FlowyText.regular(
-              LocaleKeys.youCanAlso.tr(),
+              '您还可以',
               fontSize: FontSizes.s12,
             ),
             FlowyTextButton(
-              LocaleKeys.githubStarText.tr(),
+              '在 GitHub 上 Star',
               padding: const EdgeInsets.symmetric(horizontal: 4),
               fontWeight: FontWeight.w500,
               fontColor: Theme.of(context).colorScheme.primary,
@@ -151,9 +139,9 @@ class SubscribeButtons extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            FlowyText.regular(LocaleKeys.and.tr(), fontSize: FontSizes.s12),
+            FlowyText.regular('以及', fontSize: FontSizes.s12),
             FlowyTextButton(
-              LocaleKeys.subscribeNewsletterText.tr(),
+              '消息订阅',
               padding: const EdgeInsets.symmetric(horizontal: 4.0),
               fontWeight: FontWeight.w500,
               fontColor: Theme.of(context).colorScheme.primary,
@@ -165,100 +153,6 @@ class SubscribeButtons extends StatelessWidget {
           ],
         ),
       ],
-    );
-  }
-}
-
-class LanguageSelectorOnWelcomePage extends StatelessWidget {
-  const LanguageSelectorOnWelcomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return AppFlowyPopover(
-      offset: const Offset(0, -450),
-      direction: PopoverDirection.bottomWithRightAligned,
-      child: FlowyButton(
-        useIntrinsicWidth: true,
-        text: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            const FlowySvg(FlowySvgs.ethernet_m, size: Size.square(20)),
-            const HSpace(4),
-            Builder(
-              builder: (context) {
-                final currentLocale =
-                    context.watch<AppearanceSettingsCubit>().state.locale;
-                return FlowyText(languageFromLocale(currentLocale));
-              },
-            ),
-            const FlowySvg(FlowySvgs.drop_menu_hide_m, size: Size.square(20)),
-          ],
-        ),
-      ),
-      popupBuilder: (BuildContext context) {
-        final easyLocalization = EasyLocalization.of(context);
-        if (easyLocalization == null) {
-          return const SizedBox.shrink();
-        }
-
-        return LanguageItemsListView(
-          allLocales: easyLocalization.supportedLocales,
-        );
-      },
-    );
-  }
-}
-
-class LanguageItemsListView extends StatelessWidget {
-  const LanguageItemsListView({super.key, required this.allLocales});
-
-  final List<Locale> allLocales;
-
-  @override
-  Widget build(BuildContext context) {
-    // get current locale from cubit
-    final state = context.watch<AppearanceSettingsCubit>().state;
-    return ConstrainedBox(
-      constraints: const BoxConstraints(maxHeight: 400),
-      child: ListView.builder(
-        itemCount: allLocales.length,
-        itemBuilder: (context, index) {
-          final locale = allLocales[index];
-          return LanguageItem(locale: locale, currentLocale: state.locale);
-        },
-      ),
-    );
-  }
-}
-
-class LanguageItem extends StatelessWidget {
-  const LanguageItem({
-    super.key,
-    required this.locale,
-    required this.currentLocale,
-  });
-
-  final Locale locale;
-  final Locale currentLocale;
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 32,
-      child: FlowyButton(
-        text: FlowyText.medium(
-          languageFromLocale(locale),
-        ),
-        rightIcon:
-            currentLocale == locale ? const FlowySvg(FlowySvgs.check_s) : null,
-        onTap: () {
-          if (currentLocale != locale) {
-            context.read<AppearanceSettingsCubit>().setLocale(context, locale);
-          }
-          PopoverContainer.of(context).close();
-        },
-      ),
     );
   }
 }
@@ -281,8 +175,8 @@ class GoButton extends StatelessWidget {
         child: BlocBuilder<AnonUserBloc, AnonUserState>(
           builder: (context, state) {
             final text = state.anonUsers.isEmpty
-                ? LocaleKeys.letsGoButtonText.tr()
-                : LocaleKeys.signIn_continueAnonymousUser.tr();
+                ? '开始'
+                : '继续匿名会话';
 
             final textWidget = Row(
               children: [

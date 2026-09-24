@@ -1,13 +1,11 @@
 import 'package:flutter/widgets.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/media_cell_bloc.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller_builder.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
 import 'package:appflowy/plugins/database/widgets/cell/card_cell_skeleton/card_cell.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
@@ -64,8 +62,7 @@ class _MediaCellState extends State<MediaCardCell> {
                 const HSpace(6),
                 Flexible(
                   child: FlowyText.regular(
-                    LocaleKeys.grid_media_attachmentsHint
-                        .tr(args: ['${state.files.length}']),
+                    '${state.files.length}',
                     fontSize: 12,
                     color: AFThemeExtension.of(context).secondaryTextColor,
                     overflow: TextOverflow.ellipsis,

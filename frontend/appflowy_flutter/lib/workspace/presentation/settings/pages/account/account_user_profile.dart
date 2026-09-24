@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
 import 'package:appflowy/workspace/application/user/settings_user_bloc.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/settings_input_field.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/material.dart';
@@ -82,7 +80,7 @@ class _AccountUserProfileState extends State<AccountUserProfile> {
         ),
         child: FlowyTooltip(
           message:
-              LocaleKeys.settings_accountPage_general_changeProfilePicture.tr(),
+              '更换头像',
           verticalOffset: 28,
           child: AFAvatar(
             url: widget.iconUrl,

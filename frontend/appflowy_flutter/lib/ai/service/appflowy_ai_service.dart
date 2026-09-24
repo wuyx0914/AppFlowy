@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'dart:ffi';
 import 'dart:isolate';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/ai/operations/ai_writer_entities.dart';
 import 'package:appflowy/shared/list_extension.dart';
 import 'package:appflowy_backend/dispatch/dispatch.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy_backend/protobuf/flowy-ai/protobuf.dart'
     hide CustomPromptDatabaseConfigurationPB;
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fixnum/fixnum.dart' as fixnum;
 import 'package:flutter/services.dart';
 
@@ -200,7 +198,7 @@ class AppFlowyCompletionStream extends CompletionStream {
     if (event == AIStreamEventPrefix.aiResponseLimit) {
       processError(
         AIError(
-          message: LocaleKeys.ai_textLimitReachedDescription.tr(),
+          message: '您的工作区已用完免费的 AI 回应。升级至专业版或购买 AI 附加组件以解锁无限回应',
           code: AIErrorCode.aiResponseLimitExceeded,
         ),
       );
@@ -210,7 +208,7 @@ class AppFlowyCompletionStream extends CompletionStream {
     if (event == AIStreamEventPrefix.aiImageResponseLimit) {
       processError(
         AIError(
-          message: LocaleKeys.ai_imageLimitReachedDescription.tr(),
+          message: '您已用完免费的 AI 图片配额。请升级至专业版或购买 AI 附加组件以解锁无限回应。',
           code: AIErrorCode.aiImageResponseLimitExceeded,
         ),
       );

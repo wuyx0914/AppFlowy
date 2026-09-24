@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/flowy_tooltip.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
@@ -55,12 +53,12 @@ class _ShareWithUserWidgetState extends State<ShareWithUserWidget> {
           child: AFTextField(
             controller: effectiveController,
             size: AFTextFieldSize.m,
-            hintText: LocaleKeys.shareTab_inviteByEmail.tr(),
+            hintText: '通过电子邮件邀请',
           ),
         ),
         HSpace(theme.spacing.s),
         AFFilledTextButton.primary(
-          text: LocaleKeys.shareTab_invite.tr(),
+          text: '邀请',
           disabled: !isButtonEnabled,
           onTap: () {
             widget.onInvite(effectiveController.text.trim().split(','));
@@ -72,7 +70,7 @@ class _ShareWithUserWidgetState extends State<ShareWithUserWidget> {
     if (widget.disabled) {
       return FlowyTooltip(
         message:
-            widget.tooltip ?? LocaleKeys.shareTab_onlyFullAccessCanInvite.tr(),
+            widget.tooltip ?? '只有拥有完整访问权的用户才能邀请其他人',
         child: IgnorePointer(
           child: child,
         ),

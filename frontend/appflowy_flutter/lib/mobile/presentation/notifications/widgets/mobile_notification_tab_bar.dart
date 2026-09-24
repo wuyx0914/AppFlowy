@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/notifications/widgets/flowy_tab.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flutter/material.dart';
 
@@ -58,11 +56,11 @@ class _MobileNotificationTabBarState extends State<MobileNotificationTabBar> {
               isScrollable: true,
               tabs: [
                 FlowyTabItem(
-                  label: LocaleKeys.notificationHub_tabs_inbox.tr(),
+                  label: '收件箱',
                   isSelected: widget.controller.index == 0,
                 ),
                 FlowyTabItem(
-                  label: LocaleKeys.notificationHub_tabs_upcoming.tr(),
+                  label: '即将推出',
                   isSelected: widget.controller.index == 1,
                 ),
               ],

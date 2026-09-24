@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/database/card/card_detail/widgets/widgets.dart';
 import 'package:appflowy/mobile/presentation/database/field/mobile_field_bottom_sheets.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
@@ -11,7 +10,6 @@ import 'package:appflowy/plugins/database/application/field/field_info.dart';
 import 'package:appflowy/plugins/database/domain/field_backend_service.dart';
 import 'package:appflowy/plugins/database/widgets/setting/field_visibility_extension.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -91,7 +89,7 @@ class _QuickEditFieldState extends State<QuickEditField> {
               ),
               const _Divider(),
               FlowyOptionTile.text(
-                text: LocaleKeys.grid_field_editProperty.tr(),
+                text: '编辑列属性',
                 leftIcon: const FlowySvg(FlowySvgs.m_field_edit_s),
                 onTap: () {
                   showEditFieldScreen(
@@ -106,8 +104,8 @@ class _QuickEditFieldState extends State<QuickEditField> {
                 FlowyOptionTile.text(
                   showTopBorder: false,
                   text: fieldVisibility.isVisibleState()
-                      ? LocaleKeys.grid_field_hide.tr()
-                      : LocaleKeys.grid_field_show.tr(),
+                      ? '隐藏'
+                      : '展示',
                   leftIcon: const FlowySvg(FlowySvgs.m_field_hide_s),
                   onTap: () async {
                     context.pop();
@@ -120,7 +118,7 @@ class _QuickEditFieldState extends State<QuickEditField> {
                 ),
                 FlowyOptionTile.text(
                   showTopBorder: false,
-                  text: LocaleKeys.grid_field_insertLeft.tr(),
+                  text: '左侧插入',
                   leftIcon: const FlowySvg(FlowySvgs.m_filed_insert_left_s),
                   onTap: () {
                     context.pop();
@@ -137,7 +135,7 @@ class _QuickEditFieldState extends State<QuickEditField> {
               ],
               FlowyOptionTile.text(
                 showTopBorder: false,
-                text: LocaleKeys.grid_field_insertRight.tr(),
+                text: '右侧插入',
                 leftIcon: const FlowySvg(FlowySvgs.m_filed_insert_right_s),
                 onTap: () {
                   context.pop();
@@ -154,7 +152,7 @@ class _QuickEditFieldState extends State<QuickEditField> {
               if (!widget.fieldInfo.isPrimary) ...[
                 FlowyOptionTile.text(
                   showTopBorder: false,
-                  text: LocaleKeys.button_duplicate.tr(),
+                  text: '复制',
                   leftIcon: const FlowySvg(FlowySvgs.m_field_copy_s),
                   onTap: () {
                     context.pop();
@@ -163,7 +161,7 @@ class _QuickEditFieldState extends State<QuickEditField> {
                 ),
                 FlowyOptionTile.text(
                   showTopBorder: false,
-                  text: LocaleKeys.button_delete.tr(),
+                  text: '删除',
                   textColor: Theme.of(context).colorScheme.error,
                   leftIcon: FlowySvg(
                     FlowySvgs.m_field_delete_s,

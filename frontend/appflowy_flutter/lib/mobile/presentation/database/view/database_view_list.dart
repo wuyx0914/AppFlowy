@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar_actions.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -36,13 +34,7 @@ class MobileDatabaseViewList extends StatelessWidget {
         return Column(
           children: [
             _Header(
-              title: LocaleKeys.grid_settings_viewList.plural(
-                context.watch<DatabaseTabBarBloc>().state.tabBars.length,
-                namedArgs: {
-                  'count':
-                      '${context.watch<DatabaseTabBarBloc>().state.tabBars.length}',
-                },
-              ),
+              title: '{count} 次浏览',
               showBackButton: false,
               useFilledDoneButton: false,
               onDone: (context) => Navigator.pop(context),
@@ -236,7 +228,7 @@ class MobileNewDatabaseViewButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyOptionTile.text(
-      text: LocaleKeys.grid_settings_createView.tr(),
+      text: '新视图',
       textColor: Theme.of(context).hintColor,
       leftIcon: FlowySvg(
         FlowySvgs.add_s,
@@ -277,7 +269,7 @@ class _MobileCreateDatabaseViewState extends State<MobileCreateDatabaseView> {
   void initState() {
     super.initState();
     controller = TextEditingController(
-      text: LocaleKeys.grid_title_placeholder.tr(),
+      text: '无标题',
     );
   }
 
@@ -292,7 +284,7 @@ class _MobileCreateDatabaseViewState extends State<MobileCreateDatabaseView> {
     return Column(
       children: [
         _Header(
-          title: LocaleKeys.grid_settings_createView.tr(),
+          title: '新视图',
           showBackButton: true,
           useFilledDoneButton: true,
           onDone: (context) =>

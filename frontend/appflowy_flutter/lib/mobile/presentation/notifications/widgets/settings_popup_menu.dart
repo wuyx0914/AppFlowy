@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/presentation.dart';
 import 'package:appflowy/shared/popup_menu/appflowy_popup_menu.dart';
 import 'package:appflowy/user/application/reminder/reminder_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart'
@@ -42,19 +40,19 @@ class NotificationSettingsPopupMenu extends StatelessWidget {
         _buildItem(
           value: _NotificationSettingsPopupMenuItem.settings,
           svg: FlowySvgs.m_notification_settings_s,
-          text: LocaleKeys.settings_notifications_settings_settings.tr(),
+          text: '设置',
         ),
         const PopupMenuDivider(height: 0.5),
         _buildItem(
           value: _NotificationSettingsPopupMenuItem.markAllAsRead,
           svg: FlowySvgs.m_notification_mark_as_read_s,
-          text: LocaleKeys.settings_notifications_settings_markAllAsRead.tr(),
+          text: '全部标记为已读',
         ),
         const PopupMenuDivider(height: 0.5),
         _buildItem(
           value: _NotificationSettingsPopupMenuItem.archiveAll,
           svg: FlowySvgs.m_notification_archived_s,
-          text: LocaleKeys.settings_notifications_settings_archiveAll.tr(),
+          text: '全部存盘',
         ),
         // only visible in debug mode
         if (kDebugMode) ...[
@@ -108,9 +106,7 @@ class NotificationSettingsPopupMenu extends StatelessWidget {
 
   void _onMarkAllAsRead(BuildContext context) {
     showToastNotification(
-      message: LocaleKeys
-          .settings_notifications_markAsReadNotifications_allSuccess
-          .tr(),
+      message: '成功全部标为已读',
     );
 
     context.read<ReminderBloc>().add(const ReminderEvent.markAllRead());
@@ -118,8 +114,7 @@ class NotificationSettingsPopupMenu extends StatelessWidget {
 
   void _onArchiveAll(BuildContext context) {
     showToastNotification(
-      message: LocaleKeys.settings_notifications_archiveNotifications_allSuccess
-          .tr(),
+      message: '已成功存盘所有通知',
     );
 
     context.read<ReminderBloc>().add(const ReminderEvent.archiveAll());

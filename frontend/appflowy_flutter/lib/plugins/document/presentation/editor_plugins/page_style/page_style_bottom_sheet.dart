@@ -1,11 +1,9 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/page_style/_page_style_cover_image.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/page_style/_page_style_icon.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/page_style/_page_style_layout.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/page_style/_page_style_util.dart';
 import 'package:appflowy/shared/icon_emoji_picker/tab.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +26,7 @@ class PageStyleBottomSheet extends StatelessWidget {
         children: [
           // cover image
           FlowyText(
-            LocaleKeys.pageStyle_coverImage.tr(),
+            '封面图片',
             color: context.pageStyleTextColor,
             fontSize: 14.0,
           ),
@@ -37,7 +35,7 @@ class PageStyleBottomSheet extends StatelessWidget {
           const VSpace(20.0),
           // layout: font size, line height and font family.
           FlowyText(
-            LocaleKeys.pageStyle_layout.tr(),
+            '版面配置',
             color: context.pageStyleTextColor,
             fontSize: 14.0,
           ),
@@ -46,7 +44,7 @@ class PageStyleBottomSheet extends StatelessWidget {
           const VSpace(20.0),
           // icon
           FlowyText(
-            LocaleKeys.pageStyle_pageIcon.tr(),
+            '页面图标',
             color: context.pageStyleTextColor,
             fontSize: 14.0,
           ),

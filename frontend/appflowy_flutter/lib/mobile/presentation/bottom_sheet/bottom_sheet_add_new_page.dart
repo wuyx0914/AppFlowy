@@ -1,8 +1,6 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class AddNewPageWidgetBottomSheet extends StatelessWidget {
@@ -20,7 +18,7 @@ class AddNewPageWidgetBottomSheet extends StatelessWidget {
     return Column(
       children: [
         FlowyOptionTile.text(
-          text: LocaleKeys.document_menuName.tr(),
+          text: '文档',
           height: 52.0,
           leftIcon: const FlowySvg(
             FlowySvgs.icon_document_s,
@@ -31,7 +29,7 @@ class AddNewPageWidgetBottomSheet extends StatelessWidget {
           onTap: () => onAction(ViewLayoutPB.Document),
         ),
         FlowyOptionTile.text(
-          text: LocaleKeys.grid_menuName.tr(),
+          text: '网格',
           height: 52.0,
           leftIcon: const FlowySvg(
             FlowySvgs.icon_grid_s,
@@ -42,7 +40,7 @@ class AddNewPageWidgetBottomSheet extends StatelessWidget {
           onTap: () => onAction(ViewLayoutPB.Grid),
         ),
         FlowyOptionTile.text(
-          text: LocaleKeys.board_menuName.tr(),
+          text: '看板',
           height: 52.0,
           leftIcon: const FlowySvg(
             FlowySvgs.icon_board_s,
@@ -53,7 +51,7 @@ class AddNewPageWidgetBottomSheet extends StatelessWidget {
           onTap: () => onAction(ViewLayoutPB.Board),
         ),
         FlowyOptionTile.text(
-          text: LocaleKeys.calendar_menuName.tr(),
+          text: '日历',
           height: 52.0,
           leftIcon: const FlowySvg(
             FlowySvgs.icon_calendar_s,
@@ -64,7 +62,7 @@ class AddNewPageWidgetBottomSheet extends StatelessWidget {
           onTap: () => onAction(ViewLayoutPB.Calendar),
         ),
         FlowyOptionTile.text(
-          text: LocaleKeys.chat_newChat.tr(),
+          text: 'AI 对话',
           height: 52.0,
           leftIcon: const FlowySvg(
             FlowySvgs.chat_ai_page_s,

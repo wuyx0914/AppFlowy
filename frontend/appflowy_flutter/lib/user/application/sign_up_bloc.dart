@@ -1,11 +1,9 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/code.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart'
     show UserProfilePB;
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -71,7 +69,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       emit(
         state.copyWith(
           isSubmitting: false,
-          passwordError: LocaleKeys.signUp_emptyPasswordError.tr(),
+          passwordError: '密码不能为空',
         ),
       );
       return;
@@ -81,7 +79,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       emit(
         state.copyWith(
           isSubmitting: false,
-          repeatPasswordError: LocaleKeys.signUp_repeatPasswordEmptyError.tr(),
+          repeatPasswordError: '确认密码不能为空',
         ),
       );
       return;
@@ -91,7 +89,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       emit(
         state.copyWith(
           isSubmitting: false,
-          repeatPasswordError: LocaleKeys.signUp_unmatchedPasswordError.tr(),
+          repeatPasswordError: '两次密码输入不一致',
         ),
       );
       return;

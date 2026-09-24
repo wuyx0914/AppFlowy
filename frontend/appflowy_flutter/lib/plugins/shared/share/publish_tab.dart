@@ -2,7 +2,6 @@ import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/features/page_access_level/logic/page_access_level_bloc.dart';
 import 'package:appflowy/features/share_tab/data/models/models.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/tab_bar_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
 import 'package:appflowy/plugins/shared/share/constants.dart';
@@ -17,7 +16,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flowy_infra_ui/widget/rounded_button.dart';
@@ -87,20 +85,20 @@ class PublishTab extends StatelessWidget {
     if (state.publishResult != null) {
       state.publishResult!.fold(
         (value) => showToastNotification(
-          message: LocaleKeys.publish_publishSuccessfully.tr(),
+          message: '发布成功',
         ),
         (error) => showToastNotification(
-          message: '${LocaleKeys.publish_publishFailed.tr()}: ${error.code}',
+          message: '${'发布失败'}: ${error.code}',
           type: ToastificationType.error,
         ),
       );
     } else if (state.unpublishResult != null) {
       state.unpublishResult!.fold(
         (value) => showToastNotification(
-          message: LocaleKeys.publish_unpublishSuccessfully.tr(),
+          message: '取消发布成功',
         ),
         (error) => showToastNotification(
-          message: LocaleKeys.publish_unpublishFailed.tr(),
+          message: '取消发布失败',
           description: error.msg,
           type: ToastificationType.error,
         ),
@@ -108,13 +106,13 @@ class PublishTab extends StatelessWidget {
     } else if (state.updatePathNameResult != null) {
       state.updatePathNameResult!.fold(
         (value) => showToastNotification(
-          message: LocaleKeys.settings_sites_success_updatePathNameSuccess.tr(),
+          message: '更新路径名称成功',
         ),
         (error) {
           Log.error('update path name failed: $error');
 
           showToastNotification(
-            message: LocaleKeys.settings_sites_error_updatePathNameFailed.tr(),
+            message: '更新路径名称失败',
             type: ToastificationType.error,
             description: error.code.publishErrorMessage,
           );
@@ -178,7 +176,7 @@ class _PublishedWidgetState extends State<_PublishedWidget> {
             );
 
             showToastNotification(
-              message: LocaleKeys.message_copy_success.tr(),
+              message: '已复制',
             );
           },
           onSubmitted: (pathName) {
@@ -209,7 +207,7 @@ class _PublishedWidgetState extends State<_PublishedWidget> {
         final url = context.read<ShareBloc>().state.url;
         widget.onVisitSite(url);
       },
-      title: LocaleKeys.shareAction_visitSite.tr(),
+      title: '访问网站',
       borderRadius: const BorderRadius.all(Radius.circular(10)),
       fillColor: Theme.of(context).colorScheme.primary,
       hoverColor: Theme.of(context).colorScheme.primary.withValues(alpha: 0.9),
@@ -239,7 +237,7 @@ class UnPublishButton extends StatelessWidget {
         radius: BorderRadius.circular(10),
         text: FlowyText.regular(
           lineHeight: 1.0,
-          LocaleKeys.shareAction_unPublish.tr(),
+          '取消发布',
           textAlign: TextAlign.center,
         ),
         onTap: onUnPublish,
@@ -272,7 +270,7 @@ class _PublishWidgetState extends State<_PublishWidget> {
           // check if any database is selected
           if (_selectedViews.isEmpty) {
             showToastNotification(
-              message: LocaleKeys.publish_noDatabaseSelected.tr(),
+              message: '未选取数据库，请至少选取一个数据库。',
             );
             return;
           }
@@ -326,7 +324,7 @@ class PublishButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return PrimaryRoundedButton(
-      text: LocaleKeys.shareAction_publish.tr(),
+      text: '发布',
       useIntrinsicWidth: false,
       margin: const EdgeInsets.symmetric(vertical: 9.0),
       fontSize: 14.0,
@@ -349,12 +347,12 @@ class _PublishTabHeader extends StatelessWidget {
           children: [
             const FlowySvg(FlowySvgs.share_publish_s),
             const HSpace(6),
-            FlowyText(LocaleKeys.shareAction_publishToTheWeb.tr()),
+            FlowyText('发布至网络'),
           ],
         ),
         const VSpace(4),
         FlowyText.regular(
-          LocaleKeys.shareAction_publishToTheWebHint.tr(),
+          '利用AppFlowy创建一个网站',
           fontSize: 12,
           maxLines: 3,
           color: Theme.of(context).hintColor,
@@ -462,7 +460,7 @@ class _PublishUrlState extends State<_PublishUrl> {
       child: FlowyButton(
         useIntrinsicWidth: true,
         text: FlowyText.regular(
-          LocaleKeys.button_save.tr(),
+          '保存',
           figmaLineHeight: 18.0,
         ),
         onTap: () {
@@ -594,7 +592,7 @@ class _PublishDatabaseSelectorState extends State<_PublishDatabaseSelector> {
         return Padding(
           padding: const EdgeInsets.symmetric(horizontal: 12),
           child: FlowyText(
-            LocaleKeys.publish_database.plural(count).tr(),
+            '发布所选取的多个视图',
             color: Theme.of(context).hintColor,
             fontSize: 13,
           ),
@@ -620,7 +618,7 @@ class _PublishDatabaseSelectorState extends State<_PublishDatabaseSelector> {
             if (isPrimaryDatabase) {
               showToastNotification(
                 message:
-                    LocaleKeys.publish_unableToDeselectPrimaryDatabase.tr(),
+                    '无法取消选择主要数据库',
               );
               return;
             }
@@ -666,7 +664,7 @@ class _DatabaseSelectorItem extends StatelessWidget {
       );
     } else {
       child = FlowyTooltip(
-        message: LocaleKeys.publish_mustSelectPrimaryDatabase.tr(),
+        message: '必须选择主要查看',
         child: MouseRegion(
           cursor: SystemMouseCursors.forbidden,
           child: child,

@@ -1,7 +1,6 @@
 import 'dart:math';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/workspace/application/sidebar/space/space_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/workspace/presentation/home/menu/view/view_item.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -160,7 +158,7 @@ class _IndicatorButton extends StatelessWidget {
                     final label = documentId != null &&
                             selectedSourceIds.length == 1 &&
                             selectedSourceIds[0] == documentId
-                        ? LocaleKeys.chat_currentPage.tr()
+                        ? '目前页面'
                         : selectedSourceIds.length.toString();
                     return FlowyText(
                       label,
@@ -203,7 +201,7 @@ class _PopoverContent extends StatelessWidget {
                 size: AFTextFieldSize.m,
                 controller:
                     context.read<ViewSelectorCubit>().filterTextController,
-                hintText: LocaleKeys.search_label.tr(),
+                hintText: '搜索',
               ),
             ),
             AFDivider(
@@ -335,8 +333,8 @@ class _ViewSelectorTreeItemState extends State<ViewSelectorTreeItem> {
             message: widget.showCheckbox
                 ? switch (widget.viewSelectorItem.view.layout) {
                     ViewLayoutPB.Document =>
-                      LocaleKeys.chat_sourcesLimitReached.tr(),
-                    _ => LocaleKeys.chat_sourceUnsupported.tr(),
+                      '您只能选取最多 3 个顶层文档及其子文档',
+                    _ => '我们当前不支持基于数据库的交流',
                   }
                 : "",
             child: Opacity(
@@ -459,7 +457,7 @@ class ViewSelectorTreeItemInner extends StatelessWidget {
                 const HSpace(4.0),
                 if (isSaveButtonVisible)
                   FlowyIconButton(
-                    tooltipText: LocaleKeys.chat_addToPageButton.tr(),
+                    tooltipText: '添加消息到页面',
                     width: 24,
                     icon: FlowySvg(
                       FlowySvgs.ai_add_to_page_s,
@@ -472,7 +470,7 @@ class ViewSelectorTreeItemInner extends StatelessWidget {
                   const HSpace(4.0),
                 if (isAddButtonVisible)
                   FlowyIconButton(
-                    tooltipText: LocaleKeys.chat_addToNewPage.tr(),
+                    tooltipText: '创建新的页面',
                     width: 24,
                     icon: FlowySvg(
                       FlowySvgs.add_less_padding_s,

@@ -2,7 +2,6 @@ import 'package:any_date/any_date.dart';
 import 'package:appflowy/plugins/database/widgets/cell/editable_cell_skeleton/date.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/date_entities.pbenum.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -217,7 +216,7 @@ class _DateTimeTextFieldState extends State<DateTimeTextField> {
   }
 
   DateTime? parseDateTimeStr(String string) {
-    final locale = context.locale.toLanguageTag();
+    final locale = 'zh_CN';
     final parser = AnyDate.fromLocale(locale);
     final result = parser.tryParse(string);
     if (result == null ||

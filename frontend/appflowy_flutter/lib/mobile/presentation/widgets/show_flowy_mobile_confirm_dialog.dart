@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/tasks/app_widget.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +47,7 @@ Future<T?> showFlowyMobileConfirmDialog<T>(
       );
       final cancelButton = TextButton(
         child: FlowyText(
-          cancelButtonTitle ?? LocaleKeys.button_cancel.tr(),
+          cancelButtonTitle ?? '取消',
           color: cancelButtonColor ?? foregroundColor,
         ),
         onPressed: () {

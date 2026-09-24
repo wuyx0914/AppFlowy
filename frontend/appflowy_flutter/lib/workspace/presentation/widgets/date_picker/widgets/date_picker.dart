@@ -1,4 +1,3 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -129,7 +128,7 @@ class _DatePickerState extends State<DatePicker> {
         ),
         calendarBuilders: CalendarBuilders(
           dowBuilder: (context, day) {
-            final locale = context.locale.toLanguageTag();
+            final locale = 'zh_CN';
             final label = DateFormat.E(locale).format(day);
             return Padding(
               padding: const EdgeInsets.only(bottom: 8.0),

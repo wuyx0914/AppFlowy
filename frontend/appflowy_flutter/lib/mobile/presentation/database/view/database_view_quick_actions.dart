@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_transition_bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_mobile_quick_action_button.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/shared/icon_emoji_picker/tab.dart';
 import 'package:appflowy/workspace/application/view/view_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +39,7 @@ class MobileDatabaseViewQuickActions extends StatelessWidget {
             context,
             showHeader: true,
             showDoneButton: true,
-            title: LocaleKeys.grid_settings_editView.tr(),
+            title: '编辑视图',
             builder: (_) => BlocProvider.value(
               value: bloc,
               child: MobileEditDatabaseViewScreen(
@@ -63,7 +61,7 @@ class MobileDatabaseViewQuickActions extends StatelessWidget {
               showDragHandle: true,
               showDivider: false,
               showHeader: true,
-              title: LocaleKeys.titleBar_pageIcon.tr(),
+              title: '页面图标',
               backgroundColor: AFThemeExtension.of(context).background,
               enableDraggableScrollable: true,
               minChildSize: 0.6,
@@ -141,10 +139,10 @@ enum _Action {
 
   String get label {
     return switch (this) {
-      edit => LocaleKeys.grid_settings_editView.tr(),
-      duplicate => LocaleKeys.button_duplicate.tr(),
-      delete => LocaleKeys.button_delete.tr(),
-      changeIcon => LocaleKeys.disclosureAction_changeIcon.tr(),
+      edit => '编辑视图',
+      duplicate => '复制',
+      delete => '删除',
+      changeIcon => '更改图标',
     };
   }
 

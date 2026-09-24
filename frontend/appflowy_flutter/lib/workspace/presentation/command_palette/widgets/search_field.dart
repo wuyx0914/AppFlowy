@@ -1,9 +1,7 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/command_palette/command_palette_bloc.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text_field.dart';
 import 'package:flowy_infra_ui/widget/flowy_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +59,7 @@ class _SearchFieldState extends State<SearchField> {
     return Padding(
       padding: EdgeInsets.only(left: theme.spacing.m, right: theme.spacing.l),
       child: FlowyTooltip(
-        message: LocaleKeys.commandPalette_clearSearchTooltip.tr(),
+        message: '清除输入',
         child: MouseRegion(
           cursor: SystemMouseCursors.click,
           child: GestureDetector(
@@ -111,8 +109,7 @@ class _SearchFieldState extends State<SearchField> {
                 borderRadius: radius,
               ),
               isDense: false,
-              hintText: LocaleKeys.search_searchFieldHint
-                  .tr(args: ['${workspace?.name}']),
+              hintText: '在 ${workspace?.name} 中搜索或提问...',
               hintStyle: theme.textStyle.heading4
                   .standard(color: theme.textColorScheme.tertiary),
               hintMaxLines: 1,

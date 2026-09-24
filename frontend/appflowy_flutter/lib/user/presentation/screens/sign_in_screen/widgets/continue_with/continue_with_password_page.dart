@@ -1,5 +1,4 @@
 import 'package:appflowy/env/cloud_env.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/sign_in_bloc.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/back_to_login_in_button.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_button.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/contin
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/verifying_button.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/account/password/password_suffix_icon.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
@@ -57,12 +55,12 @@ class _ContinueWithPasswordPageState extends State<ContinueWithPasswordPage> {
               if (successOrFail != null && successOrFail.isFailure) {
                 successOrFail.onFailure((error) {
                   inputPasswordKey.currentState?.syncError(
-                    errorText: LocaleKeys.signIn_invalidLoginCredentials.tr(),
+                    errorText: '您的密码不正确，请重新尝试。',
                   );
                 });
               } else if (state.passwordError != null) {
                 inputPasswordKey.currentState?.syncError(
-                  errorText: LocaleKeys.signIn_invalidLoginCredentials.tr(),
+                  errorText: '您的密码不正确，请重新尝试。',
                 );
               } else {
                 inputPasswordKey.currentState?.clearError();
@@ -98,13 +96,13 @@ class _ContinueWithPasswordPageState extends State<ContinueWithPasswordPage> {
   Widget _buildLogoAndTitle() {
     final theme = AppFlowyTheme.of(context);
     return TitleLogo(
-      title: LocaleKeys.signIn_enterPassword.tr(),
+      title: '输入密码',
       informationBuilder: (context) => // email display
           RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: LocaleKeys.signIn_loginAs.tr(),
+              text: '身分登录以',
               style: theme.textStyle.body.standard(
                 color: theme.textColorScheme.primary,
               ),
@@ -130,7 +128,7 @@ class _ContinueWithPasswordPageState extends State<ContinueWithPasswordPage> {
       AFTextField(
         key: inputPasswordKey,
         controller: passwordController,
-        hintText: LocaleKeys.signIn_enterPassword.tr(),
+        hintText: '输入密码',
         autoFocus: true,
         obscureText: true,
         autofillHints: const [AutofillHints.password],
@@ -153,7 +151,7 @@ class _ContinueWithPasswordPageState extends State<ContinueWithPasswordPage> {
       Align(
         alignment: Alignment.centerLeft,
         child: AFGhostTextButton(
-          text: LocaleKeys.signIn_forgotPassword.tr(),
+          text: '忘记密码?',
           size: AFButtonSize.s,
           padding: EdgeInsets.zero,
           onTap: () => _pushForgotPasswordPage(),
@@ -175,7 +173,7 @@ class _ContinueWithPasswordPageState extends State<ContinueWithPasswordPage> {
       isSubmitting
           ? const VerifyingButton()
           : ContinueWithButton(
-              text: LocaleKeys.web_continue.tr(),
+              text: '继续',
               onTap: () => widget.onEnterPassword(passwordController.text),
             ),
       VSpace(20),

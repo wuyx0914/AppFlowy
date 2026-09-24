@@ -1,6 +1,5 @@
 import 'package:appflowy/features/workspace/data/repositories/rust_workspace_repository_impl.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/constants.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/domain/domain_header.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/domain/domain_item.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy/workspace/presentation/settings/shared/settings_categor
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +55,7 @@ class _SettingsSitesPageView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingsBody(
-      title: LocaleKeys.settings_sites_title.tr(),
+      title: '站点',
       autoSeparate: false,
       children: [
         // Domain / Namespace
@@ -71,8 +69,8 @@ class _SettingsSitesPageView extends StatelessWidget {
 
   Widget _buildNamespaceCategory(BuildContext context) {
     return SettingsCategory(
-      title: LocaleKeys.settings_sites_namespaceHeader.tr(),
-      description: LocaleKeys.settings_sites_namespaceDescription.tr(),
+      title: '名字空间',
+      description: '管理你的名字空间与主页',
       descriptionColor: Theme.of(context).hintColor,
       children: [
         const FlowyDivider(),
@@ -109,8 +107,8 @@ class _SettingsSitesPageView extends StatelessWidget {
 
   Widget _buildPublishedViewsCategory(BuildContext context) {
     return SettingsCategory(
-      title: LocaleKeys.settings_sites_publishedPage_title.tr(),
-      description: LocaleKeys.settings_sites_publishedPage_description.tr(),
+      title: '所有已发布页面',
+      description: '管理您已发布的页面',
       descriptionColor: Theme.of(context).hintColor,
       children: [
         const FlowyDivider(),
@@ -142,7 +140,7 @@ class _SettingsSitesPageView extends StatelessWidget {
       if (publishedViews.isEmpty) {
         children.add(
           FlowyText.regular(
-            LocaleKeys.settings_sites_publishedPage_emptyHinText.tr(),
+            '在当前工作空间没有已发布的页面',
             color: Theme.of(context).hintColor,
           ),
         );
@@ -184,7 +182,7 @@ class _SettingsSitesPageView extends StatelessWidget {
 
         showToastNotification(
           message:
-              LocaleKeys.settings_sites_error_failedToGeneratePaymentLink.tr(),
+              '专业版付款链接产生失败',
           type: ToastificationType.error,
         );
       });
@@ -192,13 +190,13 @@ class _SettingsSitesPageView extends StatelessWidget {
         result != null) {
       result.fold((_) {
         showToastNotification(
-          message: LocaleKeys.publish_unpublishSuccessfully.tr(),
+          message: '取消发布成功',
         );
       }, (f) {
         Log.error('Failed to unpublish view: ${f.msg}');
 
         showToastNotification(
-          message: LocaleKeys.publish_unpublishFailed.tr(),
+          message: '取消发布失败',
           type: ToastificationType.error,
           description: f.msg,
         );
@@ -206,13 +204,13 @@ class _SettingsSitesPageView extends StatelessWidget {
     } else if (type == SettingsSitesActionType.setHomePage && result != null) {
       result.fold((s) {
         showToastNotification(
-          message: LocaleKeys.settings_sites_success_setHomepageSuccess.tr(),
+          message: '成功设置主页',
         );
       }, (f) {
         Log.error('Failed to set homepage: ${f.msg}');
 
         showToastNotification(
-          message: LocaleKeys.settings_sites_error_setHomepageFailed.tr(),
+          message: '设置主页失败',
           type: ToastificationType.error,
         );
       });
@@ -220,13 +218,13 @@ class _SettingsSitesPageView extends StatelessWidget {
         result != null) {
       result.fold((s) {
         showToastNotification(
-          message: LocaleKeys.settings_sites_success_removeHomePageSuccess.tr(),
+          message: '成功删除主页',
         );
       }, (f) {
         Log.error('Failed to remove homepage: ${f.msg}');
 
         showToastNotification(
-          message: LocaleKeys.settings_sites_error_removeHomePageFailed.tr(),
+          message: '移除主页失败',
           type: ToastificationType.error,
         );
       });

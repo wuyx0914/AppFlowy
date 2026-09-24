@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/application/favorite/favorite_bloc.dart';
 import 'package:appflowy/workspace/application/sidebar/folder/folder_bloc.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy/workspace/presentation/home/menu/view/view_more_action_
 import 'package:appflowy/workspace/presentation/widgets/dialog_v2.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/icon_button.dart';
 import 'package:flowy_infra_ui/widget/flowy_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +24,7 @@ class FavoriteMoreActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.menuAppHeader_moreButtonToolTip.tr(),
+      message: '更多按钮工具',
       child: ViewMoreActionPopover(
         view: view,
         spaceType: FolderSpaceType.favorite,
@@ -43,7 +41,7 @@ class FavoriteMoreActions extends StatelessWidget {
             case ViewMoreActionType.rename:
               showAFTextFieldDialog(
                 context: context,
-                title: LocaleKeys.disclosureAction_rename.tr(),
+                title: '重命名',
                 initialValue: view.nameOrDefault,
                 maxLength: 256,
                 onConfirm: (newValue) {

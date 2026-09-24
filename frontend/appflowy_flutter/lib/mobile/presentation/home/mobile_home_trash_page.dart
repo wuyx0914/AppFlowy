@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
 import 'package:appflowy/plugins/trash/application/prelude.dart';
 import 'package:appflowy/startup/startup.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,7 +22,7 @@ class MobileHomeTrashPage extends StatelessWidget {
         builder: (context, state) {
           return Scaffold(
             appBar: AppBar(
-              title: Text(LocaleKeys.trash_text.tr()),
+              title: Text('回收站'),
               actions: [
                 state.objects.isEmpty
                     ? const SizedBox.shrink()
@@ -39,7 +37,7 @@ class MobileHomeTrashPage extends StatelessWidget {
                             showCloseButton: true,
                             showDragHandle: true,
                             padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
-                            title: LocaleKeys.trash_mobile_actions.tr(),
+                            title: '垃圾桶操作',
                             builder: (_) => Row(
                               children: [
                                 Expanded(
@@ -93,13 +91,13 @@ class _EmptyTrashBin extends StatelessWidget {
           ),
           const VSpace(16.0),
           FlowyText.medium(
-            LocaleKeys.trash_mobile_empty.tr(),
+            '垃圾桶是空的',
             fontSize: 18.0,
             textAlign: TextAlign.center,
           ),
           const VSpace(8.0),
           FlowyText.regular(
-            LocaleKeys.trash_mobile_emptyDescription.tr(),
+            '您没有任何已删除的文件',
             fontSize: 17.0,
             maxLines: 10,
             textAlign: TextAlign.center,
@@ -131,8 +129,8 @@ class _TrashActionAllButton extends StatelessWidget {
       child: BottomSheetActionWidget(
         svg: isDeleteAll ? FlowySvgs.m_delete_m : FlowySvgs.m_restore_m,
         text: isDeleteAll
-            ? LocaleKeys.trash_deleteAll.tr()
-            : LocaleKeys.trash_restoreAll.tr(),
+            ? '全部删除'
+            : '全部恢复',
         onTap: () {
           final trashList = trashBloc.state.objects;
           if (trashList.isNotEmpty) {
@@ -141,17 +139,17 @@ class _TrashActionAllButton extends StatelessWidget {
               context,
               title: FlowyText(
                 isDeleteAll
-                    ? LocaleKeys.trash_confirmDeleteAll_title.tr()
-                    : LocaleKeys.trash_restoreAll.tr(),
+                    ? '您确定要删除回收站中的所有页面吗？'
+                    : '全部恢复',
               ),
               content: FlowyText(
                 isDeleteAll
-                    ? LocaleKeys.trash_confirmDeleteAll_caption.tr()
-                    : LocaleKeys.trash_confirmRestoreAll_caption.tr(),
+                    ? '此操作无法撤消。'
+                    : '此操作无法撤消。',
               ),
               actionButtonTitle: isDeleteAll
-                  ? LocaleKeys.trash_deleteAll.tr()
-                  : LocaleKeys.trash_restoreAll.tr(),
+                  ? '全部删除'
+                  : '全部恢复',
               actionButtonColor: isDeleteAll
                   ? theme.colorScheme.error
                   : theme.colorScheme.primary,
@@ -166,13 +164,13 @@ class _TrashActionAllButton extends StatelessWidget {
                   );
                 }
               },
-              cancelButtonTitle: LocaleKeys.button_cancel.tr(),
+              cancelButtonTitle: '取消',
             );
           } else {
             // when there is no deleted files
             // show toast
             Fluttertoast.showToast(
-              msg: LocaleKeys.trash_mobile_empty.tr(),
+              msg: '垃圾桶是空的',
               gravity: ToastGravity.CENTER,
             );
           }
@@ -232,7 +230,7 @@ class _DeletedFilesListView extends StatelessWidget {
                           .add(TrashEvent.putback(deletedFile.id));
                       Fluttertoast.showToast(
                         msg:
-                            '${deletedFile.name} ${LocaleKeys.trash_mobile_isRestored.tr()}',
+                            '${deletedFile.name} ${'已恢复'}',
                         gravity: ToastGravity.BOTTOM,
                       );
                     },
@@ -250,7 +248,7 @@ class _DeletedFilesListView extends StatelessWidget {
                           .add(TrashEvent.delete(deletedFile));
                       Fluttertoast.showToast(
                         msg:
-                            '${deletedFile.name} ${LocaleKeys.trash_mobile_isDeleted.tr()}',
+                            '${deletedFile.name} ${'已删除'}',
                         gravity: ToastGravity.BOTTOM,
                       );
                     },

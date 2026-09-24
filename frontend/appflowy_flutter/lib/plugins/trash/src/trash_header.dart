@@ -1,8 +1,5 @@
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flutter/material.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
-
 import 'sizes.dart';
 
 class TrashHeaderDelegate extends SliverPersistentHeaderDelegate {
@@ -41,15 +38,15 @@ class TrashHeader extends StatelessWidget {
 
   final List<TrashHeaderItem> items = [
     TrashHeaderItem(
-      title: LocaleKeys.trash_pageHeader_fileName.tr(),
+      title: '文件名',
       width: TrashSizes.fileNameWidth,
     ),
     TrashHeaderItem(
-      title: LocaleKeys.trash_pageHeader_lastModified.tr(),
+      title: '最近修改',
       width: TrashSizes.lashModifyWidth,
     ),
     TrashHeaderItem(
-      title: LocaleKeys.trash_pageHeader_created.tr(),
+      title: '创建时间',
       width: TrashSizes.createTimeWidth,
     ),
   ];

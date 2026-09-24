@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/text_cell_bloc.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
@@ -15,7 +14,6 @@ import 'package:appflowy/plugins/database/widgets/row/cells/cell_container.dart'
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,7 +88,7 @@ class EventEditorControls extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           FlowyTooltip(
-            message: LocaleKeys.calendar_duplicateEvent.tr(),
+            message: '重复事件',
             child: FlowyIconButton(
               width: 20,
               icon: FlowySvg(
@@ -120,8 +118,8 @@ class EventEditorControls extends StatelessWidget {
             onPressed: () {
               showConfirmDeletionDialog(
                 context: context,
-                name: LocaleKeys.grid_row_label.tr(),
-                description: LocaleKeys.grid_row_deleteRowPrompt.tr(),
+                name: '列',
+                description: '您确定要删除此行吗？此操作无法撤消',
                 onConfirm: () {
                   context.read<CalendarBloc>().add(
                         CalendarEvent.deleteEvent(
@@ -298,7 +296,7 @@ class _TitleTextCellSkin extends IEditableTextCellSkin {
       controller: textEditingController,
       textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(fontSize: 14),
       focusNode: focusNode,
-      hintText: LocaleKeys.calendar_defaultNewCalendarTitle.tr(),
+      hintText: '未命名',
       onEditingComplete: () {
         bloc.add(TextCellEvent.updateText(textEditingController.text));
       },

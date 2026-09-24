@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
 import 'package:appflowy/plugins/shared/share/share_bloc.dart';
 import 'package:appflowy/startup/startup.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/application/export/document_exporter.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/foundation.dart';
@@ -36,19 +34,19 @@ class ExportTab extends StatelessWidget {
       children: [
         const VSpace(10),
         _ExportButton(
-          title: LocaleKeys.shareAction_html.tr(),
+          title: 'HTML',
           svg: FlowySvgs.export_html_s,
           onTap: () => _exportHTML(context),
         ),
         const VSpace(10),
         _ExportButton(
-          title: LocaleKeys.shareAction_markdown.tr(),
+          title: 'Markdown',
           svg: FlowySvgs.export_markdown_s,
           onTap: () => _exportMarkdown(context),
         ),
         const VSpace(10),
         _ExportButton(
-          title: LocaleKeys.shareAction_clipboard.tr(),
+          title: '拷贝到剪贴板',
           svg: FlowySvgs.duplicate_s,
           onTap: () => _exportToClipboard(context),
         ),
@@ -69,7 +67,7 @@ class ExportTab extends StatelessWidget {
       children: [
         const VSpace(10),
         _ExportButton(
-          title: LocaleKeys.shareAction_csv.tr(),
+          title: 'CSV',
           svg: FlowySvgs.database_layout_s,
           onTap: () => _exportCSV(context),
         ),
@@ -174,7 +172,7 @@ class ExportTab extends StatelessWidget {
           ClipboardServiceData(plainText: markdown),
         );
         showToastNotification(
-          message: LocaleKeys.message_copy_success.tr(),
+          message: '已复制',
         );
       },
       (error) => showToastNotification(message: error.msg),

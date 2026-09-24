@@ -4,7 +4,6 @@ import 'dart:math';
 
 import 'package:appflowy/core/frameless_window.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/blank/blank.dart';
 import 'package:appflowy/shared/window_title_bar.dart';
 import 'package:appflowy/startup/plugin/plugin.dart';
@@ -19,7 +18,6 @@ import 'package:appflowy/workspace/presentation/home/toast.dart';
 import 'package:appflowy_backend/dispatch/dispatch.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/material.dart';
@@ -130,7 +128,7 @@ class _HomeStackState extends State<HomeStack> with WindowListener {
     final textSpan = TextSpan(
       children: [
         TextSpan(
-          text: '${LocaleKeys.sideBar_openSidebar.tr()}\n',
+          text: '${'打开侧边栏'}\n',
           style: context.tooltipTextStyle(),
         ),
         TextSpan(
@@ -869,7 +867,7 @@ class HomeSecondaryTopBar extends StatelessWidget {
           children: [
             FlowyIconButton(
               width: 24,
-              tooltipText: LocaleKeys.sideBar_closeSidebar.tr(),
+              tooltipText: '关闭侧边栏',
               radius: const BorderRadius.all(Radius.circular(8.0)),
               icon: const FlowySvg(
                 FlowySvgs.show_menu_s,
@@ -882,7 +880,7 @@ class HomeSecondaryTopBar extends StatelessWidget {
             const HSpace(8.0),
             FlowyIconButton(
               width: 24,
-              tooltipText: LocaleKeys.sideBar_expandSidebar.tr(),
+              tooltipText: '展开为完整页面',
               radius: const BorderRadius.all(Radius.circular(8.0)),
               icon: const FlowySvg(
                 FlowySvgs.full_view_s,

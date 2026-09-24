@@ -1,6 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 enum ViewMoreActionType {
@@ -32,27 +30,27 @@ extension ViewMoreActionTypeExtension on ViewMoreActionType {
   String get name {
     switch (this) {
       case ViewMoreActionType.delete:
-        return LocaleKeys.disclosureAction_delete.tr();
+        return '删除';
       case ViewMoreActionType.favorite:
-        return LocaleKeys.disclosureAction_favorite.tr();
+        return '添加到收藏夹';
       case ViewMoreActionType.unFavorite:
-        return LocaleKeys.disclosureAction_unfavorite.tr();
+        return '从收藏夹中删除';
       case ViewMoreActionType.duplicate:
-        return LocaleKeys.disclosureAction_duplicate.tr();
+        return '复制';
       case ViewMoreActionType.copyLink:
-        return LocaleKeys.disclosureAction_copyLink.tr();
+        return '复制链接';
       case ViewMoreActionType.rename:
-        return LocaleKeys.disclosureAction_rename.tr();
+        return '重命名';
       case ViewMoreActionType.moveTo:
-        return LocaleKeys.disclosureAction_moveTo.tr();
+        return '移动';
       case ViewMoreActionType.openInNewTab:
-        return LocaleKeys.disclosureAction_openNewTab.tr();
+        return '在新选项卡中打开';
       case ViewMoreActionType.changeIcon:
-        return LocaleKeys.disclosureAction_changeIcon.tr();
+        return '更改图标';
       case ViewMoreActionType.collapseAllPages:
-        return LocaleKeys.disclosureAction_collapseAllPages.tr();
+        return '收起全部子页面';
       case ViewMoreActionType.lockPage:
-        return LocaleKeys.disclosureAction_lockPage.tr();
+        return '锁定页面';
       case ViewMoreActionType.leaveSharedPage:
         return 'Leave';
       case ViewMoreActionType.divider:

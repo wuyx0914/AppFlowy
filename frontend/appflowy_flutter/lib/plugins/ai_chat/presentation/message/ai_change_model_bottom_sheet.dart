@@ -1,10 +1,8 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar_actions.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
 import 'package:appflowy_backend/protobuf/flowy-ai/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +85,7 @@ class _Header extends StatelessWidget {
             child: Container(
               constraints: const BoxConstraints(maxWidth: 250),
               child: FlowyText(
-                LocaleKeys.chat_switchModel_label.tr(),
+                '切换模型',
                 fontSize: 17.0,
                 fontWeight: FontWeight.w500,
                 overflow: TextOverflow.ellipsis,

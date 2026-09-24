@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import "package:appflowy/generated/locale_keys.g.dart";
 import 'package:appflowy/plugins/database/application/cell/cell_controller.dart';
 import 'package:appflowy/plugins/database/application/field/field_controller.dart';
 import 'package:appflowy/plugins/database/application/row/row_controller.dart';
@@ -10,7 +9,6 @@ import 'package:appflowy/plugins/database/grid/application/row/row_bloc.dart';
 import 'package:appflowy/plugins/database/tab_bar/tab_bar_view.dart';
 import 'package:appflowy/plugins/database/widgets/cell/editable_cell_builder.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -159,7 +157,7 @@ class InsertRowButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyIconButton(
-      tooltipText: LocaleKeys.tooltip_addNewRow.tr(),
+      tooltipText: '添加一行',
       hoverColor: AFThemeExtension.of(context).lightGreyHover,
       width: 20,
       height: 30,
@@ -168,13 +166,9 @@ class InsertRowButton extends StatelessWidget {
         if (context.read<GridBloc>().state.sorts.isNotEmpty) {
           showCancelAndDeleteDialog(
             context: context,
-            title: LocaleKeys.grid_sort_sortsActive.tr(
-              namedArgs: {
-                'intention': LocaleKeys.grid_row_createRowBelowDescription.tr(),
-              },
-            ),
-            description: LocaleKeys.grid_sort_removeSorting.tr(),
-            confirmLabel: LocaleKeys.button_remove.tr(),
+            title: '在排序时无法在下方插入一个列',
+            description: '您想删除排序吗？',
+            confirmLabel: '移除',
             closeOnAction: true,
             onDelete: () {
               SortBackendService(viewId: viewId).deleteAllSorts();
@@ -213,11 +207,11 @@ class _RowMenuButtonState extends State<RowMenuButton> {
       richTooltipText: TextSpan(
         children: [
           TextSpan(
-            text: '${LocaleKeys.tooltip_dragRow.tr()}\n',
+            text: '${'拖动来调整行'}\n',
             style: context.tooltipTextStyle(),
           ),
           TextSpan(
-            text: LocaleKeys.tooltip_openMenu.tr(),
+            text: '点击打开菜单',
             style: context.tooltipTextStyle(),
           ),
         ],

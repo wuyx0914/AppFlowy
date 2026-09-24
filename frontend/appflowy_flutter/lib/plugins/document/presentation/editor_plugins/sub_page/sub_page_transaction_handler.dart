@@ -2,7 +2,6 @@ import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/application/tabs/tabs_bloc.dart';
 import 'package:flutter/widgets.dart';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/sub_page/sub_page_block_component.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/transaction_handler/block_transaction_handler.dart';
 import 'package:appflowy/plugins/trash/application/trash_service.dart';
@@ -10,7 +9,6 @@ import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pbenum.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/snap_bar.dart';
 
 class SubPageTransactionHandler extends BlockTransactionHandler {
@@ -75,7 +73,7 @@ class SubPageTransactionHandler extends BlockTransactionHandler {
         if (context.mounted) {
           showSnapBar(
             context,
-            LocaleKeys.document_plugins_subPage_errors_failedDeletePage.tr(),
+            '删除页面失败',
           );
         }
       },
@@ -123,7 +121,7 @@ class SubPageTransactionHandler extends BlockTransactionHandler {
           Log.error(error);
           showSnapBar(
             context,
-            LocaleKeys.document_plugins_subPage_errors_failedCreatePage.tr(),
+            '创建页面失败',
           );
 
           // Remove the node because it failed
@@ -153,7 +151,7 @@ class SubPageTransactionHandler extends BlockTransactionHandler {
             Log.error(error);
             showSnapBar(
               context,
-              LocaleKeys.document_plugins_subPage_errors_failedMovePage.tr(),
+              '将页面移至此文档失败',
             );
           },
         );
@@ -194,9 +192,7 @@ class SubPageTransactionHandler extends BlockTransactionHandler {
                 if (context.mounted) {
                   showSnapBar(
                     context,
-                    LocaleKeys
-                        .document_plugins_subPage_errors_failedDuplicatePage
-                        .tr(),
+                    '拷贝页面失败',
                   );
                 }
               },
@@ -215,9 +211,7 @@ class SubPageTransactionHandler extends BlockTransactionHandler {
             if (context.mounted) {
               showSnapBar(
                 context,
-                LocaleKeys
-                    .document_plugins_subPage_errors_failedDuplicateFindView
-                    .tr(),
+                '拷贝页面失败 - 找不到原始视图',
               );
             }
           },

@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/select_option_cell_bloc.dart';
 import 'package:appflowy/plugins/database/widgets/cell_editor/extension.dart';
@@ -6,7 +5,6 @@ import 'package:appflowy/plugins/database/widgets/cell_editor/mobile_select_opti
 import 'package:appflowy/plugins/database/widgets/row/cells/cell_container.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/select_option_entities.pb.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,7 +77,7 @@ class MobileRowDetailSelectOptionCellSkin
       alignment: Alignment.centerLeft,
       padding: const EdgeInsets.symmetric(vertical: 1),
       child: FlowyText(
-        LocaleKeys.grid_row_textPlaceholder.tr(),
+        '空',
         color: Theme.of(context).hintColor,
       ),
     );

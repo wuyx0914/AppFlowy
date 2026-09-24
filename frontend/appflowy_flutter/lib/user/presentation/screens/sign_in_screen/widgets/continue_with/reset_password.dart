@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/sign_in_bloc.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/back_to_login_in_button.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_button.dart';
@@ -6,7 +5,6 @@ import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/contin
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/verifying_button.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +56,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
             (error) {
               widget.onValidateResetPasswordToken(false);
               inputPasscodeKey.currentState?.syncError(
-                errorText: LocaleKeys.signIn_resetPasswordFailed.tr(),
+                errorText: '密码重设失败',
               );
             },
           );
@@ -104,13 +102,13 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
       AFTextField(
         key: inputPasscodeKey,
         controller: passcodeController,
-        hintText: LocaleKeys.signIn_enterCode.tr(),
+        hintText: '输入代码',
         keyboardType: TextInputType.number,
         autoFocus: true,
         onSubmitted: (passcode) {
           if (passcode.isEmpty) {
             inputPasscodeKey.currentState?.syncError(
-              errorText: LocaleKeys.signIn_invalidVerificationCode.tr(),
+              errorText: '请输入有效的验证码',
             );
           } else {
             //
@@ -124,12 +122,12 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
       isSubmitting
           ? const VerifyingButton()
           : ContinueWithButton(
-              text: LocaleKeys.signIn_continueToResetPassword.tr(),
+              text: '继续重设密码',
               onTap: () {
                 final passcode = passcodeController.text;
                 if (passcode.isEmpty) {
                   inputPasscodeKey.currentState?.syncError(
-                    errorText: LocaleKeys.signIn_invalidVerificationCode.tr(),
+                    errorText: '请输入有效的验证码',
                   );
                 } else {
                   _onSubmit();
@@ -144,8 +142,8 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
   Widget _buildLogoTitleAndDescription() {
     final theme = AppFlowyTheme.of(context);
     return TitleLogo(
-      title: LocaleKeys.signIn_checkYourEmail.tr(),
-      description: LocaleKeys.signIn_temporaryVerificationLinkSent.tr(),
+      title: '检查您的电子邮件信箱',
+      description: '已发送一封暂时验证链接。 请查看您的收件匣，地址为:',
       informationBuilder: (context) => Text(
         widget.email,
         style: theme.textStyle.body.enhanced(
@@ -160,7 +158,7 @@ class _ResetPasswordWidgetState extends State<ResetPasswordWidget> {
     final passcode = passcodeController.text;
     if (passcode.isEmpty) {
       inputPasscodeKey.currentState?.syncError(
-        errorText: LocaleKeys.signIn_invalidVerificationCode.tr(),
+        errorText: '请输入有效的验证码',
       );
       return;
     }

@@ -1,7 +1,5 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 enum ThirdPartySignInButtonType {
@@ -44,13 +42,13 @@ enum ThirdPartySignInButtonType {
   String get labelText {
     switch (this) {
       case ThirdPartySignInButtonType.apple:
-        return LocaleKeys.signIn_signInWithApple.tr();
+        return '使用 Apple 账户登录';
       case ThirdPartySignInButtonType.google:
-        return LocaleKeys.signIn_signInWithGoogle.tr();
+        return '使用 Google 账户登录';
       case ThirdPartySignInButtonType.github:
-        return LocaleKeys.signIn_signInWithGithub.tr();
+        return '使用 Github 账户登录';
       case ThirdPartySignInButtonType.discord:
-        return LocaleKeys.signIn_signInWithDiscord.tr();
+        return '使用 Discord 账户登录';
       case ThirdPartySignInButtonType.anonymous:
         return 'Anonymous session';
     }

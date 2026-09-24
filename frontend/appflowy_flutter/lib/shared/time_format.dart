@@ -1,8 +1,6 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/settings/appearance/appearance_cubit.dart';
 import 'package:appflowy/workspace/application/settings/date_time/date_format_ext.dart';
 import 'package:appflowy/workspace/application/settings/date_time/time_format_ext.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -22,11 +20,10 @@ String formatTimestampWithContext(
   final timeFormat = context.read<AppearanceSettingsCubit>().state.timeFormat;
 
   if (difference.inMinutes < 1) {
-    date = LocaleKeys.sideBar_justNow.tr();
+    date = '现在';
   } else if (difference.inHours < 1 && dateTime.isToday) {
     // Less than 1 hour
-    date = LocaleKeys.sideBar_minutesAgo
-        .tr(namedArgs: {'count': difference.inMinutes.toString()});
+    date = '{difference.inMinutes.toString()} 分钟以前';
   } else if (difference.inHours >= 1 && dateTime.isToday) {
     // in same day
     date = timeFormat.formatTime(dateTime);

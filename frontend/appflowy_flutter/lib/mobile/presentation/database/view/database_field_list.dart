@@ -1,7 +1,6 @@
 import 'dart:ui';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_option_tile.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy/plugins/database/grid/presentation/widgets/header/deskt
 import 'package:appflowy/plugins/database/widgets/setting/field_visibility_extension.dart';
 import 'package:appflowy/workspace/application/view/view_bloc.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -192,7 +190,7 @@ class _NewDatabaseFieldTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyOptionTile.text(
-      text: LocaleKeys.grid_field_newProperty.tr(),
+      text: '添加一列',
       leftIcon: FlowySvg(
         FlowySvgs.add_s,
         size: const Size.square(20),

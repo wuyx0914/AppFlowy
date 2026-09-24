@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/sidebar/folder/folder_bloc.dart';
 import 'package:appflowy/workspace/application/sidebar/space/space_bloc.dart';
 import 'package:appflowy/workspace/application/sidebar/space/space_search_bloc.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/workspace/presentation/home/menu/view/view_item.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -97,7 +95,7 @@ class _MovePageMenuState extends State<MovePageMenu> {
           height: 30,
           showCreateButton: false,
           child: FlowyTooltip(
-            message: LocaleKeys.space_switchSpace.tr(),
+            message: '切换空间',
             child: CurrentSpace(
               // move the page to current space
               onTapBlankArea: () => widget.onSelected(space, space),

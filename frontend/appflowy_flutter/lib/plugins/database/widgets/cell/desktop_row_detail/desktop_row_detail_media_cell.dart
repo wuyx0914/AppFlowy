@@ -1,6 +1,5 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/media_cell_bloc.dart';
 import 'package:appflowy/plugins/database/grid/application/row/row_detail_bloc.dart';
 import 'package:appflowy/plugins/database/widgets/cell/editable_cell_skeleton/media.dart';
@@ -21,7 +20,6 @@ import 'package:appflowy/workspace/presentation/widgets/image_viewer/interactive
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:collection/collection.dart';
 import 'package:cross_file/cross_file.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -63,7 +61,7 @@ class DekstopRowDetailMediaCellSkin extends IEditableMediaCellSkin {
                     vertical: 6,
                   ),
                   child: FlowyText(
-                    LocaleKeys.grid_row_textPlaceholder.tr(),
+                    '空',
                     color: Theme.of(context).hintColor,
                     overflow: TextOverflow.ellipsis,
                   ),
@@ -121,8 +119,7 @@ class DekstopRowDetailMediaCellSkin extends IEditableMediaCellSkin {
                                 size: size,
                                 mutex: mutex,
                                 hideFileNames: state.hideFileNames,
-                                foregroundText: LocaleKeys.grid_media_extraCount
-                                    .tr(args: [extraCount.toString()]),
+                                foregroundText: '+{extraCount.toString()}',
                               ),
                             )
                           : null,
@@ -158,7 +155,7 @@ class DekstopRowDetailMediaCellSkin extends IEditableMediaCellSkin {
                         ),
                         const HSpace(6),
                         FlowyText.medium(
-                          LocaleKeys.grid_media_addFileOrImage.tr(),
+                          '添加文件或链接',
                           fontSize: 12,
                           color: Theme.of(context).hintColor,
                           figmaLineHeight: 18,
@@ -618,7 +615,7 @@ class _FileMenuState extends State<_FileMenu> {
               _showInteractiveViewer(context);
             },
             icon: FlowySvgs.full_view_s,
-            label: LocaleKeys.grid_media_expand.tr(),
+            label: '展开',
           ),
           MediaMenuItem(
             onTap: () {
@@ -626,7 +623,7 @@ class _FileMenuState extends State<_FileMenu> {
               _setCover(context);
             },
             icon: FlowySvgs.cover_s,
-            label: LocaleKeys.grid_media_setAsCover.tr(),
+            label: '设为封面',
           ),
         ],
         MediaMenuItem(
@@ -635,7 +632,7 @@ class _FileMenuState extends State<_FileMenu> {
             afLaunchUrlString(widget.file.url);
           },
           icon: FlowySvgs.open_in_browser_s,
-          label: LocaleKeys.grid_media_openInBrowser.tr(),
+          label: '在浏览器中打开',
         ),
         MediaMenuItem(
           onTap: () {
@@ -649,7 +646,7 @@ class _FileMenuState extends State<_FileMenu> {
             _showRenameConfirmDialog();
           },
           icon: FlowySvgs.rename_s,
-          label: LocaleKeys.grid_media_rename.tr(),
+          label: '重命名',
         ),
         if (widget.file.uploadType == FileUploadTypePB.CloudFile) ...[
           MediaMenuItem(
@@ -659,7 +656,7 @@ class _FileMenuState extends State<_FileMenu> {
               userProfile: context.read<MediaCellBloc>().state.userProfile,
             ),
             icon: FlowySvgs.save_as_s,
-            label: LocaleKeys.button_download.tr(),
+            label: '下载',
           ),
         ],
         MediaMenuItem(
@@ -668,14 +665,14 @@ class _FileMenuState extends State<_FileMenu> {
             showConfirmDeletionDialog(
               context: context,
               name: widget.file.name,
-              description: LocaleKeys.grid_media_deleteFileDescription.tr(),
+              description: '您确定要删除此文件吗? 此动作不可逆转。',
               onConfirm: () => widget.parentContext
                   .read<MediaCellBloc>()
                   .add(MediaCellEvent.removeFile(fileId: widget.file.id)),
             );
           },
           icon: FlowySvgs.trash_s,
-          label: LocaleKeys.button_delete.tr(),
+          label: '删除',
         ),
       ],
     );
@@ -696,8 +693,8 @@ class _FileMenuState extends State<_FileMenu> {
   void _showRenameConfirmDialog() {
     showCustomConfirmDialog(
       context: widget.parentContext,
-      title: LocaleKeys.document_plugins_file_renameFile_title.tr(),
-      description: LocaleKeys.document_plugins_file_renameFile_description.tr(),
+      title: '重命名文件',
+      description: '输入此文件的新名称',
       closeOnConfirm: false,
       builder: (builderContext) => FileRenameTextField(
         nameController: widget.nameController,
@@ -706,7 +703,7 @@ class _FileMenuState extends State<_FileMenu> {
         disposeController: false,
       ),
       style: ConfirmPopupStyle.cancelAndOk,
-      confirmLabel: LocaleKeys.button_save.tr(),
+      confirmLabel: '保存',
       onConfirm: () => _saveName(widget.parentContext),
       onCancel: Navigator.of(widget.parentContext).pop,
     );

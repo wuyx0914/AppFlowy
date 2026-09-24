@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/row/related_row_detail_bloc.dart';
 import 'package:appflowy/plugins/database/grid/application/row/row_detail_bloc.dart';
 import 'package:appflowy/plugins/database/grid/presentation/widgets/common/type_option_separator.dart';
@@ -21,7 +20,6 @@ import 'package:appflowy/workspace/application/action_navigation/navigation_acti
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -125,7 +123,7 @@ class _DatabaseDocumentPageState extends State<DatabaseDocumentPage> {
         useViewInfoBloc: false,
         placeholderText: (node) =>
             node.type == ParagraphBlockKeys.type && !node.isInTable
-                ? LocaleKeys.editor_slashPlaceHolder.tr()
+                ? '输入 \'/\' 以插入块，或开始键入'
                 : '',
       ),
     );

@@ -2,7 +2,6 @@ import 'dart:math';
 import 'dart:typed_data';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/flowy_search_text_field.dart';
 import 'package:appflowy/mobile/presentation/base/option_color_list.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy/plugins/database/widgets/field/type_option_editor/date/
 import 'package:appflowy/util/field_type_extension.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/uuid.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -364,13 +362,13 @@ class _MobileFieldEditorState extends State<MobileFieldEditor> {
     return [
       if (widget.actions.contains(FieldOptionAction.hide) && !widget.isPrimary)
         FlowyOptionTile.text(
-          text: LocaleKeys.grid_field_hide.tr(),
+          text: '隐藏',
           leftIcon: const FlowySvg(FlowySvgs.m_field_hide_s),
           onTap: () => widget.onAction?.call(FieldOptionAction.hide),
         ),
       if (widget.actions.contains(FieldOptionAction.show))
         FlowyOptionTile.text(
-          text: LocaleKeys.grid_field_show.tr(),
+          text: '展示',
           leftIcon: const FlowySvg(FlowySvgs.show_m, size: Size.square(16)),
           onTap: () => widget.onAction?.call(FieldOptionAction.show),
         ),
@@ -378,7 +376,7 @@ class _MobileFieldEditorState extends State<MobileFieldEditor> {
           !widget.isPrimary)
         FlowyOptionTile.text(
           showTopBorder: false,
-          text: LocaleKeys.button_duplicate.tr(),
+          text: '复制',
           leftIcon: const FlowySvg(FlowySvgs.m_field_copy_s),
           onTap: () => widget.onAction?.call(FieldOptionAction.duplicate),
         ),
@@ -386,7 +384,7 @@ class _MobileFieldEditorState extends State<MobileFieldEditor> {
           !widget.isPrimary)
         FlowyOptionTile.text(
           showTopBorder: false,
-          text: LocaleKeys.button_delete.tr(),
+          text: '删除',
           textColor: Theme.of(context).colorScheme.error,
           leftIcon: FlowySvg(
             FlowySvgs.m_delete_s,
@@ -444,7 +442,7 @@ class _PropertyType extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyOptionTile.text(
-      text: LocaleKeys.grid_field_propertyType.tr(),
+      text: '属性类型',
       trailing: Row(
         children: [
           FlowySvg(
@@ -468,7 +466,7 @@ class _PropertyType extends StatelessWidget {
       onTap: () async {
         final fieldType = await showFieldTypeGridBottomSheet(
           context,
-          title: LocaleKeys.grid_field_editProperty.tr(),
+          title: '编辑列属性',
         );
         if (fieldType != null) {
           onSelected(fieldType);
@@ -520,7 +518,7 @@ class _DateOptionState extends State<_DateOption> {
         Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 4.0),
           child: FlowyText(
-            LocaleKeys.grid_field_dateFormat.tr().toUpperCase(),
+            '日期格式'.toUpperCase(),
             fontSize: 13,
             color: Theme.of(context).hintColor,
           ),
@@ -574,7 +572,7 @@ class _TimeOptionState extends State<_TimeOption> {
         Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 4.0),
           child: FlowyText(
-            LocaleKeys.grid_field_timeFormat.tr().toUpperCase(),
+            '时间格式'.toUpperCase(),
             fontSize: 13,
             color: Theme.of(context).hintColor,
           ),
@@ -616,7 +614,7 @@ class _IncludeTimeOptionState extends State<_IncludeTimeOption> {
   @override
   Widget build(BuildContext context) {
     return FlowyOptionTile.toggle(
-      text: LocaleKeys.grid_field_includeTime.tr(),
+      text: '包含时间',
       isSelected: includeTime,
       onValueChanged: (value) {
         widget.onToggle(value);
@@ -640,7 +638,7 @@ class _NumberOption extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyOptionTile.text(
-      text: LocaleKeys.grid_field_numberFormat.tr(),
+      text: '数字格式',
       trailing: Row(
         children: [
           FlowyText(
@@ -788,7 +786,7 @@ class _SelectOption extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 4.0),
           child: FlowyText(
-            LocaleKeys.grid_field_optionTitle.tr().toUpperCase(),
+            '标签'.toUpperCase(),
             fontSize: 13,
             color: Theme.of(context).hintColor,
           ),
@@ -798,7 +796,7 @@ class _SelectOption extends StatelessWidget {
           onUpdateOptions: onUpdateOptions,
         ),
         FlowyOptionTile.text(
-          text: LocaleKeys.grid_field_addOption.tr(),
+          text: '添加标签',
           leftIcon: const FlowySvg(
             FlowySvgs.add_s,
             size: Size.square(20),
@@ -927,7 +925,7 @@ class _SelectOptionTileState extends State<_SelectOptionTile> {
   Widget build(BuildContext context) {
     return FlowyOptionTile.textField(
       controller: controller,
-      textFieldHintText: LocaleKeys.grid_field_typeANewOption.tr(),
+      textFieldHintText: '输入新选项',
       showTopBorder: widget.showTopBorder,
       showBottomBorder: widget.showBottomBorder,
       trailing: _SelectOptionColor(
@@ -969,7 +967,7 @@ class _SelectOptionColor extends StatelessWidget {
           context,
           showHeader: true,
           showCloseButton: true,
-          title: LocaleKeys.grid_selectOption_colorPanelTitle.tr(),
+          title: '颜色',
           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
           builder: (context) {
             return OptionColorList(

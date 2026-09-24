@@ -1,6 +1,5 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet_media_upload.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/media_cell_bloc.dart';
@@ -14,7 +13,6 @@ import 'package:appflowy/shared/af_image.dart';
 import 'package:appflowy/workspace/presentation/widgets/image_viewer/image_provider.dart';
 import 'package:appflowy/workspace/presentation/widgets/image_viewer/interactive_image_viewer.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/media_entities.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +58,7 @@ class GridMediaCellSkin extends IEditableMediaCellSkin {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: Text(
-                LocaleKeys.grid_row_textPlaceholder.tr(),
+                '空',
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontSize: 16,
                       color: Theme.of(context).hintColor,
@@ -195,7 +193,7 @@ class GridMediaCellSkin extends IEditableMediaCellSkin {
     if (files.isEmpty) {
       showMobileBottomSheet(
         context,
-        title: LocaleKeys.grid_media_addFileMobile.tr(),
+        title: '添加文件',
         showHeader: true,
         showCloseButton: true,
         showDragHandle: true,

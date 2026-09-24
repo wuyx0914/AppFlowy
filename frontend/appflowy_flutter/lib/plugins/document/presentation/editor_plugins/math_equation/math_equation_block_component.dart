@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/actions/mobile_block_action_buttons.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/selectable_svg_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/block_menu/block_menu_button.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flowy_infra_ui/widget/buttons/primary_button.dart';
@@ -40,7 +38,7 @@ Node mathEquationNode({
 
 // defining the callout block menu item for selection
 SelectionMenuItem mathEquationItem = SelectionMenuItem.node(
-  getName: LocaleKeys.document_plugins_mathEquation_name.tr,
+  getName: () => '数学方程',
   iconBuilder: (editorState, onSelected, style) => SelectableSvgWidget(
     data: FlowySvgs.icon_math_eq_s,
     isSelected: onSelected,
@@ -213,7 +211,7 @@ class MathEquationBlockComponentWidgetState
           ),
           const HSpace(10),
           FlowyText(
-            LocaleKeys.document_plugins_mathEquation_addMathEquation.tr(),
+            '添加数学公式',
             color: Theme.of(context).hintColor,
           ),
         ],
@@ -232,7 +230,7 @@ class MathEquationBlockComponentWidgetState
 
   Widget _buildDeleteButton(BuildContext context) {
     return MenuBlockButton(
-      tooltip: LocaleKeys.button_delete.tr(),
+      tooltip: '删除',
       iconData: FlowySvgs.trash_s,
       onTap: () {
         final transaction = editorState.transaction..deleteNode(widget.node);
@@ -248,7 +246,7 @@ class MathEquationBlockComponentWidgetState
         return AlertDialog(
           backgroundColor: Theme.of(context).canvasColor,
           title: Text(
-            LocaleKeys.document_plugins_mathEquation_editMathEquation.tr(),
+            '编辑数学公式',
           ),
           content: KeyboardListener(
             focusNode: FocusNode(),
@@ -275,12 +273,12 @@ class MathEquationBlockComponentWidgetState
           ),
           actions: [
             SecondaryTextButton(
-              LocaleKeys.button_cancel.tr(),
+              '取消',
               mode: TextButtonMode.big,
               onPressed: () => dismiss(context),
             ),
             PrimaryTextButton(
-              LocaleKeys.button_done.tr(),
+              '完成',
               onPressed: () => updateMathEquation(controller.text, context),
             ),
           ],

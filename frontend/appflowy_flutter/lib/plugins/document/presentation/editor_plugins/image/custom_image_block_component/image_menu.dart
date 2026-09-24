@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/block_menu/block_menu_button.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
@@ -14,7 +13,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy/workspace/presentation/widgets/image_viewer/image_provider.dart';
 import 'package:appflowy/workspace/presentation/widgets/image_viewer/interactive_image_viewer.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/widget/ignore_parent_gesture.dart';
 import 'package:flutter/material.dart';
@@ -70,13 +68,13 @@ class _ImageMenuState extends State<ImageMenu> {
               const HSpace(4),
               if (!isPlaceholder) ...[
                 MenuBlockButton(
-                  tooltip: LocaleKeys.document_imageBlock_openFullScreen.tr(),
+                  tooltip: '全屏幕打开',
                   iconData: FlowySvgs.full_view_s,
                   onTap: openFullScreen,
                 ),
                 const HSpace(4),
                 MenuBlockButton(
-                  tooltip: LocaleKeys.editor_copy.tr(),
+                  tooltip: '复制',
                   iconData: FlowySvgs.copy_s,
                   onTap: copyImageLink,
                 ),
@@ -88,7 +86,7 @@ class _ImageMenuState extends State<ImageMenu> {
                   const _Divider(),
                 ],
                 MenuBlockButton(
-                  tooltip: LocaleKeys.button_delete.tr(),
+                  tooltip: '删除',
                   iconData: FlowySvgs.trash_s,
                   onTap: deleteImage,
                 ),
@@ -117,13 +115,13 @@ class _ImageMenuState extends State<ImageMenu> {
 
         if (mounted) {
           showToastNotification(
-            message: LocaleKeys.message_copy_success.tr(),
+            message: '已复制',
           );
         }
       } catch (e) {
         if (mounted) {
           showToastNotification(
-            message: LocaleKeys.message_copy_fail.tr(),
+            message: '复制失败',
             type: ToastificationType.error,
           );
         }
@@ -225,7 +223,7 @@ class _ImageAlignButtonState extends State<_ImageAlignButton> {
         direction: PopoverDirection.bottomWithCenterAligned,
         offset: const Offset(0, 10),
         child: MenuBlockButton(
-          tooltip: LocaleKeys.document_plugins_optionAction_align.tr(),
+          tooltip: '对齐',
           iconData: iconFor(align),
         ),
         popupBuilder: (_) {
@@ -287,19 +285,19 @@ class _AlignButtons extends StatelessWidget {
         children: [
           const HSpace(4),
           MenuBlockButton(
-            tooltip: LocaleKeys.document_plugins_optionAction_left,
+            tooltip: '左',
             iconData: FlowySvgs.align_left_s,
             onTap: () => onAlignChanged(leftAlignmentKey),
           ),
           const _Divider(),
           MenuBlockButton(
-            tooltip: LocaleKeys.document_plugins_optionAction_center,
+            tooltip: '中',
             iconData: FlowySvgs.align_center_s,
             onTap: () => onAlignChanged(centerAlignmentKey),
           ),
           const _Divider(),
           MenuBlockButton(
-            tooltip: LocaleKeys.document_plugins_optionAction_right,
+            tooltip: '右',
             iconData: FlowySvgs.align_right_s,
             onTap: () => onAlignChanged(rightAlignmentKey),
           ),

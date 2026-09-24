@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/flowy_search_text_field.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +20,7 @@ Future<ViewPB?> showPageSelectorSheet(
 
   return showMobileBottomSheet<ViewPB>(
     context,
-    title: LocaleKeys.document_mobilePageSelector_title.tr(),
+    title: '选择页面',
     showHeader: true,
     showCloseButton: true,
     showDragHandle: true,
@@ -84,7 +82,7 @@ class _MobilePageSelectorBodyState extends State<_MobilePageSelectorBody> {
             if (snapshot.hasError || snapshot.data == null) {
               return Center(
                 child: FlowyText(
-                  LocaleKeys.document_mobilePageSelector_failedToLoad.tr(),
+                  '加载页面清单失败',
                 ),
               );
             }
@@ -108,7 +106,7 @@ class _MobilePageSelectorBodyState extends State<_MobilePageSelectorBody> {
             if (filtered.isEmpty) {
               return Center(
                 child: FlowyText(
-                  LocaleKeys.document_mobilePageSelector_noPagesFound.tr(),
+                  '没有找到该页面',
                 ),
               );
             }

@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_drop_manager.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/image_util.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pb.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_svg/flowy_svg.dart';
@@ -172,7 +170,7 @@ class _IconUploaderState extends State<IconUploader> {
       color: Color(0xffE0F8FF),
       child: Center(
         child: FlowyText(
-          LocaleKeys.emojiIconPicker_iconUploader_dropToUpload.tr(),
+          '将文件拖放到这里以上传',
         ),
       ),
     );
@@ -192,16 +190,15 @@ class _IconUploaderState extends State<IconUploader> {
           children: [
             TextSpan(
               text:
-                  LocaleKeys.emojiIconPicker_iconUploader_placeholderLeft.tr(),
+                  '拖放文件，或点击以',
             ),
             TextSpan(
-              text: LocaleKeys.emojiIconPicker_iconUploader_placeholderUpload
-                  .tr(),
+              text: '上传',
               style: style.copyWith(color: Color(0xff00BCF0)),
             ),
             TextSpan(
               text:
-                  LocaleKeys.emojiIconPicker_iconUploader_placeholderRight.tr(),
+                  ', 或粘贴图片链接。',
               mouseCursor: SystemMouseCursors.click,
             ),
           ],
@@ -360,7 +357,7 @@ class _ChangeIconButton extends StatelessWidget {
       width: 84,
       child: FlowyButton(
         text: FlowyText(
-          LocaleKeys.emojiIconPicker_iconUploader_change.tr(),
+          '变更\n',
           fontSize: 14.0,
           fontWeight: FontWeight.w500,
           figmaLineHeight: 20.0,
@@ -395,7 +392,7 @@ class _ConfirmButton extends StatelessWidget {
       child: Opacity(
         opacity: enable ? 1.0 : 0.5,
         child: PrimaryRoundedButton(
-          text: LocaleKeys.button_confirm.tr(),
+          text: '确认',
           figmaLineHeight: 20.0,
           onTap: enable ? onTap : null,
         ),

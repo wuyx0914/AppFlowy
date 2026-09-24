@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:appflowy/ai/ai.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/ai_chat/application/chat_ai_message_bloc.dart';
 import 'package:appflowy/plugins/ai_chat/application/chat_edit_document_service.dart';
 import 'package:appflowy/plugins/document/application/prelude.dart';
@@ -23,7 +22,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -156,7 +154,7 @@ class CopyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.settings_menu_clickToCopy.tr(),
+      message: '点击复制',
       child: FlowyIconButton(
         width: DesktopAIChatSizes.messageActionBarIconSize,
         hoverColor: AFThemeExtension.of(context).lightGreyHover,
@@ -182,7 +180,7 @@ class CopyButton extends StatelessWidget {
           );
           if (context.mounted) {
             showToastNotification(
-              message: LocaleKeys.message_copy_success.tr(),
+              message: '已复制',
             );
           }
         },
@@ -215,7 +213,7 @@ class RegenerateButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.chat_regenerate.tr(),
+      message: '请重试',
       child: FlowyIconButton(
         width: DesktopAIChatSizes.messageActionBarIconSize,
         hoverColor: AFThemeExtension.of(context).lightGreyHover,
@@ -277,7 +275,7 @@ class _ChangeFormatButtonState extends State<ChangeFormatButton> {
 
   Widget buildButton(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.chat_changeFormat_actionButton.tr(),
+      message: '变更样式',
       child: FlowyIconButton(
         width: 32.0,
         height: DesktopAIChatSizes.messageActionBarIconSize,
@@ -382,7 +380,7 @@ class _ChangeFormatPopoverContentState
           ),
           const HSpace(4.0),
           FlowyTooltip(
-            message: LocaleKeys.chat_changeFormat_confirmButton.tr(),
+            message: '基于该样式重新生成',
             child: MouseRegion(
               cursor: SystemMouseCursors.click,
               child: GestureDetector(
@@ -458,7 +456,7 @@ class _ChangeModelButtonState extends State<ChangeModelButton> {
 
   Widget buildButton(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.chat_switchModel_label.tr(),
+      message: '切换模型',
       child: FlowyIconButton(
         width: 32.0,
         height: DesktopAIChatSizes.messageActionBarIconSize,
@@ -559,7 +557,7 @@ class _SaveToPageButtonState extends State<SaveToPageButton> {
 
   Widget buildButton(BuildContext context, ViewPB? spaceView) {
     return FlowyTooltip(
-      message: LocaleKeys.chat_addToPageButton.tr(),
+      message: '添加消息到页面',
       child: FlowyIconButton(
         width: DesktopAIChatSizes.messageActionBarIconSize,
         hoverColor: AFThemeExtension.of(context).lightGreyHover,
@@ -710,7 +708,7 @@ class SaveToPagePopoverContent extends StatelessWidget {
               child: Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: Text(
-                  LocaleKeys.chat_addToPageTitle.tr(),
+                  '添加消息至......',
                   style: theme.textStyle.caption
                       .standard(color: theme.textColorScheme.secondary),
                 ),
@@ -721,7 +719,7 @@ class SaveToPagePopoverContent extends StatelessWidget {
               child: AFTextField(
                 controller:
                     context.read<ViewSelectorCubit>().filterTextController,
-                hintText: LocaleKeys.search_label.tr(),
+                hintText: '搜索',
                 size: AFTextFieldSize.m,
               ),
             ),

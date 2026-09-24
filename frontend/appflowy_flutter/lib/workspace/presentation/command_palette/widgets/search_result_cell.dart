@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/search/mobile_search_cell.dart';
 import 'package:appflowy/mobile/presentation/search/mobile_view_ancestors.dart';
 import 'package:appflowy/util/string_extension.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/workspace/application/command_palette/search_result_lis
 import 'package:appflowy/workspace/presentation/command_palette/widgets/search_icon.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
@@ -60,7 +58,7 @@ class _SearchResultCellState extends State<SearchResultCell> {
   @override
   Widget build(BuildContext context) {
     final title = item.displayName.orDefault(
-      LocaleKeys.menuAppHeader_defaultNewPageName.tr(),
+      '未命名页面',
     );
     final searchResultBloc = context.read<SearchResultListBloc>();
     final hasHovered = searchResultBloc.state.hoveredResult != null;

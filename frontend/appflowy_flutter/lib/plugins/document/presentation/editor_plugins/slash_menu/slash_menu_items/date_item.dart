@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/selectable_svg_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/slash_menu/slash_menu_items/slash_menu_item_builder.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 final _keywords = [
   'insert date',
@@ -16,7 +14,7 @@ final _keywords = [
 
 // date or reminder menu item
 SelectionMenuItem dateOrReminderSlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_dateOrReminder.tr(),
+  getName: () => '日期或提醒',
   keywords: _keywords,
   handler: (editorState, _, __) async => editorState.insertDateReference(),
   nameBuilder: slashMenuItemNameBuilder,

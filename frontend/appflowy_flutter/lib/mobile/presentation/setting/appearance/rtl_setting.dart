@@ -1,10 +1,8 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/setting/widgets/mobile_setting_trailing.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
 import 'package:appflowy/plugins/document/application/document_appearance_cubit.dart';
 import 'package:appflowy/workspace/application/settings/appearance/appearance_cubit.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,7 +18,7 @@ class RTLSetting extends StatelessWidget {
     final textDirection =
         context.watch<AppearanceSettingsCubit>().state.textDirection;
     return MobileSettingItem(
-      name: LocaleKeys.settings_appearance_textDirection_label.tr(),
+      name: '默认文本方向',
       trailing: MobileSettingTrailing(
         text: _textDirectionLabelText(textDirection),
       ),
@@ -30,12 +28,12 @@ class RTLSetting extends StatelessWidget {
           showHeader: true,
           showDragHandle: true,
           showDivider: false,
-          title: LocaleKeys.settings_appearance_textDirection_label.tr(),
+          title: '默认文本方向',
           builder: (context) {
             return Column(
               children: [
                 FlowyOptionTile.checkbox(
-                  text: LocaleKeys.settings_appearance_textDirection_ltr.tr(),
+                  text: '从左到右',
                   isSelected: textDirection == AppFlowyTextDirection.ltr,
                   onTap: () => applyTextDirectionAndPop(
                     context,
@@ -44,7 +42,7 @@ class RTLSetting extends StatelessWidget {
                 ),
                 FlowyOptionTile.checkbox(
                   showTopBorder: false,
-                  text: LocaleKeys.settings_appearance_textDirection_rtl.tr(),
+                  text: '从右到左',
                   isSelected: textDirection == AppFlowyTextDirection.rtl,
                   onTap: () => applyTextDirectionAndPop(
                     context,
@@ -53,7 +51,7 @@ class RTLSetting extends StatelessWidget {
                 ),
                 FlowyOptionTile.checkbox(
                   showTopBorder: false,
-                  text: LocaleKeys.settings_appearance_textDirection_auto.tr(),
+                  text: '汽车',
                   isSelected: textDirection == AppFlowyTextDirection.auto,
                   onTap: () => applyTextDirectionAndPop(
                     context,
@@ -71,11 +69,11 @@ class RTLSetting extends StatelessWidget {
   String _textDirectionLabelText(AppFlowyTextDirection textDirection) {
     switch (textDirection) {
       case AppFlowyTextDirection.auto:
-        return LocaleKeys.settings_appearance_textDirection_auto.tr();
+        return '汽车';
       case AppFlowyTextDirection.rtl:
-        return LocaleKeys.settings_appearance_textDirection_rtl.tr();
+        return '从右到左';
       case AppFlowyTextDirection.ltr:
-        return LocaleKeys.settings_appearance_textDirection_ltr.tr();
+        return '从左到右';
     }
   }
 

@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/sign_in_bloc.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/back_to_login_in_button.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_button.dart';
@@ -6,7 +5,6 @@ import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/contin
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/verifying_button.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -55,7 +53,7 @@ class _ContinueWithMagicLinkOrPasscodePageState
         if (successOrFail != null && successOrFail.isFailure) {
           successOrFail.onFailure((error) {
             inputPasscodeKey.currentState?.syncError(
-              errorText: LocaleKeys.signIn_tokenHasExpiredOrInvalid.tr(),
+              errorText: '此代码已过期或无效，请重新尝试。',
             );
           });
         }
@@ -96,7 +94,7 @@ class _ContinueWithMagicLinkOrPasscodePageState
     if (!isEnteringPasscode) {
       return [
         AFFilledTextButton.primary(
-          text: LocaleKeys.signIn_enterCodeManually.tr(),
+          text: '手动输入代码',
           onTap: () => setState(() => isEnteringPasscode = true),
           size: AFButtonSize.l,
           alignment: Alignment.center,
@@ -110,13 +108,13 @@ class _ContinueWithMagicLinkOrPasscodePageState
       AFTextField(
         key: inputPasscodeKey,
         controller: passcodeController,
-        hintText: LocaleKeys.signIn_enterCode.tr(),
+        hintText: '输入代码',
         keyboardType: TextInputType.number,
         autoFocus: true,
         onSubmitted: (passcode) {
           if (passcode.isEmpty) {
             inputPasscodeKey.currentState?.syncError(
-              errorText: LocaleKeys.signIn_invalidVerificationCode.tr(),
+              errorText: '请输入有效的验证码',
             );
           } else {
             widget.onEnterPasscode(passcode);
@@ -130,12 +128,12 @@ class _ContinueWithMagicLinkOrPasscodePageState
       isSubmitting
           ? const VerifyingButton()
           : ContinueWithButton(
-              text: LocaleKeys.signIn_continueWithLoginCode.tr(),
+              text: '继续使用登录代码',
               onTap: () {
                 final passcode = passcodeController.text;
                 if (passcode.isEmpty) {
                   inputPasscodeKey.currentState?.syncError(
-                    errorText: LocaleKeys.signIn_invalidVerificationCode.tr(),
+                    errorText: '请输入有效的验证码',
                   );
                 } else {
                   widget.onEnterPasscode(passcode);
@@ -152,8 +150,8 @@ class _ContinueWithMagicLinkOrPasscodePageState
 
     if (!isEnteringPasscode) {
       return TitleLogo(
-        title: LocaleKeys.signIn_checkYourEmail.tr(),
-        description: LocaleKeys.signIn_temporaryVerificationLinkSent.tr(),
+        title: '检查您的电子邮件信箱',
+        description: '已发送一封暂时验证链接。 请查看您的收件匣，地址为:',
         informationBuilder: (context) => Text(
           widget.email,
           style: theme.textStyle.body.enhanced(
@@ -163,8 +161,8 @@ class _ContinueWithMagicLinkOrPasscodePageState
       );
     } else {
       return TitleLogo(
-        title: LocaleKeys.signIn_enterCode.tr(),
-        description: LocaleKeys.signIn_temporaryVerificationCodeSent.tr(),
+        title: '输入代码',
+        description: '已发送一封暂时验证码。 请查看您的收件匣，地址为:',
         informationBuilder: (context) => Text(
           widget.email,
           style: theme.textStyle.body.enhanced(

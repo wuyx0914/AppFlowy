@@ -1,9 +1,7 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/error_page/error_page.dart';
 import 'package:appflowy/workspace/presentation/settings/widgets/theme_upload/theme_upload_view.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/widget/buttons/secondary_button.dart';
@@ -26,7 +24,7 @@ class ThemeUploadLearnMoreButton extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: FlowyText.medium(
               fontSize: ThemeUploadWidget.buttonFontSize,
-              LocaleKeys.document_plugins_autoGeneratorLearnMore.tr(),
+              '学习更多',
             ),
           ),
           onPressed: () async {
@@ -40,14 +38,12 @@ class ThemeUploadLearnMoreButton extends StatelessWidget {
                     context,
                     child: FlowyDialog(
                       child: FlowyErrorPage.message(
-                        LocaleKeys
-                            .settings_appearance_themeUpload_urlUploadFailure
-                            .tr()
+                        '无法打开网址：{}'
                             .replaceAll(
                               '{}',
                               uri.toString(),
                             ),
-                        howToFix: LocaleKeys.errorDialog_howToFixFallback.tr(),
+                        howToFix: '对于给您带来的不便, 我们深表歉意! 请在我们的 GitHub 页面上提交 issue 并描述您遇到的错误。',
                       ),
                     ),
                   );

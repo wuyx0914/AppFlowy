@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/application/sidebar/space/space_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -52,7 +50,7 @@ class _SpaceMigrationState extends State<SpaceMigration> {
         Opacity(
           opacity: 0.7,
           child: FlowyText.regular(
-            LocaleKeys.space_upgradeSpaceDescription.tr(),
+            '创建多个公开和私人空间，以更好地组织您的工作区。',
             maxLines: null,
             fontSize: 13.0,
             lineHeight: 1.3,
@@ -90,7 +88,7 @@ class _SpaceMigrationState extends State<SpaceMigration> {
                   linearGradient.createShader(bounds),
               blendMode: BlendMode.srcIn,
               child: FlowyText(
-                LocaleKeys.space_upgradeYourSpace.tr(),
+                '创建多个空间',
               ),
             ),
           ),
@@ -122,7 +120,7 @@ class _MigrationTitle extends StatelessWidget {
         const HSpace(8.0),
         Expanded(
           child: FlowyText(
-            LocaleKeys.space_upgradeSpaceTitle.tr(),
+            '激活空间',
             maxLines: 3,
             lineHeight: 1.2,
           ),
@@ -149,7 +147,7 @@ class _ExpandedUpgradeButton extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
         ),
         child: FlowyText(
-          LocaleKeys.space_upgrade.tr(),
+          '更新',
           color: Colors.white,
           fontSize: 12.0,
           strutStyle: const StrutStyle(forceStrutHeight: true),

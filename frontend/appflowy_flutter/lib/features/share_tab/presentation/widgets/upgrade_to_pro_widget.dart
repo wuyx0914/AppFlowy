@@ -1,8 +1,6 @@
 import 'package:appflowy/features/share_tab/logic/share_tab_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +44,7 @@ class UpgradeToProWidget extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: LocaleKeys.shareTab_upgrade.tr(),
+                  text: '升级',
                   style: theme.textStyle.caption.standard().copyWith(
                         color: theme.textColorScheme.featured,
                         decoration: TextDecoration.underline,
@@ -58,7 +56,7 @@ class UpgradeToProWidget extends StatelessWidget {
                   mouseCursor: SystemMouseCursors.click,
                 ),
                 TextSpan(
-                  text: LocaleKeys.shareTab_toProPlanToInviteGuests.tr(),
+                  text: '要邀请访客到此页面，需要升级至专业版',
                   style: theme.textStyle.caption.standard().copyWith(
                         color: theme.textColorScheme.featured,
                       ),

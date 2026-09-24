@@ -1,10 +1,8 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/sidebar/space/space_bloc.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/_extension.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/shared_widget.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/space_icon.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/space_icon_popup.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -17,7 +15,7 @@ class CreateSpacePopup extends StatefulWidget {
 }
 
 class _CreateSpacePopupState extends State<CreateSpacePopup> {
-  String spaceName = LocaleKeys.space_defaultSpaceName.tr();
+  String spaceName = '一般';
   String? spaceIcon = kDefaultSpaceIconId;
   String? spaceIconColor = builtInSpaceColors.first;
   SpacePermission spacePermission = SpacePermission.publicToAll;
@@ -31,13 +29,13 @@ class _CreateSpacePopupState extends State<CreateSpacePopup> {
         mainAxisSize: MainAxisSize.min,
         children: [
           FlowyText(
-            LocaleKeys.space_createNewSpace.tr(),
+            '创建新空间',
             fontSize: 18.0,
             figmaLineHeight: 24.0,
           ),
           const VSpace(2.0),
           FlowyText(
-            LocaleKeys.space_createSpaceDescription.tr(),
+            '创建多个公开与私人空间，以更好地整理您的工作。',
             fontSize: 14.0,
             fontWeight: FontWeight.w300,
             color: Theme.of(context).hintColor,
@@ -68,7 +66,7 @@ class _CreateSpacePopupState extends State<CreateSpacePopup> {
           ),
           const VSpace(20.0),
           SpaceCancelOrConfirmButton(
-            confirmButtonName: LocaleKeys.button_create.tr(),
+            confirmButtonName: '创建',
             onCancel: () => Navigator.of(context).pop(),
             onConfirm: () => _createSpace(),
           ),
@@ -110,7 +108,7 @@ class _SpaceNameTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FlowyText.regular(
-          LocaleKeys.space_spaceName.tr(),
+          '空间名称',
           fontSize: 14.0,
           color: Theme.of(context).hintColor,
           figmaLineHeight: 18.0,
@@ -119,7 +117,7 @@ class _SpaceNameTextField extends StatelessWidget {
         SizedBox(
           height: 40,
           child: FlowyTextField(
-            hintText: LocaleKeys.space_spaceNamePlaceholder.tr(),
+            hintText: '例如行销、工程、人力资源',
             onChanged: onChanged,
             onSubmitted: onSubmitted,
             enableBorderColor: context.enableBorderColor,

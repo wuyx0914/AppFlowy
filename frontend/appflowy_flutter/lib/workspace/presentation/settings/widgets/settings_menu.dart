@@ -1,11 +1,9 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/feature_flags.dart';
 import 'package:appflowy/workspace/application/settings/settings_dialog_bloc.dart';
 import 'package:appflowy/workspace/presentation/settings/widgets/settings_menu_element.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -50,14 +48,14 @@ class SettingsMenu extends StatelessWidget {
             SettingsMenuElement(
               page: SettingsPage.account,
               selectedPage: currentPage,
-              label: LocaleKeys.settings_accountPage_menuLabel.tr(),
+              label: '我的账户',
               icon: const FlowySvg(FlowySvgs.settings_page_user_m),
               changeSelectedPage: changeSelectedPage,
             ),
             SettingsMenuElement(
               page: SettingsPage.workspace,
               selectedPage: currentPage,
-              label: LocaleKeys.settings_workspacePage_menuLabel.tr(),
+              label: '工作区',
               icon: const FlowySvg(FlowySvgs.settings_page_workspace_m),
               changeSelectedPage: changeSelectedPage,
             ),
@@ -66,28 +64,28 @@ class SettingsMenu extends StatelessWidget {
             SettingsMenuElement(
               page: SettingsPage.manageData,
               selectedPage: currentPage,
-              label: LocaleKeys.settings_manageDataPage_menuLabel.tr(),
+              label: '管理数据',
               icon: const FlowySvg(FlowySvgs.settings_page_database_m),
               changeSelectedPage: changeSelectedPage,
             ),
             SettingsMenuElement(
               page: SettingsPage.notifications,
               selectedPage: currentPage,
-              label: LocaleKeys.settings_menu_notifications.tr(),
+              label: '通知',
               icon: const FlowySvg(FlowySvgs.settings_page_bell_m),
               changeSelectedPage: changeSelectedPage,
             ),
             SettingsMenuElement(
               page: SettingsPage.shortcuts,
               selectedPage: currentPage,
-              label: LocaleKeys.settings_shortcutsPage_menuLabel.tr(),
+              label: '快捷键',
               icon: const FlowySvg(FlowySvgs.settings_page_keyboard_m),
               changeSelectedPage: changeSelectedPage,
             ),
             SettingsMenuElement(
               page: SettingsPage.ai,
               selectedPage: currentPage,
-              label: LocaleKeys.settings_aiPage_menuLabel.tr(),
+              label: 'AI 设置',
               icon: const FlowySvg(
                 FlowySvgs.settings_page_ai_m,
               ),

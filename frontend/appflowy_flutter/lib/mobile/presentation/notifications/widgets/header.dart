@@ -1,8 +1,6 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/notifications/mobile_notifications_screen.dart';
 import 'package:appflowy/mobile/presentation/notifications/widgets/settings_popup_menu.dart';
 import 'package:appflowy/mobile/presentation/presentation.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +18,7 @@ class MobileNotificationPageHeader extends StatelessWidget {
         children: [
           const HSpace(18.0),
           FlowyText(
-            LocaleKeys.settings_notifications_titles_notifications.tr(),
+            '通知',
             fontSize: 20,
             fontWeight: FontWeight.w600,
           ),
@@ -84,7 +82,7 @@ class MobileNotificationMultiSelectPageHeader extends StatelessWidget {
       child: Padding(
         padding: padding,
         child: FlowyText(
-          LocaleKeys.button_cancel.tr(),
+          '取消',
           fontSize: 17.0,
           figmaLineHeight: 24.0,
           fontWeight: FontWeight.w400,

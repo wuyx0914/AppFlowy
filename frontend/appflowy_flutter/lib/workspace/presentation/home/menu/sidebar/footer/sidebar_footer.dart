@@ -1,13 +1,11 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/feature_flags.dart';
 import 'package:appflowy/startup/plugin/plugin.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/application/tabs/tabs_bloc.dart';
 import 'package:appflowy/workspace/presentation/home/menu/menu_shared_state.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/footer/sidebar_toast.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +56,7 @@ class SidebarTemplateButton extends StatelessWidget {
       leftIcon: const FlowySvg(
         FlowySvgs.icon_template_s,
       ),
-      text: LocaleKeys.template_label.tr(),
+      text: '模板',
       onTap: () => afLaunchUrlString('https://appflowy.com/templates'),
     );
   }
@@ -77,7 +75,7 @@ class SidebarTrashButton extends StatelessWidget {
           leftIcon: const FlowySvg(
             FlowySvgs.icon_delete_s,
           ),
-          text: LocaleKeys.trash_text.tr(),
+          text: '回收站',
           onTap: () {
             getIt<MenuSharedState>().latestOpenView = null;
             getIt<TabsBloc>().add(

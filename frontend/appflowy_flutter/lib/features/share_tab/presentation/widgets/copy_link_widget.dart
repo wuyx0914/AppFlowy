@@ -1,10 +1,8 @@
 import 'package:appflowy/features/share_tab/logic/share_tab_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,7 +38,7 @@ class CopyLinkWidget extends StatelessWidget {
           HSpace(theme.spacing.m),
           Expanded(
             child: Text(
-              LocaleKeys.shareTab_peopleAboveCanAccessWithTheLink.tr(),
+              '拥有链接的人士可以访问',
               style: theme.textStyle.caption.standard(
                 color: theme.textColorScheme.primary,
               ),
@@ -48,7 +46,7 @@ class CopyLinkWidget extends StatelessWidget {
             ),
           ),
           AFOutlinedTextButton.normal(
-            text: LocaleKeys.shareTab_copyLink.tr(),
+            text: '拷贝链接',
             size: AFButtonSize.l,
             padding: EdgeInsets.symmetric(
               horizontal: theme.spacing.l,
@@ -74,7 +72,7 @@ class CopyLinkWidget extends StatelessWidget {
               }
 
               showToastNotification(
-                message: LocaleKeys.shareTab_copiedLinkToClipboard.tr(),
+                message: '已将链接拷贝到剪贴板',
               );
             },
           ),

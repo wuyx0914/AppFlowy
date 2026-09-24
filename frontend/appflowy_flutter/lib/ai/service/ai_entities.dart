@@ -1,12 +1,10 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/easy_localiation_service.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy_backend/protobuf/flowy-ai/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -82,10 +80,10 @@ enum ImageFormat {
 
   String get i18n {
     return switch (this) {
-      ImageFormat.text => LocaleKeys.chat_changeFormat_textOnly.tr(),
-      ImageFormat.image => LocaleKeys.chat_changeFormat_imageOnly.tr(),
+      ImageFormat.text => '文本',
+      ImageFormat.image => '仅图片',
       ImageFormat.textAndImage =>
-        LocaleKeys.chat_changeFormat_textAndImage.tr(),
+        '文本与图片',
     };
   }
 }
@@ -107,10 +105,10 @@ enum TextFormat {
 
   String get i18n {
     return switch (this) {
-      TextFormat.paragraph => LocaleKeys.chat_changeFormat_text.tr(),
-      TextFormat.bulletList => LocaleKeys.chat_changeFormat_bullet.tr(),
-      TextFormat.numberedList => LocaleKeys.chat_changeFormat_number.tr(),
-      TextFormat.table => LocaleKeys.chat_changeFormat_table.tr(),
+      TextFormat.paragraph => '段落',
+      TextFormat.bulletList => '项目符号清单',
+      TextFormat.numberedList => '编号清单',
+      TextFormat.table => '表格',
     };
   }
 }
@@ -139,32 +137,32 @@ enum AiPromptCategory {
   copyWriting,
   customerSuccess;
 
-  String get i18n => token.tr();
+  String get i18n => _zhName;
 
-  String get token {
+  String get _zhName {
     return switch (this) {
-      other => LocaleKeys.ai_customPrompt_others,
-      development => LocaleKeys.ai_customPrompt_development,
-      writing => LocaleKeys.ai_customPrompt_writing,
-      healthAndFitness => LocaleKeys.ai_customPrompt_healthAndFitness,
-      business => LocaleKeys.ai_customPrompt_business,
-      marketing => LocaleKeys.ai_customPrompt_marketing,
-      travel => LocaleKeys.ai_customPrompt_travel,
-      contentSeo => LocaleKeys.ai_customPrompt_contentSeo,
-      emailMarketing => LocaleKeys.ai_customPrompt_emailMarketing,
-      paidAds => LocaleKeys.ai_customPrompt_paidAds,
-      prCommunication => LocaleKeys.ai_customPrompt_prCommunication,
-      recruiting => LocaleKeys.ai_customPrompt_recruiting,
-      sales => LocaleKeys.ai_customPrompt_sales,
-      socialMedia => LocaleKeys.ai_customPrompt_socialMedia,
-      strategy => LocaleKeys.ai_customPrompt_strategy,
-      caseStudies => LocaleKeys.ai_customPrompt_caseStudies,
-      salesCopy => LocaleKeys.ai_customPrompt_salesCopy,
-      education => LocaleKeys.ai_customPrompt_education,
-      work => LocaleKeys.ai_customPrompt_work,
-      podcastProduction => LocaleKeys.ai_customPrompt_podcastProduction,
-      copyWriting => LocaleKeys.ai_customPrompt_copyWriting,
-      customerSuccess => LocaleKeys.ai_customPrompt_customerSuccess,
+      other => '其他',
+      development => '开发',
+      writing => '写作',
+      healthAndFitness => '健康与健身',
+      business => '商业',
+      marketing => '市场营销',
+      travel => '旅行',
+      contentSeo => '内容/SEO',
+      emailMarketing => '邮件营销',
+      paidAds => '付费广告',
+      prCommunication => '公关传播',
+      recruiting => '招聘',
+      sales => '销售',
+      socialMedia => '社交媒体',
+      strategy => '战略',
+      caseStudies => '案例研究',
+      salesCopy => '销售文案',
+      education => '教育',
+      work => '工作',
+      podcastProduction => '播客制作',
+      copyWriting => '文案写作',
+      customerSuccess => '客户成功',
     };
   }
 }
@@ -232,13 +230,9 @@ class AiPrompt extends Equatable {
       [id, name, content, category, example, isFeatured, isCustom];
 
   static Map<AiPromptCategory, (String, String)> _buildCategoryNameMap() {
-    final service = getIt<EasyLocalizationService>();
     return {
       for (final category in AiPromptCategory.values)
-        category: (
-          service.getFallbackTranslation(category.token),
-          service.getFallbackTranslation(category.token),
-        ),
+        category: (category._zhName, category._zhName),
     };
   }
 

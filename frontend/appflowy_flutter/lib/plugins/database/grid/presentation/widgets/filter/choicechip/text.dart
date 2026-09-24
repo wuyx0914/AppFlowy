@@ -1,11 +1,9 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
 import 'package:appflowy/plugins/database/application/field/filter_entities.dart';
 import 'package:appflowy/plugins/database/grid/application/filter/filter_editor_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -136,7 +134,7 @@ class _TextFilterEditorState extends State<TextFilterEditor> {
   Widget _buildFilterTextField(TextFilter filter, FieldInfo field) {
     return FlowyTextField(
       text: filter.content,
-      hintText: LocaleKeys.grid_settings_typeAValue.tr(),
+      hintText: '请输入一个值',
       debounceDuration: const Duration(milliseconds: 300),
       autoFocus: false,
       onChanged: (text) {
@@ -212,21 +210,21 @@ extension TextFilterConditionPBExtension on TextFilterConditionPB {
   String get filterName {
     switch (this) {
       case TextFilterConditionPB.TextContains:
-        return LocaleKeys.grid_textFilter_contains.tr();
+        return '包含';
       case TextFilterConditionPB.TextDoesNotContain:
-        return LocaleKeys.grid_textFilter_doesNotContain.tr();
+        return '不包含';
       case TextFilterConditionPB.TextEndsWith:
-        return LocaleKeys.grid_textFilter_endsWith.tr();
+        return '以……结束';
       case TextFilterConditionPB.TextIs:
-        return LocaleKeys.grid_textFilter_is.tr();
+        return '等于';
       case TextFilterConditionPB.TextIsNot:
-        return LocaleKeys.grid_textFilter_isNot.tr();
+        return '不等于';
       case TextFilterConditionPB.TextStartsWith:
-        return LocaleKeys.grid_textFilter_startWith.tr();
+        return '以……开始';
       case TextFilterConditionPB.TextIsEmpty:
-        return LocaleKeys.grid_textFilter_isEmpty.tr();
+        return '为空';
       case TextFilterConditionPB.TextIsNotEmpty:
-        return LocaleKeys.grid_textFilter_isNotEmpty.tr();
+        return '不为空';
       default:
         return "";
     }
@@ -235,17 +233,17 @@ extension TextFilterConditionPBExtension on TextFilterConditionPB {
   String get choicechipPrefix {
     switch (this) {
       case TextFilterConditionPB.TextDoesNotContain:
-        return LocaleKeys.grid_textFilter_choicechipPrefix_isNot.tr();
+        return '不等于';
       case TextFilterConditionPB.TextEndsWith:
-        return LocaleKeys.grid_textFilter_choicechipPrefix_endWith.tr();
+        return '以……结束';
       case TextFilterConditionPB.TextIsNot:
-        return LocaleKeys.grid_textFilter_choicechipPrefix_isNot.tr();
+        return '不等于';
       case TextFilterConditionPB.TextStartsWith:
-        return LocaleKeys.grid_textFilter_choicechipPrefix_startWith.tr();
+        return '以……开始';
       case TextFilterConditionPB.TextIsEmpty:
-        return LocaleKeys.grid_textFilter_choicechipPrefix_isEmpty.tr();
+        return '为空';
       case TextFilterConditionPB.TextIsNotEmpty:
-        return LocaleKeys.grid_textFilter_choicechipPrefix_isNotEmpty.tr();
+        return '不为空';
       default:
         return "";
     }

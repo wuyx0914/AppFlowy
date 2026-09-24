@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller_builder.dart';
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
 import 'package:appflowy/plugins/database/application/field/type_option/type_option_data_parser.dart';
@@ -16,8 +15,6 @@ import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:calendar_view/calendar_view.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart'
-    show StringTranslateExtension;
 import 'package:fixnum/fixnum.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -271,9 +268,9 @@ class DateCellEditorBloc
   String timeFormatPrompt(FlowyError error) {
     return switch (state.dateTypeOptionPB.timeFormat) {
       TimeFormatPB.TwelveHour =>
-        "${LocaleKeys.grid_field_invalidTimeFormat.tr()}. e.g. 01:00 PM",
+        "${'时间格式错误'}. e.g. 01:00 PM",
       TimeFormatPB.TwentyFourHour =>
-        "${LocaleKeys.grid_field_invalidTimeFormat.tr()}. e.g. 13:00",
+        "${'时间格式错误'}. e.g. 13:00",
       _ => "",
     };
   }

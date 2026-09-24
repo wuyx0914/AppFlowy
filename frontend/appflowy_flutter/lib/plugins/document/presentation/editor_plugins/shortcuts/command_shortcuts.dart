@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/align_toolbar_item/custom_text_align_command.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/math_equation/math_equation_shortcut.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/plugins/document/presentation/editor_plugins/undo_redo/
 import 'package:appflowy/workspace/presentation/settings/widgets/emoji_picker/emoji_picker.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 import 'exit_edit_mode_command.dart';
 
@@ -64,17 +62,17 @@ List<CommandShortcutEvent> commandShortcutEvents = [
 
 final _codeBlockLocalization = CodeBlockLocalizations(
   codeBlockNewParagraph:
-      LocaleKeys.settings_shortcutsPage_commands_codeBlockNewParagraph.tr(),
+      '在代码区块旁边插入一个新段落',
   codeBlockIndentLines:
-      LocaleKeys.settings_shortcutsPage_commands_codeBlockIndentLines.tr(),
+      '在代码区块开头插入两个空格',
   codeBlockOutdentLines:
-      LocaleKeys.settings_shortcutsPage_commands_codeBlockOutdentLines.tr(),
+      '删除代码区块开头的两个空格',
   codeBlockSelectAll:
-      LocaleKeys.settings_shortcutsPage_commands_codeBlockSelectAll.tr(),
+      '选取代码区块内的所有内容',
   codeBlockPasteText:
-      LocaleKeys.settings_shortcutsPage_commands_codeBlockPasteText.tr(),
+      '将文本贴到代码区块中',
   codeBlockAddTwoSpaces:
-      LocaleKeys.settings_shortcutsPage_commands_codeBlockAddTwoSpaces.tr(),
+      '在代码区块中光标位置插入两个空格',
 );
 
 final localizedCodeBlockCommands = codeBlockCommands(

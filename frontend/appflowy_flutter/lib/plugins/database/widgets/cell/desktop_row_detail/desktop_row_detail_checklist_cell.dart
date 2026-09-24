@@ -1,12 +1,10 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/checklist_cell_bloc.dart';
 import 'package:appflowy/plugins/database/widgets/cell_editor/checklist_cell_editor.dart';
 import 'package:appflowy/plugins/database/widgets/cell_editor/checklist_cell_textfield.dart';
 import 'package:appflowy/plugins/database/widgets/cell_editor/checklist_progress_bar.dart';
 import 'package:appflowy/plugins/database/widgets/row/cells/cell_container.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -148,8 +146,8 @@ class ProgressAndHideCompleteButton extends StatelessWidget {
               const HSpace(6.0),
               FlowyIconButton(
                 tooltipText: state.showIncompleteOnly
-                    ? LocaleKeys.grid_checklist_showComplete.tr()
-                    : LocaleKeys.grid_checklist_hideComplete.tr(),
+                    ? '显示所有任务'
+                    : '隐藏已完成的任务',
                 width: 32,
                 iconColorOnHover: Theme.of(context).colorScheme.onSurface,
                 icon: FlowySvg(
@@ -416,7 +414,7 @@ class ChecklistItemControl extends StatelessWidget {
                 duration: const Duration(milliseconds: 150),
                 child: notifier.isHover
                     ? FlowyTooltip(
-                        message: LocaleKeys.grid_checklist_addNew.tr(),
+                        message: '添加项',
                         child: Row(
                           children: [
                             const Flexible(child: Center(child: Divider())),

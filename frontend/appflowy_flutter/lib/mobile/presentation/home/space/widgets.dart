@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/animated_gesture.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/shared/icon_emoji_picker/icon.dart';
 import 'package:appflowy/shared/icon_emoji_picker/icon_picker.dart';
 import 'package:appflowy/workspace/application/sidebar/space/space_bloc.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/space_icon_popup.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart' hide Icon;
 
@@ -35,7 +33,7 @@ class ManageSpaceNameOption extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 16, bottom: 4),
           child: FlowyText(
-            LocaleKeys.space_spaceName.tr(),
+            '空间名称',
             fontSize: 14,
             figmaLineHeight: 20.0,
             fontWeight: FontWeight.w400,
@@ -45,7 +43,7 @@ class ManageSpaceNameOption extends StatelessWidget {
         FlowyOptionTile.textField(
           controller: controller,
           autofocus: type == ManageSpaceType.create ? true : false,
-          textFieldHintText: LocaleKeys.space_spaceNamePlaceholder.tr(),
+          textFieldHintText: '例如行销、工程、人力资源',
         ),
         const VSpace(16),
       ],
@@ -69,7 +67,7 @@ class ManageSpacePermissionOption extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 16, bottom: 4),
           child: FlowyText(
-            LocaleKeys.space_permission.tr(),
+            '空间许可',
             fontSize: 14,
             figmaLineHeight: 20.0,
             fontWeight: FontWeight.w400,
@@ -89,7 +87,7 @@ class ManageSpacePermissionOption extends StatelessWidget {
               showMobileBottomSheet(
                 context,
                 showHeader: true,
-                title: LocaleKeys.space_permission.tr(),
+                title: '空间许可',
                 showCloseButton: true,
                 showDivider: false,
                 showDragHandle: true,
@@ -141,7 +139,7 @@ class _ManageSpaceIconOptionState extends State<ManageSpaceIconOption> {
       Padding(
         padding: const EdgeInsets.only(left: 16, bottom: 4),
         child: FlowyText(
-          LocaleKeys.space_mSpaceIconColor.tr(),
+          '空间图标颜色',
           fontSize: 14,
           figmaLineHeight: 20.0,
           fontWeight: FontWeight.w400,
@@ -179,7 +177,7 @@ class _ManageSpaceIconOptionState extends State<ManageSpaceIconOption> {
       Padding(
         padding: const EdgeInsets.only(left: 16, bottom: 4),
         child: FlowyText(
-          LocaleKeys.space_mSpaceIcon.tr(),
+          '空间图标',
           fontSize: 14,
           figmaLineHeight: 20.0,
           fontWeight: FontWeight.w400,
@@ -372,9 +370,9 @@ extension on SpacePermission {
   String get i18n {
     switch (this) {
       case SpacePermission.publicToAll:
-        return LocaleKeys.space_publicPermission.tr();
+        return '民众';
       case SpacePermission.private:
-        return LocaleKeys.space_privatePermission.tr();
+        return '私人';
     }
   }
 

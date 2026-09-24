@@ -1,9 +1,7 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/selectable_svg_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 import 'slash_menu_item_builder.dart';
 
@@ -47,7 +45,7 @@ final _toggleH3Keywords = [
 
 // heading 1 - 3 menu items
 final heading1SlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_heading1.tr(),
+  getName: () => '一级标题',
   keywords: _h1Keywords,
   handler: (editorState, _, __) async => insertHeadingAfterSelection(
     editorState,
@@ -62,7 +60,7 @@ final heading1SlashMenuItem = SelectionMenuItem(
 );
 
 final heading2SlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_heading2.tr(),
+  getName: () => '二级标题',
   keywords: _h2Keywords,
   handler: (editorState, _, __) async => insertHeadingAfterSelection(
     editorState,
@@ -77,7 +75,7 @@ final heading2SlashMenuItem = SelectionMenuItem(
 );
 
 final heading3SlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_heading3.tr(),
+  getName: () => '三级标题',
   keywords: _h3Keywords,
   handler: (editorState, _, __) async => insertHeadingAfterSelection(
     editorState,
@@ -94,7 +92,7 @@ final heading3SlashMenuItem = SelectionMenuItem(
 // toggle heading 1 menu item
 // heading 1 - 3 menu items
 final toggleHeading1SlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_toggleHeading1.tr(),
+  getName: () => '切换标题1',
   keywords: _toggleH1Keywords,
   handler: (editorState, _, __) async => insertNodeAfterSelection(
     editorState,
@@ -109,7 +107,7 @@ final toggleHeading1SlashMenuItem = SelectionMenuItem(
 );
 
 final toggleHeading2SlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_toggleHeading2.tr(),
+  getName: () => '切换标题2',
   keywords: _toggleH2Keywords,
   handler: (editorState, _, __) async => insertNodeAfterSelection(
     editorState,
@@ -124,7 +122,7 @@ final toggleHeading2SlashMenuItem = SelectionMenuItem(
 );
 
 final toggleHeading3SlashMenuItem = SelectionMenuItem(
-  getName: () => LocaleKeys.document_slashMenu_name_toggleHeading3.tr(),
+  getName: () => '切换标题3',
   keywords: _toggleH3Keywords,
   handler: (editorState, _, __) async => insertNodeAfterSelection(
     editorState,

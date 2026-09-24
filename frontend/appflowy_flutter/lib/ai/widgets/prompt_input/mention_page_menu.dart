@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/ai_chat/application/chat_input_control_cubit.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/header/emoji_icon_widget.dart';
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy/workspace/application/view_title/view_title_bar_bloc.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/space_icon.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/material.dart';
@@ -227,7 +225,7 @@ class _PromptInputMentionPageListState
                   height: _noPageHeight,
                   child: Center(
                     child: FlowyText(
-                      LocaleKeys.chat_inputActionNoPages.tr(),
+                      '无页面结果',
                     ),
                   ),
                 ),
@@ -355,7 +353,7 @@ class MentionViewTitleAndAncestors extends StatelessWidget {
       child: BlocBuilder<ViewTitleBarBloc, ViewTitleBarState>(
         builder: (context, state) {
           final nonEmptyName = view.name.isEmpty
-              ? LocaleKeys.document_title_placeholder.tr()
+              ? '无标题'
               : view.name;
 
           final ancestorList = _getViewAncestorList(state.ancestors);
@@ -420,7 +418,7 @@ class MentionViewTitleAndAncestors extends StatelessWidget {
       }
 
       final nonEmptyName = view.name.isEmpty
-          ? LocaleKeys.document_title_placeholder.tr()
+          ? '无标题'
           : view.name;
 
       result += nonEmptyName;

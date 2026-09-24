@@ -12,15 +12,12 @@ import 'package:appflowy_backend/protobuf/flowy-error/errors.pbserver.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/workspace.pb.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:path/path.dart' as p;
-
-import '../../../../../generated/locale_keys.g.dart';
 
 class FileExporterWidget extends StatefulWidget {
   const FileExporterWidget({super.key});
@@ -55,7 +52,7 @@ class _FileExporterWidgetState extends State<FileExporterWidget> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       FlowyText.medium(
-                        LocaleKeys.settings_files_selectFiles.tr(),
+                        '选择需要导出的文件',
                         fontSize: 16.0,
                       ),
                       BlocBuilder<SettingsFileExporterCubit,
@@ -64,8 +61,8 @@ class _FileExporterWidgetState extends State<FileExporterWidget> {
                           state.selectedItems
                                   .expand((element) => element)
                                   .every((element) => element)
-                              ? LocaleKeys.settings_files_deselectAll.tr()
-                              : LocaleKeys.settings_files_selectAll.tr(),
+                              ? '取消全选'
+                              : '全选',
                           fontColor: AFThemeExtension.of(context).textColor,
                           onPressed: () {
                             context
@@ -95,13 +92,13 @@ class _FileExporterWidgetState extends State<FileExporterWidget> {
       children: [
         const Spacer(),
         FlowyTextButton(
-          LocaleKeys.button_cancel.tr(),
+          '取消',
           fontColor: AFThemeExtension.of(context).textColor,
           onPressed: () => Navigator.of(context).pop(),
         ),
         const HSpace(8),
         FlowyTextButton(
-          LocaleKeys.button_ok.tr(),
+          'OK',
           fontColor: AFThemeExtension.of(context).textColor,
           onPressed: () async {
             await getIt<FilePickerService>()
@@ -116,12 +113,12 @@ class _FileExporterWidgetState extends State<FileExporterWidget> {
                     // success
                     showSnackBarMessage(
                       context,
-                      LocaleKeys.settings_files_exportFileSuccess.tr(),
+                      '导出成功!',
                     );
                   } else {
                     showSnackBarMessage(
                       context,
-                      LocaleKeys.settings_files_exportFileFail.tr() +
+                      '导出失败!' +
                           result.$2.join('\n'),
                     );
                   }
@@ -129,7 +126,7 @@ class _FileExporterWidgetState extends State<FileExporterWidget> {
               } else if (mounted) {
                 showSnackBarMessage(
                   context,
-                  LocaleKeys.settings_files_exportFileFail.tr(),
+                  '导出失败!',
                 );
               }
               if (mounted) {

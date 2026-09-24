@@ -3,12 +3,10 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/plugins/base/drag_handler.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/checklist_cell_bloc.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -49,7 +47,7 @@ class _MobileChecklistCellEditScreenState
           height: 44.0,
           child: Align(
             child: FlowyText.medium(
-              LocaleKeys.grid_field_checklistFieldName.tr(),
+              '清单',
               fontSize: 18,
             ),
           ),
@@ -206,7 +204,7 @@ class _ChecklistItemState extends State<_ChecklistItem> {
                 isCollapsed: true,
                 isDense: true,
                 contentPadding: const EdgeInsets.symmetric(vertical: 12),
-                hintText: LocaleKeys.grid_checklist_taskHint.tr(),
+                hintText: '任务描述',
               ),
               onChanged: _debounceOnChangedText,
               onSubmitted: (description) {
@@ -277,7 +275,7 @@ class _ChecklistItemState extends State<_ChecklistItem> {
                     ),
                     const HSpace(8),
                     FlowyText(
-                      LocaleKeys.button_delete.tr(),
+                      '删除',
                       fontSize: 15,
                       color: Theme.of(context).colorScheme.error,
                     ),
@@ -316,7 +314,7 @@ class _NewTaskButton extends StatelessWidget {
             children: [
               const FlowySvg(FlowySvgs.add_s, size: Size.square(20)),
               const HSpace(11),
-              FlowyText(LocaleKeys.grid_checklist_addNew.tr(), fontSize: 15),
+              FlowyText('添加项', fontSize: 15),
             ],
           ),
         ),

@@ -1,7 +1,5 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 enum BlockActionBottomSheetType {
@@ -28,7 +26,7 @@ class BlockActionBottomSheet extends StatelessWidget {
       children: [
         // insert above, insert below
         FlowyOptionTile.text(
-          text: LocaleKeys.button_insertAbove.tr(),
+          text: '在上方插入',
           leftIcon: const FlowySvg(
             FlowySvgs.arrow_up_s,
             size: Size.square(20),
@@ -38,7 +36,7 @@ class BlockActionBottomSheet extends StatelessWidget {
         ),
         FlowyOptionTile.text(
           showTopBorder: false,
-          text: LocaleKeys.button_insertBelow.tr(),
+          text: '在下方插入',
           leftIcon: const FlowySvg(
             FlowySvgs.arrow_down_s,
             size: Size.square(20),
@@ -48,7 +46,7 @@ class BlockActionBottomSheet extends StatelessWidget {
         // duplicate, delete
         FlowyOptionTile.text(
           showTopBorder: false,
-          text: LocaleKeys.button_duplicate.tr(),
+          text: '复制',
           leftIcon: const Padding(
             padding: EdgeInsets.all(2),
             child: FlowySvg(
@@ -63,7 +61,7 @@ class BlockActionBottomSheet extends StatelessWidget {
 
         FlowyOptionTile.text(
           showTopBorder: false,
-          text: LocaleKeys.button_delete.tr(),
+          text: '删除',
           leftIcon: FlowySvg(
             FlowySvgs.trash_s,
             size: const Size.square(18),

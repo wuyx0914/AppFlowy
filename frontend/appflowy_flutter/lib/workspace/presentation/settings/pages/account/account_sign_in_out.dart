@@ -1,6 +1,5 @@
 import 'package:appflowy/env/cloud_env.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';
 import 'package:appflowy/user/application/password/password_bloc.dart';
@@ -13,7 +12,6 @@ import 'package:appflowy/workspace/presentation/settings/widgets/setting_third_p
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -36,7 +34,7 @@ class AccountSignInOutSection extends StatelessWidget {
     return Row(
       children: [
         Text(
-          LocaleKeys.settings_accountPage_login_title.tr(),
+          '登录账户',
           style: theme.textStyle.body.enhanced(
             color: theme.textColorScheme.primary,
           ),
@@ -68,8 +66,8 @@ class AccountSignInOutButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return AFFilledTextButton.primary(
       text: signIn
-          ? LocaleKeys.settings_accountPage_login_loginLabel.tr()
-          : LocaleKeys.settings_accountPage_login_logoutLabel.tr(),
+          ? '登录'
+          : '退出登录',
       onTap: () =>
           signIn ? _showSignInDialog(context) : _showLogoutDialog(context),
     );
@@ -78,9 +76,9 @@ class AccountSignInOutButton extends StatelessWidget {
   void _showLogoutDialog(BuildContext context) {
     showCancelAndConfirmDialog(
       context: context,
-      title: LocaleKeys.settings_accountPage_login_logoutLabel.tr(),
-      description: LocaleKeys.settings_menu_logoutPrompt.tr(),
-      confirmLabel: LocaleKeys.button_yes.tr(),
+      title: '退出登录',
+      description: '您确定要登出吗？',
+      confirmLabel: '是',
       onConfirm: (_) async {
         await getIt<AuthService>().signOut();
         onAction();
@@ -118,7 +116,7 @@ class ChangePasswordSection extends StatelessWidget {
         return Row(
           children: [
             Text(
-              LocaleKeys.newSettings_myAccount_password_title.tr(),
+              '密码',
               style: theme.textStyle.body.enhanced(
                 color: theme.textColorScheme.primary,
               ),
@@ -126,15 +124,11 @@ class ChangePasswordSection extends StatelessWidget {
             const Spacer(),
             state.hasPassword
                 ? AFFilledTextButton.primary(
-                    text: LocaleKeys
-                        .newSettings_myAccount_password_changePassword
-                        .tr(),
+                    text: '变更密码',
                     onTap: () => _showChangePasswordDialog(context),
                   )
                 : AFFilledTextButton.primary(
-                    text: LocaleKeys
-                        .newSettings_myAccount_password_setupPassword
-                        .tr(),
+                    text: '设置密码',
                     onTap: () => _showSetPasswordDialog(context),
                   ),
           ],
@@ -254,7 +248,7 @@ class _DialogHeader extends StatelessWidget {
           children: [
             const FlowySvg(FlowySvgs.arrow_back_m, size: Size.square(24)),
             const HSpace(8),
-            FlowyText.semibold(LocaleKeys.button_back.tr(), fontSize: 16),
+            FlowyText.semibold('返回', fontSize: 16),
           ],
         ),
       ),
@@ -286,7 +280,7 @@ class _DialogTitle extends StatelessWidget {
       children: [
         Flexible(
           child: FlowyText.medium(
-            LocaleKeys.settings_accountPage_login_loginLabel.tr(),
+            '登录',
             fontSize: 22,
             color: Theme.of(context).colorScheme.tertiary,
             maxLines: null,
@@ -307,7 +301,7 @@ class _OrDivider extends StatelessWidget {
         const Flexible(child: Divider(thickness: 1)),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: FlowyText.regular(LocaleKeys.signIn_or.tr()),
+          child: FlowyText.regular('或'),
         ),
         const Flexible(child: Divider(thickness: 1)),
       ],

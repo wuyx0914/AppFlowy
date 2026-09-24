@@ -1,6 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/widget/dialog/styled_dialogs.dart';
@@ -98,7 +96,7 @@ class _SettingsAlertDialogState extends State<SettingsAlertDialog> {
                         ),
                         const HSpace(8),
                         FlowyText.semibold(
-                          LocaleKeys.button_back.tr(),
+                          '返回',
                           fontSize: 16,
                         ),
                       ],
@@ -201,7 +199,7 @@ class _Actions extends StatelessWidget {
           SizedBox(
             height: 48,
             child: PrimaryRoundedButton(
-              text: LocaleKeys.button_cancel.tr(),
+              text: '取消',
               margin: const EdgeInsets.symmetric(
                 horizontal: 24,
                 vertical: 12,
@@ -222,7 +220,7 @@ class _Actions extends StatelessWidget {
           SizedBox(
             height: 48,
             child: FlowyTextButton(
-              confirmLabel ?? LocaleKeys.button_confirm.tr(),
+              confirmLabel ?? '确认',
               padding: const EdgeInsets.symmetric(
                 horizontal: 24,
                 vertical: 12,

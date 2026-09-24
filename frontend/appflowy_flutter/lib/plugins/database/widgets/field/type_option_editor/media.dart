@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/type_option/type_option_data_parser.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/plugins/database/widgets/field/type_option_editor/builder.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/workspace/presentation/widgets/toggle/toggle.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/field_entities.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/media_entities.pb.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:protobuf/protobuf.dart';
@@ -33,7 +31,7 @@ class MediaTypeOptionEditorFactory implements TypeOptionEditorFactory {
       child: FlowyButton(
         resetHoverOnRebuild: false,
         text: FlowyText(
-          LocaleKeys.grid_media_showFileNames.tr(),
+          '显示文件名称',
           lineHeight: 1.0,
         ),
         onHover: (_) => popoverMutex.close(),

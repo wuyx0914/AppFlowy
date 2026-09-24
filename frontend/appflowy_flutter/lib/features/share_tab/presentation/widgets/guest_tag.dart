@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class GuestTag extends StatelessWidget {
@@ -20,7 +18,7 @@ class GuestTag extends StatelessWidget {
         borderRadius: BorderRadius.circular(theme.spacing.s),
       ),
       child: Text(
-        LocaleKeys.shareTab_guest.tr(),
+        '客人',
         style: theme.textStyle.caption
             .standard(
               color: theme.textColorScheme.warning,

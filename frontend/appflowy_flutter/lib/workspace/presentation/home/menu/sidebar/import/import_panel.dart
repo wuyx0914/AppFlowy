@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_data_pb_extension.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/migration/editor_migration.dart';
 import 'package:appflowy/shared/markdown_to_document.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/application/settings/share/import_service.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/import/import_type.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/container.dart';
@@ -33,7 +31,7 @@ Future<void> showImportPanel(
     builder: (context) => FlowyDialog(
       backgroundColor: Theme.of(context).colorScheme.surface,
       title: FlowyText.semibold(
-        LocaleKeys.moreAction_import.tr(),
+        '导入',
         fontSize: 20,
         color: Theme.of(context).colorScheme.tertiary,
       ),

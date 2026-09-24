@@ -2,11 +2,9 @@ import 'package:appflowy/ai/ai.dart';
 import 'package:appflowy_backend/protobuf/flowy-ai/entities.pb.dart';
 import 'package:flutter/material.dart';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/settings/ai/settings_ai_bloc.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/af_dropdown_menu_entry.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/settings_dropdown.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -36,7 +34,7 @@ class AIModelSelection extends StatelessWidget {
             children: [
               Expanded(
                 child: FlowyText.medium(
-                  LocaleKeys.settings_aiPage_keys_llmModelType.tr(),
+                  '语言模型类别',
                   overflow: TextOverflow.ellipsis,
                 ),
               ),

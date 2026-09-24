@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/show_flowy_mobile_confirm_dialog.dart';
 import 'package:appflowy/startup/tasks/app_widget.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/workspace/application/recent/recent_views_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -65,7 +63,7 @@ class _MobileViewItemBottomSheetState extends State<MobileViewItemBottomSheet> {
                 Navigator.pop(context);
                 context.read<ViewBloc>().add(const ViewEvent.duplicate());
                 showToastNotification(
-                  message: LocaleKeys.button_duplicateSuccessfully.tr(),
+                  message: '副本创建成功',
                 );
                 break;
               case MobileViewItemBottomSheetBodyAction.share:
@@ -84,8 +82,8 @@ class _MobileViewItemBottomSheetState extends State<MobileViewItemBottomSheet> {
                     .add(FavoriteEvent.toggle(widget.view));
                 showToastNotification(
                   message: !widget.view.isFavorite
-                      ? LocaleKeys.button_favoriteSuccessfully.tr()
-                      : LocaleKeys.button_unfavoriteSuccessfully.tr(),
+                      ? '收藏成功'
+                      : '取消收藏成功',
                 );
                 break;
               case MobileViewItemBottomSheetBodyAction.removeFromRecent:
@@ -123,16 +121,16 @@ class _MobileViewItemBottomSheetState extends State<MobileViewItemBottomSheet> {
 
   Future<void> _showConfirmDialog({required VoidCallback onDelete}) async {
     await showFlowyCupertinoConfirmDialog(
-      title: LocaleKeys.sideBar_removePageFromRecent.tr(),
+      title: '从最近页移除此页面吗？',
       leftButton: FlowyText(
-        LocaleKeys.button_cancel.tr(),
+        '取消',
         fontSize: 17.0,
         figmaLineHeight: 24.0,
         fontWeight: FontWeight.w500,
         color: const Color(0xFF007AFF),
       ),
       rightButton: FlowyText(
-        LocaleKeys.button_delete.tr(),
+        '删除',
         fontSize: 17.0,
         figmaLineHeight: 24.0,
         fontWeight: FontWeight.w400,
@@ -144,7 +142,7 @@ class _MobileViewItemBottomSheetState extends State<MobileViewItemBottomSheet> {
         Navigator.pop(context);
 
         showToastNotification(
-          message: LocaleKeys.sideBar_removeSuccess.tr(),
+          message: '成功移除',
         );
       },
     );

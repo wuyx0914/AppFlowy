@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/selectable_svg_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/slash_menu/slash_menu_items/slash_menu_item_builder.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 final _baseKeywords = [
   'columns',
@@ -31,7 +29,7 @@ final _fourColumnsKeywords = [
 
 // 2 columns menu item
 SelectionMenuItem twoColumnsSlashMenuItem = SelectionMenuItem.node(
-  getName: () => LocaleKeys.document_slashMenu_name_twoColumns.tr(),
+  getName: () => '两列',
   keywords: _twoColumnsKeywords,
   nodeBuilder: (editorState, __) => _buildColumnsNode(editorState, 2),
   replace: (_, node) => node.delta?.isEmpty ?? false,
@@ -51,7 +49,7 @@ SelectionMenuItem twoColumnsSlashMenuItem = SelectionMenuItem.node(
 
 // 3 columns menu item
 SelectionMenuItem threeColumnsSlashMenuItem = SelectionMenuItem.node(
-  getName: () => LocaleKeys.document_slashMenu_name_threeColumns.tr(),
+  getName: () => '三列',
   keywords: _threeColumnsKeywords,
   nodeBuilder: (editorState, __) => _buildColumnsNode(editorState, 3),
   replace: (_, node) => node.delta?.isEmpty ?? false,
@@ -71,7 +69,7 @@ SelectionMenuItem threeColumnsSlashMenuItem = SelectionMenuItem.node(
 
 // 4 columns menu item
 SelectionMenuItem fourColumnsSlashMenuItem = SelectionMenuItem.node(
-  getName: () => LocaleKeys.document_slashMenu_name_fourColumns.tr(),
+  getName: () => '四列',
   keywords: _fourColumnsKeywords,
   nodeBuilder: (editorState, __) => _buildColumnsNode(editorState, 4),
   replace: (_, node) => node.delta?.isEmpty ?? false,

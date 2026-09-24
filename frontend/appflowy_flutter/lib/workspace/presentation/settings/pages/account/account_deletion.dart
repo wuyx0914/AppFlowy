@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/loading.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/user/application/user_service.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -52,14 +50,14 @@ class _AccountDeletionButtonState extends State<AccountDeletionButton> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                LocaleKeys.button_deleteAccount.tr(),
+                '删除账户',
                 style: theme.textStyle.heading4.enhanced(
                   color: theme.textColorScheme.primary,
                 ),
               ),
               const VSpace(4),
               Text(
-                LocaleKeys.newSettings_myAccount_deleteAccount_description.tr(),
+                '永久删除你的账户，并移除所有工作区的访问权限。',
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
                 style: theme.textStyle.caption.standard(
@@ -70,7 +68,7 @@ class _AccountDeletionButtonState extends State<AccountDeletionButton> {
           ),
         ),
         AFOutlinedTextButton.destructive(
-          text: LocaleKeys.button_deleteAccount.tr(),
+          text: '删除账户',
           textStyle: theme.textStyle.body.standard(
             color: theme.textColorScheme.error,
             weight: FontWeight.w400,
@@ -81,7 +79,7 @@ class _AccountDeletionButtonState extends State<AccountDeletionButton> {
 
             showCancelAndDeleteDialog(
               context: context,
-              title: LocaleKeys.newSettings_myAccount_deleteAccount_title.tr(),
+              title: '删除帐户',
               description: '',
               builder: (_) => _AccountDeletionDialog(
                 controller: textEditingController,
@@ -119,7 +117,7 @@ class _AccountDeletionDialog extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         FlowyText.regular(
-          LocaleKeys.newSettings_myAccount_deleteAccount_confirmHint1.tr(),
+          '请输入 "@:newSettings.myAccount.deleteAccount.confirmHint3" 以确认。',
           fontSize: 14.0,
           figmaLineHeight: 18.0,
           maxLines: 2,
@@ -128,7 +126,7 @@ class _AccountDeletionDialog extends StatelessWidget {
         const VSpace(12.0),
         FlowyTextField(
           hintText:
-              LocaleKeys.newSettings_myAccount_deleteAccount_confirmHint3.tr(),
+              '删除我的账户',
           controller: controller,
         ),
         const VSpace(16),
@@ -151,8 +149,7 @@ class _AccountDeletionDialog extends StatelessWidget {
             const HSpace(6.0),
             Expanded(
               child: FlowyText.regular(
-                LocaleKeys.newSettings_myAccount_deleteAccount_confirmHint2
-                    .tr(),
+                '我理解此操作是不可逆的，并且将永久删除我的帐户和所有关联数据。',
                 fontSize: 14.0,
                 figmaLineHeight: 16.0,
                 maxLines: 3,
@@ -170,7 +167,7 @@ bool _isConfirmTextValid(String text) {
   // don't convert the text to lower case or upper case,
   //  just check if the text is in the list
   return _acceptableConfirmTexts.contains(text) ||
-      text == LocaleKeys.newSettings_myAccount_deleteAccount_confirmHint3.tr();
+      text == '删除我的账户';
 }
 
 Future<void> deleteMyAccount(
@@ -188,9 +185,7 @@ Future<void> deleteMyAccount(
     showToastNotification(
       type: ToastificationType.warning,
       bottomPadding: bottomPadding,
-      message: LocaleKeys
-          .newSettings_myAccount_deleteAccount_checkToConfirmError
-          .tr(),
+      message: '你必须勾选以确认删除。',
     );
     return;
   }
@@ -202,9 +197,7 @@ Future<void> deleteMyAccount(
     showToastNotification(
       type: ToastificationType.warning,
       bottomPadding: bottomPadding,
-      message: LocaleKeys
-          .newSettings_myAccount_deleteAccount_confirmTextValidationFailed
-          .tr(),
+      message: '你的确认文本不匹配 "@:newSettings.myAccount.deleteAccount.confirmHint3"',
     );
     return;
   }
@@ -217,9 +210,7 @@ Future<void> deleteMyAccount(
 
       loading.stop();
       showToastNotification(
-        message: LocaleKeys
-            .newSettings_myAccount_deleteAccount_deleteAccountSuccess
-            .tr(),
+        message: '账户删除成功',
       );
 
       // delay 1 second to make sure the toast notification is shown

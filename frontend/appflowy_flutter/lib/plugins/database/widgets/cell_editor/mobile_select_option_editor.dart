@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar_actions.dart';
 import 'package:appflowy/mobile/presentation/base/option_color_list.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_mobile_search_text_field.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy/plugins/database/application/cell/cell_controller_build
 import 'package:appflowy/plugins/database/widgets/cell_editor/extension.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/field_entities.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/select_option_entities.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -143,7 +141,7 @@ class _MobileSelectOptionEditorState extends State<MobileSelectOptionEditor> {
           const VSpace(16),
           _SearchField(
             controller: searchController,
-            hintText: LocaleKeys.grid_selectOption_searchOrCreateOption.tr(),
+            hintText: '搜索或创建选项...',
             onSubmitted: (_) {
               context
                   .read<SelectOptionCellEditorBloc>()
@@ -196,9 +194,9 @@ class _MobileSelectOptionEditorState extends State<MobileSelectOptionEditor> {
   String _headerTitle() {
     switch (fieldType) {
       case FieldType.SingleSelect:
-        return LocaleKeys.grid_field_singleSelectFieldName.tr();
+        return '单项选择器';
       case FieldType.MultiSelect:
-        return LocaleKeys.grid_field_multiSelectFieldName.tr();
+        return '多项选择器';
       default:
         throw UnimplementedError();
     }
@@ -392,7 +390,7 @@ class _CreateOptionCell extends StatelessWidget {
         child: Row(
           children: [
             FlowyText(
-              LocaleKeys.grid_selectOption_create.tr(),
+              '新建',
               color: Theme.of(context).hintColor,
             ),
             const HSpace(8),
@@ -450,7 +448,7 @@ class _MoreOptionsState extends State<_MoreOptions> {
           Padding(
             padding: const EdgeInsets.only(left: 12.0),
             child: FlowyText(
-              LocaleKeys.grid_selectOption_colorPanelTitle.tr().toUpperCase(),
+              '颜色'.toUpperCase(),
               color: Theme.of(context).hintColor,
               fontSize: 13,
             ),
@@ -492,7 +490,7 @@ class _MoreOptionsState extends State<_MoreOptions> {
 
   Widget _buildDeleteButton(BuildContext context) {
     return FlowyOptionTile.text(
-      text: LocaleKeys.button_delete.tr(),
+      text: '删除',
       textColor: Theme.of(context).colorScheme.error,
       leftIcon: FlowySvg(
         FlowySvgs.m_delete_s,

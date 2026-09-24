@@ -1,9 +1,7 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/grid/application/grid_bloc.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/plugins/database/tab_bar/tab_bar_view.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
@@ -27,7 +25,7 @@ class GridAddRowButton extends StatelessWidget {
       ),
       text: FlowyText(
         lineHeight: 1.0,
-        LocaleKeys.grid_row_newRow.tr(),
+        '添加一行',
         color: color,
       ),
       margin: const EdgeInsets.symmetric(horizontal: 12),
@@ -81,7 +79,7 @@ class GridRowLoadMoreButton extends StatelessWidget {
         ),
         text: FlowyText(
           lineHeight: 1.0,
-          LocaleKeys.grid_row_loadMore.tr(),
+          '加载更多',
           color: color,
         ),
         margin: const EdgeInsets.symmetric(horizontal: 12),

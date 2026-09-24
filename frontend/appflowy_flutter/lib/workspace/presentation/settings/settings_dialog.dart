@@ -1,5 +1,4 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/appflowy_cache_manager.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/share_log_files.dart';
@@ -17,7 +16,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -172,15 +170,11 @@ class _SimpleSettingsDialogState extends State<SimpleSettingsDialog> {
             children: [
               // header
               FlowyText(
-                LocaleKeys.signIn_settings.tr(),
+                '设置',
                 fontSize: 36.0,
                 fontWeight: FontWeight.w600,
               ),
               const VSpace(18.0),
-
-              // language
-              _LanguageSettings(key: ValueKey('language${settings.hashCode}')),
-              const VSpace(22.0),
 
 
               // support
@@ -193,20 +187,6 @@ class _SimpleSettingsDialogState extends State<SimpleSettingsDialog> {
   }
 }
 
-class _LanguageSettings extends StatelessWidget {
-  const _LanguageSettings({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return SettingsCategory(
-      title: LocaleKeys.settings_workspacePage_language_title.tr(),
-      children: const [LanguageDropdown()],
-    );
-  }
-}
-
 class _SupportSettings extends StatelessWidget {
   const _SupportSettings({
     super.key,
@@ -215,19 +195,19 @@ class _SupportSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SettingsCategory(
-      title: LocaleKeys.settings_mobile_support.tr(),
+      title: '支持',
       children: [
         // export logs
         Row(
           children: [
             FlowyText(
-              LocaleKeys.workspace_errorActions_exportLogFiles.tr(),
+              '导出日志文件',
             ),
             const Spacer(),
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: 78),
               child: OutlinedRoundedButton(
-                text: LocaleKeys.settings_files_export.tr(),
+                text: '导出',
                 onTap: () {
                   shareLogFiles(context);
                 },
@@ -239,20 +219,18 @@ class _SupportSettings extends StatelessWidget {
         Row(
           children: [
             FlowyText(
-              LocaleKeys.settings_files_clearCache.tr(),
+              '清空缓存',
             ),
             const Spacer(),
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: 78),
               child: OutlinedRoundedButton(
-                text: LocaleKeys.button_clear.tr(),
+                text: '清空',
                 onTap: () async {
                   await getIt<FlowyCacheManager>().clearAllCache();
                   if (context.mounted) {
                     showToastNotification(
-                      message: LocaleKeys
-                          .settings_manageDataPage_cache_dialog_successHint
-                          .tr(),
+                      message: '缓存已清除！',
                     );
                   }
                 },

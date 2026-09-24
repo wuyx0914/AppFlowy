@@ -1,7 +1,5 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/tab_bar/tab_bar_view.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -78,7 +76,7 @@ Node toggleHeadingNode({
 
 // defining the toggle list block menu item
 SelectionMenuItem toggleListBlockItem = SelectionMenuItem.node(
-  getName: LocaleKeys.document_plugins_toggleList.tr,
+  getName: () => '切换列表',
   iconData: Icons.arrow_right,
   keywords: ['collapsed list', 'toggle list', 'list'],
   nodeBuilder: (editorState, _) => toggleListBlockNode(),
@@ -423,10 +421,8 @@ class _ToggleListBlockComponentWidgetState
 
   String buildPlaceholderText() {
     if (level != null) {
-      return LocaleKeys.document_plugins_emptyToggleHeading.tr(
-        args: [level.toString()],
-      );
+      return ' 空的切换器 h{level.toString()}。点击以添加内容。';
     }
-    return LocaleKeys.document_plugins_emptyToggleList.tr();
+    return '空的切换器清单。点击以添加内容。';
   }
 }

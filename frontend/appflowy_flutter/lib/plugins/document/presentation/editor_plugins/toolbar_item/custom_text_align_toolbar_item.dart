@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/toolbar_extension.dart';
 import 'package:appflowy/plugins/document/presentation/editor_style.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -130,7 +128,7 @@ class _TextAlignActionListState extends State<TextAlignActionList> {
     return widget.tooltipBuilder?.call(
           context,
           ToolbarId.textAlign.id,
-          LocaleKeys.document_toolbar_textAlign.tr(),
+          '文本对齐',
           child,
         ) ??
         child;
@@ -187,11 +185,11 @@ enum TextAlignCommand {
   String get title {
     switch (this) {
       case left:
-        return LocaleKeys.document_toolbar_alignLeft.tr();
+        return '左对齐';
       case center:
-        return LocaleKeys.document_toolbar_alignCenter.tr();
+        return '居中对齐';
       case right:
-        return LocaleKeys.document_toolbar_alignRight.tr();
+        return '右对齐';
     }
   }
 

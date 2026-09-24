@@ -1,11 +1,9 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialog_v2.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -137,7 +135,7 @@ class _WorkspaceMoreActionWrapper extends CustomActionCell {
             await showConfirmDeletionDialog(
               context: context,
               name: workspace.name,
-              description: LocaleKeys.workspace_deleteWorkspaceHintText.tr(),
+              description: '您确定要删除这个工作区嘛？这个操作不可恢复。',
               onConfirm: () {
                 workspaceBloc.add(
                   UserWorkspaceEvent.deleteWorkspace(
@@ -149,7 +147,7 @@ class _WorkspaceMoreActionWrapper extends CustomActionCell {
           case WorkspaceMoreAction.rename:
             await showAFTextFieldDialog(
               context: context,
-              title: LocaleKeys.workspace_renameWorkspace.tr(),
+              title: '重命名工作区',
               initialValue: workspace.name,
               hintText: '',
               onConfirm: (name) async {
@@ -164,10 +162,10 @@ class _WorkspaceMoreActionWrapper extends CustomActionCell {
           case WorkspaceMoreAction.leave:
             await showConfirmDialog(
               context: context,
-              title: LocaleKeys.workspace_leaveCurrentWorkspace.tr(),
+              title: '退出工作区',
               description:
-                  LocaleKeys.workspace_leaveCurrentWorkspacePrompt.tr(),
-              confirmLabel: LocaleKeys.button_yes.tr(),
+                  '您确定要离开当前工作区吗？',
+              confirmLabel: '是',
               onConfirm: (_) {
                 workspaceBloc.add(
                   UserWorkspaceEvent.leaveWorkspace(
@@ -184,11 +182,11 @@ class _WorkspaceMoreActionWrapper extends CustomActionCell {
   String get name {
     switch (inner) {
       case WorkspaceMoreAction.delete:
-        return LocaleKeys.button_delete.tr();
+        return '删除';
       case WorkspaceMoreAction.rename:
-        return LocaleKeys.button_rename.tr();
+        return '重命名';
       case WorkspaceMoreAction.leave:
-        return LocaleKeys.workspace_leaveCurrentWorkspace.tr();
+        return '退出工作区';
       case WorkspaceMoreAction.divider:
         return '';
     }

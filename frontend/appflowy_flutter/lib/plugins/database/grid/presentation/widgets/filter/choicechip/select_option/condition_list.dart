@@ -1,12 +1,10 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/database/view/database_filter_condition_list.dart';
 import 'package:appflowy/plugins/database/application/field/filter_entities.dart';
 import 'package:appflowy/plugins/database/grid/presentation/widgets/filter/condition_button.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/widgets.dart';
 
 class SelectOptionFilterConditionList extends StatelessWidget {
@@ -74,17 +72,17 @@ extension SelectOptionFilterConditionPBExtension
   String get i18n {
     return switch (this) {
       SelectOptionFilterConditionPB.OptionIs =>
-        LocaleKeys.grid_selectOptionFilter_is.tr(),
+        '是',
       SelectOptionFilterConditionPB.OptionIsNot =>
-        LocaleKeys.grid_selectOptionFilter_isNot.tr(),
+        '不是',
       SelectOptionFilterConditionPB.OptionContains =>
-        LocaleKeys.grid_selectOptionFilter_contains.tr(),
+        '包含',
       SelectOptionFilterConditionPB.OptionDoesNotContain =>
-        LocaleKeys.grid_selectOptionFilter_doesNotContain.tr(),
+        '不含',
       SelectOptionFilterConditionPB.OptionIsEmpty =>
-        LocaleKeys.grid_selectOptionFilter_isEmpty.tr(),
+        '为空',
       SelectOptionFilterConditionPB.OptionIsNotEmpty =>
-        LocaleKeys.grid_selectOptionFilter_isNotEmpty.tr(),
+        '不为空',
       _ => "",
     };
   }

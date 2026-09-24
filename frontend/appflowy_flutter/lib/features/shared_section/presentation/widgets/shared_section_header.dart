@@ -1,7 +1,5 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class SharedSectionHeader extends StatelessWidget {
@@ -16,7 +14,7 @@ class SharedSectionHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = AppFlowyTheme.of(context);
     return AFGhostIconTextButton.primary(
-      text: LocaleKeys.shareSection_shared.tr(),
+      text: '与我分享',
       mainAxisAlignment: MainAxisAlignment.start,
       size: AFButtonSize.l,
       onTap: onTap,

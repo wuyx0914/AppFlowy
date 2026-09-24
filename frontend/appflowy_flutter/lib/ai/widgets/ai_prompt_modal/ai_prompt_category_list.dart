@@ -1,7 +1,5 @@
 import 'package:appflowy/ai/ai.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -110,7 +108,7 @@ class AiPromptFeaturedSection extends StatelessWidget {
       },
       builder: (context, isHovering, disabled) {
         return Text(
-          LocaleKeys.ai_customPrompt_featured.tr(),
+          '精选',
           style: AppFlowyTheme.of(context).textStyle.body.standard(
                 color: theme.textColorScheme.primary,
               ),
@@ -160,7 +158,7 @@ class AiPromptCustomPromptSection extends StatelessWidget {
               },
               builder: (context, isHovering, disabled) {
                 return Text(
-                  LocaleKeys.ai_customPrompt_custom.tr(),
+                  '自订',
                   style: AppFlowyTheme.of(context).textStyle.body.standard(
                         color: theme.textColorScheme.primary,
                       ),
@@ -220,7 +218,7 @@ class AiPromptCategoryItem extends StatelessWidget {
           onTap: onSelect,
           builder: (context, isHovering, disabled) {
             return Text(
-              category?.i18n ?? LocaleKeys.ai_customPrompt_all.tr(),
+              category?.i18n ?? '全部',
               style: AppFlowyTheme.of(context).textStyle.body.standard(
                     color: theme.textColorScheme.primary,
                   ),

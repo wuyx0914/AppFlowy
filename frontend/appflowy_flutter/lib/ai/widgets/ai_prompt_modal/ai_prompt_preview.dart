@@ -1,8 +1,6 @@
 import 'package:appflowy/ai/ai.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/ai_chat/presentation/message/ai_markdown_text.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +36,7 @@ class AiPromptPreview extends StatelessWidget {
                   ),
                   HSpace(theme.spacing.s),
                   AFFilledTextButton.primary(
-                    text: LocaleKeys.ai_customPrompt_usePrompt.tr(),
+                    text: '使用提示',
                     onTap: () {
                       Navigator.of(context).pop(prompt);
                     },
@@ -56,7 +54,7 @@ class AiPromptPreview extends StatelessWidget {
               children: [
                 SelectionContainer.disabled(
                   child: Text(
-                    LocaleKeys.ai_customPrompt_prompt.tr(),
+                    '提示',
                     style: theme.textStyle.heading4.standard(
                       color: theme.textColorScheme.primary,
                     ),
@@ -70,7 +68,7 @@ class AiPromptPreview extends StatelessWidget {
                 if (prompt.example.isNotEmpty) ...[
                   SelectionContainer.disabled(
                     child: Text(
-                      LocaleKeys.ai_customPrompt_promptExample.tr(),
+                      '提示范例',
                       style: theme.textStyle.heading4.standard(
                         color: theme.textColorScheme.primary,
                       ),

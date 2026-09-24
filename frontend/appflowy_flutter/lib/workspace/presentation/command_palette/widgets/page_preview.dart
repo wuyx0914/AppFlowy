@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/mobile/presentation/search/mobile_view_ancestors.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/cover/document_immersive_cover_bloc.dart';
@@ -18,7 +17,6 @@ import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -83,13 +81,13 @@ class PagePreview extends StatelessWidget {
                             buildPath(context, view),
                             ...buildTime(
                               context,
-                              LocaleKeys.commandPalette_created.tr(),
+                              '已创建',
                               view.createTime.toDateTime(),
                             ),
                             if (view.lastEdited != view.createTime)
                               ...buildTime(
                                 context,
-                                LocaleKeys.commandPalette_edited.tr(),
+                                '已编辑',
                                 view.lastEdited.toDateTime(),
                               ),
                           ],
@@ -239,7 +237,7 @@ class PagePreview extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 4),
                       child: FlowyTooltip(
-                        message: LocaleKeys.settings_files_open.tr(),
+                        message: '打开',
                         child: FlowySvg(
                           FlowySvgs.search_open_tab_m,
                           color: theme.iconColorScheme.secondary,
@@ -271,7 +269,7 @@ class PagePreview extends StatelessWidget {
             children: [
               VSpace(20),
               Text(
-                LocaleKeys.commandPalette_location.tr(),
+                '位置',
                 style: theme.textStyle.caption
                     .standard(color: theme.textColorScheme.primary),
               ),
@@ -334,7 +332,7 @@ class SomethingWentWrong extends StatelessWidget {
                     ),
                     const VSpace(8),
                     Text(
-                      LocaleKeys.search_somethingWentWrong.tr(),
+                      '出了点问题',
                       style: theme.textStyle.body
                           .enhanced(color: theme.textColorScheme.secondary),
                       maxLines: 1,
@@ -342,7 +340,7 @@ class SomethingWentWrong extends StatelessWidget {
                     ),
                     const VSpace(4),
                     Text(
-                      LocaleKeys.search_tryAgainOrLater.tr(),
+                      '请稍后再试一次',
                       style: theme.textStyle.caption
                           .standard(color: theme.textColorScheme.secondary),
                       maxLines: 1,

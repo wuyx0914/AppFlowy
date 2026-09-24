@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller_builder.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/relation_cell_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -57,7 +55,7 @@ class _RelationCellState extends State<RelationCardCell> {
             (row) {
               final isEmpty = row.name.isEmpty;
               return Text(
-                isEmpty ? LocaleKeys.grid_row_titlePlaceholder.tr() : row.name,
+                isEmpty ? '无标题' : row.name,
                 style: widget.style.textStyle.copyWith(
                   color: isEmpty ? Theme.of(context).hintColor : null,
                   decoration: TextDecoration.underline,

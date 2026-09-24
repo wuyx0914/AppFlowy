@@ -1,5 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
@@ -16,13 +14,13 @@ class NotificationsHubEmpty extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             FlowyText(
-              LocaleKeys.notificationHub_emptyTitle.tr(),
+              '都处理了！',
               fontWeight: FontWeight.w700,
               fontSize: 14,
             ),
             const VSpace(8),
             FlowyText.regular(
-              LocaleKeys.notificationHub_emptyBody.tr(),
+              '没有待处理的通知或操作。享受平静。',
               textAlign: TextAlign.center,
               maxLines: 2,
             ),

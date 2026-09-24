@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/password/password_http_service.dart';
 import 'package:appflowy/user/application/sign_in_bloc.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/back_to_login_in_button.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/contin
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/title_logo.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/verifying_button.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
@@ -67,12 +65,12 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               if (successOrFail != null && successOrFail.isFailure) {
                 successOrFail.onFailure((error) {
                   inputPasswordKey.currentState?.syncError(
-                    errorText: LocaleKeys.signIn_invalidLoginCredentials.tr(),
+                    errorText: '您的密码不正确，请重新尝试。',
                   );
                 });
               } else if (state.passwordError != null) {
                 inputPasswordKey.currentState?.syncError(
-                  errorText: LocaleKeys.signIn_invalidLoginCredentials.tr(),
+                  errorText: '您的密码不正确，请重新尝试。',
                 );
               } else {
                 inputPasswordKey.currentState?.clearError();
@@ -107,8 +105,8 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
 
   Widget _buildLogoAndTitle() {
     return TitleLogo(
-      title: LocaleKeys.signIn_resetPassword.tr(),
-      description: LocaleKeys.signIn_resetPasswordDescription.tr(),
+      title: '重设密码',
+      description: '输入您的电子邮件信箱以重设您的密码',
     );
   }
 
@@ -121,7 +119,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       AFTextField(
         key: inputPasswordKey,
         controller: passwordController,
-        hintText: LocaleKeys.signIn_enterPassword.tr(),
+        hintText: '输入密码',
         autoFocus: true,
         suffixIconConstraints: BoxConstraints.tightFor(
           width: iconSize + theme.spacing.m,
@@ -136,7 +134,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       isSubmitting
           ? const VerifyingButton()
           : ContinueWithButton(
-              text: LocaleKeys.button_submit.tr(),
+              text: '提交',
               onTap: _onSubmit,
             ),
       VSpace(theme.spacing.xxl),
@@ -147,7 +145,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
     final email = passwordController.text;
     if (!isEmail(email)) {
       inputPasswordKey.currentState?.syncError(
-        errorText: LocaleKeys.signIn_invalidEmail.tr(),
+        errorText: '请输入一个有效的邮箱地址',
       );
       return;
     }

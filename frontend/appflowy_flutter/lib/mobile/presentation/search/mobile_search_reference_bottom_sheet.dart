@@ -8,9 +8,7 @@ import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-search/result.pb.dart';
 import 'package:flutter/material.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 
 class SearchSourceReferenceBottomSheet extends StatelessWidget {
@@ -26,7 +24,7 @@ class SearchSourceReferenceBottomSheet extends StatelessWidget {
         final view = (await ViewBackendService.getView(id)).toNullable();
         if (view == null) {
           showToastNotification(
-            message: LocaleKeys.search_somethingWentWrong.tr(),
+            message: '出了点问题',
             type: ToastificationType.error,
           );
           return;
@@ -78,7 +76,7 @@ class PageReferenceList extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(left: 16, top: 8),
           child: Text(
-            LocaleKeys.commandPalette_aiOverviewSource.tr(),
+            '参考来源',
             style: theme.textStyle.body.enhanced(
               color: theme.textColorScheme.secondary,
             ),
@@ -92,7 +90,7 @@ class PageReferenceList extends StatelessWidget {
           itemBuilder: (context, index) {
             final source = sources[index];
             final displayName = source.displayName.isEmpty
-                ? LocaleKeys.menuAppHeader_defaultNewPageName.tr()
+                ? '未命名页面'
                 : source.displayName;
             final sapceM = theme.spacing.m, spaceL = theme.spacing.l;
             return FlowyButton(

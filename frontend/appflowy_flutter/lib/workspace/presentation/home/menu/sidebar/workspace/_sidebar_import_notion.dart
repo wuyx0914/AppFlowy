@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/settings/share/import_service.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/import.pb.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +51,7 @@ class _UploadSuccess extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlowyText(
       fontSize: 16,
-      LocaleKeys.settings_common_uploadNotionSuccess.tr(),
+      '您的 Notion 压缩档已成功上传。导入完成后，您将收到确认电子邮件',
       maxLines: 10,
     );
   }
@@ -72,7 +70,7 @@ class _Uploading extends StatelessWidget {
             const VSpace(12),
             FlowyText(
               fontSize: 16,
-              LocaleKeys.settings_common_uploadingFile.tr(),
+              '文件正在上传中，请勿关闭应用程序',
               maxLines: null,
             ),
           ],

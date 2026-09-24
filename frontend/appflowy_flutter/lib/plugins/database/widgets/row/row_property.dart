@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/cell/cell_controller.dart';
 import 'package:appflowy/plugins/database/application/field/field_controller.dart';
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy/plugins/database/widgets/field/field_editor.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/actions/block_action_button.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/foundation.dart';
@@ -211,7 +209,7 @@ class _PropertyCellState extends State<_PropertyCell> {
                   ),
               svg: FlowySvgs.drag_element_s,
               richMessage: TextSpan(
-                text: LocaleKeys.grid_rowPage_fieldDragElementTooltip.tr(),
+                text: '点击打开菜单',
                 style: context.tooltipTextStyle(),
               ),
             ),
@@ -283,14 +281,8 @@ class ToggleHiddenFieldsVisibilityButton extends StatelessWidget {
           previous.numHiddenFields != current.numHiddenFields,
       builder: (context, state) {
         final text = state.showHiddenFields
-            ? LocaleKeys.grid_rowPage_hideHiddenFields.plural(
-                state.numHiddenFields,
-                namedArgs: {'count': '${state.numHiddenFields}'},
-              )
-            : LocaleKeys.grid_rowPage_showHiddenFields.plural(
-                state.numHiddenFields,
-                namedArgs: {'count': '${state.numHiddenFields}'},
-              );
+            ? '隐藏 {count} 个隐藏字段'
+            : '显示 {count} 个隐藏字段';
         final quarterTurns = state.showHiddenFields ? 1 : 3;
         return UniversalPlatform.isDesktopOrWeb
             ? _desktop(context, text, quarterTurns)
@@ -381,7 +373,7 @@ class CreateRowFieldButton extends StatelessWidget {
         margin: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
         text: FlowyText(
           lineHeight: 1.0,
-          LocaleKeys.grid_field_newProperty.tr(),
+          '添加一列',
           color: Theme.of(context).hintColor,
         ),
         hoverColor: AFThemeExtension.of(context).lightGreyHover,

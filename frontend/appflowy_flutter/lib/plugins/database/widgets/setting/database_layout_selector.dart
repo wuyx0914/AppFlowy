@@ -1,12 +1,10 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
 import 'package:appflowy/plugins/database/application/layout/layout_bloc.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/plugins/database/widgets/database_layout_ext.dart';
 import 'package:appflowy/workspace/presentation/widgets/toggle/toggle.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/setting_entities.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -68,7 +66,7 @@ class DatabaseLayoutSelector extends StatelessWidget {
                     child: FlowyButton(
                       resetHoverOnRebuild: false,
                       text: FlowyText(
-                        LocaleKeys.grid_settings_compactMode.tr(),
+                        '紧凑模式',
                         lineHeight: 1.0,
                       ),
                       onTap: () {

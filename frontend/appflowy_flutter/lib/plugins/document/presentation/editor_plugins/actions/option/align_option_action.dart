@@ -1,9 +1,7 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/simple_table/simple_table.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 enum OptionAlignType {
@@ -38,11 +36,11 @@ enum OptionAlignType {
   String get description {
     switch (this) {
       case OptionAlignType.left:
-        return LocaleKeys.document_plugins_optionAction_left.tr();
+        return '左';
       case OptionAlignType.center:
-        return LocaleKeys.document_plugins_optionAction_center.tr();
+        return '中心';
       case OptionAlignType.right:
-        return LocaleKeys.document_plugins_optionAction_right.tr();
+        return '右';
     }
   }
 }
@@ -64,7 +62,7 @@ class AlignOptionAction extends PopoverActionCell {
 
   @override
   String get name {
-    return LocaleKeys.document_plugins_optionAction_align.tr();
+    return '对齐';
   }
 
   @override

@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_mobile_search_text_field.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
@@ -6,7 +5,6 @@ import 'package:appflowy/shared/google_fonts_extension.dart';
 import 'package:appflowy/util/font_family_extension.dart';
 import 'package:appflowy/workspace/application/settings/appearance/appearance_cubit.dart';
 import 'package:appflowy/workspace/application/settings/appearance/base_appearance.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -49,7 +47,7 @@ class _LanguagePickerPageState extends State<LanguagePickerPage> {
         context.watch<AppearanceSettingsCubit>().state.font;
     return Scaffold(
       appBar: FlowyAppBar(
-        titleText: LocaleKeys.titleBar_font.tr(),
+        titleText: '字体',
       ),
       body: SafeArea(
         child: Scrollbar(

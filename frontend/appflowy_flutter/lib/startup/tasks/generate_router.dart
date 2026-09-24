@@ -15,7 +15,6 @@ import 'package:appflowy/mobile/presentation/notifications/mobile_notifications_
 import 'package:appflowy/mobile/presentation/presentation.dart';
 import 'package:appflowy/mobile/presentation/search/mobile_search_page.dart';
 import 'package:appflowy/mobile/presentation/setting/font/font_picker_screen.dart';
-import 'package:appflowy/mobile/presentation/setting/language/language_picker_screen.dart';
 import 'package:appflowy/mobile/presentation/setting/launch_settings_page.dart';
 import 'package:appflowy/plugins/base/color/color_picker_screen.dart';
 import 'package:appflowy/plugins/base/emoji/emoji_picker_screen.dart';
@@ -90,7 +89,6 @@ GoRouter generateRouter(Widget child) {
 
         // code language picker
         _mobileCodeLanguagePickerPageRoute(),
-        _mobileLanguagePickerPageRoute(),
         _mobileFontPickerPageRoute(),
 
         // calendar related
@@ -373,19 +371,6 @@ GoRoute _mobileCodeLanguagePickerPageRoute() {
       return const MaterialExtendedPage(
         child: MobileCodeLanguagePickerScreen(),
         name: MobileCodeLanguagePickerScreen.routeName,
-      );
-    },
-  );
-}
-
-GoRoute _mobileLanguagePickerPageRoute() {
-  return GoRoute(
-    parentNavigatorKey: AppGlobals.rootNavKey,
-    path: LanguagePickerScreen.routeName,
-    pageBuilder: (context, state) {
-      return const MaterialExtendedPage(
-        child: LanguagePickerScreen(),
-        name: LanguagePickerScreen.routeName,
       );
     },
   );

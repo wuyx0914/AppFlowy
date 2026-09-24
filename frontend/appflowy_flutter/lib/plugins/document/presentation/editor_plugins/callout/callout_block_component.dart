@@ -1,12 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart' show LocaleKeys;
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
 import 'package:appflowy/shared/icon_emoji_picker/tab.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart'
-    show StringTranslateExtension;
-import 'package:easy_localization/easy_localization.dart' hide TextDirection;
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +56,7 @@ Node calloutNode({
 
 // defining the callout block menu item in selection menu
 SelectionMenuItem calloutItem = SelectionMenuItem.node(
-  getName: LocaleKeys.document_plugins_callout.tr,
+  getName: () => '标注',
   iconData: Icons.note,
   keywords: [CalloutBlockKeys.type],
   nodeBuilder: (editorState, context) =>

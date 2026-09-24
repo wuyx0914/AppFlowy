@@ -1,8 +1,6 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/favorite/favorite_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flowy_infra_ui/widget/flowy_tooltip.dart';
 import 'package:flutter/material.dart';
@@ -26,8 +24,8 @@ class ViewFavoriteButton extends StatelessWidget {
               context.read<FavoriteBloc>().add(FavoriteEvent.toggle(view)),
           child: FlowyTooltip(
             message: isFavorite
-                ? LocaleKeys.button_removeFromFavorites.tr()
-                : LocaleKeys.button_addToFavorites.tr(),
+                ? '从收藏夹中'
+                : '添加到收藏夹',
             child: FlowyHover(
               resetHoverOnRebuild: false,
               child: Padding(

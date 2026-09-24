@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/sign_in_bloc.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/back_to_login_in_button.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_button.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/contin
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/code.pbenum.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -53,7 +51,7 @@ class _SetNewPasswordWidgetState extends State<SetNewPasswordWidget> {
           successOrFail.fold(
             (success) {
               showToastNotification(
-                message: LocaleKeys.signIn_resetPasswordSuccess.tr(),
+                message: '密码已成功重设',
               );
               // pop until the login screen is found
               Navigator.popUntil(context, (route) {
@@ -63,7 +61,7 @@ class _SetNewPasswordWidgetState extends State<SetNewPasswordWidget> {
             (error) {
               if (error.code == ErrorCode.NewPasswordTooWeak) {
                 newPasswordKey.currentState?.syncError(
-                  errorText: LocaleKeys.signIn_passwordMustContain.tr(),
+                  errorText: '密码必须包含至少一个字母、一个数字和一个符号。',
                 );
               } else {
                 newPasswordKey.currentState?.syncError(
@@ -106,12 +104,12 @@ class _SetNewPasswordWidgetState extends State<SetNewPasswordWidget> {
   Widget _buildLogoAndTitle() {
     final theme = AppFlowyTheme.of(context);
     return TitleLogo(
-      title: LocaleKeys.signIn_resetPassword.tr(),
+      title: '重设密码',
       informationBuilder: (context) => RichText(
         text: TextSpan(
           children: [
             TextSpan(
-              text: LocaleKeys.signIn_enterNewPasswordFor.tr(),
+              text: '输入新密码为',
               style: theme.textStyle.body.standard(
                 color: theme.textColorScheme.primary,
               ),
@@ -135,7 +133,7 @@ class _SetNewPasswordWidgetState extends State<SetNewPasswordWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          LocaleKeys.signIn_newPassword.tr(),
+          '新密码',
           style: theme.textStyle.caption.enhanced(
             color: theme.textColorScheme.secondary,
           ),
@@ -146,12 +144,12 @@ class _SetNewPasswordWidgetState extends State<SetNewPasswordWidget> {
           controller: newPasswordController,
           obscureText: true,
           autofillHints: const [AutofillHints.password],
-          hintText: LocaleKeys.signIn_enterNewPassword.tr(),
+          hintText: '输入新密码',
           onSubmitted: (_) => _validateAndSubmit(),
         ),
         const VSpace(16),
         Text(
-          LocaleKeys.signIn_confirmPassword.tr(),
+          '确认密码',
           style: theme.textStyle.caption.enhanced(
             color: theme.textColorScheme.secondary,
           ),
@@ -162,7 +160,7 @@ class _SetNewPasswordWidgetState extends State<SetNewPasswordWidget> {
           controller: confirmPasswordController,
           obscureText: true,
           autofillHints: const [AutofillHints.password],
-          hintText: LocaleKeys.signIn_confirmNewPassword.tr(),
+          hintText: '输入新密码',
           onSubmitted: (_) => _validateAndSubmit(),
         ),
       ],
@@ -173,7 +171,7 @@ class _SetNewPasswordWidgetState extends State<SetNewPasswordWidget> {
     return isSubmitting
         ? const VerifyingButton()
         : ContinueWithButton(
-            text: LocaleKeys.signIn_resetPassword.tr(),
+            text: '重设密码',
             onTap: _validateAndSubmit,
           );
   }
@@ -184,21 +182,21 @@ class _SetNewPasswordWidgetState extends State<SetNewPasswordWidget> {
 
     if (newPassword.isEmpty) {
       newPasswordKey.currentState?.syncError(
-        errorText: LocaleKeys.signIn_newPasswordCannotBeEmpty.tr(),
+        errorText: '新密码不能为空',
       );
       return;
     }
 
     if (confirmPassword.isEmpty) {
       confirmPasswordKey.currentState?.syncError(
-        errorText: LocaleKeys.signIn_confirmPasswordCannotBeEmpty.tr(),
+        errorText: '确认密码不能为空',
       );
       return;
     }
 
     if (newPassword != confirmPassword) {
       confirmPasswordKey.currentState?.syncError(
-        errorText: LocaleKeys.signIn_passwordsDoNotMatch.tr(),
+        errorText: '密码不相符。请重新输入',
       );
       return;
     }

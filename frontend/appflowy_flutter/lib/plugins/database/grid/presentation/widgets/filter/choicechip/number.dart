@@ -1,11 +1,9 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
 import 'package:appflowy/plugins/database/application/field/filter_entities.dart';
 import 'package:appflowy/plugins/database/grid/application/filter/filter_editor_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -142,7 +140,7 @@ class _NumberFilterEditorState extends State<NumberFilterEditor> {
   ) {
     return FlowyTextField(
       text: filter.content,
-      hintText: LocaleKeys.grid_settings_typeAValue.tr(),
+      hintText: '请输入一个值',
       debounceDuration: const Duration(milliseconds: 300),
       autoFocus: false,
       onChanged: (text) {
@@ -219,30 +217,30 @@ extension NumberFilterConditionPBExtension on NumberFilterConditionPB {
       NumberFilterConditionPB.GreaterThan => ">",
       NumberFilterConditionPB.GreaterThanOrEqualTo => "≥",
       NumberFilterConditionPB.NumberIsEmpty =>
-        LocaleKeys.grid_numberFilter_isEmpty.tr(),
+        '为空',
       NumberFilterConditionPB.NumberIsNotEmpty =>
-        LocaleKeys.grid_numberFilter_isNotEmpty.tr(),
+        '不为空',
       _ => "",
     };
   }
 
   String get filterName {
     return switch (this) {
-      NumberFilterConditionPB.Equal => LocaleKeys.grid_numberFilter_equal.tr(),
+      NumberFilterConditionPB.Equal => '等于',
       NumberFilterConditionPB.NotEqual =>
-        LocaleKeys.grid_numberFilter_notEqual.tr(),
+        '不相等',
       NumberFilterConditionPB.LessThan =>
-        LocaleKeys.grid_numberFilter_lessThan.tr(),
+        '小于',
       NumberFilterConditionPB.LessThanOrEqualTo =>
-        LocaleKeys.grid_numberFilter_lessThanOrEqualTo.tr(),
+        '小于或等于',
       NumberFilterConditionPB.GreaterThan =>
-        LocaleKeys.grid_numberFilter_greaterThan.tr(),
+        '大于',
       NumberFilterConditionPB.GreaterThanOrEqualTo =>
-        LocaleKeys.grid_numberFilter_greaterThanOrEqualTo.tr(),
+        '大于或等于',
       NumberFilterConditionPB.NumberIsEmpty =>
-        LocaleKeys.grid_numberFilter_isEmpty.tr(),
+        '为空',
       NumberFilterConditionPB.NumberIsNotEmpty =>
-        LocaleKeys.grid_numberFilter_isNotEmpty.tr(),
+        '不为空',
       _ => "",
     };
   }

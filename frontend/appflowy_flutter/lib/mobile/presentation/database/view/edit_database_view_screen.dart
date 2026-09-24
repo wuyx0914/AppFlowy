@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_option_tile.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/plugins/database/widgets/database_layout_ext.dart';
 import 'package:appflowy/workspace/application/view/view_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -115,14 +113,14 @@ enum DatabaseViewSettings {
 
   String get label {
     return switch (this) {
-      layout => LocaleKeys.grid_settings_databaseLayout.tr(),
-      fields => LocaleKeys.grid_settings_properties.tr(),
-      filter => LocaleKeys.grid_settings_filter.tr(),
-      sort => LocaleKeys.grid_settings_sort.tr(),
-      board => LocaleKeys.grid_settings_boardSettings.tr(),
-      calendar => LocaleKeys.grid_settings_calendarSettings.tr(),
-      duplicate => LocaleKeys.grid_settings_duplicateView.tr(),
-      delete => LocaleKeys.grid_settings_deleteView.tr(),
+      layout => '布局',
+      fields => '特性',
+      filter => '筛选',
+      sort => '以……排序',
+      board => '看板设置',
+      calendar => '日历设置',
+      duplicate => '复制视图',
+      delete => '删除视图',
     };
   }
 
@@ -191,8 +189,7 @@ class DatabaseViewSettingTile extends StatelessWidget {
         return Row(
           children: [
             FlowyText(
-              LocaleKeys.grid_settings_numberOfVisibleFields
-                  .tr(args: [numVisible.toString()]),
+              '显示 {numVisible.toString()}',
               color: Theme.of(context).hintColor,
             ),
             const HSpace(8),
@@ -212,7 +209,7 @@ class DatabaseViewSettingTile extends StatelessWidget {
         showDragHandle: true,
         showHeader: true,
         showDivider: false,
-        title: LocaleKeys.grid_settings_layout.tr(),
+        title: '布局',
         builder: (context) {
           return DatabaseViewLayoutPicker(
             selectedLayout: databaseLayout,
@@ -234,7 +231,7 @@ class DatabaseViewSettingTile extends StatelessWidget {
         context,
         showHeader: true,
         showBackButton: true,
-        title: LocaleKeys.grid_settings_properties.tr(),
+        title: '特性',
         builder: (_) {
           return BlocProvider.value(
             value: context.read<ViewBloc>(),
@@ -269,7 +266,7 @@ class DatabaseViewSettingTile extends StatelessWidget {
         showDragHandle: true,
         showHeader: true,
         showDivider: false,
-        title: LocaleKeys.calendar_settings_name.tr(),
+        title: '日历布局',
         builder: (context) {
           return MobileCalendarViewLayoutSettings(
             databaseController: databaseController,

@@ -1,12 +1,10 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_option_tile.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
 import 'package:appflowy/plugins/database/calendar/application/calendar_setting_bloc.dart';
 import 'package:appflowy/plugins/database/widgets/database_layout_ext.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -94,12 +92,12 @@ class MobileCalendarViewLayoutSettings extends StatelessWidget {
   }
 
   List<Widget> _startWeek(BuildContext context, int? firstDayOfWeek) {
-    final symbols = DateFormat.EEEE(context.locale.toLanguageTag()).dateSymbols;
+    final symbols = DateFormat.EEEE('zh_CN').dateSymbols;
     return [
       Padding(
         padding: const EdgeInsets.fromLTRB(16.0, 0.0, 16.0, 4.0),
         child: FlowyText(
-          LocaleKeys.calendar_settings_firstDayOfWeek.tr().toUpperCase(),
+          '一周开始于'.toUpperCase(),
           fontSize: 13,
           color: Theme.of(context).hintColor,
         ),
@@ -152,7 +150,7 @@ class _CalendarLayoutField extends StatelessWidget {
           databaseController.fieldController.getField(selectedFieldId!);
     }
     return FlowyOptionTile.text(
-      text: LocaleKeys.calendar_settings_layoutDateField.tr(),
+      text: '以……为日历布局',
       trailing: selectedFieldId == null
           ? null
           : Row(
@@ -168,7 +166,7 @@ class _CalendarLayoutField extends StatelessWidget {
       onTap: () async {
         final newFieldId = await showFieldPicker(
           context,
-          LocaleKeys.calendar_settings_changeLayoutDateField.tr(),
+          '更改排列字段',
           selectedFieldId,
           databaseController.fieldController,
           (field) => field.fieldType == FieldType.DateTime,
@@ -197,6 +195,6 @@ class MobileBoardViewLayoutSettings extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlowyOptionTile.text(text: LocaleKeys.board_groupBy.tr());
+    return FlowyOptionTile.text(text: '通过...分组');
   }
 }

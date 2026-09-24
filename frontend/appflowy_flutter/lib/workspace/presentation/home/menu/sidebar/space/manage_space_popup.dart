@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/sidebar/space/space_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/shared_widget.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/space_icon_popup.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,7 +28,7 @@ class _ManageSpacePopupState extends State<ManageSpacePopup> {
         mainAxisSize: MainAxisSize.min,
         children: [
           FlowyText(
-            LocaleKeys.space_manage.tr(),
+            '管理空间',
             fontSize: 18.0,
           ),
           const VSpace(16.0),
@@ -49,7 +47,7 @@ class _ManageSpacePopupState extends State<ManageSpacePopup> {
           ),
           const VSpace(16.0),
           SpaceCancelOrConfirmButton(
-            confirmButtonName: LocaleKeys.button_save.tr(),
+            confirmButtonName: '保存',
             onCancel: () => Navigator.of(context).pop(),
             onConfirm: () {
               context.read<SpaceBloc>().add(
@@ -87,7 +85,7 @@ class _SpaceNameTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         FlowyText.regular(
-          LocaleKeys.space_spaceName.tr(),
+          '空间名称',
           fontSize: 14.0,
           color: Theme.of(context).hintColor,
         ),

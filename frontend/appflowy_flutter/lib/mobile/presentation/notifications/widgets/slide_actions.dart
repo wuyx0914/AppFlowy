@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/notification/notification_reminder_bloc.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/page_item/mobile_slide_action_button.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/user/application/reminder/reminder_bloc.dart';
 import 'package:appflowy/user/application/reminder/reminder_extension.dart';
 import 'package:appflowy/workspace/presentation/notifications/widgets/notification_tab_bar.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -31,9 +29,7 @@ enum NotificationPaneActionType {
           size: 24.0,
           onPressed: (context) {
             showToastNotification(
-              message: LocaleKeys
-                  .settings_notifications_markAsReadNotifications_success
-                  .tr(),
+              message: '成功标为已读',
             );
 
             context.read<ReminderBloc>().add(
@@ -128,7 +124,7 @@ class _NotificationMoreActions extends StatelessWidget {
         if (!reminder.isRead)
           FlowyOptionTile.text(
             height: 52.0,
-            text: LocaleKeys.settings_notifications_action_markAsRead.tr(),
+            text: '标为已读',
             leftIcon: const FlowySvg(
               FlowySvgs.m_notification_action_mark_as_read_s,
               size: Size.square(20),
@@ -139,7 +135,7 @@ class _NotificationMoreActions extends StatelessWidget {
           ),
         FlowyOptionTile.text(
           height: 52.0,
-          text: LocaleKeys.settings_notifications_action_multipleChoice.tr(),
+          text: '选择更多',
           leftIcon: const FlowySvg(
             FlowySvgs.m_notification_action_multiple_choice_s,
             size: Size.square(20),
@@ -151,7 +147,7 @@ class _NotificationMoreActions extends StatelessWidget {
         if (!reminder.isArchived)
           FlowyOptionTile.text(
             height: 52.0,
-            text: LocaleKeys.settings_notifications_action_archive.tr(),
+            text: '归档',
             leftIcon: const FlowySvg(
               FlowySvgs.m_notification_action_archive_s,
               size: Size.square(20),
@@ -168,8 +164,7 @@ class _NotificationMoreActions extends StatelessWidget {
     Navigator.of(context).pop();
 
     showToastNotification(
-      message: LocaleKeys.settings_notifications_markAsReadNotifications_success
-          .tr(),
+      message: '成功标为已读',
     );
 
     context.read<ReminderBloc>().add(
@@ -190,9 +185,7 @@ class _NotificationMoreActions extends StatelessWidget {
 
   void _onArchive(BuildContext context) {
     showToastNotification(
-      message: LocaleKeys.settings_notifications_archiveNotifications_success
-          .tr()
-          .tr(),
+      message: '通知已归档',
     );
 
     context.read<ReminderBloc>().add(

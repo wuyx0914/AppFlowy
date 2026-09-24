@@ -1,6 +1,5 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/af_role_pb_extension.dart';
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
 import 'package:appflowy/shared/icon_emoji_picker/tab.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/space_ac
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +43,7 @@ class SpaceMorePopup extends StatelessWidget {
             FlowySvgs.workspace_three_dots_s,
             color: isHovered ? Theme.of(context).colorScheme.onSurface : null,
           ),
-          tooltipText: LocaleKeys.space_manage.tr(),
+          tooltipText: '管理空间',
           onPressed: () {
             onEditing(true);
             popover.show();
@@ -163,10 +161,10 @@ class SpaceMoreActionTypeWrapper extends CustomActionCell {
     if (inner == SpaceMoreActionType.delete) {
       if (spaces.length <= 1) {
         disable = true;
-        message = LocaleKeys.space_unableToDeleteLastSpace.tr();
+        message = '无法删除最后一个空间';
       } else if (!allowToDelete) {
         disable = true;
-        message = LocaleKeys.space_unableToDeleteSpaceNotCreatedByYou.tr();
+        message = '无法删除他人创建的工作区';
       }
     }
 

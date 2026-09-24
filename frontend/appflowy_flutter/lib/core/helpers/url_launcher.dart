@@ -1,11 +1,9 @@
 import 'dart:io';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/patterns/common_patterns.dart';
 import 'package:appflowy/workspace/presentation/home/toast.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:open_filex/open_filex.dart';
@@ -137,12 +135,12 @@ Future<bool> _afLaunchLocalUri(
   }
   // show the toast if the file is not found
   final message = switch (result.type) {
-    ResultType.done => LocaleKeys.openFileMessage_success.tr(),
-    ResultType.fileNotFound => LocaleKeys.openFileMessage_fileNotFound.tr(),
-    ResultType.noAppToOpen => LocaleKeys.openFileMessage_noAppToOpenFile.tr(),
+    ResultType.done => '文件已成功打开',
+    ResultType.fileNotFound => '未找到文件',
+    ResultType.noAppToOpen => '没有应用程序可以打开这个文件',
     ResultType.permissionDenied =>
-      LocaleKeys.openFileMessage_permissionDenied.tr(),
-    ResultType.error => LocaleKeys.failedToOpenUrl.tr(),
+      '没有权限打开此文件',
+    ResultType.error => '打开 url:{}失败',
   };
   if (context != null && context.mounted) {
     showToastNotification(
@@ -172,7 +170,7 @@ void _errorHandler(
     onFailure(uri);
   } else {
     showMessageToast(
-      LocaleKeys.failedToOpenUrl.tr(args: [e?.message ?? "PlatformException"]),
+      '打开 url:{e?.message ?? "PlatformException"}失败',
       context: context,
     );
   }

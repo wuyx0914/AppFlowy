@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/plugins/base/emoji/emoji_picker_screen.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/text_cell_bloc.dart';
@@ -24,7 +23,6 @@ import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart' hide UploadImageMenu;
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/widget/rounded_button.dart';
@@ -281,7 +279,7 @@ class _RowCoverState extends State<RowCover> {
                     .colorScheme
                     .surface
                     .withValues(alpha: 0.5),
-                title: LocaleKeys.document_plugins_cover_changeCover.tr(),
+                title: '修改封面',
               ),
             ),
             popupBuilder: (BuildContext popoverContext) {
@@ -478,7 +476,7 @@ class _RowHeaderToolbarState extends State<RowHeaderToolbar> {
                     leftIconSize: const Size.square(18),
                     leftIcon: const FlowySvg(FlowySvgs.add_cover_s),
                     text: FlowyText.small(
-                      LocaleKeys.document_plugins_cover_addCover.tr(),
+                      '添加封面',
                     ),
                     onTap: () => widget.onCoverChanged(
                       RowCoverPB(
@@ -515,8 +513,8 @@ class _RowHeaderToolbarState extends State<RowHeaderToolbar> {
                       leftIcon: const FlowySvg(FlowySvgs.add_icon_s),
                       text: FlowyText.small(
                         widget.hasIcon
-                            ? LocaleKeys.document_plugins_cover_removeIcon.tr()
-                            : LocaleKeys.document_plugins_cover_addIcon.tr(),
+                            ? '移除图标'
+                            : '添加图标',
                       ),
                       onTap: () async {
                         if (!isDesktop) {
@@ -648,7 +646,7 @@ class _TitleSkin extends IEditableTextCellSkin {
           enabledBorder: InputBorder.none,
           errorBorder: InputBorder.none,
           disabledBorder: InputBorder.none,
-          hintText: LocaleKeys.grid_row_titlePlaceholder.tr(),
+          hintText: '无标题',
           isDense: true,
           isCollapsed: true,
         ),
@@ -671,7 +669,7 @@ class RowActionButton extends StatelessWidget {
       direction: PopoverDirection.bottomWithLeftAligned,
       popupBuilder: (context) => RowActionList(rowController: rowController),
       child: FlowyTooltip(
-        message: LocaleKeys.grid_rowPage_moreRowActions.tr(),
+        message: '更多列动作',
         child: FlowyIconButton(
           width: 20,
           height: 20,

@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/common.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/image_util.dart';
@@ -15,7 +14,6 @@ import 'package:appflowy/workspace/presentation/widgets/image_viewer/interactive
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
 import 'package:collection/collection.dart';
 import 'package:desktop_drop/desktop_drop.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -240,9 +238,7 @@ class _ImageBrowserLayoutState extends State<ImageBrowserLayout> {
                             const HSpace(12),
                             Flexible(
                               child: FlowyText(
-                                LocaleKeys
-                                    .document_plugins_image_dropImageToInsert
-                                    .tr(),
+                                '将图片拖曳至此插入',
                                 color: AFThemeExtension.of(context).strongText,
                                 fontSize: 22,
                                 fontWeight: FontWeight.w500,
@@ -385,7 +381,7 @@ class _ThumbnailItemState extends State<ThumbnailItem> {
                 opacity: isHovering ? 1 : 0,
                 duration: const Duration(milliseconds: 100),
                 child: FlowyTooltip(
-                  message: LocaleKeys.button_delete.tr(),
+                  message: '删除',
                   child: GestureDetector(
                     behavior: HitTestBehavior.opaque,
                     onTap: widget.onDeleted,

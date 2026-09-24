@@ -1,12 +1,10 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/field_controller.dart';
 import 'package:appflowy/plugins/database/domain/field_service.dart';
 import 'package:appflowy/plugins/database/grid/application/grid_bloc.dart';
 import 'package:appflowy/plugins/database/grid/application/grid_header_bloc.dart';
 import 'package:appflowy/plugins/database/tab_bar/tab_bar_view.dart';
 import 'package:appflowy_backend/log.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -202,7 +200,7 @@ class CreateFieldButton extends StatelessWidget {
       radius: BorderRadius.zero,
       text: FlowyText(
         lineHeight: 1.0,
-        LocaleKeys.grid_field_newProperty.tr(),
+        '添加一列',
         overflow: TextOverflow.ellipsis,
       ),
       hoverColor: AFThemeExtension.of(context).greyHover,

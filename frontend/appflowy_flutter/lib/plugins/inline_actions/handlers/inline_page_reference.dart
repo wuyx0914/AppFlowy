@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/insert_page_command.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/header/emoji_icon_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mention/mention_block.dart';
@@ -18,7 +17,6 @@ import 'package:appflowy/workspace/application/view/view_service.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/dialog/styled_dialogs.dart';
 import 'package:flutter/material.dart';
 
@@ -131,8 +129,7 @@ class InlinePageReferenceService extends InlineActionsDelegate {
                     view.name.toLowerCase().contains(search.toLowerCase()) ||
                 (view.name.isEmpty && search.isEmpty) ||
                 (view.name.isEmpty &&
-                    LocaleKeys.menuAppHeader_defaultNewPageName
-                        .tr()
+                    '未命名页面'
                         .toLowerCase()
                         .contains(search.toLowerCase())),
           )
@@ -147,8 +144,8 @@ class InlinePageReferenceService extends InlineActionsDelegate {
       title: customTitle?.isNotEmpty == true
           ? customTitle!
           : isSearching
-              ? LocaleKeys.inlineActions_pageReference.tr()
-              : LocaleKeys.inlineActions_recentPages.tr(),
+              ? '页面参考'
+              : '最近的页面',
       results: items,
     );
   }

@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/view/prelude.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy_backend/log.dart';
@@ -6,7 +5,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:bloc/bloc.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/services.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -69,7 +67,7 @@ class ChatInputControlCubit extends Cubit<ChatInputControlState> {
       newViews.retainWhere(
         (v) {
           final nonEmptyName = v.name.isEmpty
-              ? LocaleKeys.document_title_placeholder.tr()
+              ? '无标题'
               : v.name;
           return nonEmptyName.toLowerCase().contains(_filter);
         },
@@ -138,7 +136,7 @@ class ChatInputControlCubit extends Cubit<ChatInputControlState> {
       newVisibleViews.retainWhere(
         (v) {
           final nonEmptyName = v.name.isEmpty
-              ? LocaleKeys.document_title_placeholder.tr()
+              ? '无标题'
               : v.name;
           return nonEmptyName.toLowerCase().contains(_filter);
         },
@@ -214,7 +212,7 @@ class ChatInputControlCubit extends Cubit<ChatInputControlState> {
       final view = allViews.firstWhereOrNull((view) => view.id == viewId);
       if (view != null) {
         final nonEmptyName = view.name.isEmpty
-            ? LocaleKeys.document_title_placeholder.tr()
+            ? '无标题'
             : view.name;
         result = result.replaceAll(RegExp(viewId), nonEmptyName);
       }

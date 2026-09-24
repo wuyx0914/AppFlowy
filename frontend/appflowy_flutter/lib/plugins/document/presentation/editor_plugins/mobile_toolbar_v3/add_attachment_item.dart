@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_mobile_quick_action_button.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
@@ -15,7 +14,6 @@ import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/startup/tasks/app_widget.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -114,21 +112,21 @@ class _AddAttachmentMenu extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           MobileQuickActionButton(
-            text: LocaleKeys.document_attachmentMenu_choosePhoto.tr(),
+            text: '选择照片',
             icon: FlowySvgs.image_rounded_s,
             iconSize: const Size.square(20),
             onTap: () async => selectPhoto(context),
           ),
           const MobileQuickActionDivider(),
           MobileQuickActionButton(
-            text: LocaleKeys.document_attachmentMenu_takePicture.tr(),
+            text: '拍照',
             icon: FlowySvgs.camera_s,
             iconSize: const Size.square(20),
             onTap: () async => selectCamera(context),
           ),
           const MobileQuickActionDivider(),
           MobileQuickActionButton(
-            text: LocaleKeys.document_attachmentMenu_chooseFile.tr(),
+            text: '选择文件',
             icon: FlowySvgs.file_s,
             iconSize: const Size.square(20),
             onTap: () async => selectFile(context),

@@ -1,5 +1,4 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/command_palette/command_palette_bloc.dart';
 import 'package:appflowy/workspace/application/command_palette/search_result_list_bloc.dart';
 import 'package:appflowy/workspace/presentation/command_palette/navigation_bloc_extension.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-search/result.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pbenum.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -90,7 +88,7 @@ class _SearchResultListState extends State<SearchResultList> {
         horizontal: theme.spacing.m,
       ),
       child: Text(
-        LocaleKeys.commandPalette_bestMatches.tr(),
+        '最佳匹配',
         style: theme.textStyle.body
             .enhanced(color: theme.textColorScheme.secondary)
             .copyWith(

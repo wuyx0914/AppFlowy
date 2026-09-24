@@ -1,5 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/plugins/bloc/dynamic_plugin_bloc.dart';
 import 'package:flowy_infra/plugins/bloc/dynamic_plugin_event.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -29,7 +27,7 @@ class ThemeUploadButton extends StatelessWidget {
             FlowyText.medium(
               fontSize: ThemeUploadWidget.buttonFontSize,
               color: Theme.of(context).colorScheme.onPrimary,
-              LocaleKeys.settings_appearance_themeUpload_button.tr(),
+              '上传',
             ),
           ],
         ),

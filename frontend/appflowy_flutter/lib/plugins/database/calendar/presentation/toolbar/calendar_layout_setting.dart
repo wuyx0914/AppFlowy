@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/database_controller.dart';
 import 'package:appflowy/plugins/database/application/setting/property_bloc.dart';
 import 'package:appflowy/plugins/database/calendar/application/calendar_setting_bloc.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/workspace/presentation/widgets/toggle/toggle.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -209,7 +207,7 @@ class LayoutDateField extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
           text: FlowyText(
             lineHeight: 1.0,
-            LocaleKeys.calendar_settings_layoutDateField.tr(),
+            '以……为日历布局',
           ),
         ),
       ),
@@ -232,7 +230,7 @@ class ShowWeekNumber extends StatelessWidget {
     return _toggleItem(
       onToggle: (showWeekNumbers) => onUpdated(!showWeekNumbers),
       value: showWeekNumbers,
-      text: LocaleKeys.calendar_settings_showWeekNumbers.tr(),
+      text: '显示周数',
     );
   }
 }
@@ -252,7 +250,7 @@ class ShowWeekends extends StatelessWidget {
     return _toggleItem(
       onToggle: (showWeekends) => onUpdated(!showWeekends),
       value: showWeekends,
-      text: LocaleKeys.calendar_settings_showWeekends.tr(),
+      text: '显示周末',
     );
   }
 }
@@ -279,7 +277,7 @@ class FirstDayOfWeek extends StatelessWidget {
       offset: const Offset(-14, 0),
       popupBuilder: (context) {
         final symbols =
-            DateFormat.EEEE(context.locale.toLanguageTag()).dateSymbols;
+            DateFormat.EEEE('zh_CN').dateSymbols;
         // starts from sunday
         const len = 2;
         final items = symbols.WEEKDAYS.take(len).indexed.map((entry) {
@@ -311,7 +309,7 @@ class FirstDayOfWeek extends StatelessWidget {
           margin: const EdgeInsets.symmetric(vertical: 2.0, horizontal: 10.0),
           text: FlowyText(
             lineHeight: 1.0,
-            LocaleKeys.calendar_settings_firstDayOfWeek.tr(),
+            '一周开始于',
           ),
         ),
       ),

@@ -1,5 +1,4 @@
 import 'package:appflowy/date/date_service.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/string_extension.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mention/mention_block.dart';
@@ -10,21 +9,20 @@ import 'package:appflowy/user/application/reminder/reminder_extension.dart';
 import 'package:appflowy/workspace/presentation/widgets/date_picker/widgets/reminder_selector.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/reminder.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nanoid/nanoid.dart';
 
 final _keywords = [
-  LocaleKeys.inlineActions_reminder_groupTitle.tr().toLowerCase(),
-  LocaleKeys.inlineActions_reminder_shortKeyword.tr().toLowerCase(),
+  '提醒'.toLowerCase(),
+  '提醒'.toLowerCase(),
 ];
 
 class ReminderReferenceService extends InlineActionsDelegate {
   ReminderReferenceService(this.context) {
     // Initialize locale
-    _locale = context.locale.toLanguageTag();
+    _locale = 'zh_CN';
 
     // Initializes options
     _setOptions();
@@ -60,11 +58,11 @@ class ReminderReferenceService extends InlineActionsDelegate {
     List<InlineActionsMenuItem>? options,
   ]) =>
       InlineActionsResult(
-        title: LocaleKeys.inlineActions_reminder_groupTitle.tr(),
+        title: '提醒',
         results: options ?? [],
         startsWithKeywords: [
-          LocaleKeys.inlineActions_reminder_groupTitle.tr().toLowerCase(),
-          LocaleKeys.inlineActions_reminder_shortKeyword.tr().toLowerCase(),
+          '提醒'.toLowerCase(),
+          '提醒'.toLowerCase(),
         ],
       );
 
@@ -174,7 +172,7 @@ class ReminderReferenceService extends InlineActionsDelegate {
     try {
       todayItem = _itemFromDate(
         tomorrow,
-        LocaleKeys.relativeDates_tomorrow.tr(),
+        '明天',
         [DateFormat.yMd(_locale).format(tomorrow)],
       );
     } catch (e) {
@@ -184,7 +182,7 @@ class ReminderReferenceService extends InlineActionsDelegate {
     try {
       oneWeekItem = _itemFromDate(
         oneWeek,
-        LocaleKeys.relativeDates_oneWeek.tr(),
+        '一周',
         [DateFormat.yMd(_locale).format(oneWeek)],
       );
     } catch (e) {
@@ -200,7 +198,7 @@ class ReminderReferenceService extends InlineActionsDelegate {
   /// Sets Locale on each search to make sure
   /// keywords are localized
   void _setLocale() {
-    final locale = context.locale.toLanguageTag();
+    final locale = 'zh_CN';
 
     if (locale != _locale) {
       _locale = locale;
@@ -237,8 +235,8 @@ class ReminderReferenceService extends InlineActionsDelegate {
     return ReminderPB(
       id: nanoid(),
       objectId: viewId,
-      title: LocaleKeys.reminderNotification_title.tr(),
-      message: LocaleKeys.reminderNotification_message.tr(),
+      title: '提醒',
+      message: '记得在你忘记之前检查一下！',
       meta: {
         ReminderMetaKeys.includeTime: false.toString(),
         ReminderMetaKeys.blockId: node.id,

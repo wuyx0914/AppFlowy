@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:appflowy/ai/service/view_selector_cubit.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/flowy_search_text_field.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/plugins/base/drag_handler.dart';
@@ -13,7 +12,6 @@ import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy/workspace/presentation/home/menu/view/view_item.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -109,7 +107,7 @@ class _PromptInputMobileSelectSourcesButtonState
                         final label = documentId != null &&
                                 selectedSourceIds.length == 1 &&
                                 selectedSourceIds[0] == documentId
-                            ? LocaleKeys.chat_currentPage.tr()
+                            ? '目前页面'
                             : selectedSourceIds.length.toString();
                         return FlowyText(
                           label,
@@ -196,7 +194,7 @@ class _MobileSelectSourcesSheetBody extends StatelessWidget {
                     height: 44.0,
                     child: Center(
                       child: FlowyText.medium(
-                        LocaleKeys.chat_selectSources.tr(),
+                        '选择来源',
                         fontSize: 16.0,
                       ),
                     ),

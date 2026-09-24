@@ -1,6 +1,5 @@
 import 'package:appflowy/features/page_access_level/logic/page_access_level_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/home/shared/mobile_page_card.dart';
 import 'package:appflowy/mobile/presentation/page_item/mobile_slide_action_button.dart';
@@ -11,7 +10,6 @@ import 'package:appflowy/workspace/application/view/view_bloc.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +43,7 @@ enum MobilePaneActionType {
           size: 24.0,
           onPressed: (context) {
             showToastNotification(
-              message: LocaleKeys.button_unfavoriteSuccessfully.tr(),
+              message: '取消收藏成功',
             );
 
             context
@@ -60,7 +58,7 @@ enum MobilePaneActionType {
           size: 24.0,
           onPressed: (context) {
             showToastNotification(
-              message: LocaleKeys.button_favoriteSuccessfully.tr(),
+              message: '收藏成功',
             );
 
             context

@@ -1,12 +1,10 @@
 import 'dart:convert';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/custom_image_cache_manager.dart';
 import 'package:appflowy/util/string_extension.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/uuid.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flutter/material.dart';
@@ -271,6 +269,6 @@ class _SensitiveContent extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FlowyText(LocaleKeys.ai_contentPolicyViolation.tr());
+    return FlowyText('图片生成因敏感内容而失败。请重新措辞您的输入并再次尝试。');
   }
 }

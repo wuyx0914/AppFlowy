@@ -1,8 +1,6 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy/workspace/application/settings/shortcuts/settings_shortcuts_service.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -76,7 +74,7 @@ class ShortcutsCubit extends Cubit<ShortcutsState> {
       emit(
         state.copyWith(
           status: ShortcutsStatus.failure,
-          error: LocaleKeys.settings_shortcutsPage_couldNotLoadErrorMsg.tr(),
+          error: '无法加载快捷键，请再次尝试',
         ),
       );
     }
@@ -92,7 +90,7 @@ class ShortcutsCubit extends Cubit<ShortcutsState> {
       emit(
         state.copyWith(
           status: ShortcutsStatus.failure,
-          error: LocaleKeys.settings_shortcutsPage_couldNotSaveErrorMsg.tr(),
+          error: '无法保存快捷键，请再次尝试',
         ),
       );
     }
@@ -108,7 +106,7 @@ class ShortcutsCubit extends Cubit<ShortcutsState> {
       emit(
         state.copyWith(
           status: ShortcutsStatus.failure,
-          error: LocaleKeys.settings_shortcutsPage_couldNotSaveErrorMsg.tr(),
+          error: '无法保存快捷键，请再次尝试',
         ),
       );
     }

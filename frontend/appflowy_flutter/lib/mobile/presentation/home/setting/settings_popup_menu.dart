@@ -1,10 +1,8 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/presentation.dart';
 import 'package:appflowy/shared/popup_menu/appflowy_popup_menu.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart'
     hide PopupMenuButton, PopupMenuDivider, PopupMenuItem, PopupMenuEntry;
@@ -43,26 +41,26 @@ class HomePageSettingsPopupMenu extends StatelessWidget {
         _buildItem(
           value: _MobileSettingsPopupMenuItem.settings,
           svg: FlowySvgs.m_notification_settings_s,
-          text: LocaleKeys.settings_popupMenuItem_settings.tr(),
+          text: '设置',
         ),
         // Local-only build: the members menu item is removed.
         const PopupMenuDivider(height: 0.5),
         _buildItem(
           value: _MobileSettingsPopupMenuItem.trash,
           svg: FlowySvgs.trash_s,
-          text: LocaleKeys.settings_popupMenuItem_trash.tr(),
+          text: '回收站',
         ),
         const PopupMenuDivider(height: 0.5),
         _buildItem(
           value: _MobileSettingsPopupMenuItem.helpAndDocumentation,
           svg: FlowySvgs.help_and_documentation_s,
-          text: LocaleKeys.settings_popupMenuItem_helpAndDocumentation.tr(),
+          text: '说明与文档',
         ),
         const PopupMenuDivider(height: 0.5),
         _buildItem(
           value: _MobileSettingsPopupMenuItem.help,
           svg: FlowySvgs.message_support_s,
-          text: LocaleKeys.settings_popupMenuItem_getSupport.tr(),
+          text: '取得支持',
         ),
       ],
       onSelected: (_MobileSettingsPopupMenuItem value) {

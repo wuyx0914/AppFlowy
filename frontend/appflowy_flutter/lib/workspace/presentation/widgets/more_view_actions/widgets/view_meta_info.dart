@@ -1,8 +1,6 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/settings/date_time/date_format_ext.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/date_time.pbenum.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
@@ -35,29 +33,13 @@ class ViewMetaInfo extends StatelessWidget {
         children: [
           if (documentCounters != null && titleCounters != null) ...[
             FlowyText.regular(
-              LocaleKeys.moreAction_wordCount.tr(
-                args: [
-                  numberFormat
-                      .format(
-                        documentCounters!.wordCount + titleCounters!.wordCount,
-                      )
-                      .toString(),
-                ],
-              ),
+              '字数: ${numberFormat.format(documentCounters!.wordCount + titleCounters!.wordCount)}',
               fontSize: 12,
               color: Theme.of(context).hintColor,
             ),
             const VSpace(2),
             FlowyText.regular(
-              LocaleKeys.moreAction_charCount.tr(
-                args: [
-                  numberFormat
-                      .format(
-                        documentCounters!.charCount + titleCounters!.charCount,
-                      )
-                      .toString(),
-                ],
-              ),
+              '字符数: ${numberFormat.format(documentCounters!.charCount + titleCounters!.charCount)}',
               fontSize: 12,
               color: Theme.of(context).hintColor,
             ),
@@ -66,9 +48,7 @@ class ViewMetaInfo extends StatelessWidget {
             if (documentCounters != null && titleCounters != null)
               const VSpace(2),
             FlowyText.regular(
-              LocaleKeys.moreAction_createdAt.tr(
-                args: [dateFormat.formatDate(createdAt!, true, timeFormat)],
-              ),
+              '创建于: ${dateFormat.formatDate(createdAt!, true, timeFormat)}',
               fontSize: 12,
               maxLines: 2,
               color: Theme.of(context).hintColor,

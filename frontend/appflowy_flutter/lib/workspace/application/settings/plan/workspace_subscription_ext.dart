@@ -1,27 +1,25 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pbserver.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 extension SubscriptionInfoHelpers on WorkspaceSubscriptionInfoPB {
   String get label => switch (plan) {
         WorkspacePlanPB.FreePlan =>
-          LocaleKeys.settings_planPage_planUsage_currentPlan_freeTitle.tr(),
+          '免费',
         WorkspacePlanPB.ProPlan =>
-          LocaleKeys.settings_planPage_planUsage_currentPlan_proTitle.tr(),
+          '专业版',
         WorkspacePlanPB.TeamPlan =>
-          LocaleKeys.settings_planPage_planUsage_currentPlan_teamTitle.tr(),
+          '团队',
         _ => 'N/A',
       };
 
   String get info => switch (plan) {
         WorkspacePlanPB.FreePlan =>
-          LocaleKeys.settings_planPage_planUsage_currentPlan_freeInfo.tr(),
+          '非常适合最多 2 名个人使用，以整理所有内容',
         WorkspacePlanPB.ProPlan =>
-          LocaleKeys.settings_planPage_planUsage_currentPlan_proInfo.tr(),
+          '非常适合小型和中型团队，最多 10 名成员。',
         WorkspacePlanPB.TeamPlan =>
-          LocaleKeys.settings_planPage_planUsage_currentPlan_teamInfo.tr(),
+          '非常适合所有高效且井然有序的团队。',
         _ => 'N/A',
       };
 
@@ -37,15 +35,15 @@ extension SubscriptionInfoHelpers on WorkspaceSubscriptionInfoPB {
 extension AllSubscriptionLabels on SubscriptionPlanPB {
   String get label => switch (this) {
         SubscriptionPlanPB.Free =>
-          LocaleKeys.settings_planPage_planUsage_currentPlan_freeTitle.tr(),
+          '免费',
         SubscriptionPlanPB.Pro =>
-          LocaleKeys.settings_planPage_planUsage_currentPlan_proTitle.tr(),
+          '专业版',
         SubscriptionPlanPB.Team =>
-          LocaleKeys.settings_planPage_planUsage_currentPlan_teamTitle.tr(),
+          '团队',
         SubscriptionPlanPB.AiMax =>
-          LocaleKeys.settings_billingPage_addons_aiMax_label.tr(),
+          'AI Max',
         SubscriptionPlanPB.AiLocal =>
-          LocaleKeys.settings_billingPage_addons_aiOnDevice_label.tr(),
+          'Mac 上的 AI 本机处理',
         _ => 'N/A',
       };
 }
@@ -107,17 +105,17 @@ extension PlanHelper on SubscriptionPlanPB {
 extension IntervalLabel on RecurringIntervalPB {
   String get label => switch (this) {
         RecurringIntervalPB.Month =>
-          LocaleKeys.settings_billingPage_monthlyInterval.tr(),
+          '每月',
         RecurringIntervalPB.Year =>
-          LocaleKeys.settings_billingPage_annualInterval.tr(),
-        _ => LocaleKeys.settings_billingPage_monthlyInterval.tr(),
+          '每年',
+        _ => '每月',
       };
 
   String get priceInfo => switch (this) {
         RecurringIntervalPB.Month =>
-          LocaleKeys.settings_billingPage_monthlyPriceInfo.tr(),
+          '每座位每月计费',
         RecurringIntervalPB.Year =>
-          LocaleKeys.settings_billingPage_annualPriceInfo.tr(),
-        _ => LocaleKeys.settings_billingPage_monthlyPriceInfo.tr(),
+          '每座位按年计费',
+        _ => '每座位每月计费',
       };
 }

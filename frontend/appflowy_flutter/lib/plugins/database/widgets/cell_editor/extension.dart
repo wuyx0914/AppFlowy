@@ -1,7 +1,5 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/select_option_entities.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -36,23 +34,23 @@ extension SelectOptionColorExtension on SelectOptionColorPB {
   String colorName() {
     switch (this) {
       case SelectOptionColorPB.Purple:
-        return LocaleKeys.grid_selectOption_purpleColor.tr();
+        return '紫色';
       case SelectOptionColorPB.Pink:
-        return LocaleKeys.grid_selectOption_pinkColor.tr();
+        return '粉色';
       case SelectOptionColorPB.LightPink:
-        return LocaleKeys.grid_selectOption_lightPinkColor.tr();
+        return '浅粉色';
       case SelectOptionColorPB.Orange:
-        return LocaleKeys.grid_selectOption_orangeColor.tr();
+        return '橙色';
       case SelectOptionColorPB.Yellow:
-        return LocaleKeys.grid_selectOption_yellowColor.tr();
+        return '黄色';
       case SelectOptionColorPB.Lime:
-        return LocaleKeys.grid_selectOption_limeColor.tr();
+        return '鲜绿色';
       case SelectOptionColorPB.Green:
-        return LocaleKeys.grid_selectOption_greenColor.tr();
+        return '绿色';
       case SelectOptionColorPB.Aqua:
-        return LocaleKeys.grid_selectOption_aquaColor.tr();
+        return '水蓝色';
       case SelectOptionColorPB.Blue:
-        return LocaleKeys.grid_selectOption_blueColor.tr();
+        return '蓝色';
       default:
         throw ArgumentError;
     }

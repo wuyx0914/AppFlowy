@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/home/tab/_round_underline_tab_indicator.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 enum NotificationTabType {
@@ -11,11 +9,11 @@ enum NotificationTabType {
   String get tr {
     switch (this) {
       case NotificationTabType.inbox:
-        return LocaleKeys.settings_notifications_tabs_inbox.tr();
+        return '收件匣';
       case NotificationTabType.unread:
-        return LocaleKeys.settings_notifications_tabs_unread.tr();
+        return '未读';
       case NotificationTabType.archive:
-        return LocaleKeys.settings_notifications_tabs_archived.tr();
+        return '已归档';
     }
   }
 }

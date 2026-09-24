@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet_header.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/desktop_toolbar/link/link_edit_menu.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/desktop_toolbar/link/link_search_text_field.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/src/editor/util/link_util.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -53,7 +51,7 @@ class _MobileBottomSheetEditLinkWidgetState
   ViewPB? currentView;
   bool showErrorText = false;
   bool showRemoveLink = false;
-  String title = LocaleKeys.editor_editLink.tr();
+  String title = '编辑链接';
 
   AppFlowyThemeData get theme => AppFlowyTheme.of(context);
 
@@ -74,7 +72,7 @@ class _MobileBottomSheetEditLinkWidgetState
     )..searchRecentViews();
     if (linkInfo.link.isEmpty) {
       isShowingSearchResult = true;
-      title = LocaleKeys.toolbar_addLink.tr();
+      title = '添加链接';
     } else {
       showRemoveLink = true;
       textFocusNode.requestFocus();
@@ -109,7 +107,7 @@ class _MobileBottomSheetEditLinkWidgetState
               title: title,
               onClose: () => context.pop(),
               confirmButton: FlowyTextButton(
-                LocaleKeys.button_done.tr(),
+                '完成',
                 constraints:
                     const BoxConstraints.tightFor(width: 62, height: 30),
                 padding: const EdgeInsets.only(left: 12),
@@ -163,7 +161,7 @@ class _MobileBottomSheetEditLinkWidgetState
           );
         },
         decoration: LinkStyle.buildLinkTextFieldInputDecoration(
-          LocaleKeys.document_toolbar_linkNameHint.tr(),
+          '输入链接名称',
           contentPadding: EdgeInsets.all(14),
           radius: 12,
           context,
@@ -214,7 +212,7 @@ class _MobileBottomSheetEditLinkWidgetState
           Padding(
             padding: const EdgeInsets.only(top: 4),
             child: FlowyText.regular(
-              LocaleKeys.document_plugins_file_networkUrlInvalid.tr(),
+              '网址无效。请检查网址并再次尝试。',
               color: theme.textColorScheme.error,
               fontSize: 12,
               figmaLineHeight: 16,
@@ -238,7 +236,7 @@ class _MobileBottomSheetEditLinkWidgetState
     } else {
       final viewName = view.name;
       final displayName = viewName.isEmpty
-          ? LocaleKeys.document_title_placeholder.tr()
+          ? '无标题'
           : viewName;
       child = GestureDetector(
         onTap: showSearchResult,
@@ -317,7 +315,7 @@ class _MobileBottomSheetEditLinkWidgetState
               ),
               HSpace(8),
               FlowyText.regular(
-                LocaleKeys.editor_removeLink.tr(),
+                '移除链接',
                 overflow: TextOverflow.ellipsis,
                 figmaLineHeight: 20,
                 color: theme.textColorScheme.secondary,

@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/desktop_toolbar/link/link_hover_menu.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/desktop_toolbar/link/link_replace_menu.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/link_embed/link_embed_block_component.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/plugins/document/presentation/editor_plugins/link_previ
 import 'package:appflowy/plugins/document/presentation/editor_plugins/menu/menu_extension.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -186,27 +184,19 @@ enum LinkPreviewMenuCommand {
   String get title {
     switch (this) {
       case convertToMention:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toMetion
-            .tr();
+        return '转换为提及';
       case LinkPreviewMenuCommand.convertToUrl:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toUrl
-            .tr();
+        return '转换为URL';
       case LinkPreviewMenuCommand.convertToEmbed:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toEmbed
-            .tr();
+        return '转换为嵌入';
       case LinkPreviewMenuCommand.copyLink:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_copyLink
-            .tr();
+        return '复制链接';
       case LinkPreviewMenuCommand.replace:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_replace
-            .tr();
+        return '替换';
       case LinkPreviewMenuCommand.reload:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_reload
-            .tr();
+        return '重新加载';
       case LinkPreviewMenuCommand.removeLink:
-        return LocaleKeys
-            .document_plugins_linkPreview_linkPreviewMenu_removeLink
-            .tr();
+        return '移除链接';
     }
   }
 }

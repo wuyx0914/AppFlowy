@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/page_style/_page_style_util.dart';
 import 'package:appflowy/shared/feedback_gesture_detector.dart';
 import 'package:appflowy/shared/flowy_gradient_colors.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +26,7 @@ class PageCoverBottomSheet extends StatelessWidget {
 
               // pure colors
               FlowyText(
-                LocaleKeys.pageStyle_colors.tr(),
+                '颜色',
                 color: context.pageStyleTextColor,
                 fontSize: 14.0,
               ),
@@ -38,7 +36,7 @@ class PageCoverBottomSheet extends StatelessWidget {
 
               // gradient colors
               FlowyText(
-                LocaleKeys.pageStyle_gradient.tr(),
+                '渐变',
                 color: context.pageStyleTextColor,
                 fontSize: 14.0,
               ),
@@ -48,7 +46,7 @@ class PageCoverBottomSheet extends StatelessWidget {
 
               // built-in images
               FlowyText(
-                LocaleKeys.pageStyle_backgroundImage.tr(),
+                '背景图片',
                 color: context.pageStyleTextColor,
                 fontSize: 14.0,
               ),

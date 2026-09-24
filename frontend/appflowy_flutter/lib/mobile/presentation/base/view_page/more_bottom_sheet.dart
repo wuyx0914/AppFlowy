@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/features/page_access_level/logic/page_access_level_bloc.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/home/workspaces/create_workspace_menu.dart';
 import 'package:appflowy/plugins/document/presentation/editor_notification.dart';
@@ -20,7 +19,6 @@ import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -169,7 +167,7 @@ class MobileViewPageMoreBottomSheet extends StatelessWidget {
     context.pop();
 
     showToastNotification(
-      message: LocaleKeys.button_duplicateSuccessfully.tr(),
+      message: '副本创建成功',
     );
   }
 
@@ -177,7 +175,7 @@ class MobileViewPageMoreBottomSheet extends StatelessWidget {
     _toggleFavorite(context);
 
     showToastNotification(
-      message: LocaleKeys.button_favoriteSuccessfully.tr(),
+      message: '收藏成功',
     );
   }
 
@@ -185,7 +183,7 @@ class MobileViewPageMoreBottomSheet extends StatelessWidget {
     _toggleFavorite(context);
 
     showToastNotification(
-      message: LocaleKeys.button_unfavoriteSuccessfully.tr(),
+      message: '取消收藏成功',
     );
   }
 
@@ -207,7 +205,7 @@ class MobileViewPageMoreBottomSheet extends StatelessWidget {
         ),
       );
       showToastNotification(
-        message: LocaleKeys.message_copy_success.tr(),
+        message: '已复制',
       );
     }
   }
@@ -238,11 +236,11 @@ class MobileViewPageMoreBottomSheet extends StatelessWidget {
         ),
       );
       showToastNotification(
-        message: LocaleKeys.shareAction_copyLinkSuccess.tr(),
+        message: '链接已复制到剪贴板',
       );
     } else {
       showToastNotification(
-        message: LocaleKeys.shareAction_copyLinkToBlockFailed.tr(),
+        message: '无法将区块链接复制到剪贴板',
         type: ToastificationType.error,
       );
     }
@@ -260,7 +258,7 @@ class MobileViewPageMoreBottomSheet extends StatelessWidget {
     await showMobileBottomSheet(
       context,
       showHeader: true,
-      title: LocaleKeys.shareAction_updatePathName.tr(),
+      title: '更新路径名称',
       showCloseButton: true,
       showDragHandle: true,
       showDivider: false,
@@ -292,8 +290,7 @@ class MobileViewPageMoreBottomSheet extends StatelessWidget {
                         (value) => const SizedBox.shrink(),
                         (error) => FlowyText(
                           error.code.publishErrorMessage.orDefault(
-                            LocaleKeys.settings_sites_error_updatePathNameFailed
-                                .tr(),
+                            '更新路径名称失败',
                           ),
                           maxLines: 3,
                           fontSize: 12,
@@ -325,20 +322,20 @@ class MobileViewPageMoreBottomSheet extends StatelessWidget {
     if (state.publishResult != null) {
       state.publishResult!.fold(
         (value) => showToastNotification(
-          message: LocaleKeys.publish_publishSuccessfully.tr(),
+          message: '发布成功',
         ),
         (error) => showToastNotification(
-          message: '${LocaleKeys.publish_publishFailed.tr()}: ${error.code}',
+          message: '${'发布失败'}: ${error.code}',
           type: ToastificationType.error,
         ),
       );
     } else if (state.unpublishResult != null) {
       state.unpublishResult!.fold(
         (value) => showToastNotification(
-          message: LocaleKeys.publish_unpublishSuccessfully.tr(),
+          message: '取消发布成功',
         ),
         (error) => showToastNotification(
-          message: LocaleKeys.publish_unpublishFailed.tr(),
+          message: '取消发布失败',
           description: error.msg,
           type: ToastificationType.error,
         ),
@@ -348,7 +345,7 @@ class MobileViewPageMoreBottomSheet extends StatelessWidget {
         (value) {
           showToastNotification(
             message:
-                LocaleKeys.settings_sites_success_updatePathNameSuccess.tr(),
+                '更新路径名称成功',
           );
 
           context.pop();

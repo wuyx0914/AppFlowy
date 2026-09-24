@@ -1,9 +1,7 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +76,7 @@ class _ColorOptionButtonState extends State<ColorOptionButton> {
           FlowySvgs.color_format_m,
           size: Size.square(15),
         ),
-        name: LocaleKeys.document_plugins_optionAction_color.tr(),
+        name: '颜色',
         onTap: () {
           if (!isOpen) {
             innerController.show();
@@ -128,7 +126,7 @@ class _ColorOptionButtonState extends State<ColorOptionButton> {
       // reset to default background color
       FlowyColorOption(
         color: defaultColor,
-        i18n: LocaleKeys.document_plugins_optionAction_defaultColor.tr(),
+        i18n: '默认',
         id: optionActionColorDefaultColor,
       ),
       ...FlowyTint.values.map(

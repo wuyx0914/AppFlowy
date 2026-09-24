@@ -1,7 +1,5 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/widgets/row/cells/cell_container.dart';
 import 'package:appflowy/plugins/database/application/cell/bloc/time_cell_bloc.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 import '../editable_cell_skeleton/time.dart';
@@ -29,7 +27,7 @@ class DesktopRowDetailTimeCellSkin extends IEditableTimeCellSkin {
         enabledBorder: InputBorder.none,
         errorBorder: InputBorder.none,
         disabledBorder: InputBorder.none,
-        hintText: LocaleKeys.grid_row_textPlaceholder.tr(),
+        hintText: '空',
         hintStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
               color: Theme.of(context).hintColor,
             ),

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/plugins/ai_chat/chat.dart';
 import 'package:appflowy/plugins/database/board/presentation/board_page.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy/workspace/application/sidebar/space/space_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class PluginArgumentKeys {
@@ -68,7 +66,7 @@ extension MinimalViewExtension on FolderViewMinimalPB {
 
 extension ViewExtension on ViewPB {
   String get nameOrDefault =>
-      name.isEmpty ? LocaleKeys.menuAppHeader_defaultNewPageName.tr() : name;
+      name.isEmpty ? '未命名页面' : name;
 
   bool get isDocument => pluginType == PluginType.document;
   bool get isDatabase => [
@@ -346,7 +344,7 @@ extension ViewLayoutExtension on ViewLayoutPB {
 
   String get defaultName => switch (this) {
         ViewLayoutPB.Document => '',
-        _ => LocaleKeys.menuAppHeader_defaultNewPageName.tr(),
+        _ => '未命名页面',
       };
 
   bool get shrinkWrappable => switch (this) {

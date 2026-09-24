@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/features/settings/settings.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/appflowy_cache_manager.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/share_log_files.dart';
@@ -19,7 +18,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -62,36 +60,30 @@ class SettingsManageDataView extends StatelessWidget {
           final path = state.userDataLocation?.path;
 
           return SettingsBody(
-            title: LocaleKeys.settings_manageDataPage_title.tr(),
-            description: LocaleKeys.settings_manageDataPage_description.tr(),
+            title: '管理数据',
+            description: '管理数据本地存储或将现有数据导入@:appName 。',
             children: [
               SettingsCategory(
                 title:
-                    LocaleKeys.settings_manageDataPage_dataStorage_title.tr(),
+                    '文件存储位置',
                 tooltip:
-                    LocaleKeys.settings_manageDataPage_dataStorage_tooltip.tr(),
+                    '你的文件存储位置',
                 actions: [
                   if (isCloudWorkspace)
                     SettingAction(
-                      tooltip: LocaleKeys
-                          .settings_manageDataPage_dataStorage_actions_resetTooltip
-                          .tr(),
+                      tooltip: '重置为默认位置',
                       icon: const FlowySvg(
                         FlowySvgs.restore_s,
                         size: Size.square(20),
                       ),
-                      label: LocaleKeys.settings_common_reset.tr(),
+                      label: '重置',
                       onPressed: () {
                         showSimpleAFDialog(
                           context: context,
-                          title: LocaleKeys
-                              .settings_manageDataPage_dataStorage_resetDialog_title
-                              .tr(),
-                          content: LocaleKeys
-                              .settings_manageDataPage_dataStorage_resetDialog_description
-                              .tr(),
+                          title: '你确定吗？',
+                          content: '将数据路径重置为默认位置不会删除你的数据。如果你想重新导入当前数据，你应该先复制当前位置的路径。',
                           primaryAction: (
-                            LocaleKeys.button_confirm.tr(),
+                            '确认',
                             (_) {
                               context
                                   .read<DataLocationBloc>()
@@ -99,7 +91,7 @@ class SettingsManageDataView extends StatelessWidget {
                             }
                           ),
                           secondaryAction: (
-                            LocaleKeys.button_cancel.tr(),
+                            '取消',
                             (_) {},
                           ),
                         );
@@ -116,14 +108,14 @@ class SettingsManageDataView extends StatelessWidget {
                       ],
               ),
               SettingsCategory(
-                title: LocaleKeys.settings_manageDataPage_importData_title.tr(),
+                title: '导入数据',
                 tooltip:
-                    LocaleKeys.settings_manageDataPage_importData_tooltip.tr(),
+                    '从 @:appName 备份/数据文件夹导入数据',
                 children: const [_ImportDataField()],
               ),
               if (kDebugMode) ...[
                 SettingsCategory(
-                  title: LocaleKeys.settings_files_exportData.tr(),
+                  title: '导出您的数据',
                   children: const [
                     SettingsExportFileWidget(),
                     FixDataWidget(),
@@ -131,13 +123,13 @@ class SettingsManageDataView extends StatelessWidget {
                 ),
               ],
               SettingsCategory(
-                title: LocaleKeys.workspace_errorActions_exportLogFiles.tr(),
+                title: '导出日志文件',
                 children: [
                   SingleSettingAction(
                     labelMaxLines: 4,
                     label:
-                        LocaleKeys.workspace_errorActions_exportLogFiles.tr(),
-                    buttonLabel: LocaleKeys.settings_files_export.tr(),
+                        '导出日志文件',
+                    buttonLabel: '导出',
                     onPressed: () {
                       shareLogFiles(context);
                     },
@@ -145,24 +137,19 @@ class SettingsManageDataView extends StatelessWidget {
                 ],
               ),
               SettingsCategory(
-                title: LocaleKeys.settings_manageDataPage_cache_title.tr(),
+                title: '清除缓存',
                 children: [
                   SingleSettingAction(
                     labelMaxLines: 4,
-                    label: LocaleKeys.settings_manageDataPage_cache_description
-                        .tr(),
+                    label: '如果你遇到图片无法加载或字体无法正确显示的问题，请尝试清除缓存。此操作不会删除你的用户数据。',
                     buttonLabel:
-                        LocaleKeys.settings_manageDataPage_cache_title.tr(),
+                        '清除缓存',
                     onPressed: () {
                       showCancelAndConfirmDialog(
                         context: context,
-                        title: LocaleKeys
-                            .settings_manageDataPage_cache_dialog_title
-                            .tr(),
-                        description: LocaleKeys
-                            .settings_manageDataPage_cache_dialog_description
-                            .tr(),
-                        confirmLabel: LocaleKeys.button_ok.tr(),
+                        title: '清除缓存',
+                        description: '清除缓存会导致加载时重新下载图像和字体。此操作不会删除或修改你的数据。',
+                        confirmLabel: 'OK',
                         onConfirm: (_) async {
                           // clear all cache
                           await getIt<FlowyCacheManager>().clearAllCache();
@@ -174,9 +161,7 @@ class SettingsManageDataView extends StatelessWidget {
 
                           if (context.mounted) {
                             showToastNotification(
-                              message: LocaleKeys
-                                  .settings_manageDataPage_cache_dialog_successHint
-                                  .tr(),
+                              message: '缓存已清除！',
                             );
                           }
                         },
@@ -229,7 +214,7 @@ class SettingsManageDataView extends StatelessWidget {
 //                 SizedBox(
 //                   height: 42,
 //                   child: FlowyTextButton(
-//                     LocaleKeys.settings_manageDataPage_encryption_action.tr(),
+//                     '加密数据',
 //                     padding: const EdgeInsets.symmetric(
 //                       horizontal: 24,
 //                       vertical: 12,
@@ -240,15 +225,9 @@ class SettingsManageDataView extends StatelessWidget {
 //                     hoverColor: const Color(0xFF005483),
 //                     fontHoverColor: Colors.white,
 //                     onPressed: () => SettingsAlertDialog(
-//                       title: LocaleKeys
 //                           .settings_manageDataPage_encryption_dialog_title
-//                           .tr(),
-//                       subtitle: LocaleKeys
 //                           .settings_manageDataPage_encryption_dialog_description
-//                           .tr(),
-//                       confirmLabel: LocaleKeys
 //                           .settings_manageDataPage_encryption_dialog_title
-//                           .tr(),
 //                       implyLeading: true,
 //                       // Generate a secret one time for the user
 //                       confirm: () => context
@@ -298,16 +277,16 @@ class _ImportDataFieldState extends State<_ImportDataField> {
         listenWhen: (previous, current) =>
             previous.successOrFail != current.successOrFail,
         listener: (_, state) => state.successOrFail?.fold(
-          (_) => _showToast(LocaleKeys.settings_menu_importSuccess.tr()),
-          (_) => _showToast(LocaleKeys.settings_menu_importFailed.tr()),
+          (_) => _showToast('成功导入@:appName数据文件夹'),
+          (_) => _showToast('导入 @:appName 数据文件夹失败'),
         ),
         builder: (context, state) {
           return SingleSettingAction(
             label:
-                LocaleKeys.settings_manageDataPage_importData_description.tr(),
+                '从外部 @:appName 数据文件夹复制数据',
             labelMaxLines: 2,
             buttonLabel:
-                LocaleKeys.settings_manageDataPage_importData_action.tr(),
+                '浏览文件夹',
             onPressed: () async {
               final path = await getIt<FilePickerService>().getDirectoryPath();
               if (path == null || !context.mounted) {
@@ -362,9 +341,7 @@ class _CurrentPathState extends State<_CurrentPath> {
           children: [
             Expanded(
               child: FlowyTooltip(
-                message: LocaleKeys
-                    .settings_manageDataPage_dataStorage_actions_openTooltip
-                    .tr(),
+                message: '打开当前数据文件夹位置',
                 child: GestureDetector(
                   onTap: () => {
                     afLaunchUri(Uri.file(widget.path)),
@@ -405,9 +382,7 @@ class _CurrentPathState extends State<_CurrentPath> {
                     vertical: theme.spacing.m,
                   ),
                   child: Text(
-                    LocaleKeys
-                        .settings_manageDataPage_dataStorage_actions_copiedHint
-                        .tr(),
+                    '路径已复制！',
                     style: theme.textStyle.body.standard(
                       color: theme.textColorScheme.primary,
                     ),
@@ -415,9 +390,7 @@ class _CurrentPathState extends State<_CurrentPath> {
                   ),
                 ),
                 FlowyTooltip(
-                  message: LocaleKeys
-                      .settings_manageDataPage_dataStorage_actions_copy
-                      .tr(),
+                  message: '复制路径',
                   child: AFGhostButton.normal(
                     builder: (context, _, __) {
                       return FlowySvg(
@@ -461,7 +434,7 @@ class _DataPathActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AFFilledTextButton.primary(
-      text: LocaleKeys.settings_manageDataPage_dataStorage_actions_change.tr(),
+      text: '更改路径',
       onTap: () async {
         final path = await getIt<FilePickerService>().getDirectoryPath();
         if (!context.mounted || path == null || path == path) {

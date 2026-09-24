@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:appflowy/core/config/kv.dart';
 import 'package:appflowy/core/config/kv_keys.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/user/application/user_settings_service.dart';
 import 'package:appflowy/util/color_to_hex_string.dart';
@@ -14,7 +13,6 @@ import 'package:appflowy_backend/protobuf/flowy-user/date_time.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_setting.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart'
     show AppFlowyEditorLocalizations;
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -108,7 +106,7 @@ class AppearanceSettingsCubit extends Cubit<AppearanceSettingsState> {
       if (UniversalPlatform.isMacOS) {
         showToastNotification(
           message:
-              LocaleKeys.settings_workspacePage_theme_failedToLoadThemes.tr(),
+              '加载主题失败，请检查您的系统设置中的权限设置：系统设置 > 隐私与安全性 > 文件和文件夹 > @:appName',
           type: ToastificationType.error,
         );
       }
@@ -196,26 +194,18 @@ class AppearanceSettingsCubit extends Cubit<AppearanceSettingsState> {
     emit(state.copyWith(documentSelectionColor: null));
   }
 
-  /// Updates the current locale and notify the listeners the locale was
-  /// changed. Fallback to [en] locale if [newLocale] is not supported.
+  /// Local-only build: the app locale is fixed to Simplified Chinese.
   void setLocale(BuildContext context, Locale newLocale) {
-    if (!context.supportedLocales.contains(newLocale)) {
-      // Log.warn("Unsupported locale: $newLocale, Fallback to locale: en");
-      newLocale = const Locale('en', 'US');
-    }
-
-    context.setLocale(newLocale).catchError((e) {
-      Log.warn('Catch error in setLocale: $e}');
-    });
+    const fixedLocale = Locale('zh', 'CN');
 
     // Sync the app's locale with the editor (initialization and update)
-    AppFlowyEditorLocalizations.load(newLocale);
+    AppFlowyEditorLocalizations.load(fixedLocale);
 
-    if (state.locale != newLocale) {
-      _appearanceSettings.locale.languageCode = newLocale.languageCode;
-      _appearanceSettings.locale.countryCode = newLocale.countryCode ?? "";
+    if (state.locale != fixedLocale) {
+      _appearanceSettings.locale.languageCode = fixedLocale.languageCode;
+      _appearanceSettings.locale.countryCode = fixedLocale.countryCode ?? "";
       _saveAppearanceSettings();
-      emit(state.copyWith(locale: newLocale));
+      emit(state.copyWith(locale: fixedLocale));
     }
   }
 
@@ -262,12 +252,11 @@ class AppearanceSettingsCubit extends Cubit<AppearanceSettingsState> {
   }
 
   /// Called when the application launches.
-  /// Uses the device locale when the application is opened for the first time.
+  /// Local-only build: the locale is fixed to Simplified Chinese.
   void readLocaleWhenAppLaunch(BuildContext context) {
     if (_appearanceSettings.resetToDefault) {
       _appearanceSettings.resetToDefault = false;
       _saveAppearanceSettings();
-      setLocale(context, context.deviceLocale);
       return;
     }
 

@@ -1,11 +1,9 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/setting/widgets/mobile_setting_trailing.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/startup/tasks/app_window_size_manager.dart';
 import 'package:appflowy/workspace/presentation/home/hotkeys.dart';
 import 'package:appflowy/workspace/presentation/widgets/more_view_actions/widgets/font_size_stepper.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:scaled_app/scaled_app.dart';
 
@@ -43,7 +41,7 @@ class _DisplaySizeSettingState extends State<DisplaySizeSetting> {
   @override
   Widget build(BuildContext context) {
     return MobileSettingItem(
-      name: LocaleKeys.settings_appearance_displaySize.tr(),
+      name: '显示大小',
       trailing: MobileSettingTrailing(
         text: scaleFactor.toStringAsFixed(1),
       ),
@@ -53,7 +51,7 @@ class _DisplaySizeSettingState extends State<DisplaySizeSetting> {
           showHeader: true,
           showDragHandle: true,
           showDivider: false,
-          title: LocaleKeys.settings_appearance_displaySize.tr(),
+          title: '显示大小',
           builder: (context) {
             return FontSizeStepper(
               value: scaleFactor,

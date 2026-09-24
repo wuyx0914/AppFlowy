@@ -1,8 +1,6 @@
 import 'package:appflowy/features/page_access_level/logic/page_access_level_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -47,7 +45,7 @@ class MobileViewItemBottomSheetBody extends StatelessWidget {
     switch (action) {
       case MobileViewItemBottomSheetBodyAction.rename:
         return FlowyOptionTile.text(
-          text: LocaleKeys.button_rename.tr(),
+          text: '重命名',
           height: 52.0,
           leftIcon: const FlowySvg(
             FlowySvgs.view_item_rename_s,
@@ -62,7 +60,7 @@ class MobileViewItemBottomSheetBody extends StatelessWidget {
         );
       case MobileViewItemBottomSheetBodyAction.duplicate:
         return FlowyOptionTile.text(
-          text: LocaleKeys.button_duplicate.tr(),
+          text: '复制',
           height: 52.0,
           leftIcon: const FlowySvg(
             FlowySvgs.duplicate_s,
@@ -77,7 +75,7 @@ class MobileViewItemBottomSheetBody extends StatelessWidget {
 
       case MobileViewItemBottomSheetBodyAction.share:
         return FlowyOptionTile.text(
-          text: LocaleKeys.button_share.tr(),
+          text: '分享',
           height: 52.0,
           leftIcon: const FlowySvg(
             FlowySvgs.share_s,
@@ -91,7 +89,7 @@ class MobileViewItemBottomSheetBody extends StatelessWidget {
         );
       case MobileViewItemBottomSheetBodyAction.delete:
         return FlowyOptionTile.text(
-          text: LocaleKeys.button_delete.tr(),
+          text: '删除',
           height: 52.0,
           textColor: Theme.of(context).colorScheme.error,
           leftIcon: FlowySvg(
@@ -109,7 +107,7 @@ class MobileViewItemBottomSheetBody extends StatelessWidget {
       case MobileViewItemBottomSheetBodyAction.addToFavorites:
         return FlowyOptionTile.text(
           height: 52.0,
-          text: LocaleKeys.button_addToFavorites.tr(),
+          text: '添加到收藏夹',
           leftIcon: const FlowySvg(
             FlowySvgs.favorite_s,
             size: Size.square(18),
@@ -123,7 +121,7 @@ class MobileViewItemBottomSheetBody extends StatelessWidget {
       case MobileViewItemBottomSheetBodyAction.removeFromFavorites:
         return FlowyOptionTile.text(
           height: 52.0,
-          text: LocaleKeys.button_removeFromFavorites.tr(),
+          text: '从收藏夹中',
           leftIcon: const FlowySvg(
             FlowySvgs.favorite_section_remove_from_favorite_s,
             size: Size.square(18),
@@ -137,7 +135,7 @@ class MobileViewItemBottomSheetBody extends StatelessWidget {
       case MobileViewItemBottomSheetBodyAction.removeFromRecent:
         return FlowyOptionTile.text(
           height: 52.0,
-          text: LocaleKeys.button_removeFromRecent.tr(),
+          text: '从最近页移除',
           leftIcon: const FlowySvg(
             FlowySvgs.remove_from_recent_s,
             size: Size.square(18),

@@ -1,6 +1,5 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/desktop_toolbar/link/link_hover_menu.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/desktop_toolbar/link/link_replace_menu.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/link_preview/shared.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/plugins/document/presentation/editor_plugins/menu/menu_
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/widgets.dart';
 
@@ -81,7 +79,7 @@ class _LinkEmbedMenuState extends State<LinkEmbedMenu> {
           //     FlowySvgs.embed_fullscreen_m,
           //     color: iconScheme.tertiary,
           //   ),
-          //   tooltipText: LocaleKeys.document_imageBlock_openFullScreen.tr(),
+          //   tooltipText: '全屏幕打开',
           //   preferBelow: false,
           //   onPressed: () {},
           // ),
@@ -91,7 +89,7 @@ class _LinkEmbedMenuState extends State<LinkEmbedMenu> {
               color: iconScheme.tertiary,
             ),
             radius: BorderRadius.all(Radius.circular(theme.borderRadius.m)),
-            tooltipText: LocaleKeys.editor_copyLink.tr(),
+            tooltipText: '复制链接',
             preferBelow: false,
             onPressed: () => copyLink(context),
           ),
@@ -110,7 +108,7 @@ class _LinkEmbedMenuState extends State<LinkEmbedMenu> {
         color: iconScheme.tertiary,
       ),
       radius: BorderRadius.all(Radius.circular(theme.borderRadius.m)),
-      tooltipText: LocaleKeys.editor_convertTo.tr(),
+      tooltipText: '转换为',
       preferBelow: false,
       onPressed: getTapCallback(showTurnIntoMenu),
     );
@@ -181,7 +179,7 @@ class _LinkEmbedMenuState extends State<LinkEmbedMenu> {
         color: iconScheme.tertiary,
       ),
       radius: BorderRadius.all(Radius.circular(theme.borderRadius.m)),
-      tooltipText: LocaleKeys.document_toolbar_moreOptions.tr(),
+      tooltipText: '更多选项',
       preferBelow: false,
       onPressed: getTapCallback(showMoreOptionMenu),
     );
@@ -327,17 +325,13 @@ enum LinkEmbedMenuCommand {
   String get title {
     switch (this) {
       case openLink:
-        return LocaleKeys.editor_openLink.tr();
+        return '打开链接';
       case replace:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_replace
-            .tr();
+        return '替换';
       case reload:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_reload
-            .tr();
+        return '重新加载';
       case removeLink:
-        return LocaleKeys
-            .document_plugins_linkPreview_linkPreviewMenu_removeLink
-            .tr();
+        return '移除链接';
     }
   }
 }
@@ -350,15 +344,11 @@ enum LinkEmbedConvertCommand {
   String get title {
     switch (this) {
       case toMention:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toMetion
-            .tr();
+        return '转换为提及';
       case toURL:
-        return LocaleKeys.document_plugins_linkPreview_linkPreviewMenu_toUrl
-            .tr();
+        return '转换为URL';
       case toBookmark:
-        return LocaleKeys
-            .document_plugins_linkPreview_linkPreviewMenu_toBookmark
-            .tr();
+        return '转换为书签';
     }
   }
 }

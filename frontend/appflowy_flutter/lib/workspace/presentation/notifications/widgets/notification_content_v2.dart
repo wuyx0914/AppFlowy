@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/notification/notification_reminder_bloc.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/mobile/presentation/notifications/widgets/shared.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/reminder.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +45,7 @@ class NotificationItemContentV2 extends StatelessWidget {
       child: Row(
         children: [
           FlowyText.medium(
-            LocaleKeys.settings_notifications_titles_reminder.tr(),
+            '提醒',
             fontSize: 14,
             figmaLineHeight: 22,
             color: theme.textColorScheme.primary,
@@ -80,7 +78,7 @@ class NotificationItemContentV2 extends StatelessWidget {
       child: Row(
         children: [
           FlowyText.regular(
-            LocaleKeys.notificationHub_mentionedYou.tr(),
+            '已提及您',
             fontSize: 12,
             figmaLineHeight: 18,
             color: theme.textColorScheme.secondary,

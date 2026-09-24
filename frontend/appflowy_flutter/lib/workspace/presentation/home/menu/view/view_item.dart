@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/header/emoji_icon_widget.dart';
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
 import 'package:appflowy/shared/icon_emoji_picker/tab.dart';
@@ -29,7 +28,6 @@ import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/gestures.dart';
@@ -200,7 +198,7 @@ class ViewItem extends StatelessWidget {
             return Opacity(
               opacity: 0.5,
               child: FlowyTooltip(
-                message: LocaleKeys.space_cannotMovePageToDatabase.tr(),
+                message: '无法将页面移至数据库',
                 child: MouseRegion(
                   cursor: SystemMouseCursors.forbidden,
                   child: IgnorePointer(child: child),
@@ -582,7 +580,7 @@ class _SingleInnerViewItemState extends State<SingleInnerViewItem> {
             context,
             viewMoreActionController,
             (_) => FlowyTooltip(
-              message: LocaleKeys.menuAppHeader_moreButtonToolTip.tr(),
+              message: '更多按钮工具',
               child: FlowyIconButton(
                 width: 24,
                 icon: const FlowySvg(FlowySvgs.workspace_three_dots_s),
@@ -669,7 +667,7 @@ class _SingleInnerViewItemState extends State<SingleInnerViewItem> {
         // prevent the tap event from being passed to the parent widget
         onTap: () {},
         child: FlowyTooltip(
-          message: LocaleKeys.document_plugins_cover_changeIcon.tr(),
+          message: '更改图标',
           child: SizedBox(width: 16.0, child: icon),
         ),
       ),
@@ -719,7 +717,7 @@ class _SingleInnerViewItemState extends State<SingleInnerViewItem> {
   // + button
   Widget _buildViewAddButton(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.menuAppHeader_addPageTooltip.tr(),
+      message: '在其中快速添加页面',
       child: ViewAddButton(
         parentViewId: widget.view.id,
         onEditing: (value) =>
@@ -741,7 +739,7 @@ class _SingleInnerViewItemState extends State<SingleInnerViewItem> {
     // the name of new document should be empty
     final viewName = ![ViewLayoutPB.Document, ViewLayoutPB.Chat]
             .contains(pluginBuilder.layoutType)
-        ? LocaleKeys.menuAppHeader_defaultNewPageName.tr()
+        ? '未命名页面'
         : '';
     viewBloc.add(
       ViewEvent.createView(
@@ -786,7 +784,7 @@ class _SingleInnerViewItemState extends State<SingleInnerViewItem> {
               unawaited(
                 showAFTextFieldDialog(
                   context: context,
-                  title: LocaleKeys.disclosureAction_rename.tr(),
+                  title: '重命名',
                   initialValue: widget.view.nameOrDefault,
                   onConfirm: (newValue) {
                     context.read<ViewBloc>().add(ViewEvent.rename(newValue));
@@ -803,7 +801,7 @@ class _SingleInnerViewItemState extends State<SingleInnerViewItem> {
                 await showConfirmDeletionDialog(
                   context: context,
                   name: widget.view.name,
-                  description: LocaleKeys.publish_containsPublishedPage.tr(),
+                  description: '此页面包含一个或多个已发布的页面。如果您继续，它们将会被取消发布。您要继续删除吗？',
                   onConfirm: () =>
                       context.read<ViewBloc>().add(const ViewEvent.delete()),
                 );

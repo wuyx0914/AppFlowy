@@ -1,5 +1,4 @@
 import 'package:appflowy/ai/ai.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/ai_chat/application/chat_ai_message_bloc.dart';
 import 'package:appflowy/plugins/ai_chat/application/chat_bloc.dart';
 import 'package:appflowy/plugins/ai_chat/application/chat_entity.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/plugins/ai_chat/application/chat_message_height_manager
 import 'package:appflowy/plugins/ai_chat/application/chat_message_stream.dart';
 import 'package:appflowy/plugins/ai_chat/presentation/widgets/message_height_calculator.dart';
 import 'package:appflowy_backend/protobuf/flowy-ai/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +79,7 @@ class ChatAIMessageWidget extends StatelessWidget {
         listener: (context, state) => _handleMessageState(state, context),
         builder: (context, blocState) {
           final loadingText = blocState.progress?.step ??
-              LocaleKeys.chat_generatingResponse.tr();
+              '正在生成相应';
 
           // Calculate minimum height only for the last AI answer message
           double minHeight = 0;
@@ -143,18 +141,18 @@ class ChatAIMessageWidget extends StatelessWidget {
                 },
                 onError: (error) {
                   return ChatErrorMessageWidget(
-                    errorMessage: LocaleKeys.chat_aiServerUnavailable.tr(),
+                    errorMessage: '🌈 不妙！🌈 一只独角兽吃掉了我们的回复。请重试！',
                   );
                 },
                 onAIResponseLimit: () {
                   return ChatErrorMessageWidget(
                     errorMessage:
-                        LocaleKeys.sideBar_askOwnerToUpgradeToAIMax.tr(),
+                        '你的工作区即将用尽免费 AI 回应。请联系工作区所有者升级计划或购买 AI 插件',
                   );
                 },
                 onAIImageResponseLimit: () {
                   return ChatErrorMessageWidget(
-                    errorMessage: LocaleKeys.sideBar_purchaseAIMax.tr(),
+                    errorMessage: '您的工作区已用完 AI 图片回应。请要求您的工作区拥有者购买 AI Max。',
                   );
                 },
                 onAIMaxRequired: (message) {
@@ -166,9 +164,7 @@ class ChatAIMessageWidget extends StatelessWidget {
                   onStopStream();
 
                   return ChatErrorMessageWidget(
-                    errorMessage: LocaleKeys
-                        .settings_aiPage_keys_localAIInitializing
-                        .tr(),
+                    errorMessage: '本地 AI 正在加载中。这可能需要几秒钟的时间，取决于您的设备',
                   );
                 },
                 aiFollowUp: (followUpData) {

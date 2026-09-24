@@ -2,7 +2,6 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/plugins/base/emoji/emoji_picker_screen.dart';
@@ -22,7 +21,6 @@ import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy/workspace/application/view/view_listener.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart' hide UploadImageMenu;
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/widget/rounded_button.dart';
 import 'package:flutter/material.dart';
@@ -449,7 +447,7 @@ class _DocumentHeaderToolbarState extends State<DocumentHeaderToolbar> {
           useIntrinsicWidth: true,
           leftIcon: const FlowySvg(FlowySvgs.add_cover_s),
           text: FlowyText.small(
-            LocaleKeys.document_plugins_cover_addCover.tr(),
+            '添加封面',
             color: Theme.of(context).hintColor,
           ),
         ),
@@ -464,7 +462,7 @@ class _DocumentHeaderToolbarState extends State<DocumentHeaderToolbar> {
           leftIcon: const FlowySvg(FlowySvgs.add_icon_s),
           iconPadding: 4.0,
           text: FlowyText.small(
-            LocaleKeys.document_plugins_cover_removeIcon.tr(),
+            '移除图标',
             color: Theme.of(context).hintColor,
           ),
         ),
@@ -475,7 +473,7 @@ class _DocumentHeaderToolbarState extends State<DocumentHeaderToolbar> {
         leftIcon: const FlowySvg(FlowySvgs.add_icon_s),
         iconPadding: 4.0,
         text: FlowyText.small(
-          LocaleKeys.document_plugins_cover_addIcon.tr(),
+          '添加图标',
           color: Theme.of(context).hintColor,
         ),
         onTap: UniversalPlatform.isDesktop
@@ -615,7 +613,7 @@ class DocumentCoverState extends State<DocumentCover> {
                         showDragHandle: true,
                         showCloseButton: true,
                         title:
-                            LocaleKeys.document_plugins_cover_changeCover.tr(),
+                            '修改封面',
                         builder: (context) {
                           return Padding(
                             padding: const EdgeInsets.only(top: 8.0),
@@ -665,7 +663,7 @@ class DocumentCoverState extends State<DocumentCover> {
                         .onSurfaceVariant
                         .withValues(alpha: 0.5),
                     height: 32,
-                    title: LocaleKeys.document_plugins_cover_changeCover.tr(),
+                    title: '修改封面',
                   ),
                 ),
                 const HSpace(8.0),
@@ -753,7 +751,7 @@ class DocumentCoverState extends State<DocumentCover> {
                     .colorScheme
                     .surface
                     .withValues(alpha: 0.5),
-                title: LocaleKeys.document_plugins_cover_changeCover.tr(),
+                title: '修改封面',
               ),
             ),
             popupBuilder: (BuildContext popoverContext) {

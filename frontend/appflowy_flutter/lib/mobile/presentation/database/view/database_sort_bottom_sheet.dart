@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar_actions.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
 import 'package:appflowy/plugins/database/application/field/field_info.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/plugins/database/grid/presentation/widgets/header/deskt
 import 'package:appflowy/util/field_type_extension.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +93,7 @@ class _Header extends StatelessWidget {
                 ),
               Align(
                 child: FlowyText.medium(
-                  LocaleKeys.grid_settings_sort.tr(),
+                  '以……排序',
                   fontSize: 16.0,
                 ),
               ),
@@ -154,7 +152,7 @@ class _Overview extends StatelessWidget {
                             color: Theme.of(context).hintColor,
                           ),
                           FlowyText(
-                            LocaleKeys.grid_sort_empty.tr(),
+                            '没有任何作用中的排序',
                             color: Theme.of(context).hintColor,
                           ),
                         ],
@@ -200,7 +198,7 @@ class _Overview extends StatelessWidget {
                       .firstOrNull;
                   if (firstField == null) {
                     Fluttertoast.showToast(
-                      msg: LocaleKeys.grid_sort_cannotFindCreatableField.tr(),
+                      msg: '找不到合适的排序字段',
                       gravity: ToastGravity.BOTTOM,
                     );
                   } else {
@@ -218,7 +216,7 @@ class _Overview extends StatelessWidget {
                       ),
                       const HSpace(6.0),
                       FlowyText(
-                        LocaleKeys.grid_sort_addSort.tr(),
+                        '添加排序',
                         fontSize: 15,
                       ),
                     ],
@@ -267,7 +265,7 @@ class _SortItem extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 12.0),
                     child: FlowyText.medium(
-                      LocaleKeys.grid_sort_by.tr(),
+                      '通过',
                       fontSize: 15,
                     ),
                   ),
@@ -465,7 +463,7 @@ class _SortDetailContent extends StatelessWidget {
                     height: 34,
                     child: Center(
                       child: FlowyText(
-                        LocaleKeys.grid_sort_ascending.tr(),
+                        '升序',
                         fontSize: 14,
                       ),
                     ),
@@ -474,7 +472,7 @@ class _SortDetailContent extends StatelessWidget {
                     height: 34,
                     child: Center(
                       child: FlowyText(
-                        LocaleKeys.grid_sort_descending.tr(),
+                        '降序',
                         fontSize: 14,
                       ),
                     ),
@@ -488,7 +486,7 @@ class _SortDetailContent extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: FlowyText(
-            LocaleKeys.grid_settings_sortBy.tr().toUpperCase(),
+            '排序'.toUpperCase(),
             fontSize: 13,
             color: Theme.of(context).hintColor,
           ),
@@ -538,7 +536,7 @@ class _SortDetailContent extends StatelessWidget {
                         _changeFieldId(context, fieldInfo.id);
                       } else {
                         Fluttertoast.showToast(
-                          msg: LocaleKeys.grid_sort_fieldInUse.tr(),
+                          msg: '您已按此字段排序',
                           gravity: ToastGravity.BOTTOM,
                         );
                       }

@@ -1,5 +1,4 @@
 import 'package:appflowy/env/cloud_env.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/startup/tasks/deeplink/deeplink_handler.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';
@@ -10,7 +9,6 @@ import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart'
     show UserProfilePB;
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -441,14 +439,14 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         );
       case ErrorCode.UserUnauthorized:
         final errorMsg = error.msg;
-        String msg = LocaleKeys.signIn_generalError.tr();
+        String msg = '出现错误，请稍后再试';
         if (errorMsg.contains('rate limit') ||
             errorMsg.contains('For security purposes')) {
-          msg = LocaleKeys.signIn_tooFrequentVerificationCodeRequest.tr();
+          msg = '您发起了过多的请求，请稍后再试。';
         } else if (errorMsg.contains('invalid')) {
-          msg = LocaleKeys.signIn_tokenHasExpiredOrInvalid.tr();
+          msg = '此代码已过期或无效，请重新尝试。';
         } else if (errorMsg.contains('Invalid login credentials')) {
-          msg = LocaleKeys.signIn_invalidLoginCredentials.tr();
+          msg = '您的密码不正确，请重新尝试。';
         }
         return state.copyWith(
           isSubmitting: false,
@@ -460,7 +458,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
         return state.copyWith(
           isSubmitting: false,
           successOrFail: FlowyResult.failure(
-            FlowyError(msg: LocaleKeys.signIn_generalError.tr()),
+            FlowyError(msg: '出现错误，请稍后再试'),
           ),
         );
     }

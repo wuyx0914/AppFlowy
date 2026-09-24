@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/page_style/document_page_style_bloc.dart';
 import 'package:appflowy/plugins/document/application/document_appearance_cubit.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/font_colors.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy/workspace/application/settings/appearance/base_appearan
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flowy_infra_ui/widget/flowy_tooltip.dart';
@@ -485,13 +483,13 @@ class EditorStyleCustomizer {
 
   TextSpan _buildTooltipMessage(String id, String message) {
     final markdownItemTooltips = {
-      'underline': (LocaleKeys.toolbar_underline.tr(), 'U'),
-      'bold': (LocaleKeys.toolbar_bold.tr(), 'B'),
-      'italic': (LocaleKeys.toolbar_italic.tr(), 'I'),
-      'strikethrough': (LocaleKeys.toolbar_strike.tr(), 'Shift+S'),
-      'code': (LocaleKeys.toolbar_inlineCode.tr(), 'E'),
+      'underline': ('下划线', 'U'),
+      'bold': ('加粗', 'B'),
+      'italic': ('斜体', 'I'),
+      'strikethrough': ('删除线', 'Shift+S'),
+      'code': ('内联代码', 'E'),
       'editor.inline_math_equation': (
-        LocaleKeys.document_plugins_createInlineMathEquation.tr(),
+        '创建方程',
         'Shift+E'
       ),
     };

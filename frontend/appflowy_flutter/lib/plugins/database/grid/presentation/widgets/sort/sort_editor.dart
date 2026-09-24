@@ -6,11 +6,9 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/grid/application/sort/sort_editor_bloc.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/sort_entities.pbenum.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -180,8 +178,8 @@ class DatabaseSortItem extends StatelessWidget {
 extension SortConditionExtension on SortConditionPB {
   String get title {
     return switch (this) {
-      SortConditionPB.Ascending => LocaleKeys.grid_sort_ascending.tr(),
-      SortConditionPB.Descending => LocaleKeys.grid_sort_descending.tr(),
+      SortConditionPB.Ascending => '升序',
+      SortConditionPB.Descending => '降序',
       _ => throw UnimplementedError(),
     };
   }
@@ -227,7 +225,7 @@ class _DatabaseAddSortButtonState extends State<DatabaseAddSortButton> {
         child: FlowyButton(
           hoverColor: AFThemeExtension.of(context).greyHover,
           disable: widget.disable,
-          text: FlowyText(LocaleKeys.grid_sort_addSort.tr()),
+          text: FlowyText('添加排序'),
           onTap: () => _popoverController.show(),
           leftIcon: const FlowySvg(FlowySvgs.add_s),
         ),
@@ -248,7 +246,7 @@ class DeleteAllSortsButton extends StatelessWidget {
         return SizedBox(
           height: GridSize.popoverItemHeight,
           child: FlowyButton(
-            text: FlowyText(LocaleKeys.grid_sort_deleteAllSorts.tr()),
+            text: FlowyText('删除所有排序'),
             onTap: () {
               context
                   .read<SortEditorBloc>()

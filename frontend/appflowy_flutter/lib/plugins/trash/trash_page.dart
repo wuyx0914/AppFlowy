@@ -1,10 +1,8 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/trash/src/sizes.dart';
 import 'package:appflowy/plugins/trash/src/trash_header.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
 import 'package:flowy_infra_ui/style_widget/scrolling/styled_list.dart';
@@ -94,7 +92,7 @@ class _TrashPageState extends State<TrashPage> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           FlowyText.semibold(
-            LocaleKeys.trash_text.tr(),
+            '回收站',
             fontSize: FontSizes.s16,
             color: Theme.of(context).colorScheme.tertiary,
           ),
@@ -102,15 +100,15 @@ class _TrashPageState extends State<TrashPage> {
           IntrinsicWidth(
             child: FlowyButton(
               text: FlowyText.medium(
-                LocaleKeys.trash_restoreAll.tr(),
+                '全部恢复',
                 lineHeight: 1.0,
               ),
               leftIcon: const FlowySvg(FlowySvgs.restore_s),
               onTap: () => showCancelAndConfirmDialog(
                 context: context,
-                confirmLabel: LocaleKeys.trash_restore.tr(),
-                title: LocaleKeys.trash_confirmRestoreAll_title.tr(),
-                description: LocaleKeys.trash_confirmRestoreAll_caption.tr(),
+                confirmLabel: '恢复',
+                title: '您确定要恢复回收站中的所有页面吗？',
+                description: '此操作无法撤消。',
                 onConfirm: (_) => context
                     .read<TrashBloc>()
                     .add(const TrashEvent.restoreAll()),
@@ -121,14 +119,14 @@ class _TrashPageState extends State<TrashPage> {
           IntrinsicWidth(
             child: FlowyButton(
               text: FlowyText.medium(
-                LocaleKeys.trash_deleteAll.tr(),
+                '全部删除',
                 lineHeight: 1.0,
               ),
               leftIcon: const FlowySvg(FlowySvgs.delete_s),
               onTap: () => showConfirmDeletionDialog(
                 context: context,
-                name: LocaleKeys.trash_confirmDeleteAll_title.tr(),
-                description: LocaleKeys.trash_confirmDeleteAll_caption.tr(),
+                name: '您确定要删除回收站中的所有页面吗？',
+                description: '此操作无法撤消。',
                 onConfirm: () =>
                     context.read<TrashBloc>().add(const TrashEvent.deleteAll()),
               ),
@@ -159,9 +157,9 @@ class _TrashPageState extends State<TrashPage> {
               onRestore: () => showCancelAndConfirmDialog(
                 context: context,
                 title:
-                    LocaleKeys.trash_restorePage_title.tr(args: [object.name]),
-                description: LocaleKeys.trash_restorePage_caption.tr(),
-                confirmLabel: LocaleKeys.trash_restore.tr(),
+                    '恢复：{object.name}',
+                description: '你确定要恢复此页面吗？',
+                confirmLabel: '恢复',
                 onConfirm: (_) => context
                     .read<TrashBloc>()
                     .add(TrashEvent.putback(object.id)),
@@ -169,10 +167,10 @@ class _TrashPageState extends State<TrashPage> {
               onDelete: () => showConfirmDeletionDialog(
                 context: context,
                 name: object.name.trim().isEmpty
-                    ? LocaleKeys.menuAppHeader_defaultNewPageName.tr()
+                    ? '未命名页面'
                     : object.name,
                 description:
-                    LocaleKeys.deletePagePrompt_deletePermanentDescription.tr(),
+                    '你确定要永久删除此页面吗？此操作无法撤销。',
                 onConfirm: () =>
                     context.read<TrashBloc>().add(TrashEvent.delete(object)),
               ),

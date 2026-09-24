@@ -3,7 +3,6 @@ import 'dart:convert';
 
 import 'package:appflowy/core/config/kv.dart';
 import 'package:appflowy/core/config/kv_keys.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/icon_emoji_picker/flowy_icon_emoji_picker.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/expand_views.dart';
@@ -17,7 +16,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:protobuf/protobuf.dart';
@@ -192,7 +190,7 @@ class ViewBloc extends Bloc<ViewEvent, ViewState> {
               openAfterDuplicate: true,
               syncAfterDuplicate: true,
               includeChildren: true,
-              suffix: ' (${LocaleKeys.menuAppHeader_pageNameSuffix.tr()})',
+              suffix: ' (${'复制'})',
             );
             emit(
               result.fold(

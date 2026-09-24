@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/util/throttle.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/shared_widget.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -79,10 +77,8 @@ class _AiWriterScrollWrapperState extends State<AiWriterScrollWrapper> {
                     showConfirmDialog(
                       context: context,
                       title:
-                          LocaleKeys.ai_continueWritingEmptyDocumentTitle.tr(),
-                      description: LocaleKeys
-                          .ai_continueWritingEmptyDocumentDescription
-                          .tr(),
+                          '继续写作错误',
+                      description: '我们在扩展文档中内容时遇到困难。请写一个简短的介绍，然后我们可以从那里开始！',
                       onConfirm: (_) => state.onConfirm(),
                     );
                   }
@@ -147,9 +143,9 @@ class _AiWriterScrollWrapperState extends State<AiWriterScrollWrapper> {
     if (aiWriterCubit.hasUnusedResponse()) {
       showConfirmDialog(
         context: context,
-        title: LocaleKeys.button_discard.tr(),
-        description: LocaleKeys.document_plugins_discardResponse.tr(),
-        confirmLabel: LocaleKeys.button_discard.tr(),
+        title: '放弃',
+        description: '您是否要放弃 AI 继续写作?',
+        confirmLabel: '放弃',
         style: ConfirmPopupStyle.cancelAndOk,
         onConfirm: (_) => stopAndExit(),
         onCancel: () {},
@@ -178,9 +174,9 @@ class _AiWriterScrollWrapperState extends State<AiWriterScrollWrapper> {
           dialogShown = true;
           showConfirmDialog(
             context: context,
-            title: LocaleKeys.button_discard.tr(),
-            description: LocaleKeys.document_plugins_discardResponse.tr(),
-            confirmLabel: LocaleKeys.button_discard.tr(),
+            title: '放弃',
+            description: '您是否要放弃 AI 继续写作?',
+            confirmLabel: '放弃',
             style: ConfirmPopupStyle.cancelAndOk,
             onConfirm: (_) => stopAndExit(),
             onCancel: () {},

@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/mobile_router.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/header/emoji_icon_widget.dart';
@@ -33,7 +32,6 @@ import 'package:appflowy_editor/appflowy_editor.dart'
         TextTransaction,
         paragraphNode;
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
@@ -441,7 +439,7 @@ class _MentionPageBlockContent extends StatelessWidget {
         ),
         if (showTrashHint) ...[
           FlowyText(
-            LocaleKeys.document_mention_trashHint.tr(),
+            ' - 在垃圾桶里',
             fontSize: textStyle?.fontSize,
             fontWeight: textStyle?.fontWeight,
             lineHeight: textStyle?.height,
@@ -524,7 +522,7 @@ class _MentionPageBlockContent extends StatelessWidget {
     if (blockContent == null || blockContent.isEmpty) {
       return shouldDisplayViewName
           ? view.name
-              .orDefault(LocaleKeys.menuAppHeader_defaultNewPageName.tr())
+              .orDefault('未命名页面')
           : '';
     }
 
@@ -568,7 +566,7 @@ class _NoAccessMentionPageBlock extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: FlowyText(
-          LocaleKeys.document_mention_noAccess.tr(),
+          '无权限',
           color: Theme.of(context).disabledColor,
           decoration: TextDecoration.underline,
           fontSize: textStyle?.fontSize,
@@ -590,7 +588,7 @@ class _DeletedPageBlock extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: FlowyText(
-          LocaleKeys.document_mention_deletedPage.tr(),
+          '已删除页面',
           color: Theme.of(context).disabledColor,
           decoration: TextDecoration.underline,
           fontSize: textStyle?.fontSize,

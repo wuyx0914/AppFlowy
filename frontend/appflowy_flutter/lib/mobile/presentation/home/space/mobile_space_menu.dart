@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/animated_gesture.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/home/space/space_menu_bottom_sheet.dart';
@@ -18,7 +17,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart' hide Icon;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -148,7 +146,7 @@ class _CreateSpaceButtonState extends State<_CreateSpaceButton> {
   @override
   Widget build(BuildContext context) {
     return FlowyButton(
-      text: FlowyText.regular(LocaleKeys.space_createNewSpace.tr()),
+      text: FlowyText.regular('创建新空间'),
       iconPadding: 10,
       leftIcon: const Padding(
         padding: EdgeInsets.all(2.0),
@@ -166,7 +164,7 @@ class _CreateSpaceButtonState extends State<_CreateSpaceButton> {
     await showMobileBottomSheet(
       context,
       showHeader: true,
-      title: LocaleKeys.space_createSpace.tr(),
+      title: '创造空间',
       showCloseButton: true,
       showDivider: false,
       showDoneButton: true,
@@ -178,7 +176,7 @@ class _CreateSpaceButtonState extends State<_CreateSpaceButton> {
         context.read<SpaceBloc>().add(
               SpaceEvent.create(
                 name: controller.text.orDefault(
-                  LocaleKeys.space_defaultSpaceName.tr(),
+                  '一般',
                 ),
                 permission: permission.value,
                 iconColor: selectedColor.value,
@@ -339,7 +337,7 @@ class _SpaceMenuItemTrailingState extends State<SpaceMenuItemTrailing> {
     context.read<SpaceBloc>().add(const SpaceEvent.duplicate());
 
     showToastNotification(
-      message: LocaleKeys.space_success_duplicateSpace.tr(),
+      message: '已成功拷贝空间',
     );
 
     Navigator.of(bottomSheetContext).pop();
@@ -352,7 +350,7 @@ class _SpaceMenuItemTrailingState extends State<SpaceMenuItemTrailing> {
     showMobileBottomSheet(
       context,
       showHeader: true,
-      title: LocaleKeys.space_renameSpace.tr(),
+      title: '重命名空间',
       showCloseButton: true,
       showDragHandle: true,
       showDivider: false,
@@ -361,7 +359,7 @@ class _SpaceMenuItemTrailingState extends State<SpaceMenuItemTrailing> {
         return EditWorkspaceNameBottomSheet(
           type: EditWorkspaceNameType.edit,
           workspaceName: widget.space.name,
-          hintText: LocaleKeys.space_spaceNamePlaceholder.tr(),
+          hintText: '例如行销、工程、人力资源',
           validator: (value) => null,
           onSubmitted: (name) {
             // rename the workspace
@@ -373,7 +371,7 @@ class _SpaceMenuItemTrailingState extends State<SpaceMenuItemTrailing> {
                 .add(SpaceEvent.rename(space: widget.space, name: name));
 
             showToastNotification(
-              message: LocaleKeys.space_success_renameSpace.tr(),
+              message: '已成功重命名空间',
             );
           },
         );
@@ -391,7 +389,7 @@ class _SpaceMenuItemTrailingState extends State<SpaceMenuItemTrailing> {
     await showMobileBottomSheet(
       context,
       showHeader: true,
-      title: LocaleKeys.space_manageSpace.tr(),
+      title: '管理空间',
       showCloseButton: true,
       showDivider: false,
       showDoneButton: true,
@@ -413,7 +411,7 @@ class _SpaceMenuItemTrailingState extends State<SpaceMenuItemTrailing> {
               SpaceEvent.update(
                 space: widget.space,
                 name: controller.text.orDefault(
-                  LocaleKeys.space_defaultSpaceName.tr(),
+                  '一般',
                 ),
                 permission: permission.value,
                 iconColor: selectedColor.value,
@@ -422,7 +420,7 @@ class _SpaceMenuItemTrailingState extends State<SpaceMenuItemTrailing> {
             );
 
         showToastNotification(
-          message: LocaleKeys.space_success_updateSpace.tr(),
+          message: '已成功更新空间',
         );
 
         Navigator.pop(bottomSheetContext);
@@ -447,14 +445,14 @@ class _SpaceMenuItemTrailingState extends State<SpaceMenuItemTrailing> {
 
     _showConfirmDialog(
       context,
-      '${LocaleKeys.space_delete.tr()}: ${widget.space.name}',
-      LocaleKeys.space_deleteConfirmationDescription.tr(),
-      LocaleKeys.button_delete.tr(),
+      '${'删除'}: ${widget.space.name}',
+      '这个空间中的所有页面都将被删除并移至垃圾桶，任何已发布的页面都会取消发布。',
+      '删除',
       (_) async {
         context.read<SpaceBloc>().add(SpaceEvent.delete(widget.space));
 
         showToastNotification(
-          message: LocaleKeys.space_success_deleteSpace.tr(),
+          message: '空间删除成功',
         );
 
         Navigator.pop(context);
@@ -477,7 +475,7 @@ class _SpaceMenuItemTrailingState extends State<SpaceMenuItemTrailing> {
         maxLines: 10,
       ),
       leftButton: FlowyText(
-        LocaleKeys.button_cancel.tr(),
+        '取消',
         fontSize: 17.0,
         figmaLineHeight: 24.0,
         fontWeight: FontWeight.w500,

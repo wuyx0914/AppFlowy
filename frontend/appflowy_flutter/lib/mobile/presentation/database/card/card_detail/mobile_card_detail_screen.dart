@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar_actions.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
@@ -24,7 +23,6 @@ import 'package:appflowy/plugins/document/presentation/editor_plugins/file/file_
 import 'package:appflowy/shared/af_image.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/file_entities.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/row_entities.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -148,13 +146,13 @@ class _MobileRowDetailPageState extends State<MobileRowDetailPage> {
             onTap: () =>
                 _performAction(viewId, _bloc.state.currentRowId, false),
             icon: FlowySvgs.duplicate_s,
-            text: LocaleKeys.button_duplicate.tr(),
+            text: '复制',
           ),
           const MobileQuickActionDivider(),
           MobileQuickActionButton(
             onTap: () => showMobileBottomSheet(
               context,
-              title: LocaleKeys.grid_media_addFileMobile.tr(),
+              title: '添加文件',
               showHeader: true,
               showCloseButton: true,
               showDragHandle: true,
@@ -205,7 +203,7 @@ class _MobileRowDetailPageState extends State<MobileRowDetailPage> {
           const MobileQuickActionDivider(),
           MobileQuickActionButton(
             onTap: () => _performAction(viewId, _bloc.state.currentRowId, true),
-            text: LocaleKeys.button_delete.tr(),
+            text: '删除',
             textColor: Theme.of(context).colorScheme.error,
             icon: FlowySvgs.trash_s,
             iconColor: Theme.of(context).colorScheme.error,
@@ -229,8 +227,8 @@ class _MobileRowDetailPageState extends State<MobileRowDetailPage> {
       ..pop();
     Fluttertoast.showToast(
       msg: deleteRow
-          ? LocaleKeys.board_cardDeleted.tr()
-          : LocaleKeys.board_cardDuplicated.tr(),
+          ? '卡片已被删除'
+          : '卡片已被复制',
       gravity: ToastGravity.BOTTOM,
     );
   }
@@ -430,7 +428,7 @@ class MobileRowDetailPageContentState
                             ..read<RowDetailBloc>()
                                 .add(const RowDetailEvent.removeCover());
                         },
-                        text: LocaleKeys.button_delete.tr(),
+                        text: '删除',
                         textColor: Theme.of(context).colorScheme.error,
                         icon: FlowySvgs.trash_s,
                         iconColor: Theme.of(context).colorScheme.error,
@@ -568,7 +566,7 @@ class _TitleSkin extends IEditableTextCellSkin {
         enabledBorder: InputBorder.none,
         errorBorder: InputBorder.none,
         disabledBorder: InputBorder.none,
-        hintText: LocaleKeys.grid_row_titlePlaceholder.tr(),
+        hintText: '无标题',
         isDense: true,
         isCollapsed: true,
       ),

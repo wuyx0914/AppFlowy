@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/settings/widgets/emoji_picker/src/emji_picker_config.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 EmojiPickerConfig buildFlowyEmojiPickerConfig(BuildContext context) {
@@ -12,7 +10,7 @@ EmojiPickerConfig buildFlowyEmojiPickerConfig(BuildContext context) {
     selectedCategoryIconBackgroundColor: style.colorScheme.primary,
     progressIndicatorColor: style.colorScheme.primary,
     backspaceColor: style.colorScheme.primary,
-    searchHintText: LocaleKeys.emoji_search.tr(),
+    searchHintText: '查找 Emoji',
     serachHintTextStyle: style.textTheme.bodyMedium?.copyWith(
       color: style.hintColor,
     ),
@@ -26,9 +24,9 @@ EmojiPickerConfig buildFlowyEmojiPickerConfig(BuildContext context) {
         color: style.colorScheme.primary,
       ),
     ),
-    noRecentsText: LocaleKeys.emoji_noRecent.tr(),
+    noRecentsText: '没有最近的 Emoji',
     noRecentsStyle: style.textTheme.bodyMedium,
-    noEmojiFoundText: LocaleKeys.emoji_noEmojiFound.tr(),
+    noEmojiFoundText: '没有找到 Emoji',
     scrollBarHandleColor: style.colorScheme.onSurface,
   );
 }

@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/shared/share/constants.dart';
 import 'package:appflowy/plugins/shared/share/publish_color_extension.dart';
 import 'package:appflowy/shared/error_code/error_code_map.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/util/string_extension.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/settings_sites_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -89,7 +87,7 @@ class _DomainSettingsDialogState extends State<DomainSettingsDialog> {
     return Row(
       children: [
         FlowyText(
-          LocaleKeys.settings_sites_namespace_updateExistingNamespace.tr(),
+          '更新现有的名称空间',
           fontSize: 16.0,
           figmaLineHeight: 22.0,
           fontWeight: FontWeight.w500,
@@ -97,7 +95,7 @@ class _DomainSettingsDialogState extends State<DomainSettingsDialog> {
         ),
         const HSpace(6.0),
         FlowyTooltip(
-          message: LocaleKeys.settings_sites_namespace_tooltip.tr(),
+          message: '我们保留删除任何不当命名空间的权利',
           child: const FlowySvg(FlowySvgs.information_s),
         ),
         const HSpace(6.0),
@@ -117,7 +115,7 @@ class _DomainSettingsDialogState extends State<DomainSettingsDialog> {
 
   Widget _buildNamespaceDescription() {
     return FlowyText(
-      LocaleKeys.settings_sites_namespace_description.tr(),
+      '此变更将适用于此命名空间中所有已发布的页面',
       fontSize: 14.0,
       color: Theme.of(context).hintColor,
       figmaLineHeight: 16.0,
@@ -141,12 +139,12 @@ class _DomainSettingsDialogState extends State<DomainSettingsDialog> {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         OutlinedRoundedButton(
-          text: LocaleKeys.button_cancel.tr(),
+          text: '取消',
           onTap: () => Navigator.of(context).pop(),
         ),
         const HSpace(12.0),
         PrimaryRoundedButton(
-          text: LocaleKeys.button_save.tr(),
+          text: '保存',
           radius: 8.0,
           margin: const EdgeInsets.symmetric(
             horizontal: 16.0,
@@ -216,14 +214,14 @@ class _DomainSettingsDialogState extends State<DomainSettingsDialog> {
     result.fold(
       (s) {
         showToastNotification(
-          message: LocaleKeys.settings_sites_success_namespaceUpdated.tr(),
+          message: '更新名称空间成功',
         );
 
         Navigator.of(context).pop();
       },
       (f) {
         final basicErrorMessage =
-            LocaleKeys.settings_sites_error_failedToUpdateNamespace.tr();
+            '更新名称空间失败';
         final errorMessage = f.code.namespaceErrorMessage;
 
         setState(() {

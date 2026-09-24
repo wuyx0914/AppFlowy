@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_appearance_cubit.dart';
 import 'package:appflowy/plugins/document/presentation/editor_style.dart';
 import 'package:appflowy/shared/af_role_pb_extension.dart';
@@ -33,8 +32,6 @@ import 'package:appflowy/workspace/presentation/settings/widgets/theme_upload/th
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy/workspace/presentation/widgets/toggle/toggle.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
-import 'package:flowy_infra/language.dart';
 import 'package:flowy_infra/plugins/bloc/dynamic_plugin_bloc.dart';
 import 'package:flowy_infra/plugins/bloc/dynamic_plugin_event.dart';
 import 'package:flowy_infra/plugins/bloc/dynamic_plugin_state.dart';
@@ -82,15 +79,14 @@ class SettingsWorkspaceView extends StatelessWidget {
         },
         builder: (context, state) {
           return SettingsBody(
-            title: LocaleKeys.settings_workspacePage_title.tr(),
-            description: LocaleKeys.settings_workspacePage_description.tr(),
+            title: '工作区',
+            description: '自定义你的工作区外观、主题、字体、文本布局、日期/时间格式和语言。',
             autoSeparate: false,
             children: [
               // We don't allow changing workspace name/icon for local/offline
               if (userProfile.workspaceType != WorkspaceTypePB.LocalW) ...[
                 SettingsCategory(
-                  title: LocaleKeys.settings_workspacePage_workspaceName_title
-                      .tr(),
+                  title: '工作区名称',
                   children: [
                     _WorkspaceNameSetting(
                       currentWorkspaceMemberRole: currentWorkspaceMemberRole,
@@ -99,11 +95,8 @@ class SettingsWorkspaceView extends StatelessWidget {
                 ),
                 const SettingsCategorySpacer(),
                 SettingsCategory(
-                  title: LocaleKeys.settings_workspacePage_workspaceIcon_title
-                      .tr(),
-                  description: LocaleKeys
-                      .settings_workspacePage_workspaceIcon_description
-                      .tr(),
+                  title: '工作区图标',
+                  description: '上传图片或使用表情符号到你的工作区。图标将显示在您的侧边栏和通知中。',
                   children: [
                     _WorkspaceIconSetting(
                       enableEdit: currentWorkspaceMemberRole?.isOwner ?? false,
@@ -114,15 +107,15 @@ class SettingsWorkspaceView extends StatelessWidget {
                 const SettingsCategorySpacer(),
               ],
               SettingsCategory(
-                title: LocaleKeys.settings_workspacePage_appearance_title.tr(),
+                title: '外观',
                 children: const [AppearanceSelector()],
               ),
               const VSpace(16),
               // const SettingsCategorySpacer(),
               SettingsCategory(
-                title: LocaleKeys.settings_workspacePage_theme_title.tr(),
+                title: '主题',
                 description:
-                    LocaleKeys.settings_workspacePage_theme_description.tr(),
+                    '选择预设主题，或上传你自己的自定义主题。',
                 children: const [
                   _ThemeDropdown(),
                   _DocumentCursorColorSetting(),
@@ -133,7 +126,7 @@ class SettingsWorkspaceView extends StatelessWidget {
               const SettingsCategorySpacer(),
               SettingsCategory(
                 title:
-                    LocaleKeys.settings_workspacePage_workspaceFont_title.tr(),
+                    '工作区字体',
                 children: [
                   _FontSelectorDropdown(
                     currentFont:
@@ -143,8 +136,7 @@ class SettingsWorkspaceView extends StatelessWidget {
                     color: Theme.of(context).colorScheme.outline,
                   ),
                   SettingsCategory(
-                    title: LocaleKeys.settings_workspacePage_textDirection_title
-                        .tr(),
+                    title: '文字方向',
                     children: const [
                       TextDirectionSelect(),
                       EnableRTLItemsSwitcher(),
@@ -154,14 +146,13 @@ class SettingsWorkspaceView extends StatelessWidget {
               ),
               const VSpace(16),
               SettingsCategory(
-                title: LocaleKeys.settings_workspacePage_layoutDirection_title
-                    .tr(),
+                title: '布局方向',
                 children: const [_LayoutDirectionSelect()],
               ),
               const SettingsCategorySpacer(),
 
               SettingsCategory(
-                title: LocaleKeys.settings_workspacePage_dateTime_title.tr(),
+                title: '日期 & 时间',
                 children: [
                   const _DateTimeFormatLabel(),
                   const _TimeFormatSwitcher(),
@@ -174,33 +165,24 @@ class SettingsWorkspaceView extends StatelessWidget {
               const SettingsCategorySpacer(),
 
               SettingsCategory(
-                title: LocaleKeys.settings_workspacePage_language_title.tr(),
+                title: '语言',
                 children: const [LanguageDropdown()],
               ),
               const SettingsCategorySpacer(),
 
               if (userProfile.workspaceType != WorkspaceTypePB.LocalW) ...[
                 SingleSettingAction(
-                  label: LocaleKeys.settings_workspacePage_manageWorkspace_title
-                      .tr(),
+                  label: '管理工作区',
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                   onPressed: () => showConfirmDialog(
                     context: context,
                     title: currentWorkspaceMemberRole?.isOwner ?? false
-                        ? LocaleKeys
-                            .settings_workspacePage_deleteWorkspacePrompt_title
-                            .tr()
-                        : LocaleKeys
-                            .settings_workspacePage_leaveWorkspacePrompt_title
-                            .tr(),
+                        ? '删除工作区'
+                        : '离开工作区',
                     description: currentWorkspaceMemberRole?.isOwner ?? false
-                        ? LocaleKeys
-                            .settings_workspacePage_deleteWorkspacePrompt_content
-                            .tr()
-                        : LocaleKeys
-                            .settings_workspacePage_leaveWorkspacePrompt_content
-                            .tr(),
+                        ? '你确定要删除此工作区吗？此操作无法撤消。'
+                        : '你确定要离开此工作区吗？你将无法访问其中的所有页面和数据。',
                     style: ConfirmPopupStyle.cancelAndOk,
                     onConfirm: (_) => context.read<WorkspaceSettingsBloc>().add(
                           currentWorkspaceMemberRole?.isOwner ?? false
@@ -210,12 +192,8 @@ class SettingsWorkspaceView extends StatelessWidget {
                   ),
                   buttonType: SingleSettingsButtonType.danger,
                   buttonLabel: currentWorkspaceMemberRole?.isOwner ?? false
-                      ? LocaleKeys
-                          .settings_workspacePage_manageWorkspace_deleteWorkspace
-                          .tr()
-                      : LocaleKeys
-                          .settings_workspacePage_manageWorkspace_leaveWorkspace
-                          .tr(),
+                      ? '删除工作区'
+                      : '离开工作区',
                 ),
               ],
             ],
@@ -313,38 +291,6 @@ class _WorkspaceNameSettingState extends State<_WorkspaceNameSetting> {
   }
 }
 
-@visibleForTesting
-class LanguageDropdown extends StatelessWidget {
-  const LanguageDropdown({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<AppearanceSettingsCubit, AppearanceSettingsState>(
-      builder: (context, state) {
-        return SettingsDropdown<Locale>(
-          key: const Key('LanguageDropdown'),
-          expandWidth: false,
-          onChanged: (locale) => context
-              .read<AppearanceSettingsCubit>()
-              .setLocale(context, locale),
-          selectedOption: state.locale,
-          options: EasyLocalization.of(context)!
-              .supportedLocales
-              .map(
-                (locale) => buildDropdownMenuEntry<Locale>(
-                  context,
-                  selectedValue: state.locale,
-                  value: locale,
-                  label: languageFromLocale(locale),
-                ),
-              )
-              .toList(),
-        );
-      },
-    );
-  }
-}
-
 class _WorkspaceIconSetting extends StatelessWidget {
   const _WorkspaceIconSetting({
     required this.enableEdit,
@@ -411,21 +357,19 @@ class TextDirectionSelect extends StatelessWidget {
             SettingsRadioItem(
               value: AppFlowyTextDirection.ltr,
               icon: const FlowySvg(FlowySvgs.textdirection_ltr_m),
-              label: LocaleKeys.settings_workspacePage_textDirection_leftToRight
-                  .tr(),
+              label: '从左到右',
               isSelected: selectedItem == AppFlowyTextDirection.ltr,
             ),
             SettingsRadioItem(
               value: AppFlowyTextDirection.rtl,
               icon: const FlowySvg(FlowySvgs.textdirection_rtl_m),
-              label: LocaleKeys.settings_workspacePage_textDirection_rightToLeft
-                  .tr(),
+              label: '从右到左',
               isSelected: selectedItem == AppFlowyTextDirection.rtl,
             ),
             SettingsRadioItem(
               value: AppFlowyTextDirection.auto,
               icon: const FlowySvg(FlowySvgs.textdirection_auto_m),
-              label: LocaleKeys.settings_workspacePage_textDirection_auto.tr(),
+              label: '自动',
               isSelected: selectedItem == AppFlowyTextDirection.auto,
             ),
           ],
@@ -445,7 +389,7 @@ class EnableRTLItemsSwitcher extends StatelessWidget {
       children: [
         Expanded(
           child: FlowyText.regular(
-            LocaleKeys.settings_workspacePage_textDirection_enableRTLItems.tr(),
+            '启用从右向左工具栏项目',
             fontSize: 16,
           ),
         ),
@@ -479,17 +423,13 @@ class _LayoutDirectionSelect extends StatelessWidget {
             SettingsRadioItem(
               value: LayoutDirection.ltrLayout,
               icon: const FlowySvg(FlowySvgs.textdirection_ltr_m),
-              label: LocaleKeys
-                  .settings_workspacePage_layoutDirection_leftToRight
-                  .tr(),
+              label: '从左到右',
               isSelected: state.layoutDirection == LayoutDirection.ltrLayout,
             ),
             SettingsRadioItem(
               value: LayoutDirection.rtlLayout,
               icon: const FlowySvg(FlowySvgs.textdirection_rtl_m),
-              label: LocaleKeys
-                  .settings_workspacePage_layoutDirection_rightToLeft
-                  .tr(),
+              label: '从右到左',
               isSelected: state.layoutDirection == LayoutDirection.rtlLayout,
             ),
           ],
@@ -512,8 +452,7 @@ class _DateFormatDropdown extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               FlowyText.regular(
-                LocaleKeys.settings_workspacePage_dateTime_dateFormat_label
-                    .tr(),
+                '日期格式',
                 fontSize: 16,
               ),
               const VSpace(8),
@@ -543,15 +482,15 @@ class _DateFormatDropdown extends StatelessWidget {
 
   String _formatLabel(UserDateFormatPB format) => switch (format) {
         UserDateFormatPB.Locally =>
-          LocaleKeys.settings_workspacePage_dateTime_dateFormat_local.tr(),
+          '本地',
         UserDateFormatPB.US =>
-          LocaleKeys.settings_workspacePage_dateTime_dateFormat_us.tr(),
+          'US',
         UserDateFormatPB.ISO =>
-          LocaleKeys.settings_workspacePage_dateTime_dateFormat_iso.tr(),
+          'ISO',
         UserDateFormatPB.Friendly =>
-          LocaleKeys.settings_workspacePage_dateTime_dateFormat_friendly.tr(),
+          '友好',
         UserDateFormatPB.DayMonthYear =>
-          LocaleKeys.settings_workspacePage_dateTime_dateFormat_dmy.tr(),
+          '日/月/年',
         _ => "Unknown format",
       };
 }
@@ -566,13 +505,7 @@ class _DateTimeFormatLabel extends StatelessWidget {
     return BlocBuilder<AppearanceSettingsCubit, AppearanceSettingsState>(
       builder: (context, state) {
         return FlowyText.regular(
-          LocaleKeys.settings_workspacePage_dateTime_example.tr(
-            args: [
-              state.dateFormat.formatDate(now, false),
-              state.timeFormat.formatTime(now),
-              now.timeZoneName,
-            ],
-          ),
+          '{state.dateFormat.formatDate(now, false)} 于 {state.dateFormat.formatDate(now, false)} ({state.dateFormat.formatDate(now, false)})',
           maxLines: 2,
           fontSize: 16,
           color: AFThemeExtension.of(context).secondaryTextColor,
@@ -591,7 +524,7 @@ class _TimeFormatSwitcher extends StatelessWidget {
       children: [
         Expanded(
           child: FlowyText.regular(
-            LocaleKeys.settings_workspacePage_dateTime_24HourTime.tr(),
+            '24 小时制',
             fontSize: 16,
           ),
         ),
@@ -632,9 +565,7 @@ class _ThemeDropdown extends StatelessWidget {
             key: const Key('ThemeSelectorDropdown'),
             actions: [
               SettingAction(
-                tooltip: LocaleKeys
-                    .settings_workspacePage_theme_uploadCustomThemeTooltip
-                    .tr(),
+                tooltip: '上传自定义主题',
                 icon: const FlowySvg(FlowySvgs.folder_m, size: Size.square(20)),
                 onPressed: () => Dialogs.show(
                   context,
@@ -649,8 +580,7 @@ class _ThemeDropdown extends StatelessWidget {
                   if (val != null && context.mounted) {
                     showSnackBarMessage(
                       context,
-                      LocaleKeys.settings_appearance_themeUpload_uploadSuccess
-                          .tr(),
+                      '您的主题已上传成功',
                     );
                   }
                 }),
@@ -660,7 +590,7 @@ class _ThemeDropdown extends StatelessWidget {
                   FlowySvgs.restore_s,
                   size: Size.square(20),
                 ),
-                label: LocaleKeys.settings_common_reset.tr(),
+                label: '重置',
                 onPressed: () => context
                     .read<AppearanceSettingsCubit>()
                     .setTheme(AppTheme.builtins.first.themeName),
@@ -800,11 +730,11 @@ class AppearanceSelector extends StatelessWidget {
 
   String getLabel(ThemeMode t) => switch (t) {
         ThemeMode.system =>
-          LocaleKeys.settings_workspacePage_appearance_options_system.tr(),
+          '自动',
         ThemeMode.light =>
-          LocaleKeys.settings_workspacePage_appearance_options_light.tr(),
+          '明亮',
         ThemeMode.dark =>
-          LocaleKeys.settings_workspacePage_appearance_options_dark.tr(),
+          '黑暗',
       };
 }
 
@@ -988,7 +918,7 @@ class _FontSelectorDropdownState extends State<_FontSelectorDropdown> {
                         ),
                         const HSpace(4),
                         FlowyText.regular(
-                          LocaleKeys.settings_common_reset.tr(),
+                          '重置',
                         ),
                       ],
                     ),
@@ -1083,7 +1013,7 @@ class _FontListPopupState extends State<_FontListPopup> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
               child: FlowyText.medium(
-                LocaleKeys.settings_workspacePage_workspaceFont_noFontHint.tr(),
+                '找不到字体，换个词试试。',
               ),
             ),
           Flexible(
@@ -1155,7 +1085,7 @@ class _DocumentCursorColorSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final label =
-        LocaleKeys.settings_appearance_documentSettings_cursorColor.tr();
+        '文档光标颜色';
     return BlocBuilder<DocumentAppearanceCubit, DocumentAppearance>(
       builder: (context, state) {
         return SettingListTile(
@@ -1165,12 +1095,10 @@ class _DocumentCursorColorSetting extends StatelessWidget {
             showConfirmDialog(
               context: context,
               title:
-                  LocaleKeys.settings_workspacePage_resetCursorColor_title.tr(),
-              description: LocaleKeys
-                  .settings_workspacePage_resetCursorColor_description
-                  .tr(),
+                  '重置文档光标颜色',
+              description: '确定要重置光标颜色吗？',
               style: ConfirmPopupStyle.cancelAndOk,
-              confirmLabel: LocaleKeys.settings_common_reset.tr(),
+              confirmLabel: '重置',
               onConfirm: (_) => context
                 ..read<AppearanceSettingsCubit>().resetDocumentCursorColor()
                 ..read<DocumentAppearanceCubit>().syncCursorColor(null),
@@ -1209,7 +1137,7 @@ class _CursorColorValueWidget extends StatelessWidget {
       children: [
         Container(color: cursorColor, width: 2, height: 16),
         FlowyText(
-          LocaleKeys.appName.tr(),
+          'AppFlowy',
           // To avoid the text color changes when it is hovered in dark mode
           color: AFThemeExtension.of(context).onBackground,
         ),
@@ -1224,7 +1152,7 @@ class _DocumentSelectionColorSetting extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final label =
-        LocaleKeys.settings_appearance_documentSettings_selectionColor.tr();
+        '文档选择颜色';
 
     return BlocBuilder<DocumentAppearanceCubit, DocumentAppearance>(
       builder: (context, state) {
@@ -1234,13 +1162,10 @@ class _DocumentSelectionColorSetting extends StatelessWidget {
           onResetRequested: () {
             showConfirmDialog(
               context: context,
-              title: LocaleKeys.settings_workspacePage_resetSelectionColor_title
-                  .tr(),
-              description: LocaleKeys
-                  .settings_workspacePage_resetSelectionColor_description
-                  .tr(),
+              title: '重置文档选取颜色',
+              description: '确定要重置选区颜色吗？',
               style: ConfirmPopupStyle.cancelAndOk,
-              confirmLabel: LocaleKeys.settings_common_reset.tr(),
+              confirmLabel: '重置',
               onConfirm: (_) => context
                 ..read<AppearanceSettingsCubit>().resetDocumentSelectionColor()
                 ..read<DocumentAppearanceCubit>().syncSelectionColor(null),
@@ -1281,12 +1206,12 @@ class _SelectionColorValueWidget extends StatelessWidget {
         Container(
           color: selectionColor,
           child: FlowyText(
-            LocaleKeys.settings_appearance_documentSettings_app.tr(),
+            '应用程序',
             color: textColor,
           ),
         ),
         FlowyText(
-          LocaleKeys.settings_appearance_documentSettings_flowy.tr(),
+          '弗洛菲',
           color: textColor,
         ),
       ],
@@ -1308,7 +1233,7 @@ class DocumentPaddingSetting extends StatelessWidget {
             Row(
               children: [
                 FlowyText.medium(
-                  LocaleKeys.settings_appearance_documentSettings_width.tr(),
+                  '文档宽度',
                 ),
                 const Spacer(),
                 SettingsResetButton(

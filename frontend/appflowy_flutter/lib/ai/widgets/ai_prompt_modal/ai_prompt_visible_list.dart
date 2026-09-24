@@ -2,12 +2,10 @@ import 'dart:async';
 
 import 'package:appflowy/ai/ai.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/application/view/view_ext.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
 import 'package:diffutil_dart/diffutil.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -107,7 +105,7 @@ class _AiPromptVisibleListState extends State<AiPromptVisibleList> {
                             children: [
                               TextSpan(
                                 text:
-                                    "${LocaleKeys.ai_customPrompt_promptDatabase.tr()}: ",
+                                    "${'提示数据库'}: ",
                                 style: TextStyle(fontWeight: FontWeight.w500),
                               ),
                               TextSpan(
@@ -139,9 +137,8 @@ class _AiPromptVisibleListState extends State<AiPromptVisibleList> {
                                 Flexible(
                                   child: Text(
                                     readyState.isLoadingCustomPrompts
-                                        ? LocaleKeys.ai_customPrompt_loading
-                                            .tr()
-                                        : LocaleKeys.button_change.tr(),
+                                        ? '加载中'
+                                        : '变更',
                                     maxLines: 1,
                                     style: theme.textStyle.body.enhanced(
                                       color: theme.textColorScheme.primary,
@@ -254,7 +251,7 @@ class _AiPromptVisibleListState extends State<AiPromptVisibleList> {
           ),
           VSpace(theme.spacing.m),
           Text(
-            LocaleKeys.ai_customPrompt_noResults.tr(),
+            '找不到任何提示',
             style: theme.textStyle.body
                 .standard(color: theme.textColorScheme.secondary),
             maxLines: 1,
@@ -485,7 +482,7 @@ class _AiPromptListItemState extends State<_AiPromptListItem> {
                         },
                         builder: (context, isHovering, disabled) {
                           return Text(
-                            LocaleKeys.ai_customPrompt_usePrompt.tr(),
+                            '使用提示',
                             style: theme.textStyle.body.standard(
                               color: theme.textColorScheme.primary,
                             ),

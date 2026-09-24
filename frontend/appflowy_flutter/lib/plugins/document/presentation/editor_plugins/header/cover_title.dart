@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_appearance_cubit.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/shared_context/shared_context.dart';
 import 'package:appflowy/shared/text_field/text_filed_with_metric_lines.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/workspace/application/view_info/view_info_bloc.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -111,7 +109,7 @@ class _InnerCoverTitleState extends State<_InnerCoverTitle> {
               onLineCountChange: (count) => lineCount = count,
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: LocaleKeys.menuAppHeader_defaultNewPageName.tr(),
+                hintText: '未命名页面',
                 hintStyle: fontStyle.copyWith(
                   color: Theme.of(context).hintColor,
                 ),

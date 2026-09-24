@@ -6,7 +6,6 @@ export 'feature_flag_task.dart';
 export 'generate_router.dart';
 export 'hot_key.dart';
 export 'load_plugin.dart';
-export 'localization.dart';
 export 'memory_leak_detector.dart';
 export 'platform_error_catcher.dart';
 export 'platform_service.dart';

@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/settings/notifications/notification_settings_cubit.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/setting_list_tile.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/settings_body.dart';
 import 'package:appflowy/workspace/presentation/widgets/toggle/toggle.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -15,13 +13,11 @@ class SettingsNotificationsView extends StatelessWidget {
     return BlocBuilder<NotificationSettingsCubit, NotificationSettingsState>(
       builder: (context, state) {
         return SettingsBody(
-          title: LocaleKeys.settings_menu_notifications.tr(),
+          title: '通知',
           children: [
             SettingListTile(
-              label: LocaleKeys.settings_notifications_enableNotifications_label
-                  .tr(),
-              hint: LocaleKeys.settings_notifications_enableNotifications_hint
-                  .tr(),
+              label: '启用通知',
+              hint: '关闭以阻止本地通知出现。',
               trailing: [
                 Toggle(
                   value: state.isNotificationsEnabled,
@@ -32,11 +28,8 @@ class SettingsNotificationsView extends StatelessWidget {
               ],
             ),
             SettingListTile(
-              label: LocaleKeys
-                  .settings_notifications_showNotificationsIcon_label
-                  .tr(),
-              hint: LocaleKeys.settings_notifications_showNotificationsIcon_hint
-                  .tr(),
+              label: '显示通知图标',
+              hint: '关闭开关以隐藏侧边栏中的通知图标。',
               trailing: [
                 Toggle(
                   value: state.isShowNotificationsIconEnabled,

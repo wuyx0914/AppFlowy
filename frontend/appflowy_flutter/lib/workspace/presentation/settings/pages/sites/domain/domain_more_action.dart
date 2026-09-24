@@ -1,12 +1,10 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/af_role_pb_extension.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/constants.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/domain/domain_settings_dialog.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/settings_sites_bloc.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,7 +72,7 @@ class _DomainMoreActionState extends State<DomainMoreAction> {
     if (plan != WorkspacePlanPB.ProPlan) {
       return _buildForbiddenActionButton(
         context,
-        tooltipMessage: LocaleKeys.settings_sites_namespace_upgradeToPro.tr(),
+        tooltipMessage: '请升级至 Pro 订阅计划以设置主页',
         child: child,
       );
     }
@@ -90,9 +88,7 @@ class _DomainMoreActionState extends State<DomainMoreAction> {
     if (!isOwner) {
       return _buildForbiddenActionButton(
         context,
-        tooltipMessage: LocaleKeys
-            .settings_sites_error_onlyWorkspaceOwnerCanUpdateNamespace
-            .tr(),
+        tooltipMessage: '仅工作空间所有者可更新名称空间',
         child: child,
       );
     }
@@ -198,9 +194,9 @@ enum _ActionType {
 extension _ActionTypeExtension on _ActionType {
   String get name => switch (this) {
         _ActionType.updateNamespace =>
-          LocaleKeys.settings_sites_updateNamespace.tr(),
+          '更新名字空间',
         _ActionType.removeHomePage =>
-          LocaleKeys.settings_sites_removeHomepage.tr(),
+          '移除主页',
       };
 
   FlowySvgData get leftIconSvg => switch (this) {

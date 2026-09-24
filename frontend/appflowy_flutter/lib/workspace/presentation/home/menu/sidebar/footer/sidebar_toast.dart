@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/af_role_pb_extension.dart';
 import 'package:appflowy/workspace/application/settings/plan/workspace_subscription_ext.dart';
 import 'package:appflowy/workspace/application/settings/settings_dialog_bloc.dart';
@@ -11,7 +10,6 @@ import 'package:appflowy/workspace/presentation/home/menu/sidebar/shared/sidebar
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/workspace.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -42,15 +40,15 @@ class SidebarToast extends StatelessWidget {
           loading: () => const SizedBox.shrink(),
           storageLimitHit: () => PlanIndicator(
             planName: SubscriptionPlanPB.Free.label,
-            text: LocaleKeys.sideBar_upgradeToPro.tr(),
+            text: '升级至专业版',
             onTap: () => _handleOnTap(context, SubscriptionPlanPB.Pro),
-            reason: LocaleKeys.sideBar_storageLimitDialogTitle.tr(),
+            reason: '你已用尽免费存储。升级以解锁无限制存储',
           ),
           aiMaxiLimitHit: () => PlanIndicator(
             planName: SubscriptionPlanPB.AiMax.label,
-            text: LocaleKeys.sideBar_upgradeToAIMax.tr(),
+            text: '解锁无限制 AI',
             onTap: () => _handleOnTap(context, SubscriptionPlanPB.AiMax),
-            reason: LocaleKeys.sideBar_aiResponseLimitTitle.tr(),
+            reason: '你已用尽免费 AI 回应。升级到专业版或者购买 AI 插件来解锁无限制回应',
           ),
           singleFileLimitHit: () => const SizedBox.shrink(),
         );
@@ -60,10 +58,10 @@ class SidebarToast extends StatelessWidget {
 
   void _showStorageLimitDialog(BuildContext context) => showConfirmDialog(
         context: context,
-        title: LocaleKeys.sideBar_purchaseStorageSpace.tr(),
-        description: LocaleKeys.sideBar_storageLimitDialogTitle.tr(),
+        title: '购买存储空间',
+        description: '你已用尽免费存储。升级以解锁无限制存储',
         confirmLabel:
-            LocaleKeys.settings_comparePlanDialog_actions_upgrade.tr(),
+            '升级',
         onConfirm: (_) {
           WidgetsBinding.instance.addPostFrameCallback(
             (_) => _handleOnTap(context, SubscriptionPlanPB.Pro),
@@ -73,11 +71,11 @@ class SidebarToast extends StatelessWidget {
 
   void _showSingleFileLimitDialog(BuildContext context) => showConfirmDialog(
         context: context,
-        title: LocaleKeys.sideBar_upgradeToPro.tr(),
+        title: '升级至专业版',
         description:
-            LocaleKeys.sideBar_singleFileProPlanLimitationDescription.tr(),
+            '您已超过免费方案允许的最大文件上传容量。请升级到专业版以上传更大的文件',
         confirmLabel:
-            LocaleKeys.settings_comparePlanDialog_actions_upgrade.tr(),
+            '升级',
         onConfirm: (_) {
           WidgetsBinding.instance.addPostFrameCallback(
             (_) => _handleOnTap(context, SubscriptionPlanPB.Pro),
@@ -112,12 +110,12 @@ class SidebarToast extends StatelessWidget {
       final String message;
       if (plan == SubscriptionPlanPB.AiMax) {
         message = Platform.isIOS
-            ? LocaleKeys.sideBar_askOwnerToUpgradeToAIMaxIOS.tr()
-            : LocaleKeys.sideBar_askOwnerToUpgradeToAIMax.tr();
+            ? '你的工作区即将用尽免费 AI 回应限额。'
+            : '你的工作区即将用尽免费 AI 回应。请联系工作区所有者升级计划或购买 AI 插件';
       } else {
         message = Platform.isIOS
-            ? LocaleKeys.sideBar_askOwnerToUpgradeToProIOS.tr()
-            : LocaleKeys.sideBar_askOwnerToUpgradeToPro.tr();
+            ? '你的工作区即将用尽免费存储。'
+            : '你的工作区即将用尽免费存储。请联系工作区所有者升级到专业版计划';
       }
 
       showDialog(
@@ -225,9 +223,7 @@ class _PlanIndicatorState extends State<PlanIndicator> {
                           ),
                           child: Center(
                             child: FlowyText(
-                              LocaleKeys
-                                  .settings_comparePlanDialog_actions_upgrade
-                                  .tr(),
+                              '升级',
                               color: Colors.white,
                               fontSize: 12,
                               strutStyle: const StrutStyle(
@@ -290,7 +286,7 @@ class _AskOwnerToChangePlan extends StatelessWidget {
   Widget build(BuildContext context) {
     return NavigatorOkCancelDialog(
       message: message,
-      okTitle: LocaleKeys.button_ok.tr(),
+      okTitle: 'OK',
       onOkPressed: onOkPressed,
       titleUpperCase: false,
     );

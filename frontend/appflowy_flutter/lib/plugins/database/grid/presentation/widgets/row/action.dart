@@ -1,12 +1,10 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/row/row_service.dart';
 import 'package:appflowy/plugins/database/domain/sort_service.dart';
 import 'package:appflowy/plugins/database/grid/application/grid_bloc.dart';
 import 'package:appflowy/plugins/database/grid/presentation/layout/sizes.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,10 +83,10 @@ enum RowAction {
 
   String get text {
     return switch (this) {
-      insertAbove => LocaleKeys.grid_row_insertRecordAbove.tr(),
-      insertBelow => LocaleKeys.grid_row_insertRecordBelow.tr(),
-      duplicate => LocaleKeys.grid_row_duplicate.tr(),
-      delete => LocaleKeys.grid_row_delete.tr(),
+      insertAbove => '在上方插入记录',
+      insertBelow => '点击添加到下方',
+      duplicate => '复制',
+      delete => '删除',
     };
   }
 
@@ -100,16 +98,14 @@ enum RowAction {
             ? OrderObjectPositionTypePB.Before
             : OrderObjectPositionTypePB.After;
         final intention = this == insertAbove
-            ? LocaleKeys.grid_row_createRowAboveDescription.tr()
-            : LocaleKeys.grid_row_createRowBelowDescription.tr();
+            ? '在上方创建一个列'
+            : '在下方插入一个列';
         if (context.read<GridBloc>().state.sorts.isNotEmpty) {
           showCancelAndDeleteDialog(
             context: context,
-            title: LocaleKeys.grid_sort_sortsActive.tr(
-              namedArgs: {'intention': intention},
-            ),
-            description: LocaleKeys.grid_sort_removeSorting.tr(),
-            confirmLabel: LocaleKeys.button_remove.tr(),
+            title: '在排序时无法 {intention}',
+            description: '您想删除排序吗？',
+            confirmLabel: '移除',
             closeOnAction: true,
             onDelete: () {
               SortBackendService(viewId: viewId).deleteAllSorts();
@@ -134,8 +130,8 @@ enum RowAction {
       case delete:
         showConfirmDeletionDialog(
           context: context,
-          name: LocaleKeys.grid_row_label.tr(),
-          description: LocaleKeys.grid_row_deleteRowPrompt.tr(),
+          name: '列',
+          description: '您确定要删除此行吗？此操作无法撤消',
           onConfirm: () => RowBackendService.deleteRows(viewId, [rowId]),
         );
         break;

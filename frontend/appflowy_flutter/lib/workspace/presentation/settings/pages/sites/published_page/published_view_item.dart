@@ -1,5 +1,4 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/shared/share/constants.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/navigator_context_extension.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/workspace/presentation/settings/pages/sites/constants.d
 import 'package:appflowy/workspace/presentation/settings/pages/sites/publish_info_view_item.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/sites/published_page/published_view_more_action.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -62,7 +60,7 @@ class PublishedViewItem extends StatelessWidget {
   Widget _buildPublishedPageName(BuildContext context) {
     return PublishInfoViewItem(
       extraTooltipMessage:
-          LocaleKeys.settings_sites_publishedPage_clickToOpenPageInApp.tr(),
+          '在 App 中打开页面',
       publishInfoView: publishInfoView,
       onTap: () {
         context.popToHome();
@@ -106,7 +104,7 @@ class PublishedViewItem extends StatelessWidget {
         },
         text: FlowyTooltip(
           message:
-              '${LocaleKeys.settings_sites_publishedPage_clickToOpenPageInBrowser.tr()}\n${publishInfoView.info.publishName}',
+              '${'在浏览器中打开页面'}\n${publishInfoView.info.publishName}',
           child: FlowyText(
             publishInfoView.info.publishName,
             fontSize: 14.0,

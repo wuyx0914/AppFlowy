@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar_actions.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 
 class MobileImagePickerScreen extends StatelessWidget {
@@ -24,7 +22,7 @@ class ImagePickerPage extends StatelessWidget {
       appBar: AppBar(
         titleSpacing: 0,
         title: FlowyText.semibold(
-          LocaleKeys.titleBar_pageIcon.tr(),
+          '页面图标',
           fontSize: 14.0,
         ),
         leading: const AppBarBackButton(),

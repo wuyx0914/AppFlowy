@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class AFPasswordErrorExtension {
   static final RegExp incorrectPasswordPattern =
@@ -13,25 +11,11 @@ class AFPasswordErrorExtension {
   static String getErrorMessage(FlowyError error) {
     final msg = error.msg;
     if (incorrectPasswordPattern.hasMatch(msg)) {
-      return LocaleKeys
-          .newSettings_myAccount_password_error_currentPasswordIsIncorrect
-          .tr();
+      return '目前的密码错误';
     } else if (tooShortPasswordPattern.hasMatch(msg)) {
-      return LocaleKeys
-          .newSettings_myAccount_password_error_passwordShouldBeAtLeast6Characters
-          .tr(
-        namedArgs: {
-          'min': tooShortPasswordPattern.firstMatch(msg)?.group(1) ?? '6',
-        },
-      );
+      return '密码至少应有 ${tooShortPasswordPattern.firstMatch(msg)?.group(1) ?? '6'} 个字符';
     } else if (tooLongPasswordPattern.hasMatch(msg)) {
-      return LocaleKeys
-          .newSettings_myAccount_password_error_passwordCannotBeLongerThan72Characters
-          .tr(
-        namedArgs: {
-          'max': tooLongPasswordPattern.firstMatch(msg)?.group(1) ?? '72',
-        },
-      );
+      return '密码不能长于 ${tooLongPasswordPattern.firstMatch(msg)?.group(1) ?? '72'} 个字符';
     }
 
     return msg;

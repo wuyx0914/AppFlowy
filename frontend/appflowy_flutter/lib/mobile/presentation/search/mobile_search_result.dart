@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/mobile_router.dart';
 import 'package:appflowy/shared/icon_emoji_picker/tab.dart';
 import 'package:appflowy/workspace/application/command_palette/command_palette_bloc.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -52,7 +50,7 @@ class MobileSearchRecentList extends StatelessWidget {
             children: [
               const VSpace(16),
               Text(
-                LocaleKeys.sideBar_recent.tr(),
+                '最近的',
                 style: theme.textStyle.heading4
                     .enhanced(color: theme.textColorScheme.secondary)
                     .copyWith(
@@ -113,7 +111,7 @@ class MobileSearchResultList extends StatelessWidget {
       children: [
         const VSpace(16),
         Text(
-          LocaleKeys.commandPalette_bestMatches.tr(),
+          '最佳匹配',
           style: theme.textStyle.heading4
               .enhanced(color: theme.textColorScheme.secondary)
               .copyWith(
@@ -135,7 +133,7 @@ class MobileSearchResultList extends StatelessWidget {
                   await _goToView(context, view);
                 } else {
                   showToastNotification(
-                    message: LocaleKeys.search_pageNotExist.tr(),
+                    message: '这个页面不存在',
                     type: ToastificationType.error,
                   );
                   Log.error(
@@ -177,14 +175,14 @@ class _NoResult extends StatelessWidget {
           ),
           const VSpace(12),
           Text(
-            LocaleKeys.search_noResultForSearching.tr(),
+            '没有找到符合的结果',
             style: theme.textStyle.heading4.enhanced(color: textColor),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           Text(
             textAlign: TextAlign.center,
-            LocaleKeys.search_noResultForSearchingHint.tr(),
+            '尝试不同的问题或关键字。\n 部分页面可能在垃圾桶中。',
             style: theme.textStyle.body.standard(color: textColor),
           ),
         ],

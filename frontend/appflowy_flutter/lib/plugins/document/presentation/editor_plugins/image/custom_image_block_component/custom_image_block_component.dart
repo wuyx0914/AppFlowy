@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_option_tile.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/actions/mobile_block_action_buttons.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy/workspace/presentation/widgets/image_viewer/image_provider.dart';
 import 'package:appflowy/workspace/presentation/widgets/image_viewer/interactive_image_viewer.dart';
 import 'package:appflowy_editor/appflowy_editor.dart' hide ResizableImage;
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
@@ -371,21 +369,21 @@ class CustomImageBlockComponentState extends State<CustomImageBlockComponent>
     return [
       FlowyOptionTile.text(
         showTopBorder: false,
-        text: LocaleKeys.editor_copy.tr(),
+        text: '复制',
         leftIcon: const FlowySvg(
           FlowySvgs.m_field_copy_s,
         ),
         onTap: () async {
           context.pop();
           showToastNotification(
-            message: LocaleKeys.document_plugins_image_copiedToPasteBoard.tr(),
+            message: '图片链接已复制到剪贴板',
           );
           await getIt<ClipboardService>().setPlainText(url);
         },
       ),
       FlowyOptionTile.text(
         showTopBorder: false,
-        text: LocaleKeys.document_imageBlock_saveImageToGallery.tr(),
+        text: '保存图片',
         leftIcon: const FlowySvg(
           FlowySvgs.image_placeholder_s,
           size: Size.square(20),
@@ -431,8 +429,8 @@ class CustomImageBlockComponentState extends State<CustomImageBlockComponent>
       if (mounted) {
         showToastNotification(
           message: result.isSuccess
-              ? LocaleKeys.document_imageBlock_successToAddImageToGallery.tr()
-              : LocaleKeys.document_imageBlock_failedToAddImageToGallery.tr(),
+              ? '图片已成功添加到图库'
+              : '无法将图像添加到图库',
         );
       }
     }

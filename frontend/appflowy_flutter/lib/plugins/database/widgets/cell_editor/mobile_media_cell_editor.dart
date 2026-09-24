@@ -1,6 +1,5 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet_media_upload.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/flowy_option_tile.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy/workspace/presentation/widgets/image_viewer/interactive
 import 'package:appflowy_backend/protobuf/flowy-database2/file_entities.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/media_entities.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/row_entities.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,7 +40,7 @@ class MobileMediaCellEditor extends StatelessWidget {
                   children: [
                     Align(
                       child: FlowyText.medium(
-                        LocaleKeys.grid_field_mediaFieldName.tr(),
+                        '文件和媒体',
                         fontSize: 18,
                       ),
                     ),
@@ -52,7 +50,7 @@ class MobileMediaCellEditor extends StatelessWidget {
                       child: GestureDetector(
                         onTap: () => showMobileBottomSheet(
                           context,
-                          title: LocaleKeys.grid_media_addFileMobile.tr(),
+                          title: '添加文件',
                           showHeader: true,
                           showCloseButton: true,
                           showDragHandle: true,
@@ -219,7 +217,7 @@ class _EditFileSheetState extends State<_EditFileSheet> {
           if (file.fileType == MediaFileTypePB.Image) ...[
             FlowyOptionTile.text(
               showTopBorder: false,
-              text: LocaleKeys.grid_media_expand.tr(),
+              text: '展开',
               leftIcon: const FlowySvg(
                 FlowySvgs.full_view_s,
                 size: Size.square(20),
@@ -228,7 +226,7 @@ class _EditFileSheetState extends State<_EditFileSheet> {
             ),
             FlowyOptionTile.text(
               showTopBorder: false,
-              text: LocaleKeys.grid_media_setAsCover.tr(),
+              text: '设为封面',
               leftIcon: const FlowySvg(
                 FlowySvgs.cover_s,
                 size: Size.square(20),
@@ -246,7 +244,7 @@ class _EditFileSheetState extends State<_EditFileSheet> {
           ],
           FlowyOptionTile.text(
             showTopBorder: file.fileType == MediaFileTypePB.Image,
-            text: LocaleKeys.grid_media_openInBrowser.tr(),
+            text: '在浏览器中打开',
             leftIcon: const FlowySvg(
               FlowySvgs.open_in_browser_s,
               size: Size.square(20),
@@ -255,7 +253,7 @@ class _EditFileSheetState extends State<_EditFileSheet> {
           ),
           // TODO(Mathias): Rename interaction need design
           // FlowyOptionTile.text(
-          //   text: LocaleKeys.grid_media_rename.tr(),
+          //   text: '重命名',
           //   leftIcon: const FlowySvg(
           //     FlowySvgs.rename_s,
           //     size: Size.square(20),
@@ -275,7 +273,7 @@ class _EditFileSheetState extends State<_EditFileSheet> {
                 },
                 onDownloadEnd: () => loader?.stop(),
               ),
-              text: LocaleKeys.button_download.tr(),
+              text: '下载',
               leftIcon: const FlowySvg(
                 FlowySvgs.save_as_s,
                 size: Size.square(20),
@@ -283,7 +281,7 @@ class _EditFileSheetState extends State<_EditFileSheet> {
             ),
           ],
           FlowyOptionTile.text(
-            text: LocaleKeys.grid_media_delete.tr(),
+            text: '删除',
             textColor: Theme.of(context).colorScheme.error,
             leftIcon: FlowySvg(
               FlowySvgs.trash_s,

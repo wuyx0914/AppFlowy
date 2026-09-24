@@ -1,11 +1,9 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/inline_actions/handlers/inline_page_reference.dart';
 import 'package:appflowy/plugins/inline_actions/inline_actions_menu.dart';
 import 'package:appflowy/plugins/inline_actions/inline_actions_result.dart';
 import 'package:appflowy/plugins/inline_actions/inline_actions_service.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 InlineActionsMenuService? _actionsMenuService;
@@ -66,9 +64,9 @@ Future<void> showLinkToPageMenu(
 }
 
 String titleFromPageType(ViewLayoutPB? layout) => switch (layout) {
-      ViewLayoutPB.Grid => LocaleKeys.inlineActions_gridReference.tr(),
-      ViewLayoutPB.Document => LocaleKeys.inlineActions_docReference.tr(),
-      ViewLayoutPB.Board => LocaleKeys.inlineActions_boardReference.tr(),
-      ViewLayoutPB.Calendar => LocaleKeys.inlineActions_calReference.tr(),
-      _ => LocaleKeys.inlineActions_pageReference.tr(),
+      ViewLayoutPB.Grid => '网格参照',
+      ViewLayoutPB.Document => '文档参照',
+      ViewLayoutPB.Board => '看板参照',
+      ViewLayoutPB.Calendar => '日历参照',
+      _ => '页面参考',
     };

@@ -10,10 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:appflowy/ai/ai.dart';
 import 'package:appflowy_backend/protobuf/flowy-ai/entities.pb.dart';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/af_dropdown_menu_entry.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/settings_dropdown.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 class OllamaSettingPage extends StatelessWidget {
   const OllamaSettingPage({super.key});
@@ -73,7 +71,7 @@ class _SettingItemWidget extends StatelessWidget {
           child: FlowyTooltip(
             message: item.editable
                 ? null
-                : LocaleKeys.settings_aiPage_keys_readOnlyField.tr(),
+                : '此字段为唯读设置',
             child: FlowyTextField(
               autoFocus: false,
               hintText: item.hintText,
@@ -156,7 +154,7 @@ class LocalAIModelSelection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             FlowyText.medium(
-              LocaleKeys.settings_aiPage_keys_globalLLMModel.tr(),
+              '全域语言模型',
               fontSize: 12,
               figmaLineHeight: 16,
             ),

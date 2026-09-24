@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/workspace/presentation/settings/widgets/files/settings_file_exporter_widget.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:styled_widget/styled_widget.dart';
-
-import '../../../../../generated/locale_keys.g.dart';
 
 class SettingsExportFileWidget extends StatefulWidget {
   const SettingsExportFileWidget({super.key});
@@ -24,7 +21,7 @@ class SettingsExportFileWidgetState extends State<SettingsExportFileWidget> {
       mainAxisSize: MainAxisSize.min,
       children: [
         FlowyText.medium(
-          LocaleKeys.settings_files_exportData.tr(),
+          '导出您的数据',
           fontSize: 13,
           overflow: TextOverflow.ellipsis,
         ).padding(horizontal: 5.0),
@@ -63,7 +60,7 @@ class _OpenExportedDirectoryButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return FlowyIconButton(
       hoverColor: Theme.of(context).colorScheme.secondaryContainer,
-      tooltipText: LocaleKeys.settings_files_export.tr(),
+      tooltipText: '导出',
       icon: FlowySvg(
         FlowySvgs.open_folder_lg,
         color: Theme.of(context).iconTheme.color,

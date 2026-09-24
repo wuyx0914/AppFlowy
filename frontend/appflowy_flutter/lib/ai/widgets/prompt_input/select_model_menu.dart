@@ -1,8 +1,6 @@
 import 'package:appflowy/ai/ai.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_backend/protobuf/flowy-ai/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +95,7 @@ class SelectModelPopoverContent extends StatelessWidget {
           children: [
             if (localModels.isNotEmpty) ...[
               _ModelSectionHeader(
-                title: LocaleKeys.chat_switchModel_localModel.tr(),
+                title: '本地模型',
               ),
               const VSpace(4.0),
             ],
@@ -111,7 +109,7 @@ class SelectModelPopoverContent extends StatelessWidget {
             if (cloudModels.isNotEmpty && localModels.isNotEmpty) ...[
               const VSpace(8.0),
               _ModelSectionHeader(
-                title: LocaleKeys.chat_switchModel_cloudModel.tr(),
+                title: '云端模型',
               ),
               const VSpace(4.0),
             ],
@@ -211,7 +209,7 @@ class _CurrentModelButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FlowyTooltip(
-      message: LocaleKeys.chat_switchModel_label.tr(),
+      message: '切换模型',
       child: GestureDetector(
         onTap: onTap,
         behavior: HitTestBehavior.opaque,

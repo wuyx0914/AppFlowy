@@ -1,6 +1,5 @@
 import 'dart:convert';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_data_pb_extension.dart';
 import 'package:appflowy/plugins/document/application/prelude.dart';
 import 'package:appflowy/shared/markdown_to_document.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 enum DocumentExportType {
   json,
@@ -36,7 +34,7 @@ class DocumentExporter {
         if (document == null) {
           return FlowyResult.failure(
             FlowyError(
-              msg: LocaleKeys.settings_files_exportFileFail.tr(),
+              msg: '导出失败!',
             ),
           );
         }

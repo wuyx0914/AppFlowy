@@ -4,10 +4,8 @@
 //  - ...
 import 'dart:async';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/widgets/show_flowy_mobile_confirm_dialog.dart';
 import 'package:appflowy/startup/tasks/device_info_task.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -23,20 +21,20 @@ class PermissionChecker {
         showFlowyMobileConfirmDialog(
           context,
           title: FlowyText.semibold(
-            LocaleKeys.pageStyle_photoPermissionTitle.tr(),
+            '@:appName 希望访问您的图片库',
             maxLines: 3,
             textAlign: TextAlign.center,
           ),
           content: FlowyText(
-            LocaleKeys.pageStyle_photoPermissionDescription.tr(),
+            '允许访问图片库以上传图片',
             maxLines: 5,
             textAlign: TextAlign.center,
             fontSize: 12.0,
           ),
           actionAlignment: ConfirmDialogActionAlignment.vertical,
-          actionButtonTitle: LocaleKeys.pageStyle_openSettings.tr(),
+          actionButtonTitle: '打开设置',
           actionButtonColor: Colors.blue,
-          cancelButtonTitle: LocaleKeys.pageStyle_doNotAllow.tr(),
+          cancelButtonTitle: '不允许',
           cancelButtonColor: Colors.blue,
           onActionButtonPressed: () {
             openAppSettings();
@@ -71,20 +69,20 @@ class PermissionChecker {
         showFlowyMobileConfirmDialog(
           context,
           title: FlowyText.semibold(
-            LocaleKeys.pageStyle_cameraPermissionTitle.tr(),
+            '@:appName 想要访问您的摄影机',
             maxLines: 3,
             textAlign: TextAlign.center,
           ),
           content: FlowyText(
-            LocaleKeys.pageStyle_cameraPermissionDescription.tr(),
+            '@:appName 需要访问您的相机，才能让您从相机添加图片到您的文档。',
             maxLines: 5,
             textAlign: TextAlign.center,
             fontSize: 12.0,
           ),
           actionAlignment: ConfirmDialogActionAlignment.vertical,
-          actionButtonTitle: LocaleKeys.pageStyle_openSettings.tr(),
+          actionButtonTitle: '打开设置',
           actionButtonColor: Colors.blue,
-          cancelButtonTitle: LocaleKeys.pageStyle_doNotAllow.tr(),
+          cancelButtonTitle: '不允许',
           cancelButtonColor: Colors.blue,
           onActionButtonPressed: openAppSettings,
         ),

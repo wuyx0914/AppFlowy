@@ -1,11 +1,9 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/workspace/application/settings/ai/local_ai_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy/workspace/presentation/widgets/toggle/toggle.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:expandable/expandable.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
@@ -83,14 +81,14 @@ class LocalAiSettingHeader extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    LocaleKeys.settings_aiPage_keys_localAIToggleTitle.tr(),
+                    'AppFlowy 本地 AI (LAI)',
                     style: theme.textStyle.body.enhanced(
                       color: theme.textColorScheme.primary,
                     ),
                   ),
                   HSpace(theme.spacing.s),
                   FlowyTooltip(
-                    message: LocaleKeys.workspace_learnMore.tr(),
+                    message: '了解更多',
                     child: AFGhostButton.normal(
                       padding: EdgeInsets.zero,
                       builder: (context, isHovering, disabled) {
@@ -110,7 +108,7 @@ class LocalAiSettingHeader extends StatelessWidget {
               ),
               const VSpace(4),
               FlowyText(
-                LocaleKeys.settings_aiPage_keys_localAIToggleSubTitle.tr(),
+                '在 AppFlowy 中运行最先进的本地  AI 模型，以获得终极隐私和安全性',
                 maxLines: 3,
                 fontSize: 12,
               ),
@@ -133,10 +131,10 @@ class LocalAiSettingHeader extends StatelessWidget {
     } else {
       showConfirmDialog(
         context: context,
-        title: LocaleKeys.settings_aiPage_keys_disableLocalAITitle.tr(),
+        title: '停用本地 AI',
         description:
-            LocaleKeys.settings_aiPage_keys_disableLocalAIDescription.tr(),
-        confirmLabel: LocaleKeys.button_confirm.tr(),
+            '您要停用本地 AI 吗?',
+        confirmLabel: '确认',
         onConfirm: (_) {
           context
               .read<LocalAiPluginBloc>()

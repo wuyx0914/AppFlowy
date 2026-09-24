@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:appflowy/ai/ai.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/ai_chat/application/chat_edit_document_service.dart';
 import 'package:appflowy/plugins/ai_chat/application/chat_select_message_bloc.dart';
 import 'package:appflowy/plugins/document/application/prelude.dart';
@@ -15,7 +14,6 @@ import 'package:appflowy/workspace/presentation/home/menu/view/view_item.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_result/appflowy_result.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -74,11 +72,10 @@ class ChatMessageSelectorBanner extends StatelessWidget {
               Expanded(
                 child: FlowyText.semibold(
                   allSelected
-                      ? LocaleKeys.chat_selectBanner_allSelected.tr()
+                      ? '全部已选取'
                       : selectedAmount > 0
-                          ? LocaleKeys.chat_selectBanner_nSelected
-                              .tr(args: [selectedAmount.toString()])
-                          : LocaleKeys.chat_selectBanner_selectMessages.tr(),
+                          ? ' {selectedAmount.toString()} 已选取'
+                          : '选择消息',
                   figmaLineHeight: 16,
                   color: Colors.white,
                 ),
@@ -175,7 +172,7 @@ class _SaveToPageButtonState extends State<SaveToPageButton> {
         return Opacity(
           opacity: selectedAmount == 0 ? 0.5 : 1,
           child: FlowyTextButton(
-            LocaleKeys.chat_selectBanner_saveButton.tr(),
+            '添加到…',
             onPressed: selectedAmount == 0
                 ? null
                 : () async {

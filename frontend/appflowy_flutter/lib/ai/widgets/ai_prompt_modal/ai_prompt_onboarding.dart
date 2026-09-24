@@ -1,7 +1,5 @@
 import 'package:appflowy/ai/ai.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,7 +17,7 @@ class AiPromptOnboarding extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          LocaleKeys.ai_customPrompt_customPrompt.tr(),
+          '自订提示',
           style: theme.textStyle.heading3.standard(
             color: theme.textColorScheme.primary,
           ),
@@ -28,7 +26,7 @@ class AiPromptOnboarding extends StatelessWidget {
           theme.spacing.s,
         ),
         Text(
-          LocaleKeys.ai_customPrompt_databasePrompts.tr(),
+          '从您自己的数据库加载提示',
           style: theme.textStyle.body.standard(
             color: theme.textColorScheme.secondary,
           ),
@@ -48,7 +46,7 @@ class AiPromptOnboarding extends StatelessWidget {
           },
           builder: (context, isHovering, disabled) {
             return Text(
-              LocaleKeys.ai_customPrompt_selectDatabase.tr(),
+              '选择数据库',
               style: theme.textStyle.body.enhanced(
                 color: theme.textColorScheme.onFill,
               ),

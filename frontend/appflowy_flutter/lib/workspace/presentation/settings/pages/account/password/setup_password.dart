@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/user/application/password/password_bloc.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/account/password/error_extensions.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/account/password/password_suffix_icon.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/code.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -99,7 +97,7 @@ class _SetupPasswordDialogContentState
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
-          LocaleKeys.newSettings_myAccount_password_setupPassword.tr(),
+          '设置密码',
           style: theme.textStyle.heading4.prominent(
             color: theme.textColorScheme.primary,
           ),
@@ -122,7 +120,7 @@ class _SetupPasswordDialogContentState
     final theme = AppFlowyTheme.of(context);
     return [
       Text(
-        LocaleKeys.newSettings_myAccount_password_title.tr(),
+        '密码',
         style: theme.textStyle.caption.enhanced(
           color: theme.textColorScheme.secondary,
         ),
@@ -131,9 +129,7 @@ class _SetupPasswordDialogContentState
       AFTextField(
         key: passwordTextFieldKey,
         controller: passwordController,
-        hintText: LocaleKeys
-            .newSettings_myAccount_password_hint_confirmYourPassword
-            .tr(),
+        hintText: '确认您的密码',
         keyboardType: TextInputType.visiblePassword,
         obscureText: true,
         autofillHints: const [AutofillHints.password],
@@ -155,7 +151,7 @@ class _SetupPasswordDialogContentState
     final theme = AppFlowyTheme.of(context);
     return [
       Text(
-        LocaleKeys.newSettings_myAccount_password_confirmPassword.tr(),
+        '确认密码',
         style: theme.textStyle.caption.enhanced(
           color: theme.textColorScheme.secondary,
         ),
@@ -164,9 +160,7 @@ class _SetupPasswordDialogContentState
       AFTextField(
         key: confirmPasswordTextFieldKey,
         controller: confirmPasswordController,
-        hintText: LocaleKeys
-            .newSettings_myAccount_password_hint_confirmYourPassword
-            .tr(),
+        hintText: '确认您的密码',
         keyboardType: TextInputType.visiblePassword,
         obscureText: true,
         autofillHints: const [AutofillHints.password],
@@ -190,7 +184,7 @@ class _SetupPasswordDialogContentState
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         AFOutlinedTextButton.normal(
-          text: LocaleKeys.button_cancel.tr(),
+          text: '取消',
           textStyle: theme.textStyle.body.standard(
             color: theme.textColorScheme.primary,
             weight: FontWeight.w400,
@@ -199,7 +193,7 @@ class _SetupPasswordDialogContentState
         ),
         HSpace(theme.spacing.l),
         AFFilledTextButton.primary(
-          text: LocaleKeys.button_save.tr(),
+          text: '保存',
           textStyle: theme.textStyle.body.standard(
             color: theme.textColorScheme.onFill,
             weight: FontWeight.w400,
@@ -213,7 +207,7 @@ class _SetupPasswordDialogContentState
   Widget _buildSaveButton(BuildContext context) {
     final theme = AppFlowyTheme.of(context);
     return AFFilledTextButton.primary(
-      text: LocaleKeys.button_save.tr(),
+      text: '保存',
       textStyle: theme.textStyle.body.standard(
         color: theme.textColorScheme.onFill,
       ),
@@ -231,27 +225,21 @@ class _SetupPasswordDialogContentState
 
     if (password.isEmpty) {
       passwordTextFieldKey.currentState?.syncError(
-        errorText: LocaleKeys
-            .newSettings_myAccount_password_error_newPasswordIsRequired
-            .tr(),
+        errorText: '需要新密码',
       );
       return;
     }
 
     if (confirmPassword.isEmpty) {
       confirmPasswordTextFieldKey.currentState?.syncError(
-        errorText: LocaleKeys
-            .newSettings_myAccount_password_error_confirmPasswordIsRequired
-            .tr(),
+        errorText: '确认需要输入密码',
       );
       return;
     }
 
     if (password != confirmPassword) {
       confirmPasswordTextFieldKey.currentState?.syncError(
-        errorText: LocaleKeys
-            .newSettings_myAccount_password_error_passwordsDoNotMatch
-            .tr(),
+        errorText: '密码不相符',
       );
       return;
     }
@@ -278,9 +266,7 @@ class _SetupPasswordDialogContentState
     if (setPasswordResult != null) {
       setPasswordResult.fold(
         (success) {
-          message = LocaleKeys
-              .newSettings_myAccount_password_toast_passwordSetupSuccessfully
-              .tr();
+          message = '密码设置成功';
         },
         (error) {
           hasError = true;
@@ -296,7 +282,7 @@ class _SetupPasswordDialogContentState
             );
           } else if (error.code == ErrorCode.NewPasswordTooWeak) {
             passwordTextFieldKey.currentState?.syncError(
-              errorText: LocaleKeys.signIn_passwordMustContain.tr(),
+              errorText: '密码必须包含至少一个字母、一个数字和一个符号。',
             );
           } else {
             passwordTextFieldKey.currentState?.syncError(

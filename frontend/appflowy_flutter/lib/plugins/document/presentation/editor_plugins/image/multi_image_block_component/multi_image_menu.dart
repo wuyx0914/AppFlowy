@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/block_menu/block_menu_button.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/image/common.dart';
@@ -18,7 +17,6 @@ import 'package:appflowy/workspace/presentation/widgets/image_viewer/interactive
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_editor/appflowy_editor.dart' hide UploadImageMenu;
 import 'package:cross_file/cross_file.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra/uuid.dart';
@@ -136,7 +134,7 @@ class _MultiImageMenuState extends State<MultiImageMenu> {
             },
             child: MenuBlockButton(
               tooltip:
-                  LocaleKeys.document_plugins_photoGallery_addImageTooltip.tr(),
+                  '添加图片',
               iconData: FlowySvgs.add_s,
               onTap: () {},
             ),
@@ -174,16 +172,14 @@ class _MultiImageMenuState extends State<MultiImageMenu> {
               );
             },
             child: MenuBlockButton(
-              tooltip: LocaleKeys
-                  .document_plugins_photoGallery_changeLayoutTooltip
-                  .tr(),
+              tooltip: '变更版面',
               iconData: FlowySvgs.edit_layout_s,
               onTap: () {},
             ),
           ),
           const HSpace(4),
           MenuBlockButton(
-            tooltip: LocaleKeys.document_imageBlock_openFullScreen.tr(),
+            tooltip: '全屏幕打开',
             iconData: FlowySvgs.full_view_s,
             onTap: openFullScreen,
           ),
@@ -194,15 +190,14 @@ class _MultiImageMenuState extends State<MultiImageMenu> {
               !images[widget.indexNotifier.value].url.isAppFlowyCloudUrl) ...[
             const HSpace(4),
             MenuBlockButton(
-              tooltip: LocaleKeys.editor_copyLink.tr(),
+              tooltip: '复制链接',
               iconData: FlowySvgs.copy_s,
               onTap: copyImageLink,
             ),
           ],
           const _Divider(),
           MenuBlockButton(
-            tooltip: LocaleKeys.document_plugins_photoGallery_deleteBlockTooltip
-                .tr(),
+            tooltip: '删除整个图库',
             iconData: FlowySvgs.delete_s,
             onTap: deleteImage,
           ),
@@ -217,7 +212,7 @@ class _MultiImageMenuState extends State<MultiImageMenu> {
       ClipboardData(text: images[widget.indexNotifier.value].url),
     );
     showToastNotification(
-      message: LocaleKeys.document_plugins_image_copiedToPasteBoard.tr(),
+      message: '图片链接已复制到剪贴板',
     );
   }
 
@@ -315,7 +310,7 @@ class _MultiImageMenuState extends State<MultiImageMenu> {
       // show error
       return showSnackBarMessage(
         context,
-        LocaleKeys.document_imageBlock_error_invalidImage.tr(),
+        '图片无效',
       );
     }
 
@@ -349,7 +344,7 @@ class _MultiImageMenuState extends State<MultiImageMenu> {
       // show error
       return showSnackBarMessage(
         context,
-        LocaleKeys.document_imageBlock_error_invalidImage.tr(),
+        '图片无效',
       );
     }
 

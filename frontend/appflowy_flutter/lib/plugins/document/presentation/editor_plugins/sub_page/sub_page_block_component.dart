@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/mobile_router.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/header/emoji_icon_widget.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mention/mention_page_block.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
@@ -264,9 +262,7 @@ class SubPageBlockComponentState extends State<SubPageBlockComponent>
                           ),
                           if (isHandlingPaste) ...[
                             FlowyText(
-                              LocaleKeys
-                                  .document_plugins_subPage_handlingPasteHint
-                                  .tr(),
+                              '- (处理粘贴)',
                               fontSize: textStyle.fontSize,
                               fontWeight: textStyle.fontWeight,
                               lineHeight: textStyle.height,

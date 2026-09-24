@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/text_input.dart';
 import 'package:flutter/material.dart';
@@ -153,7 +151,7 @@ class _MathInputTextFieldState extends State<MathInputTextField> {
           ),
           const HSpace(4.0),
           FlowyButton(
-            text: FlowyText(LocaleKeys.button_done.tr()),
+            text: FlowyText('完成'),
             useIntrinsicWidth: true,
             onTap: () => widget.onSubmit(textEditingController.text),
           ),

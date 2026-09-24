@@ -16,14 +16,11 @@ import 'package:appflowy/workspace/presentation/settings/shared/single_setting_a
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../generated/locale_keys.g.dart';
 
 const _buttonsMinWidth = 100.0;
 
@@ -94,10 +91,10 @@ class _SettingsBillingViewState extends State<SettingsBillingView> {
                   state.subscriptionInfo.isBillingPortalEnabled;
 
               return SettingsBody(
-                title: LocaleKeys.settings_billingPage_title.tr(),
+                title: '帐单',
                 children: [
                   SettingsCategory(
-                    title: LocaleKeys.settings_billingPage_plan_title.tr(),
+                    title: '方案',
                     children: [
                       SingleSettingAction(
                         onPressed: () => _openPricingDialog(
@@ -108,18 +105,14 @@ class _SettingsBillingViewState extends State<SettingsBillingView> {
                         ),
                         fontWeight: FontWeight.w500,
                         label: state.subscriptionInfo.label,
-                        buttonLabel: LocaleKeys
-                            .settings_billingPage_plan_planButtonLabel
-                            .tr(),
+                        buttonLabel: '变更计划',
                         minWidth: _buttonsMinWidth,
                       ),
                       if (billingPortalEnabled)
                         SingleSettingAction(
                           onPressed: () {
                             SettingsAlertDialog(
-                              title: LocaleKeys
-                                  .settings_billingPage_changePeriod
-                                  .tr(),
+                              title: '变更周期',
                               enableConfirmNotifier: enablePlanChangeNotifier,
                               children: [
                                 ChangePeriod(
@@ -153,24 +146,18 @@ class _SettingsBillingViewState extends State<SettingsBillingView> {
                               },
                             ).show(context);
                           },
-                          label: LocaleKeys
-                              .settings_billingPage_plan_billingPeriod
-                              .tr(),
+                          label: '计费周期',
                           description: state
                               .subscriptionInfo.planSubscription.interval.label,
                           fontWeight: FontWeight.w500,
-                          buttonLabel: LocaleKeys
-                              .settings_billingPage_plan_periodButtonLabel
-                              .tr(),
+                          buttonLabel: '编辑期间',
                           minWidth: _buttonsMinWidth,
                         ),
                     ],
                   ),
                   if (billingPortalEnabled)
                     SettingsCategory(
-                      title: LocaleKeys
-                          .settings_billingPage_paymentDetails_title
-                          .tr(),
+                      title: '付款信息',
                       children: [
                         SingleSettingAction(
                           onPressed: () => context
@@ -178,31 +165,22 @@ class _SettingsBillingViewState extends State<SettingsBillingView> {
                               .add(
                                 const SettingsBillingEvent.openCustomerPortal(),
                               ),
-                          label: LocaleKeys
-                              .settings_billingPage_paymentDetails_methodLabel
-                              .tr(),
+                          label: '付款方式',
                           fontWeight: FontWeight.w500,
-                          buttonLabel: LocaleKeys
-                              .settings_billingPage_paymentDetails_methodButtonLabel
-                              .tr(),
+                          buttonLabel: '编辑方式',
                           minWidth: _buttonsMinWidth,
                         ),
                       ],
                     ),
                   SettingsCategory(
-                    title: LocaleKeys.settings_billingPage_addons_title.tr(),
+                    title: '附加组件',
                     children: [
                       _AITile(
                         plan: SubscriptionPlanPB.AiMax,
-                        label: LocaleKeys
-                            .settings_billingPage_addons_aiMax_label
-                            .tr(),
-                        description: LocaleKeys
-                            .settings_billingPage_addons_aiMax_description,
-                        activeDescription: LocaleKeys
-                            .settings_billingPage_addons_aiMax_activeDescription,
-                        canceledDescription: LocaleKeys
-                            .settings_billingPage_addons_aiMax_canceledDescription,
+                        label: 'AI Max',
+                        description: '解锁无限 AI 和高端模型',
+                        activeDescription: '下期帐单到期日为 {}',
+                        canceledDescription: 'AI 最大将于 {} 激活',
                         subscriptionInfo:
                             state.subscriptionInfo.addOns.firstWhereOrNull(
                           (a) => a.type == WorkspaceAddOnPBType.AddOnAiMax,
@@ -284,31 +262,29 @@ class _AITileState extends State<_AITile> {
         SingleSettingAction(
           label: widget.label,
           description: widget.subscriptionInfo != null && isCanceled
-              ? widget.canceledDescription.tr(
-                  args: [
-                    dateFormat.formatDate(
-                      widget.subscriptionInfo!.addOnSubscription.endDate
-                          .toDateTime(),
-                      false,
-                    ),
-                  ],
+              ? widget.canceledDescription.replaceAll(
+                  '{}',
+                  dateFormat.formatDate(
+                    widget.subscriptionInfo!.addOnSubscription.endDate
+                        .toDateTime(),
+                    false,
+                  ),
                 )
               : widget.subscriptionInfo != null
-                  ? widget.activeDescription.tr(
-                      args: [
-                        dateFormat.formatDate(
-                          widget.subscriptionInfo!.addOnSubscription.endDate
-                              .toDateTime(),
-                          false,
-                        ),
-                      ],
+                  ? widget.activeDescription.replaceAll(
+                      '{}',
+                      dateFormat.formatDate(
+                        widget.subscriptionInfo!.addOnSubscription.endDate
+                            .toDateTime(),
+                        false,
+                      ),
                     )
-                  : widget.description.tr(),
+                  : widget.description,
           buttonLabel: widget.subscriptionInfo != null
               ? isCanceled
-                  ? LocaleKeys.settings_billingPage_addons_renewLabel.tr()
-                  : LocaleKeys.settings_billingPage_addons_removeLabel.tr()
-              : LocaleKeys.settings_billingPage_addons_addLabel.tr(),
+                  ? '续订'
+                  : '移除'
+              : '添加',
           fontWeight: FontWeight.w500,
           minWidth: _buttonsMinWidth,
           onPressed: () async {
@@ -316,12 +292,9 @@ class _AITileState extends State<_AITile> {
               await showConfirmDialog(
                 context: context,
                 style: ConfirmPopupStyle.cancelAndOk,
-                title: LocaleKeys.settings_billingPage_addons_removeDialog_title
-                    .tr(args: [widget.plan.label]).tr(),
-                description: LocaleKeys
-                    .settings_billingPage_addons_removeDialog_description
-                    .tr(namedArgs: {"plan": widget.plan.label.tr()}),
-                confirmLabel: LocaleKeys.button_confirm.tr(),
+                title: '移除 ${widget.plan.label}',
+                description: '您确定要移除 ${widget.plan.label} 吗？ 您将立即失去 ${widget.plan.label} 的功能和权益。',
+                confirmLabel: '确认',
                 onConfirm: (_) => context
                     .read<SettingsBillingBloc>()
                     .add(SettingsBillingEvent.cancelSubscription(widget.plan)),
@@ -337,21 +310,17 @@ class _AITileState extends State<_AITile> {
         if (widget.subscriptionInfo != null) ...[
           const VSpace(10),
           SingleSettingAction(
-            label: LocaleKeys.settings_billingPage_planPeriod.tr(
-              args: [
-                widget
-                    .subscriptionInfo!.addOnSubscription.subscriptionPlan.label,
-              ],
-            ),
+            label:
+                '${widget.subscriptionInfo!.addOnSubscription.subscriptionPlan.label} 周期',
             description:
                 widget.subscriptionInfo!.addOnSubscription.interval.label,
             buttonLabel:
-                LocaleKeys.settings_billingPage_plan_periodButtonLabel.tr(),
+                '编辑期间',
             minWidth: _buttonsMinWidth,
             onPressed: () {
               enableConfirmNotifier.value = false;
               SettingsAlertDialog(
-                title: LocaleKeys.settings_billingPage_changePeriod.tr(),
+                title: '变更周期',
                 enableConfirmNotifier: enableConfirmNotifier,
                 children: [
                   ChangePeriod(
@@ -510,9 +479,7 @@ class _PeriodSelector extends StatelessWidget {
                                 vertical: 1,
                               ),
                               child: FlowyText(
-                                LocaleKeys
-                                    .settings_billingPage_currentPeriodBadge
-                                    .tr(),
+                                '目前',
                                 fontSize: 11,
                                 fontWeight: FontWeight.w500,
                                 color: Colors.white,

@@ -1,9 +1,7 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/selection_menu/mobile_selection_menu_item.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/selectable_svg_widget.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 
 import 'slash_menu_items.dart';
 
@@ -33,7 +31,7 @@ final List<SelectionMenuItem> mobileItemsInTale = [
 SelectionMenuItemHandler _handler = (_, __, ___) {};
 
 MobileSelectionMenuItem textStyleMobileSlashMenuItem = MobileSelectionMenuItem(
-  getName: LocaleKeys.document_slashMenu_name_textStyle.tr,
+  getName: () => '文本样式',
   handler: _handler,
   icon: (_, isSelected, style) => SelectableSvgWidget(
     data: FlowySvgs.slash_menu_icon_text_s,
@@ -50,7 +48,7 @@ MobileSelectionMenuItem textStyleMobileSlashMenuItem = MobileSelectionMenuItem(
 );
 
 MobileSelectionMenuItem listMobileSlashMenuItem = MobileSelectionMenuItem(
-  getName: LocaleKeys.document_slashMenu_name_list.tr,
+  getName: () => '列表',
   handler: _handler,
   icon: (_, isSelected, style) => SelectableSvgWidget(
     data: FlowySvgs.slash_menu_icon_bulleted_list_s,
@@ -66,7 +64,7 @@ MobileSelectionMenuItem listMobileSlashMenuItem = MobileSelectionMenuItem(
 );
 
 MobileSelectionMenuItem toggleListMobileSlashMenuItem = MobileSelectionMenuItem(
-  getName: LocaleKeys.document_slashMenu_name_toggle.tr,
+  getName: () => '切换',
   handler: _handler,
   icon: (_, isSelected, style) => SelectableSvgWidget(
     data: FlowySvgs.slash_menu_icon_toggle_s,
@@ -84,7 +82,7 @@ MobileSelectionMenuItem toggleListMobileSlashMenuItem = MobileSelectionMenuItem(
 
 MobileSelectionMenuItem fileAndMediaMobileSlashMenuItem =
     MobileSelectionMenuItem(
-  getName: LocaleKeys.document_slashMenu_name_fileAndMedia.tr,
+  getName: () => '文件与媒体',
   handler: _handler,
   icon: (_, isSelected, style) => SelectableSvgWidget(
     data: FlowySvgs.slash_menu_icon_file_s,
@@ -100,7 +98,7 @@ MobileSelectionMenuItem fileAndMediaMobileSlashMenuItem =
 );
 
 MobileSelectionMenuItem visualsMobileSlashMenuItem = MobileSelectionMenuItem(
-  getName: LocaleKeys.document_slashMenu_name_visuals.tr,
+  getName: () => '视觉元素',
   handler: _handler,
   icon: (_, isSelected, style) => SelectableSvgWidget(
     data: FlowySvgs.slash_menu_icon_visuals_s,
@@ -116,7 +114,7 @@ MobileSelectionMenuItem visualsMobileSlashMenuItem = MobileSelectionMenuItem(
 );
 
 MobileSelectionMenuItem advancedMobileSlashMenuItem = MobileSelectionMenuItem(
-  getName: LocaleKeys.document_slashMenu_name_advanced.tr,
+  getName: () => '高级',
   handler: _handler,
   icon: (_, isSelected, style) => SelectableSvgWidget(
     data: FlowySvgs.drag_element_s,

@@ -1,5 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -10,18 +8,18 @@ enum EditWorkspaceNameType {
   String get title {
     switch (this) {
       case EditWorkspaceNameType.create:
-        return LocaleKeys.workspace_create.tr();
+        return '新建工作区';
       case EditWorkspaceNameType.edit:
-        return LocaleKeys.workspace_renameWorkspace.tr();
+        return '重命名工作区';
     }
   }
 
   String get actionTitle {
     switch (this) {
       case EditWorkspaceNameType.create:
-        return LocaleKeys.workspace_create.tr();
+        return '新建工作区';
       case EditWorkspaceNameType.edit:
-        return LocaleKeys.button_confirm.tr();
+        return '确认';
     }
   }
 }
@@ -88,12 +86,12 @@ class _EditWorkspaceNameBottomSheetState
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               hintText:
-                  widget.hintText ?? LocaleKeys.workspace_defaultName.tr(),
+                  widget.hintText ?? '我的工作区',
             ),
             validator: widget.validator ??
                 (value) {
                   if (value == null || value.isEmpty) {
-                    return LocaleKeys.workspace_workspaceNameCannotBeEmpty.tr();
+                    return '工作区名称不可为空';
                   }
                   return null;
                 },

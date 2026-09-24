@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/application/document_data_pb_extension.dart';
 import 'package:appflowy/plugins/document/application/document_service.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mention/mention_block.dart';
@@ -20,7 +19,6 @@ import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:bloc/bloc.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:fixnum/fixnum.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -189,8 +187,8 @@ class ReminderBloc extends Bloc<ReminderEvent, ReminderState> {
               reminder: ReminderPB(
                 id: reminderId,
                 objectId: objectId,
-                title: LocaleKeys.reminderNotification_title.tr(),
-                message: LocaleKeys.reminderNotification_message.tr(),
+                title: '提醒',
+                message: '记得在你忘记之前检查一下！',
                 scheduledAt: scheduledAt,
                 isAck: scheduledAt.toDateTime().isBefore(DateTime.now()),
                 meta: meta,

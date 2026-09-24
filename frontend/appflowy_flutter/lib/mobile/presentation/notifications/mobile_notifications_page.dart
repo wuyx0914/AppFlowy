@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/user_profile/user_profile_bloc.dart';
 import 'package:appflowy/mobile/presentation/notifications/widgets/mobile_notification_tab_bar.dart';
 import 'package:appflowy/startup/startup.dart';
@@ -12,7 +11,6 @@ import 'package:appflowy/workspace/presentation/notifications/widgets/notificati
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/workspace.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -109,7 +107,7 @@ class _NotificationScreenContent extends StatelessWidget {
                 appBar: AppBar(
                   automaticallyImplyLeading: false,
                   elevation: 0,
-                  title: Text(LocaleKeys.notificationHub_mobile_title.tr()),
+                  title: Text('更新'),
                 ),
                 body: SafeArea(
                   child: Column(

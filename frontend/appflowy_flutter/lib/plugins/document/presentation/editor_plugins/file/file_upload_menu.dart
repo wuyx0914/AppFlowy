@@ -1,10 +1,8 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/patterns/common_patterns.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:cross_file/cross_file.dart';
 import 'package:desktop_drop/desktop_drop.dart';
 import 'package:dotted_border/dotted_border.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/style_widget/button.dart';
@@ -59,11 +57,11 @@ class _FileUploadMenuState extends State<FileUploadMenu> {
               ),
               tabs: [
                 _Tab(
-                  title: LocaleKeys.document_plugins_file_uploadTab.tr(),
+                  title: '上传',
                   isSelected: currentTab == 0,
                 ),
                 _Tab(
-                  title: LocaleKeys.document_plugins_file_networkTab.tr(),
+                  title: '嵌入链接',
                   isSelected: currentTab == 1,
                 ),
               ],
@@ -146,7 +144,7 @@ class _FileUploadLocalState extends State<_FileUploadLocal> {
             showDefaultBoxDecorationOnMobile: true,
             margin: const EdgeInsets.all(5),
             text: FlowyText(
-              LocaleKeys.document_plugins_file_uploadMobile.tr(),
+              '选择一个文件',
               textAlign: TextAlign.center,
               color: Theme.of(context).colorScheme.onPrimary,
             ),
@@ -191,8 +189,7 @@ class _FileUploadLocalState extends State<_FileUploadLocal> {
                       children: [
                         if (isDragging) ...[
                           FlowyText(
-                            LocaleKeys.document_plugins_file_dropFileToUpload
-                                .tr(),
+                            '拖放文件进行上传',
                             fontSize: 14,
                             fontWeight: FontWeight.w500,
                             color: Theme.of(context).hintColor,
@@ -202,9 +199,7 @@ class _FileUploadLocalState extends State<_FileUploadLocal> {
                             text: TextSpan(
                               children: [
                                 TextSpan(
-                                  text: LocaleKeys
-                                      .document_plugins_file_fileUploadHint
-                                      .tr(),
+                                  text: '拖放文件或点击以',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
@@ -212,9 +207,7 @@ class _FileUploadLocalState extends State<_FileUploadLocal> {
                                   ),
                                 ),
                                 TextSpan(
-                                  text: LocaleKeys
-                                      .document_plugins_file_fileUploadHintSuffix
-                                      .tr(),
+                                  text: '浏览',
                                   style: TextStyle(
                                     fontSize: 14,
                                     fontWeight: FontWeight.w500,
@@ -277,14 +270,14 @@ class _FileUploadNetworkState extends State<_FileUploadNetwork> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FlowyTextField(
-            hintText: LocaleKeys.document_plugins_file_networkHint.tr(),
+            hintText: '粘贴文件链接',
             onChanged: (value) => inputText = value,
             onEditingComplete: submit,
           ),
           if (!isUrlValid) ...[
             const VSpace(4),
             FlowyText(
-              LocaleKeys.document_plugins_file_networkUrlInvalid.tr(),
+              '网址无效。请检查网址并再次尝试。',
               color: Theme.of(context).colorScheme.error,
               maxLines: 3,
               textAlign: TextAlign.start,
@@ -300,7 +293,7 @@ class _FileUploadNetworkState extends State<_FileUploadNetwork> {
               showDefaultBoxDecorationOnMobile: true,
               margin: const EdgeInsets.all(5),
               text: FlowyText(
-                LocaleKeys.document_plugins_file_networkAction.tr(),
+                '嵌入',
                 textAlign: TextAlign.center,
                 color: Theme.of(context).colorScheme.onPrimary,
               ),

@@ -1,12 +1,10 @@
 import 'dart:async';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/inline_actions/inline_actions_menu.dart';
 import 'package:appflowy/plugins/inline_actions/inline_actions_result.dart';
 import 'package:appflowy/plugins/inline_actions/inline_actions_service.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flutter/material.dart';
 
@@ -171,7 +169,7 @@ class _MobileInlineActionsHandlerState
             ? SizedBox(
                 width: 150,
                 child: FlowyText.regular(
-                  LocaleKeys.inlineActions_noResults.tr(),
+                  '没有结果',
                 ),
               )
             : SingleChildScrollView(

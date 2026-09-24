@@ -1,7 +1,5 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar_actions.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -40,12 +38,12 @@ enum MobileBlockActionType {
 
   String get i18n {
     return switch (this) {
-      MobileBlockActionType.delete => LocaleKeys.button_delete.tr(),
-      MobileBlockActionType.duplicate => LocaleKeys.button_duplicate.tr(),
-      MobileBlockActionType.insertAbove => LocaleKeys.button_insertAbove.tr(),
-      MobileBlockActionType.insertBelow => LocaleKeys.button_insertBelow.tr(),
+      MobileBlockActionType.delete => '删除',
+      MobileBlockActionType.duplicate => '复制',
+      MobileBlockActionType.insertAbove => '在上方插入',
+      MobileBlockActionType.insertBelow => '在下方插入',
       MobileBlockActionType.color =>
-        LocaleKeys.document_plugins_optionAction_color.tr(),
+        '颜色',
     };
   }
 }
@@ -67,7 +65,7 @@ class MobileBlockSettingsScreen extends StatelessWidget {
       appBar: AppBar(
         titleSpacing: 0,
         title: FlowyText.semibold(
-          LocaleKeys.titleBar_actions.tr(),
+          '操作',
           fontSize: 14.0,
         ),
         leading: const AppBarBackButton(),

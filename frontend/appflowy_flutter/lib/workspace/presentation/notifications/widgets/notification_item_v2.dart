@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/application/notification/notification_reminder_bloc.dart';
 import 'package:appflowy/mobile/presentation/notifications/widgets/widgets.dart';
 import 'package:appflowy/plugins/document/application/document_data_pb_extension.dart';
@@ -16,7 +15,6 @@ import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flowy_infra_ui/style_widget/hover.dart';
 import 'package:flutter/material.dart';
@@ -141,7 +139,7 @@ class NotificationItemV2 extends StatelessWidget {
         height: 28,
         decoration: decoration,
         child: FlowyIconButton(
-          tooltipText: LocaleKeys.notificationHub_unarchiveTooltip.tr(),
+          tooltipText: '取消将此通知归档',
           icon: FlowySvg(FlowySvgs.notification_unarchive_s),
           onPressed: () {
             context.read<ReminderBloc>().add(
@@ -165,7 +163,7 @@ class NotificationItemV2 extends StatelessWidget {
           children: [
             if (!reminder.isRead) ...[
               FlowyIconButton(
-                tooltipText: LocaleKeys.notificationHub_markAsReadTooltip.tr(),
+                tooltipText: '此通知标记为已读取',
                 icon: FlowySvg(FlowySvgs.notification_markasread_s),
                 width: 24,
                 height: 24,
@@ -181,14 +179,14 @@ class NotificationItemV2 extends StatelessWidget {
 
                   showToastNotification(
                     message:
-                        LocaleKeys.notificationHub_markAsReadSucceedToast.tr(),
+                        '已成功标记为已读取',
                   );
                 },
               ),
               HSpace(6),
             ],
             FlowyIconButton(
-              tooltipText: LocaleKeys.notificationHub_archivedTooltip.tr(),
+              tooltipText: '将此通知归档',
               icon: FlowySvg(
                 FlowySvgs.notification_archive_s,
               ),
@@ -206,8 +204,7 @@ class NotificationItemV2 extends StatelessWidget {
                     );
 
                 showToastNotification(
-                  message: LocaleKeys.notificationHub_markAsArchivedSucceedToast
-                      .tr(),
+                  message: '已成功归档',
                 );
               },
             ),

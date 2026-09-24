@@ -1,4 +1,3 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/notifications/widgets/widgets.dart';
 import 'package:appflowy/shared/list_extension.dart';
 import 'package:appflowy/user/application/reminder/reminder_bloc.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/workspace/presentation/notifications/widgets/notificati
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/appflowy_backend.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -75,7 +73,7 @@ class _NotificationTabState extends State<NotificationTab>
 
     if (context.mounted) {
       showToastNotification(
-        message: LocaleKeys.settings_notifications_refreshSuccess.tr(),
+        message: '成功刷新通知',
       );
     }
   }

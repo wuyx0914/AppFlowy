@@ -1,10 +1,8 @@
 import 'dart:math';
 
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/base/emoji/emoji_picker.dart';
 import 'package:appflowy/shared/icon_emoji_picker/emoji_skin_tone.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 
 import 'package:flowy_infra_ui/style_widget/button.dart';
@@ -141,7 +139,7 @@ class _EmojiHandlerState extends State<EmojiHandler> {
         width: 400,
         height: emojiHeight,
         child: Center(
-          child: FlowyText.regular(LocaleKeys.inlineActions_noResults.tr()),
+          child: FlowyText.regular('没有结果'),
         ),
       );
     }

@@ -1,9 +1,7 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/database/application/field/filter_entities.dart';
 import 'package:appflowy/plugins/database/grid/application/filter/filter_editor_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_backend/protobuf/flowy-database2/checklist_filter.pbenum.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -160,9 +158,9 @@ extension ChecklistFilterConditionPBExtension on ChecklistFilterConditionPB {
   String get filterName {
     switch (this) {
       case ChecklistFilterConditionPB.IsComplete:
-        return LocaleKeys.grid_checklistFilter_isComplete.tr();
+        return '已完成';
       case ChecklistFilterConditionPB.IsIncomplete:
-        return LocaleKeys.grid_checklistFilter_isIncomplted.tr();
+        return '未完成';
       default:
         return "";
     }

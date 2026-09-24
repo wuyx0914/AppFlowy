@@ -1,12 +1,10 @@
 import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/animated_gesture.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
 import 'package:flutter/gestures.dart';
@@ -45,7 +43,7 @@ class _MobileSyncErrorPage extends StatelessWidget {
       onTapUp: () {
         getIt<ClipboardService>().setPlainText(error.toString());
         showToastNotification(
-          message: LocaleKeys.message_copy_success.tr(),
+          message: '已复制',
           bottomPadding: 0,
         );
       },
@@ -59,14 +57,14 @@ class _MobileSyncErrorPage extends StatelessWidget {
           ),
           const VSpace(16.0),
           FlowyText.medium(
-            LocaleKeys.error_syncError.tr(),
+            '数据尚未从其他设备同步',
             fontSize: 15,
           ),
           const VSpace(8.0),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24.0),
             child: FlowyText.regular(
-              LocaleKeys.error_syncErrorHint.tr(),
+              '请在上次编辑的设备上重新打开此页面，然后在目前的设备上再次打开它。',
               fontSize: 13,
               color: Theme.of(context).hintColor,
               textAlign: TextAlign.center,
@@ -75,7 +73,7 @@ class _MobileSyncErrorPage extends StatelessWidget {
           ),
           const VSpace(2.0),
           FlowyText.regular(
-            '(${LocaleKeys.error_clickToCopy.tr()})',
+            '(${'点击以拷贝错误码'})',
             fontSize: 13,
             color: Theme.of(context).hintColor,
             textAlign: TextAlign.center,
@@ -100,7 +98,7 @@ class _DesktopSyncErrorPage extends StatelessWidget {
       onTapUp: () {
         getIt<ClipboardService>().setPlainText(error.toString());
         showToastNotification(
-          message: LocaleKeys.message_copy_success.tr(),
+          message: '已复制',
           bottomPadding: 0,
         );
       },
@@ -122,7 +120,7 @@ class _DesktopSyncErrorPage extends StatelessWidget {
             text: TextSpan(
               children: [
                 TextSpan(
-                  text: LocaleKeys.errorDialog_howToFixFallbackHint1.tr(),
+                  text: '对于造成的不便，我们深感抱歉！在我们的...上提交问题。',
                   style: TextStyle(
                     fontSize: 14,
                     color: Theme.of(context).hintColor,
@@ -143,7 +141,7 @@ class _DesktopSyncErrorPage extends StatelessWidget {
                     },
                 ),
                 TextSpan(
-                  text: LocaleKeys.errorDialog_howToFixFallbackHint2.tr(),
+                  text: ' 页面描述您的错误。',
                   style: TextStyle(
                     fontSize: 14,
                     color: Theme.of(context).hintColor,
@@ -154,7 +152,7 @@ class _DesktopSyncErrorPage extends StatelessWidget {
           ),
           const VSpace(8.0),
           FlowyText.regular(
-            '(${LocaleKeys.error_clickToCopy.tr()})',
+            '(${'点击以拷贝错误码'})',
             fontSize: 14,
             color: Theme.of(context).hintColor,
             textAlign: TextAlign.center,

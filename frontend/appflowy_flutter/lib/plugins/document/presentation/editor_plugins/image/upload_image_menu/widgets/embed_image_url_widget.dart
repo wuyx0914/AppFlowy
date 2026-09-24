@@ -1,6 +1,4 @@
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/patterns/common_patterns.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_platform/universal_platform.dart';
@@ -24,7 +22,7 @@ class _EmbedImageUrlWidgetState extends State<EmbedImageUrlWidget> {
   @override
   Widget build(BuildContext context) {
     final textField = FlowyTextField(
-      hintText: LocaleKeys.document_imageBlock_embedLink_placeholder.tr(),
+      hintText: '粘贴或输入图像链接',
       onChanged: (value) => inputText = value,
       onEditingComplete: submit,
       textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
@@ -47,7 +45,7 @@ class _EmbedImageUrlWidgetState extends State<EmbedImageUrlWidget> {
         if (!isUrlValid) ...[
           const VSpace(12),
           FlowyText(
-            LocaleKeys.document_plugins_cover_invalidImageUrl.tr(),
+            '无效的图像网址',
             color: Theme.of(context).colorScheme.error,
           ),
         ],
@@ -64,7 +62,7 @@ class _EmbedImageUrlWidgetState extends State<EmbedImageUrlWidget> {
                 UniversalPlatform.isMobile ? BorderRadius.circular(8) : null,
             margin: const EdgeInsets.all(5),
             text: FlowyText(
-              LocaleKeys.document_imageBlock_embedLink_label.tr(),
+              '内嵌链接',
               lineHeight: 1,
               textAlign: TextAlign.center,
               color: UniversalPlatform.isMobile

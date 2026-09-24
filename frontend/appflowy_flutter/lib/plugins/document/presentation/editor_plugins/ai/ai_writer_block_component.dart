@@ -1,12 +1,10 @@
 import 'package:appflowy/ai/ai.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/ai_chat/presentation/message/ai_markdown_text.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/application/view/view_bloc.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -533,8 +531,8 @@ class MainContentArea extends StatelessWidget {
                 Expanded(
                   child: AILoadingIndicator(
                     text: state.command == AiWriterCommand.explain
-                        ? LocaleKeys.ai_analyzing.tr()
-                        : LocaleKeys.ai_editing.tr(),
+                        ? '分析中'
+                        : '编辑中',
                   ),
                 ),
                 const HSpace(8.0),
@@ -580,9 +578,9 @@ class MainContentArea extends StatelessWidget {
         if (state is LocalAIStreamingAiWriterState) {
           final text = switch (state.state) {
             LocalAIStreamingState.notReady =>
-              LocaleKeys.settings_aiPage_keys_localAINotReadyRetryLater.tr(),
+              '本地 AI 正在初始化，请稍后重试',
             LocalAIStreamingState.disabled =>
-              LocaleKeys.settings_aiPage_keys_localAIDisabled.tr(),
+              '您正在使用本地 AI，但已停用。请前往设置激活它或尝试不同的模型',
           };
           return Padding(
             padding: EdgeInsets.all(8.0),

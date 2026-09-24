@@ -1,12 +1,10 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/actions/block_action_option_cubit.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/toolbar_item/text_suggestions_toolbar_item.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_editor/appflowy_editor.dart'
     hide QuoteBlockKeys, quoteNode;
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -84,7 +82,7 @@ class _TurnInfoButtonState extends State<TurnInfoButton> {
         itemHeight: ActionListSizes.itemHeight,
         // todo(lucas): replace the svg with the correct one
         leftIcon: const FlowySvg(FlowySvgs.turninto_s),
-        name: LocaleKeys.document_plugins_optionAction_turnInto.tr(),
+        name: '变成',
         onTap: () {
           if (!isOpen) {
             innerController.show();
@@ -219,7 +217,7 @@ class TurnIntoOptionMenu extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         buildSubTitle(
-          LocaleKeys.document_toolbar_suggestions.tr(),
+          '建议事项',
           textColor,
         ),
         ...List.generate(suggestionItems.length, (index) {
@@ -229,7 +227,7 @@ class TurnIntoOptionMenu extends StatelessWidget {
             editorState,
           );
         }),
-        buildSubTitle(LocaleKeys.document_toolbar_turnInto.tr(), textColor),
+        buildSubTitle('变成', textColor),
         ...List.generate(turnIntoItems.length, (index) {
           return buildItem(
             turnIntoItems[index],

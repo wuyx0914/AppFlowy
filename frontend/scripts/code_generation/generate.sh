@@ -41,15 +41,6 @@ original_dir=$(pwd)
 # Change the current working directory to the script's location
 cd "$(dirname "$0")"
 
-# Call the script in the 'language_files' folder
-cd language_files
-# Allow execution permissions on CI
-chmod +x ./generate_language_files.sh
-# Pass the arguments to the script
-./generate_language_files.sh "${args[@]}"
-
-# Return to the main script directory
-cd ..
 
 # Call the script in the 'flowy_icons' folder
 cd flowy_icons

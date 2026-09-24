@@ -1,6 +1,5 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/mobile/presentation/base/animated_gesture.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
@@ -9,7 +8,6 @@ import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/workspace/_sidebar_workspace_icon.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -92,7 +90,7 @@ class _CreateWorkspaceButton extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.only(left: 16.0),
             child: FlowyText.medium(
-              LocaleKeys.workspace_create.tr(),
+              '新建工作区',
               fontSize: 14,
             ),
           ),
@@ -105,7 +103,7 @@ class _CreateWorkspaceButton extends StatelessWidget {
     showMobileBottomSheet(
       context,
       showHeader: true,
-      title: LocaleKeys.workspace_create.tr(),
+      title: '新建工作区',
       showCloseButton: true,
       showDragHandle: true,
       showDivider: false,
@@ -113,7 +111,7 @@ class _CreateWorkspaceButton extends StatelessWidget {
       builder: (bottomSheetContext) {
         return EditWorkspaceNameBottomSheet(
           type: EditWorkspaceNameType.create,
-          workspaceName: LocaleKeys.workspace_defaultName.tr(),
+          workspaceName: '我的工作区',
           onSubmitted: (name) {
             // create a new workspace
             Log.info('create a new workspace: $name');
@@ -367,7 +365,7 @@ class _WorkspaceMenuItemTrailing extends StatelessWidget {
     showMobileBottomSheet(
       context,
       showHeader: true,
-      title: LocaleKeys.workspace_renameWorkspace.tr(),
+      title: '重命名工作区',
       showCloseButton: true,
       showDragHandle: true,
       showDivider: false,
@@ -398,9 +396,9 @@ class _WorkspaceMenuItemTrailing extends StatelessWidget {
 
     _showConfirmDialog(
       context,
-      '${LocaleKeys.space_delete.tr()}: ${workspace.name}',
-      LocaleKeys.workspace_deleteWorkspaceHintText.tr(),
-      LocaleKeys.button_delete.tr(),
+      '${'删除'}: ${workspace.name}',
+      '您确定要删除这个工作区嘛？这个操作不可恢复。',
+      '删除',
       (_) async {
         context.read<UserWorkspaceBloc>().add(
               UserWorkspaceEvent.deleteWorkspace(
@@ -428,7 +426,7 @@ class _WorkspaceMenuItemTrailing extends StatelessWidget {
         maxLines: 10,
       ),
       leftButton: FlowyText(
-        LocaleKeys.button_cancel.tr(),
+        '取消',
         fontSize: 17.0,
         figmaLineHeight: 24.0,
         fontWeight: FontWeight.w500,

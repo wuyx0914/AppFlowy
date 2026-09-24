@@ -7,13 +7,10 @@ import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/shared_w
 import 'package:appflowy/workspace/presentation/settings/widgets/cancel_plan_survey_dialog.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../../../../generated/locale_keys.g.dart';
 
 class SettingsPlanComparisonDialog extends StatefulWidget {
   const SettingsPlanComparisonDialog({
@@ -68,12 +65,9 @@ class _SettingsPlanComparisonDialogState
         if (readyState.successfulPlanUpgrade != null) {
           showConfirmDialog(
             context: context,
-            title: LocaleKeys.settings_comparePlanDialog_paymentSuccess_title
-                .tr(args: [readyState.successfulPlanUpgrade!.label]),
-            description: LocaleKeys
-                .settings_comparePlanDialog_paymentSuccess_description
-                .tr(args: [readyState.successfulPlanUpgrade!.label]),
-            confirmLabel: LocaleKeys.button_close.tr(),
+            title: '您现在在{readyState.successfulPlanUpgrade!.label}方案中!',
+            description: '您的付款已成功处理，您的方案已升级至 @:appName {readyState.successfulPlanUpgrade!.label}。 您可以在方案页面查看您的方案详细信息。',
+            confirmLabel: '关闭',
             onConfirm: (_) {},
           );
         }
@@ -91,7 +85,7 @@ class _SettingsPlanComparisonDialogState
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   FlowyText.semibold(
-                    LocaleKeys.settings_comparePlanDialog_title.tr(),
+                    '比较并选择方案',
                     fontSize: 24,
                     color: AFThemeExtension.of(context).strongText,
                   ),
@@ -142,9 +136,7 @@ class _SettingsPlanComparisonDialogState
                                 SizedBox(
                                   height: 116,
                                   child: FlowyText.semibold(
-                                    LocaleKeys
-                                        .settings_comparePlanDialog_planFeatures
-                                        .tr(),
+                                    '方案\n功能',
                                     fontSize: 24,
                                     maxLines: 2,
                                     color: isLM
@@ -164,22 +156,10 @@ class _SettingsPlanComparisonDialogState
                             ),
                           ),
                           _PlanTable(
-                            title: LocaleKeys
-                                .settings_comparePlanDialog_freePlan_title
-                                .tr(),
-                            description: LocaleKeys
-                                .settings_comparePlanDialog_freePlan_description
-                                .tr(),
-                            price: LocaleKeys
-                                .settings_comparePlanDialog_freePlan_price
-                                .tr(
-                              args: [
-                                SubscriptionPlanPB.Free.priceMonthBilling,
-                              ],
-                            ),
-                            priceInfo: LocaleKeys
-                                .settings_comparePlanDialog_freePlan_priceInfo
-                                .tr(),
+                            title: '免费版',
+                            description: '适用于最多 2 名成员，以整理所有事务',
+                            price: '{SubscriptionPlanPB.Free.priceMonthBilling}',
+                            priceInfo: '永远免费',
                             cells: _freeLabels,
                             isCurrent:
                                 currentInfo.plan == WorkspacePlanPB.FreePlan,
@@ -201,15 +181,9 @@ class _SettingsPlanComparisonDialogState
 
                               await showConfirmDialog(
                                 context: context,
-                                title: LocaleKeys
-                                    .settings_comparePlanDialog_downgradeDialog_title
-                                    .tr(args: [currentInfo.label]),
-                                description: LocaleKeys
-                                    .settings_comparePlanDialog_downgradeDialog_description
-                                    .tr(),
-                                confirmLabel: LocaleKeys
-                                    .settings_comparePlanDialog_downgradeDialog_downgradeLabel
-                                    .tr(),
+                                title: '您确定要降级您的方案吗?',
+                                description: '降级您的方案将会让您回归至免费方案。成员可能会失去访问这个工作区的权限，您可能需要释放空间以符合免费方案的保存空间限制。',
+                                confirmLabel: '降级计划',
                                 style: ConfirmPopupStyle.cancelAndOk,
                                 onConfirm: (_) =>
                                     context.read<SettingsPlanBloc>().add(
@@ -221,22 +195,10 @@ class _SettingsPlanComparisonDialogState
                             },
                           ),
                           _PlanTable(
-                            title: LocaleKeys
-                                .settings_comparePlanDialog_proPlan_title
-                                .tr(),
-                            description: LocaleKeys
-                                .settings_comparePlanDialog_proPlan_description
-                                .tr(),
-                            price: LocaleKeys
-                                .settings_comparePlanDialog_proPlan_price
-                                .tr(
-                              args: [SubscriptionPlanPB.Pro.priceAnnualBilling],
-                            ),
-                            priceInfo: LocaleKeys
-                                .settings_comparePlanDialog_proPlan_priceInfo
-                                .tr(
-                              args: [SubscriptionPlanPB.Pro.priceMonthBilling],
-                            ),
+                            title: '专业版',
+                            description: '适合小型团队，用来管理项目与团队知识',
+                            price: '${SubscriptionPlanPB.Pro.priceAnnualBilling}',
+                            priceInfo: '每位用户每月按年计费\n\n${SubscriptionPlanPB.Pro.priceMonthBilling} 按月计费',
                             cells: _proLabels,
                             isCurrent:
                                 currentInfo.plan == WorkspacePlanPB.ProPlan,
@@ -371,11 +333,8 @@ class _PlanTable extends StatelessWidget {
                   ),
                   child: _ActionButton(
                     label: buttonType.isUpgrade
-                        ? LocaleKeys.settings_comparePlanDialog_actions_upgrade
-                            .tr()
-                        : LocaleKeys
-                            .settings_comparePlanDialog_actions_downgrade
-                            .tr(),
+                        ? '升级'
+                        : '降级',
                     onPressed: onSelected,
                     isUpgrade: buttonType.isUpgrade,
                     useGradientBorder: buttonType.isUpgrade,
@@ -414,7 +373,7 @@ class _CurrentBadge extends StatelessWidget {
       ),
       child: Center(
         child: FlowyText.medium(
-          LocaleKeys.settings_comparePlanDialog_current.tr(),
+          '目前',
           fontSize: 12,
           color: Theme.of(context).isLightMode ? Colors.white : Colors.black,
         ),
@@ -645,42 +604,40 @@ class _PlanItem {
 
 final _planLabels = [
   _PlanItem(
-    label: LocaleKeys.settings_comparePlanDialog_planLabels_itemOne.tr(),
+    label: '工作区',
   ),
   _PlanItem(
-    label: LocaleKeys.settings_comparePlanDialog_planLabels_itemTwo.tr(),
+    label: '成员',
   ),
   _PlanItem(
-    label: LocaleKeys.settings_comparePlanDialog_planLabels_itemThree.tr(),
+    label: '保存空间',
   ),
   _PlanItem(
-    label: LocaleKeys.settings_comparePlanDialog_planLabels_itemFour.tr(),
+    label: '即时协作',
   ),
   _PlanItem(
-    label: LocaleKeys.settings_comparePlanDialog_planLabels_itemFive.tr(),
-    tooltip: LocaleKeys.settings_comparePlanDialog_planLabels_tooltipFive.tr(),
-  ),
-  _PlanItem(
-    label:
-        LocaleKeys.settings_comparePlanDialog_planLabels_intelligentSearch.tr(),
-  ),
-  _PlanItem(
-    label: LocaleKeys.settings_comparePlanDialog_planLabels_itemSix.tr(),
-    tooltip: LocaleKeys.settings_comparePlanDialog_planLabels_tooltipSix.tr(),
-  ),
-  _PlanItem(
-    label: LocaleKeys.settings_comparePlanDialog_planLabels_itemSeven.tr(),
-    tooltip: LocaleKeys.settings_comparePlanDialog_planLabels_tooltipSix.tr(),
-  ),
-  _PlanItem(
-    label: LocaleKeys.settings_comparePlanDialog_planLabels_itemFileUpload.tr(),
+    label: '客户编辑器',
+    tooltip: '与非会员共同编辑特定页面',
   ),
   _PlanItem(
     label:
-        LocaleKeys.settings_comparePlanDialog_planLabels_customNamespace.tr(),
-    tooltip: LocaleKeys
-        .settings_comparePlanDialog_planLabels_customNamespaceTooltip
-        .tr(),
+        '智能搜索',
+  ),
+  _PlanItem(
+    label: 'AI 回应',
+    tooltip: '终身代表回应次数永远不会重设',
+  ),
+  _PlanItem(
+    label: 'AI 图像',
+    tooltip: '终身代表回应次数永远不会重设',
+  ),
+  _PlanItem(
+    label: '文件上传',
+  ),
+  _PlanItem(
+    label:
+        '自订命名空间',
+    tooltip: '自订发布网站网址',
   ),
 ];
 
@@ -693,34 +650,34 @@ class _CellItem {
 
 final List<_CellItem> _freeLabels = [
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_freeLabels_itemOne.tr(),
+    label: '每个工作区收取费用',
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_freeLabels_itemTwo.tr(),
+    label: '最多 2 个',
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_freeLabels_itemThree.tr(),
+    label: '5 GB',
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_freeLabels_itemFour.tr(),
+    label: '是的',
     icon: FlowySvgs.check_m,
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_freeLabels_itemFive.tr(),
+    label: '是的',
   ),
   _CellItem(
     label:
-        LocaleKeys.settings_comparePlanDialog_freeLabels_intelligentSearch.tr(),
+        '智能搜索',
     icon: FlowySvgs.check_m,
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_freeLabels_itemSix.tr(),
+    label: '终身 10 次',
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_freeLabels_itemSeven.tr(),
+    label: '终身 2 次',
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_freeLabels_itemFileUpload.tr(),
+    label: '最多 7 MB',
   ),
   const _CellItem(
     label: '',
@@ -729,34 +686,34 @@ final List<_CellItem> _freeLabels = [
 
 final List<_CellItem> _proLabels = [
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_proLabels_itemOne.tr(),
+    label: '每个工作区收取费用',
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_proLabels_itemTwo.tr(),
+    label: '最多十个',
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_proLabels_itemThree.tr(),
+    label: '无限',
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_proLabels_itemFour.tr(),
+    label: '是',
     icon: FlowySvgs.check_m,
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_proLabels_itemFive.tr(),
+    label: '是',
   ),
   _CellItem(
     label:
-        LocaleKeys.settings_comparePlanDialog_proLabels_intelligentSearch.tr(),
+        '智能搜索',
     icon: FlowySvgs.check_m,
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_proLabels_itemSix.tr(),
+    label: '无限',
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_proLabels_itemSeven.tr(),
+    label: '每月 50 张图片',
   ),
   _CellItem(
-    label: LocaleKeys.settings_comparePlanDialog_proLabels_itemFileUpload.tr(),
+    label: '无限',
   ),
   const _CellItem(
     label: '',

@@ -1,5 +1,4 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/align_toolbar_item/custom_text_align_command.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/string_extension.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/custom_copy_command.dart';
@@ -18,7 +17,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:appflowy_editor_plugins/appflowy_editor_plugins.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra/theme_extension.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -46,7 +44,7 @@ class _SettingsShortcutsViewState extends State<SettingsShortcutsView> {
           ShortcutsCubit(SettingsShortcutService())..fetchShortcuts(),
       child: Builder(
         builder: (context) => SettingsBody(
-          title: LocaleKeys.settings_shortcutsPage_title.tr(),
+          title: '快捷键',
           autoSeparate: false,
           children: [
             Row(
@@ -61,14 +59,9 @@ class _SettingsShortcutsViewState extends State<SettingsShortcutsView> {
                   onReset: () {
                     showConfirmDialog(
                       context: context,
-                      title: LocaleKeys.settings_shortcutsPage_resetDialog_title
-                          .tr(),
-                      description: LocaleKeys
-                          .settings_shortcutsPage_resetDialog_description
-                          .tr(),
-                      confirmLabel: LocaleKeys
-                          .settings_shortcutsPage_resetDialog_buttonLabel
-                          .tr(),
+                      title: '重置快捷键',
+                      description: '这将会将所有按键绑定重置为默认，之后无法撤销。你确定要继续吗？',
+                      confirmLabel: '重设',
                       onConfirm: (_) {
                         context.read<ShortcutsCubit>().resetToDefault();
                         Navigator.of(context).pop();
@@ -96,11 +89,8 @@ class _SettingsShortcutsViewState extends State<SettingsShortcutsView> {
                       const CircularProgressIndicator(),
                     ] else if (state.status.isFailure) ...[
                       FlowyErrorPage.message(
-                        LocaleKeys.settings_shortcutsPage_errorPage_message
-                            .tr(args: [state.error]),
-                        howToFix: LocaleKeys
-                            .settings_shortcutsPage_errorPage_howToFix
-                            .tr(),
+                        '加载快捷键失败: {state.error}',
+                        howToFix: '请再次尝试，如果该问题依然存在，请在 Github 上联系我们',
                       ),
                     ] else ...[
                       ListView.builder(
@@ -137,7 +127,7 @@ class _SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AFTextField(
       onChanged: onSearchChanged,
-      hintText: LocaleKeys.settings_shortcutsPage_searchHint.tr(),
+      hintText: '搜索',
     );
   }
 }
@@ -168,7 +158,7 @@ class _ResetButton extends StatelessWidget {
               SizedBox(
                 height: 16,
                 child: FlowyText.regular(
-                  LocaleKeys.settings_shortcutsPage_actions_resetDefault.tr(),
+                  '重置为默认',
                   color: AFThemeExtension.of(context).strongText,
                 ),
               ),
@@ -231,16 +221,13 @@ class _ShortcutSettingTileState extends State<ShortcutSettingTile> {
           if (conflict != null) {
             canClickOutside = true;
             SettingsAlertDialog(
-              title: LocaleKeys.settings_shortcutsPage_conflictDialog_title
-                  .tr(args: [keybindController.text]),
+              title: '{keybindController.text} 目前正在使用中',
               confirm: () {
                 conflict.clearCommand();
                 _updateCommand();
                 Navigator.of(context).pop();
               },
-              confirmLabel: LocaleKeys
-                  .settings_shortcutsPage_conflictDialog_confirmLabel
-                  .tr(),
+              confirmLabel: '继续',
               children: [
                 RichText(
                   textAlign: TextAlign.center,
@@ -251,9 +238,7 @@ class _ShortcutSettingTileState extends State<ShortcutSettingTile> {
                         ),
                     children: [
                       TextSpan(
-                        text: LocaleKeys
-                            .settings_shortcutsPage_conflictDialog_descriptionPrefix
-                            .tr(),
+                        text: '这个快捷键目前使用中由',
                       ),
                       TextSpan(
                         text: conflict.afLabel,
@@ -263,9 +248,7 @@ class _ShortcutSettingTileState extends State<ShortcutSettingTile> {
                             ),
                       ),
                       TextSpan(
-                        text: LocaleKeys
-                            .settings_shortcutsPage_conflictDialog_descriptionSuffix
-                            .tr(args: [keybindController.text]),
+                        text: '. 如果您取代此快捷键，它将从 {keybindController.text} 中移除。',
                       ),
                     ],
                   ),
@@ -374,7 +357,7 @@ class _ShortcutSettingTileState extends State<ShortcutSettingTile> {
               child: MouseRegion(
                 cursor: SystemMouseCursors.click,
                 child: FlowyTooltip(
-                  message: LocaleKeys.settings_shortcutsPage_editTooltip.tr(),
+                  message: '按一下以开始编辑快捷键。',
                   child: const FlowySvg(
                     FlowySvgs.edit_s,
                     size: Size.square(16),
@@ -391,7 +374,7 @@ class _ShortcutSettingTileState extends State<ShortcutSettingTile> {
         child: FlowyTextField(
           focusNode: focusNode,
           controller: keybindController,
-          hintText: LocaleKeys.settings_shortcutsPage_editBindingHint.tr(),
+          hintText: '输入新的绑定',
           onChanged: (_) => setState(() {}),
           suffixIcon: keybindController.text.isNotEmpty
               ? MouseRegion(
@@ -528,190 +511,161 @@ extension CommandLabel on CommandShortcutEvent {
     String? label;
 
     if (key == toggleToggleListCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_toggleToDoList.tr();
+      label = '切换至待办事项清单';
     } else if (key == insertNewParagraphNextToCodeBlockCommand('').key) {
-      label = LocaleKeys
-          .settings_shortcutsPage_keybindings_insertNewParagraphInCodeblock
-          .tr();
+      label = '插入新的段落';
     } else if (key == pasteInCodeblock('').key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_pasteInCodeblock.tr();
+          '粘贴为代码块';
     } else if (key == selectAllInCodeBlockCommand('').key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_selectAllCodeblock.tr();
+          '全选';
     } else if (key == tabToInsertSpacesInCodeBlockCommand('').key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_indentLineCodeblock
-          .tr();
+      label = '在行首插入两个空格';
     } else if (key == tabToDeleteSpacesInCodeBlockCommand('').key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_outdentLineCodeblock
-          .tr();
+      label = '删除行首的两个空格';
     } else if (key == tabSpacesAtCurosrInCodeBlockCommand('').key) {
-      label = LocaleKeys
-          .settings_shortcutsPage_keybindings_twoSpacesCursorCodeblock
-          .tr();
+      label = '在光标处插入两个空格';
     } else if (key == customCopyCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_copy.tr();
+      label = '复制选中的内容';
     } else if (key == customPasteCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_paste.tr();
+      label = '粘贴内容';
     } else if (key == customCutCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_cut.tr();
+      label = '剪切选取项目';
     } else if (key == customTextLeftAlignCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_alignLeft.tr();
+      label = '文本居左对齐';
     } else if (key == customTextCenterAlignCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_alignCenter.tr();
+      label = '文本居中对齐';
     } else if (key == customTextRightAlignCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_alignRight.tr();
+      label = '文本居右对齐';
     } else if (key == insertInlineMathEquationCommand.key) {
-      label = LocaleKeys
-          .settings_shortcutsPage_keybindings_insertInlineMathEquation
-          .tr();
+      label = '插入行内数学方程序';
     } else if (key == undoCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_undo.tr();
+      label = '撤销';
     } else if (key == redoCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_redo.tr();
+      label = '重做';
     } else if (key == convertToParagraphCommand.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_convertToParagraph.tr();
+          '将块转换为段落';
     } else if (key == backspaceCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_backspace.tr();
+      label = '删除';
     } else if (key == deleteLeftWordCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_deleteLeftWord.tr();
+      label = '删除左侧文字';
     } else if (key == deleteLeftSentenceCommand.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_deleteLeftSentence.tr();
+          '删除左侧句子';
     } else if (key == deleteCommand.key) {
       label = UniversalPlatform.isMacOS
-          ? LocaleKeys.settings_shortcutsPage_keybindings_deleteMacOS.tr()
-          : LocaleKeys.settings_shortcutsPage_keybindings_delete.tr();
+          ? '删除左侧字符'
+          : '删除右侧字符';
     } else if (key == deleteRightWordCommand.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_deleteRightWord.tr();
+          '删除右侧文字';
     } else if (key == moveCursorLeftCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorLeft.tr();
+      label = '将光标移至左侧';
     } else if (key == moveCursorToBeginCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorBeginning
-          .tr();
+      label = '将光标移至开头';
     } else if (key == moveCursorToLeftWordCommand.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_moveCursorLeftWord.tr();
+          '将光标移至文字左侧';
     } else if (key == moveCursorLeftSelectCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorLeftSelect
-          .tr();
+      label = '选取并将光标向左移动';
     } else if (key == moveCursorBeginSelectCommand.key) {
-      label = LocaleKeys
-          .settings_shortcutsPage_keybindings_moveCursorBeginSelect
-          .tr();
+      label = '选取并将光标移至开头';
     } else if (key == moveCursorLeftWordSelectCommand.key) {
-      label = LocaleKeys
-          .settings_shortcutsPage_keybindings_moveCursorLeftWordSelect
-          .tr();
+      label = '选取并将光标向左移动一个单字';
     } else if (key == moveCursorRightCommand.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_moveCursorRight.tr();
+          '将光标移至右侧';
     } else if (key == moveCursorToEndCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorEnd.tr();
+      label = '将光标移至末尾';
     } else if (key == moveCursorToRightWordCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorRightWord
-          .tr();
+      label = '将光标移至文字右侧';
     } else if (key == moveCursorRightSelectCommand.key) {
-      label = LocaleKeys
-          .settings_shortcutsPage_keybindings_moveCursorRightSelect
-          .tr();
+      label = '选取并将光标向右移动一个位置';
     } else if (key == moveCursorEndSelectCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorEndSelect
-          .tr();
+      label = '选取并将光标移至结尾';
     } else if (key == moveCursorRightWordSelectCommand.key) {
-      label = LocaleKeys
-          .settings_shortcutsPage_keybindings_moveCursorRightWordSelect
-          .tr();
+      label = '选取并将光标向右移动一个单字';
     } else if (key == moveCursorUpCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorUp.tr();
+      label = '向上移动光标';
     } else if (key == moveCursorTopSelectCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorTopSelect
-          .tr();
+      label = '选取并将光标移至顶端';
     } else if (key == moveCursorTopCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorTop.tr();
+      label = '将光标移至顶端';
     } else if (key == moveCursorUpSelectCommand.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_moveCursorUpSelect.tr();
+          '选取并将光标向上移动';
     } else if (key == moveCursorDownCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorDown.tr();
+      label = '将光标向下移动';
     } else if (key == moveCursorBottomSelectCommand.key) {
-      label = LocaleKeys
-          .settings_shortcutsPage_keybindings_moveCursorBottomSelect
-          .tr();
+      label = '选取并将光标移到底部';
     } else if (key == moveCursorBottomCommand.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_moveCursorBottom.tr();
+          '将光标移到底部';
     } else if (key == moveCursorDownSelectCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_moveCursorDownSelect
-          .tr();
+      label = '选取并将光标向下移动';
     } else if (key == homeCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_home.tr();
+      label = '滚动至顶部';
     } else if (key == endCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_end.tr();
+      label = '滚动至底部';
     } else if (key == toggleBoldCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_toggleBold.tr();
+      label = '切换粗体';
     } else if (key == toggleItalicCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_toggleItalic.tr();
+      label = '切换斜体';
     } else if (key == toggleUnderlineCommand.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_toggleUnderline.tr();
+          '切换底线';
     } else if (key == toggleStrikethroughCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_toggleStrikethrough
-          .tr();
+      label = '切换删除线';
     } else if (key == toggleCodeCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_toggleCode.tr();
+      label = '切换行内代码';
     } else if (key == toggleHighlightCommand.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_toggleHighlight.tr();
+          '切换标示重点';
     } else if (key == showLinkMenuCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_showLinkMenu.tr();
+      label = '显示链接菜单';
     } else if (key == openInlineLinkCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_openInlineLink.tr();
+      label = '打开行内链接';
     } else if (key == openLinksCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_openLinks.tr();
+      label = '打开所有已选取的链接';
     } else if (key == indentCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_indent.tr();
+      label = '缩进';
     } else if (key == outdentCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_outdent.tr();
+      label = '取消缩进';
     } else if (key == exitEditingCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_exit.tr();
+      label = '结束编辑模式';
     } else if (key == pageUpCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_pageUp.tr();
+      label = '向上滚动一页';
     } else if (key == pageDownCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_pageDown.tr();
+      label = '向下滚动一页';
     } else if (key == selectAllCommand.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_selectAll.tr();
+      label = '全选';
     } else if (key == pasteTextWithoutFormattingCommand.key) {
-      label = LocaleKeys
-          .settings_shortcutsPage_keybindings_pasteWithoutFormatting
-          .tr();
+      label = '粘贴内容，不含格式';
     } else if (key == emojiShortcutEvent.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_showEmojiPicker.tr();
+          '显示表情符号选择器';
     } else if (key == enterInTableCell.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_enterInTableCell.tr();
+          '在表格中添加换行符号';
     } else if (key == leftInTableCell.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_leftInTableCell.tr();
+          '在表格中向左移动一个保存格';
     } else if (key == rightInTableCell.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_rightInTableCell.tr();
+          '在表格中向右移动一个保存格';
     } else if (key == upInTableCell.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_upInTableCell.tr();
+      label = '在表格中向上移动一个保存格';
     } else if (key == downInTableCell.key) {
       label =
-          LocaleKeys.settings_shortcutsPage_keybindings_downInTableCell.tr();
+          '在表格中向下移动一个保存格';
     } else if (key == tabInTableCell.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_tabInTableCell.tr();
+      label = '前往表格中的下一个可用保存格';
     } else if (key == shiftTabInTableCell.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_shiftTabInTableCell
-          .tr();
+      label = '前往表格中先前可用的保存格';
     } else if (key == backSpaceInTableCell.key) {
-      label = LocaleKeys.settings_shortcutsPage_keybindings_backSpaceInTableCell
-          .tr();
+      label = '在保存格开头停止';
     }
 
     return label ?? description?.capitalize() ?? '';

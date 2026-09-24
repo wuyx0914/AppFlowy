@@ -1,5 +1,4 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/application/favorite/favorite_bloc.dart';
 import 'package:appflowy/workspace/application/menu/sidebar_sections_bloc.dart';
@@ -8,7 +7,6 @@ import 'package:appflowy/workspace/presentation/home/menu/menu_shared_state.dart
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/favorites/favorite_folder.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/folder/_section_folder.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -85,29 +83,29 @@ class SidebarFolder extends StatelessWidget {
 class PrivateSectionFolder extends SectionFolder {
   PrivateSectionFolder({super.key, required super.views})
       : super(
-          title: LocaleKeys.sideBar_private.tr(),
+          title: '私人的',
           spaceType: FolderSpaceType.private,
-          expandButtonTooltip: LocaleKeys.sideBar_clickToHidePrivate.tr(),
-          addButtonTooltip: LocaleKeys.sideBar_addAPageToPrivate.tr(),
+          expandButtonTooltip: '点击以隐藏私人空间\n您在此处创建的页面仅对您可见',
+          addButtonTooltip: '添加页面到私人空间',
         );
 }
 
 class PublicSectionFolder extends SectionFolder {
   PublicSectionFolder({super.key, required super.views})
       : super(
-          title: LocaleKeys.sideBar_workspace.tr(),
+          title: '工作区',
           spaceType: FolderSpaceType.public,
-          expandButtonTooltip: LocaleKeys.sideBar_clickToHideWorkspace.tr(),
-          addButtonTooltip: LocaleKeys.sideBar_addAPageToWorkspace.tr(),
+          expandButtonTooltip: '点击以隐藏私人空间\n您在此处创建的页面对所有人可见',
+          addButtonTooltip: '添加页面到工作空间',
         );
 }
 
 class PersonalSectionFolder extends SectionFolder {
   PersonalSectionFolder({super.key, required super.views})
       : super(
-          title: LocaleKeys.sideBar_personal.tr(),
+          title: '个人的',
           spaceType: FolderSpaceType.public,
-          expandButtonTooltip: LocaleKeys.sideBar_clickToHidePersonal.tr(),
-          addButtonTooltip: LocaleKeys.sideBar_addAPage.tr(),
+          expandButtonTooltip: '点击隐藏个人部分',
+          addButtonTooltip: '添加页面',
         );
 }

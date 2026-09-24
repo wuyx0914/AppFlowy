@@ -1,6 +1,5 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/loading.dart';
 import 'package:appflowy/workspace/application/home/home_setting_bloc.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/shared/sidebar_setting.dart';
@@ -13,7 +12,6 @@ import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/code.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/user_profile.pb.dart';
 import 'package:collection/collection.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -142,7 +140,7 @@ class _SidebarWorkspaceState extends State<SidebarWorkspace> {
       showDialog(
         context: context,
         builder: (context) => NavigatorOkCancelDialog(
-          message: LocaleKeys.workspace_createLimitExceeded.tr(),
+          message: '您已达到账户允许的最大工作空间限制。如果您需要额外的工作空间来继续工作，请在 Github 上申请',
         ),
       );
       return;
@@ -152,33 +150,33 @@ class _SidebarWorkspaceState extends State<SidebarWorkspace> {
     switch (actionType) {
       case WorkspaceActionType.create:
         message = result.fold(
-          (s) => LocaleKeys.workspace_createSuccess.tr(),
-          (e) => '${LocaleKeys.workspace_createFailed.tr()}: ${e.msg}',
+          (s) => '工作区创建成功',
+          (e) => '${'工作区创建失败'}: ${e.msg}',
         );
         break;
       case WorkspaceActionType.delete:
         message = result.fold(
-          (s) => LocaleKeys.workspace_deleteSuccess.tr(),
-          (e) => '${LocaleKeys.workspace_deleteFailed.tr()}: ${e.msg}',
+          (s) => '工作区删除成功',
+          (e) => '${'工作区删除失败'}: ${e.msg}',
         );
         break;
       case WorkspaceActionType.open:
         message = result.fold(
-          (s) => LocaleKeys.workspace_openSuccess.tr(),
-          (e) => '${LocaleKeys.workspace_openFailed.tr()}: ${e.msg}',
+          (s) => '打开工作区成功',
+          (e) => '${'打开工作区失败'}: ${e.msg}',
         );
 
         break;
       case WorkspaceActionType.updateIcon:
         message = result.fold(
-          (s) => LocaleKeys.workspace_updateIconSuccess.tr(),
-          (e) => '${LocaleKeys.workspace_updateIconFailed.tr()}: ${e.msg}',
+          (s) => '工作区图标已修改',
+          (e) => '${'修改工作区图标失败'}: ${e.msg}',
         );
         break;
       case WorkspaceActionType.rename:
         message = result.fold(
-          (s) => LocaleKeys.workspace_renameSuccess.tr(),
-          (e) => '${LocaleKeys.workspace_renameFailed.tr()}: ${e.msg}',
+          (s) => '工作区已成功重命名',
+          (e) => '${'工作区重命名失败'}: ${e.msg}',
         );
         break;
 

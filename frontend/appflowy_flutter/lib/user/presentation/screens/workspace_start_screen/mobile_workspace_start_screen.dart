@@ -1,9 +1,7 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/generated/locale_keys.g.dart';
 import 'package:appflowy/shared/flowy_error_page.dart';
 import 'package:appflowy/workspace/application/workspace/prelude.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/workspace.pb.dart';
-import 'package:easy_localization/easy_localization.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -63,7 +61,7 @@ class _MobileWorkspaceStartScreenState
               ),
               const VSpace(spacing * 2),
               Text(
-                LocaleKeys.workspace_chooseWorkspace.tr(),
+                '选择您的工作区',
                 style: style.textTheme.displaySmall,
                 textAlign: TextAlign.center,
               ),
@@ -85,7 +83,7 @@ class _MobileWorkspaceStartScreenState
               // TODO: needs to implement create workspace in the future
               // TextButton(
               //   child: Text(
-              //     LocaleKeys.workspace_create.tr(),
+              //     '新建工作区',
               //     style: style.textTheme.labelMedium,
               //     textAlign: TextAlign.center,
               //   ),
@@ -94,7 +92,7 @@ class _MobileWorkspaceStartScreenState
               //          // same method as in desktop
               // context.read<WorkspaceBloc>().add(
               //       WorkspaceEvent.createWorkspace(
-              //         LocaleKeys.workspace_hint.tr(),
+              //         '工作区',
               //         "",
               //       ),
               //     );
@@ -121,7 +119,7 @@ class _MobileWorkspaceStartScreenState
                     selectedWorkspace!,
                   );
                 },
-                child: Text(LocaleKeys.signUp_getStartedText.tr()),
+                child: Text('开始'),
               ),
               const VSpace(spacing),
             ],
