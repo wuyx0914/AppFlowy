@@ -67,7 +67,7 @@ class _SettingsAccountViewState extends State<SettingsAccountView> {
 
               // App version
               SettingsCategory(
-                title: '关于 @:appName',
+                title: '关于 AppFlowy',
                 children: const [
                   SettingsAppVersion(),
                 ],

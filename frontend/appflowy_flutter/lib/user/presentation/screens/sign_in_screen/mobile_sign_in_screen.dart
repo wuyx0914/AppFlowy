@@ -28,7 +28,7 @@ class MobileSignInScreen extends StatelessWidget {
             child: Column(
               children: [
                 const Spacer(),
-                FlowyLogoTitle(title: '欢迎使用 @:appName'),
+                FlowyLogoTitle(title: '欢迎使用 AppFlowy'),
                 VSpace(theme.spacing.xxl),
                 // Local-only build: anonymous sign-in only.
                 const SignInAnonymousButtonV3(),

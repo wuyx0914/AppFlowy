@@ -20,7 +20,7 @@ class SettingsAppVersion extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          '@:appName 已更新!',
+          'AppFlowy 已更新!',
           style: theme.textStyle.body.enhanced(
             color: theme.textColorScheme.primary,
           ),

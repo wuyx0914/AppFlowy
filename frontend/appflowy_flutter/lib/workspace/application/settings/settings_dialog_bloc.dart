@@ -18,8 +18,12 @@ enum SettingsPage {
   manageData,
   shortcuts,
   ai,
+  // Local-only build: plan/billing/sites pages removed.
+  @Deprecated('Local-only build: unused')
   plan,
+  @Deprecated('Local-only build: unused')
   billing,
+  @Deprecated('Local-only build: unused')
   sites,
   // OLD
   notifications,

@@ -41,7 +41,7 @@ class _WorkspaceFailedScreenState extends State<WorkspaceFailedScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text('出了些问题！我们无法加载工作区。请尝试关闭所有打开的 @:appName 实例，然后重试。'),
+                Text('出了些问题！我们无法加载工作区。请尝试关闭所有打开的 AppFlowy 实例，然后重试。'),
                 const VSpace(20),
                 Row(
                   children: [

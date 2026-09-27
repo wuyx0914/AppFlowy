@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:intl/intl.dart';
 
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
@@ -161,12 +162,6 @@ class SettingsWorkspaceView extends StatelessWidget {
                   ),
                   const _DateFormatDropdown(),
                 ],
-              ),
-              const SettingsCategorySpacer(),
-
-              SettingsCategory(
-                title: '语言',
-                children: const [LanguageDropdown()],
               ),
               const SettingsCategorySpacer(),
 

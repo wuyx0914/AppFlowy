@@ -1,4 +1,5 @@
 import 'package:appflowy/features/shared_section/presentation/m_shared_section.dart';
+import 'package:intl/intl.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/mobile/application/mobile_router.dart';
 import 'package:appflowy/mobile/presentation/home/favorite_folder/favorite_space.dart';
@@ -45,7 +46,6 @@ class _MobileHomePageTabState extends State<MobileHomePageTab>
 
     mobileCreateNewPageNotifier.addListener(_createNewDocument);
     mobileCreateNewAIChatNotifier.addListener(_createNewAIChat);
-    mobileLeaveWorkspaceNotifier.addListener(_leaveWorkspace);
   }
 
   @override
@@ -55,7 +55,6 @@ class _MobileHomePageTabState extends State<MobileHomePageTab>
 
     mobileCreateNewPageNotifier.removeListener(_createNewDocument);
     mobileCreateNewAIChatNotifier.removeListener(_createNewAIChat);
-    mobileLeaveWorkspaceNotifier.removeListener(_leaveWorkspace);
 
     super.dispose();
   }
@@ -220,14 +219,5 @@ class _MobileHomePageTabState extends State<MobileHomePageTab>
     }
   }
 
-  void _leaveWorkspace() {
-    final workspaceId =
-        context.read<UserWorkspaceBloc>().state.currentWorkspace?.workspaceId;
-    if (workspaceId == null) {
-      return Log.error('Workspace ID is null');
-    }
-    context
-        .read<UserWorkspaceBloc>()
-        .add(UserWorkspaceEvent.leaveWorkspace(workspaceId: workspaceId));
-  }
+  // Local-only build: leaving workspace from mobile is not supported.
 }

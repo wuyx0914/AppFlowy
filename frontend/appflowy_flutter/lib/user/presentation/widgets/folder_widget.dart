@@ -139,7 +139,7 @@ class CreateFolderWidgetState extends State<CreateFolderWidget> {
         ),
         _FolderCard(
           title: '正在新建文件夹',
-          subtitle: '为您的 @:appName 数据文件夹选择一个名称',
+          subtitle: '为您的 AppFlowy 数据文件夹选择一个名称',
           trailing: SizedBox(
             width: 120,
             child: FlowyTextField(
@@ -275,7 +275,7 @@ class _FolderCard extends StatelessWidget {
                             padding: const EdgeInsets.all(10),
                             constraints: const BoxConstraints(maxWidth: 450),
                             child: FlowyText(
-                              '将 @:appName 数据文件夹存储在云同步文件夹（例如 Google Drive）中可能会带来风险。如果同时从多个位置访问或修改此文件夹中的数据库，可能会导致同步冲突和潜在的数据损坏',
+                              '将 AppFlowy 数据文件夹存储在云同步文件夹（例如 Google Drive）中可能会带来风险。如果同时从多个位置访问或修改此文件夹中的数据库，可能会导致同步冲突和潜在的数据损坏',
                               maxLines: null,
                             ),
                           ),

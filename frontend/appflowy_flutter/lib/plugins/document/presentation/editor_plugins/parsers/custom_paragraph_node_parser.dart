@@ -1,4 +1,5 @@
 import 'package:appflowy/plugins/document/presentation/editor_plugins/plugins.dart';
+import 'package:intl/intl.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 
 class CustomParagraphNodeParser extends NodeParser {

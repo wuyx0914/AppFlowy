@@ -164,7 +164,7 @@ class AIModelStateNotifier {
 
   static AIModelState _defaultState() => AIModelState(
         type: AiType.cloud,
-        hintText: '问 @:appName AI',
+        hintText: '问 AppFlowy AI',
         tooltip: null,
         isEditable: true,
         localAIEnabled: false,

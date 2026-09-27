@@ -717,7 +717,7 @@ class _AddOnBox extends StatelessWidget {
 //                       ),
 //                       const VSpace(8),
 //                       FlowyText.medium(
-//                         '升级即可享受专业版和团队方案 10% 的折扣！通过强大的新功能，包括 @:appName AI，提升工作区生产力。',
+//                         '升级即可享受专业版和团队方案 10% 的折扣！通过强大的新功能，包括 AppFlowy AI，提升工作区生产力。',
 //                         maxLines: 6,
 //                         color: Theme.of(context).colorScheme.tertiary,
 //                       ),
@@ -786,7 +786,7 @@ class _AddOnBox extends StatelessWidget {
 //           crossAxisAlignment: CrossAxisAlignment.start,
 //           children: [
 //             FlowyText.semibold(
-//               '添加 @:appName AI 额度',
+//               '添加 AppFlowy AI 额度',
 //               fontSize: 18,
 //               color: AFThemeExtension.of(context).secondaryTextColor,
 //             ),

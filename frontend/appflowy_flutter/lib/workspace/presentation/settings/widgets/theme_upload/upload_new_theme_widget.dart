@@ -25,7 +25,7 @@ class UploadNewThemeWidget extends StatelessWidget {
             color: AFThemeExtension.of(context).onBackground,
           ),
           FlowyText.medium(
-            '使用下面的按钮上传您自己的 @:appName 主题。',
+            '使用下面的按钮上传您自己的 AppFlowy 主题。',
             overflow: TextOverflow.ellipsis,
           ),
           ThemeUploadWidget.elementSpacer,

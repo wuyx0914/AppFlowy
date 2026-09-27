@@ -1,4 +1,5 @@
 import 'package:appflowy/generated/flowy_svgs.g.dart';
+import 'package:intl/intl.dart';
 import 'package:flowy_infra_ui/style_widget/icon_button.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';

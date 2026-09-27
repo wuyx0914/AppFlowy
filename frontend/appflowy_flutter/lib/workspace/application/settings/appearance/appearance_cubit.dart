@@ -106,7 +106,7 @@ class AppearanceSettingsCubit extends Cubit<AppearanceSettingsState> {
       if (UniversalPlatform.isMacOS) {
         showToastNotification(
           message:
-              '加载主题失败，请检查您的系统设置中的权限设置：系统设置 > 隐私与安全性 > 文件和文件夹 > @:appName',
+              '加载主题失败，请检查您的系统设置中的权限设置：系统设置 > 隐私与安全性 > 文件和文件夹 > AppFlowy',
           type: ToastificationType.error,
         );
       }

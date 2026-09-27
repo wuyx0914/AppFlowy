@@ -74,7 +74,7 @@ class FloatingAIEntry extends StatelessWidget {
         ),
         const HSpace(8),
         FlowyText(
-          '问 @:appName AI',
+          '问 AppFlowy AI',
           color: Theme.of(context).hintColor,
         ),
       ],

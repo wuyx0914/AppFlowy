@@ -117,7 +117,7 @@ class _AccountDeletionDialog extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         FlowyText.regular(
-          '请输入 "@:newSettings.myAccount.deleteAccount.confirmHint3" 以确认。',
+          '请输入 "删除我的账户" 以确认。',
           fontSize: 14.0,
           figmaLineHeight: 18.0,
           maxLines: 2,
@@ -197,7 +197,7 @@ Future<void> deleteMyAccount(
     showToastNotification(
       type: ToastificationType.warning,
       bottomPadding: bottomPadding,
-      message: '你的确认文本不匹配 "@:newSettings.myAccount.deleteAccount.confirmHint3"',
+      message: '你的确认文本不匹配 "删除我的账户"',
     );
     return;
   }

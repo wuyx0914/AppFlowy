@@ -66,7 +66,7 @@ class _SettingsPlanComparisonDialogState
           showConfirmDialog(
             context: context,
             title: '您现在在{readyState.successfulPlanUpgrade!.label}方案中!',
-            description: '您的付款已成功处理，您的方案已升级至 @:appName {readyState.successfulPlanUpgrade!.label}。 您可以在方案页面查看您的方案详细信息。',
+            description: '您的付款已成功处理，您的方案已升级至 AppFlowy {readyState.successfulPlanUpgrade!.label}。 您可以在方案页面查看您的方案详细信息。',
             confirmLabel: '关闭',
             onConfirm: (_) {},
           );

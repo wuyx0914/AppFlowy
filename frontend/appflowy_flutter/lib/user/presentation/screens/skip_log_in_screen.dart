@@ -41,7 +41,7 @@ class _SkipLogInScreenState extends State<SkipLogInScreen> {
       children: [
         const Spacer(),
         FlowyLogoTitle(
-          title: '欢迎使用 @:appName',
+          title: '欢迎使用 AppFlowy',
           logoSize: Size.square(UniversalPlatform.isMobile ? 80 : 40),
         ),
         const VSpace(32),

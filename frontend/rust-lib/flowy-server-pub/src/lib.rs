@@ -12,7 +12,7 @@ pub mod search_dto {
 
 /// The authenticator type of the current build.
 /// The local-only build always uses [AuthenticatorType::Local].
-#[derive(Debug, Clone, Copy, PartialEq, Eq, serde::Serialize, serde::Deserialize)]
+#[derive(serde_repr::Deserialize_repr, serde_repr::Serialize_repr, Debug, Clone, Copy, PartialEq, Eq)]
 #[repr(u8)]
 pub enum AuthenticatorType {
   Local = 0,
@@ -27,8 +27,14 @@ pub mod af_cloud_config {
   #[derive(Debug, Clone, Default, Serialize, Deserialize)]
   pub struct AFCloudConfiguration {
     pub base_url: String,
+    #[serde(alias = "ws_base_url", default)]
     pub ws_url: String,
+    #[serde(default)]
     pub gotrue_url: String,
+    #[serde(default)]
+    pub enable_sync_trace: bool,
+    #[serde(default)]
+    pub base_web_domain: String,
   }
 
   impl AFCloudConfiguration {

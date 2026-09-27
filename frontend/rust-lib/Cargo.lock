@@ -2657,6 +2657,7 @@ dependencies = [
  "flowy-error",
  "serde",
  "serde_json",
+ "serde_repr",
  "thiserror 1.0.64",
  "uuid",
 ]

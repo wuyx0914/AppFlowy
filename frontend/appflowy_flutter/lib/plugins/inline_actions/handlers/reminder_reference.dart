@@ -1,4 +1,5 @@
 import 'package:appflowy/date/date_service.dart';
+import 'package:intl/intl.dart';
 import 'package:appflowy/plugins/document/application/document_bloc.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/base/string_extension.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/mention/mention_block.dart';

@@ -72,7 +72,7 @@ class _SurveyState extends State<_Survey> {
                     const VSpace(12),
                     // Survey explanation
                     FlowyText(
-                      '很遗憾看到您离开。我们非常希望听到您的回馈，以帮助我们改善 @:appName。请花一点时间回答几个问题。',
+                      '很遗憾看到您离开。我们非常希望听到您的回馈，以帮助我们改善 AppFlowy。请花一点时间回答几个问题。',
                       maxLines: 3,
                     ),
                     const VSpace(8),
@@ -363,7 +363,7 @@ class _AnswerOption extends StatelessWidget {
 
 final _questionsAndAnswers = [
   _QA(
-    question: '是什么促使您取消了您的 @:appName Pro 订阅?',
+    question: '是什么促使您取消了您的 AppFlowy Pro 订阅?',
     answers: [
       '价格太高',
       '功能未达预期',
@@ -375,7 +375,7 @@ final _questionsAndAnswers = [
     lastIsOther: true,
   ),
   _QA(
-    question: '您未来考虑重新订阅 @:appName Pro 的可能性有多大?',
+    question: '您未来考虑重新订阅 AppFlowy Pro 的可能性有多大?',
     answers: [
       '非常可能',
       '稍有可能',
@@ -397,7 +397,7 @@ final _questionsAndAnswers = [
     lastIsOther: true,
   ),
   _QA(
-    question: '您如何描述您对 @:appName 的整体体验?',
+    question: '您如何描述您对 AppFlowy 的整体体验?',
     answers: [
       '极好',
       '良好',

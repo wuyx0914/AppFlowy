@@ -1,4 +1,5 @@
 import 'package:appflowy_backend/protobuf/flowy-user/date_time.pbenum.dart';
+import 'package:intl/intl.dart';
 
 extension TimeFormatter on UserTimeFormatPB {
   DateFormat get toFormat => _toFormat[this]!;

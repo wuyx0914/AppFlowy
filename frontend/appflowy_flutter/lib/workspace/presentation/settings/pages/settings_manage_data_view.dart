@@ -61,7 +61,7 @@ class SettingsManageDataView extends StatelessWidget {
 
           return SettingsBody(
             title: '管理数据',
-            description: '管理数据本地存储或将现有数据导入@:appName 。',
+            description: '管理数据本地存储或将现有数据导入 AppFlowy。',
             children: [
               SettingsCategory(
                 title:
@@ -110,7 +110,7 @@ class SettingsManageDataView extends StatelessWidget {
               SettingsCategory(
                 title: '导入数据',
                 tooltip:
-                    '从 @:appName 备份/数据文件夹导入数据',
+                    '从 AppFlowy 备份/数据文件夹导入数据',
                 children: const [_ImportDataField()],
               ),
               if (kDebugMode) ...[
@@ -277,13 +277,13 @@ class _ImportDataFieldState extends State<_ImportDataField> {
         listenWhen: (previous, current) =>
             previous.successOrFail != current.successOrFail,
         listener: (_, state) => state.successOrFail?.fold(
-          (_) => _showToast('成功导入@:appName数据文件夹'),
-          (_) => _showToast('导入 @:appName 数据文件夹失败'),
+          (_) => _showToast('成功导入AppFlowy数据文件夹'),
+          (_) => _showToast('导入 AppFlowy 数据文件夹失败'),
         ),
         builder: (context, state) {
           return SingleSettingAction(
             label:
-                '从外部 @:appName 数据文件夹复制数据',
+                '从外部 AppFlowy 数据文件夹复制数据',
             labelMaxLines: 2,
             buttonLabel:
                 '浏览文件夹',

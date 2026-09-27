@@ -21,7 +21,7 @@ class PermissionChecker {
         showFlowyMobileConfirmDialog(
           context,
           title: FlowyText.semibold(
-            '@:appName 希望访问您的图片库',
+            'AppFlowy 希望访问您的图片库',
             maxLines: 3,
             textAlign: TextAlign.center,
           ),
@@ -69,12 +69,12 @@ class PermissionChecker {
         showFlowyMobileConfirmDialog(
           context,
           title: FlowyText.semibold(
-            '@:appName 想要访问您的摄影机',
+            'AppFlowy 想要访问您的摄影机',
             maxLines: 3,
             textAlign: TextAlign.center,
           ),
           content: FlowyText(
-            '@:appName 需要访问您的相机，才能让您从相机添加图片到您的文档。',
+            'AppFlowy 需要访问您的相机，才能让您从相机添加图片到您的文档。',
             maxLines: 5,
             textAlign: TextAlign.center,
             fontSize: 12.0,

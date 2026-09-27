@@ -40,7 +40,7 @@ class _DesktopSignInScreenState extends State<DesktopSignInScreen>
 
                 // logo and title
                 FlowyLogoTitle(
-                  title: '欢迎使用 @:appName',
+                  title: '欢迎使用 AppFlowy',
                   logoSize: Size.square(36),
                 ),
                 VSpace(theme.spacing.xxl),

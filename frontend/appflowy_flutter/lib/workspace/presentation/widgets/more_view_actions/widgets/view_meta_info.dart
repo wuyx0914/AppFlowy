@@ -1,4 +1,5 @@
 import 'package:appflowy/workspace/application/settings/date_time/date_format_ext.dart';
+import 'package:intl/intl.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/date_time.pbenum.dart';
 import 'package:appflowy_editor/appflowy_editor.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';

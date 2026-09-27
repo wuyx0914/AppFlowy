@@ -1,4 +1,5 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
+import 'package:intl/intl.dart';
 import 'package:appflowy/shared/appflowy_cache_manager.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/share_log_files.dart';
@@ -140,6 +141,9 @@ class SettingsDialog extends StatelessWidget {
         );
       case SettingsPage.featureFlags:
         return const FeatureFlagsPage();
+      default:
+        // Local-only build: plan/billing/sites pages are unreachable.
+        return const SizedBox.shrink();
     }
   }
 }
