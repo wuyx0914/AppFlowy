@@ -12,7 +12,6 @@ environment:
 
 dependencies:
   any_date: ^1.0.4
-  app_links: ^6.3.3
   appflowy_backend:
     path: packages/appflowy_backend
   appflowy_board:
@@ -135,8 +134,6 @@ dependencies:
   toastification: ^2.0.0
   universal_platform: ^1.1.0
   url_launcher: ^6.1.11
-  url_protocol:
-
   # Window Manager for MacOS and Linux
   version: ^3.0.2
   xml: ^6.5.0
@@ -172,11 +169,6 @@ dev_dependencies:
 dependency_overrides:
   http: ^1.0.0
   device_info_plus: ^11.2.2
-
-  url_protocol:
-    git:
-      url: https://github.com/LucasXu0/flutter_url_protocol.git
-      commit: 737681d
 
   appflowy_editor:
     git:

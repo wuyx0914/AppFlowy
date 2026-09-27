@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:intl/intl.dart';
 
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
@@ -11,8 +10,6 @@ import 'package:appflowy/util/font_family_extension.dart';
 import 'package:appflowy/workspace/application/appearance_defaults.dart';
 import 'package:appflowy/workspace/application/settings/appearance/appearance_cubit.dart';
 import 'package:appflowy/workspace/application/settings/appearance/base_appearance.dart';
-import 'package:appflowy/workspace/application/settings/date_time/date_format_ext.dart';
-import 'package:appflowy/workspace/application/settings/date_time/time_format_ext.dart';
 import 'package:appflowy/workspace/application/settings/workspace/workspace_settings_bloc.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/space/shared_widget.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/workspace/_sidebar_workspace_icon.dart';

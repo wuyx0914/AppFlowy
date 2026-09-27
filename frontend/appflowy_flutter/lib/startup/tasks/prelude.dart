@@ -1,5 +1,4 @@
 export 'app_widget.dart';
-export 'appflowy_cloud_task.dart';
 export 'debug_task.dart';
 export 'device_info_task.dart';
 export 'feature_flag_task.dart';

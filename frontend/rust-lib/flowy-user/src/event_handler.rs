@@ -15,7 +15,6 @@ use serde_json::Value;
 use std::str::FromStr;
 use std::sync::Weak;
 use std::{convert::TryInto, sync::Arc};
-use tracing::event;
 use uuid::Uuid;
 
 fn upgrade_manager(manager: AFPluginState<Weak<UserManager>>) -> FlowyResult<Arc<UserManager>> {
@@ -301,73 +300,10 @@ pub async fn get_user_setting(
   data_result_ok(user_setting)
 }
 
-#[tracing::instrument(level = "debug", skip(data, manager), err)]
-pub async fn sign_in_with_magic_link_handler(
-  data: AFPluginData<MagicLinkSignInPB>,
-  manager: AFPluginState<Weak<UserManager>>,
-) -> Result<(), FlowyError> {
-  let manager = upgrade_manager(manager)?;
-  let params = data.into_inner();
-  manager
-    .sign_in_with_magic_link(&params.email, &params.redirect_to)
-    .await?;
-  Ok(())
-}
 
-#[tracing::instrument(level = "debug", skip(data, manager), err)]
-pub async fn sign_in_with_passcode_handler(
-  data: AFPluginData<PasscodeSignInPB>,
-  manager: AFPluginState<Weak<UserManager>>,
-) -> DataResult<GotrueTokenResponsePB, FlowyError> {
-  let manager = upgrade_manager(manager)?;
-  let params = data.into_inner();
-  let response = manager
-    .sign_in_with_passcode(&params.email, &params.passcode)
-    .await?;
-  data_result_ok(response.into())
-}
 
-#[tracing::instrument(level = "debug", skip(data, manager), err)]
-pub async fn oauth_sign_in_handler(
-  data: AFPluginData<OauthSignInPB>,
-  manager: AFPluginState<Weak<UserManager>>,
-) -> DataResult<UserProfilePB, FlowyError> {
-  let manager = upgrade_manager(manager)?;
-  let params = data.into_inner();
-  let authenticator: AuthType = params.auth_type.into();
-  let user_profile = manager
-    .sign_up(authenticator, BoxAny::new(params.map))
-    .await?;
-  data_result_ok(user_profile.into())
-}
 
-#[tracing::instrument(level = "debug", skip(data, manager), err)]
-pub async fn gen_sign_in_url_handler(
-  data: AFPluginData<SignInUrlPayloadPB>,
-  manager: AFPluginState<Weak<UserManager>>,
-) -> DataResult<SignInUrlPB, FlowyError> {
-  let manager = upgrade_manager(manager)?;
-  let params = data.into_inner();
-  let authenticator: AuthType = params.authenticator.into();
-  let sign_in_url = manager
-    .generate_sign_in_url_with_email(&authenticator, &params.email)
-    .await?;
-  data_result_ok(SignInUrlPB { sign_in_url })
-}
 
-#[tracing::instrument(level = "debug", skip_all, err)]
-pub async fn sign_in_with_provider_handler(
-  data: AFPluginData<OauthProviderPB>,
-  manager: AFPluginState<Weak<UserManager>>,
-) -> DataResult<OauthProviderDataPB, FlowyError> {
-  let manager = upgrade_manager(manager)?;
-  tracing::debug!("Sign in with provider: {:?}", data.provider.as_str());
-  let sign_in_url = manager.generate_oauth_url(data.provider.as_str()).await?;
-  event!(tracing::Level::DEBUG, "Sign in url: {}", sign_in_url);
-  data_result_ok(OauthProviderDataPB {
-    oauth_url: sign_in_url,
-  })
-}
 
 #[tracing::instrument(level = "debug", skip_all, err)]
 pub async fn set_cloud_config_handler(

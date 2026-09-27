@@ -1,9 +1,7 @@
-import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/startup/tasks/rust_sdk.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/presentation/home/toast.dart';
-import 'package:appflowy/workspace/presentation/widgets/float_bubble/social_media_section.dart';
 import 'package:appflowy/workspace/presentation/widgets/float_bubble/version_section.dart';
 import 'package:appflowy/workspace/presentation/widgets/pop_up_action.dart';
 import 'package:appflowy_popover/appflowy_popover.dart';
@@ -55,7 +53,6 @@ class _BubbleActionListState extends State<BubbleActionList> {
       BubbleAction.values.map((action) => BubbleActionWrapper(action)),
     );
 
-    actions.add(SocialMediaSection());
     actions.add(FlowyVersionSection());
 
     final (color, borderColor, shadowColor, iconColor) =
@@ -118,34 +115,8 @@ class _BubbleActionListState extends State<BubbleActionList> {
       onSelected: (action, controller) {
         if (action is BubbleActionWrapper) {
           switch (action.inner) {
-            case BubbleAction.whatsNews:
-              afLaunchUrlString('https://www.appflowy.io/what-is-new');
-              break;
-            case BubbleAction.getSupport:
-              afLaunchUrlString('https://discord.gg/9Q2xaN37tV');
-              break;
             case BubbleAction.debug:
               _DebugToast().show();
-              break;
-            case BubbleAction.shortcuts:
-              afLaunchUrlString(
-                'https://docs.appflowy.io/docs/appflowy/product/shortcuts',
-              );
-              break;
-            case BubbleAction.markdown:
-              afLaunchUrlString(
-                'https://docs.appflowy.io/docs/appflowy/product/markdown',
-              );
-              break;
-            case BubbleAction.github:
-              afLaunchUrlString(
-                'https://github.com/AppFlowy-IO/AppFlowy/issues/new/choose',
-              );
-              break;
-            case BubbleAction.helpAndDocumentation:
-              afLaunchUrlString(
-                'https://appflowy.com/guide',
-              );
               break;
           }
         }
@@ -183,13 +154,7 @@ class _DebugToast {
 }
 
 enum BubbleAction {
-  whatsNews,
-  helpAndDocumentation,
-  getSupport,
   debug,
-  shortcuts,
-  markdown,
-  github,
 }
 
 class BubbleActionWrapper extends ActionCell {
@@ -206,42 +171,15 @@ class BubbleActionWrapper extends ActionCell {
 extension QuestionBubbleExtension on BubbleAction {
   String get name {
     switch (this) {
-      case BubbleAction.whatsNews:
-        return '新功能';
-      case BubbleAction.helpAndDocumentation:
-        return '说明与文档。';
-      case BubbleAction.getSupport:
-        return '取得支持';
       case BubbleAction.debug:
         return '调试信息';
-      case BubbleAction.shortcuts:
-        return '快捷键';
-      case BubbleAction.markdown:
-        return 'Markdown';
-      case BubbleAction.github:
-        return '反馈';
     }
   }
 
   Widget? get icons {
     switch (this) {
-      case BubbleAction.whatsNews:
-        return const FlowySvg(FlowySvgs.star_s);
-      case BubbleAction.helpAndDocumentation:
-        return const FlowySvg(
-          FlowySvgs.help_and_documentation_s,
-          size: Size.square(16.0),
-        );
-      case BubbleAction.getSupport:
-        return const FlowySvg(FlowySvgs.message_support_s);
       case BubbleAction.debug:
         return const FlowySvg(FlowySvgs.debug_s);
-      case BubbleAction.shortcuts:
-        return const FlowySvg(FlowySvgs.keyboard_s);
-      case BubbleAction.markdown:
-        return const FlowySvg(FlowySvgs.number_s);
-      case BubbleAction.github:
-        return const FlowySvg(FlowySvgs.share_feedback_s);
     }
   }
 }

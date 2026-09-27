@@ -96,20 +96,5 @@ class BackendAuthService implements AuthService {
     return UserBackendService.getCurrentUserProfile();
   }
 
-  @override
-  Future<FlowyResult<UserProfilePB, FlowyError>> signInWithMagicLink({
-    required String email,
-    Map<String, String> params = const {},
-  }) async {
-    // No need to pass the redirect URL.
-    return UserBackendService.signInWithMagicLink(email, '');
-  }
 
-  @override
-  Future<FlowyResult<GotrueTokenResponsePB, FlowyError>> signInWithPasscode({
-    required String email,
-    required String passcode,
-  }) async {
-    return UserBackendService.signInWithPasscode(email, passcode);
-  }
 }

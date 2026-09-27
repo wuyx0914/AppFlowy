@@ -1,6 +1,4 @@
-import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class SignInAgreement extends StatelessWidget {
@@ -14,37 +12,10 @@ class SignInAgreement extends StatelessWidget {
     final textStyle = theme.textStyle.caption.standard(
       color: theme.textColorScheme.secondary,
     );
-    final underlinedTextStyle = theme.textStyle.caption.underline(
-      color: theme.textColorScheme.secondary,
-    );
-    return RichText(
+    return Text(
+      '本构建为纯本地版本，无需账号登录。',
       textAlign: TextAlign.center,
-      text: TextSpan(
-        children: [
-          TextSpan(
-            text: '点击上方「继续」，即表示您同意 AppFlowy 的…',
-            style: textStyle,
-          ),
-          TextSpan(
-            text: '${'条款'} ',
-            style: underlinedTextStyle,
-            mouseCursor: SystemMouseCursors.click,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () => afLaunchUrlString('https://appflowy.com/terms'),
-          ),
-          TextSpan(
-            text: '${'和'} ',
-            style: textStyle,
-          ),
-          TextSpan(
-            text: '隐私权政策',
-            style: underlinedTextStyle,
-            mouseCursor: SystemMouseCursors.click,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () => afLaunchUrlString('https://appflowy.com/privacy'),
-          ),
-        ],
-      ),
+      style: textStyle,
     );
   }
 }

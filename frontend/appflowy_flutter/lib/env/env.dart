@@ -1,5 +1,4 @@
 // lib/env/env.dart
-import 'package:appflowy/env/cloud_env.dart';
 import 'package:appflowy/plugins/shared/share/constants.dart';
 import 'package:envied/envied.dart';
 

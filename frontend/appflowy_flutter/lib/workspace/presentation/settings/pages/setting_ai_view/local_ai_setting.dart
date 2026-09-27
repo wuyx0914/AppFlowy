@@ -1,5 +1,3 @@
-import 'package:appflowy/core/helpers/url_launcher.dart';
-import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/workspace/application/settings/ai/local_ai_bloc.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy/workspace/presentation/widgets/toggle/toggle.dart';
@@ -87,23 +85,6 @@ class LocalAiSettingHeader extends StatelessWidget {
                     ),
                   ),
                   HSpace(theme.spacing.s),
-                  FlowyTooltip(
-                    message: '了解更多',
-                    child: AFGhostButton.normal(
-                      padding: EdgeInsets.zero,
-                      builder: (context, isHovering, disabled) {
-                        return FlowySvg(
-                          FlowySvgs.ai_explain_m,
-                          size: Size.square(20),
-                        );
-                      },
-                      onTap: () {
-                        afLaunchUrlString(
-                          'https://appflowy.com/guide/appflowy-local-ai-ollama',
-                        );
-                      },
-                    ),
-                  ),
                 ],
               ),
               const VSpace(4),

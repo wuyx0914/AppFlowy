@@ -1,8 +1,6 @@
-import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 
 enum _FlowyMobileStateContainerType {
@@ -74,27 +72,7 @@ class FlowyMobileStateContainer extends StatelessWidget {
                 builder: (context, snapshot) {
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      OutlinedButton(
-                        onPressed: () {
-                          final String? version = snapshot.data?.version;
-                          final String os = Platform.operatingSystem;
-                          afLaunchUrlString(
-                            'https://github.com/AppFlowy-IO/AppFlowy/issues/new?assignees=&labels=&projects=&template=bug_report.yaml&title=[Bug]%20Mobile:%20&version=$version&os=$os&context=Error%20log:%20$errorMsg',
-                          );
-                        },
-                        child: Text(
-                          '上报问题',
-                        ),
-                      ),
-                      OutlinedButton(
-                        onPressed: () =>
-                            afLaunchUrlString('https://discord.gg/JucBXeU2FE'),
-                        child: Text(
-                          '在 Discord 联系我们',
-                        ),
-                      ),
-                    ],
+                    children: [],
                   );
                 },
               ),

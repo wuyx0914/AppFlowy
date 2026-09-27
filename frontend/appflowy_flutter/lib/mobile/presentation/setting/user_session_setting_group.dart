@@ -1,6 +1,3 @@
-import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:intl/intl.dart';
-import 'package:appflowy/mobile/presentation/bottom_sheet/bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/widgets/show_flowy_mobile_confirm_dialog.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';

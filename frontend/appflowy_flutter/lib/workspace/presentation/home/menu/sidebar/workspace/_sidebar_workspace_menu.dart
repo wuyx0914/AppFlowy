@@ -1,4 +1,3 @@
-import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/startup/startup.dart';
@@ -7,22 +6,17 @@ import 'package:appflowy/workspace/application/tabs/tabs_bloc.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/workspace/_sidebar_workspace_actions.dart';
 import 'package:appflowy/workspace/presentation/home/menu/sidebar/workspace/_sidebar_workspace_icon.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialog_v2.dart';
-import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
-import 'package:flowy_infra/file_picker/file_picker_service.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:universal_platform/universal_platform.dart';
 
-import '_sidebar_import_notion.dart';
 
 @visibleForTesting
 const createWorkspaceButtonKey = ValueKey('createWorkspaceButton');
 
 @visibleForTesting
-const importNotionButtonKey = ValueKey('importNotionButton');
 
 class WorkspacesMenu extends StatefulWidget {
   const WorkspacesMenu({
@@ -101,13 +95,6 @@ class _WorkspacesMenuState extends State<WorkspacesMenu> {
           padding: EdgeInsets.symmetric(horizontal: 6.0),
           child: _CreateWorkspaceButton(),
         ),
-
-        if (UniversalPlatform.isDesktop) ...[
-          const Padding(
-            padding: EdgeInsets.only(left: 6.0, top: 6.0, right: 6.0),
-            child: _ImportNotionButton(),
-          ),
-        ],
 
         const VSpace(6.0),
       ],
@@ -361,92 +348,6 @@ class _CreateWorkspaceButton extends StatelessWidget {
           );
         },
       );
-    }
-  }
-}
-
-class _ImportNotionButton extends StatelessWidget {
-  const _ImportNotionButton();
-
-  @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 40,
-      child: FlowyButton(
-        key: importNotionButtonKey,
-        onTap: () {
-          _showImportNotinoDialog(context);
-        },
-        margin: const EdgeInsets.symmetric(horizontal: 4.0),
-        text: Row(
-          children: [
-            _buildLeftIcon(context),
-            const HSpace(8.0),
-            FlowyText.regular(
-              '从 Notion 导入',
-            ),
-          ],
-        ),
-        rightIcon: FlowyTooltip(
-          message: '了解更多',
-          preferBelow: true,
-          child: FlowyIconButton(
-            icon: const FlowySvg(
-              FlowySvgs.information_s,
-            ),
-            onPressed: () {
-              afLaunchUrlString(
-                'https://docs.appflowy.io/docs/guides/import-from-notion',
-              );
-            },
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildLeftIcon(BuildContext context) {
-    return Container(
-      width: 36.0,
-      height: 36.0,
-      padding: const EdgeInsets.all(7.0),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-          color: const Color(0x01717171).withValues(alpha: 0.12),
-          width: 0.8,
-        ),
-      ),
-      child: const FlowySvg(FlowySvgs.add_workspace_s),
-    );
-  }
-
-  Future<void> _showImportNotinoDialog(BuildContext context) async {
-    final result = await getIt<FilePickerService>().pickFiles(
-      type: FileType.custom,
-      allowedExtensions: ['zip'],
-    );
-
-    if (result == null || result.files.isEmpty) {
-      return;
-    }
-
-    final path = result.files.first.path;
-    if (path == null) {
-      return;
-    }
-
-    if (context.mounted) {
-      PopoverContainer.of(context).closeAll();
-      await NavigatorCustomDialog(
-        hideCancelButton: true,
-        confirm: () {},
-        child: NotionImporter(
-          filePath: path,
-        ),
-      ).show(context);
-    } else {
-      Log.error('context is not mounted when showing import notion dialog');
     }
   }
 }

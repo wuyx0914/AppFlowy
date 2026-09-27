@@ -1,6 +1,4 @@
-import 'dart:io';
 
-import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/mobile/presentation/bottom_sheet/show_mobile_bottom_sheet.dart';
 import 'package:appflowy/mobile/presentation/setting/widgets/mobile_setting_trailing.dart';
 import 'package:appflowy/mobile/presentation/widgets/widgets.dart';
@@ -27,13 +25,6 @@ class SupportSettingGroup extends StatelessWidget {
       builder: (context, snapshot) => MobileSettingGroup(
         groupTitle: '支持',
         settingItemList: [
-          MobileSettingItem(
-            name: '在 Discord 中加入我们',
-            trailing: MobileSettingTrailing(
-              text: '',
-            ),
-            onTap: () => afLaunchUrlString('https://discord.gg/JucBXeU2FE'),
-          ),
           MobileSettingItem(
             name: '上报问题',
             trailing: MobileSettingTrailing(
@@ -105,16 +96,6 @@ class _ReportIssuesWidget extends StatelessWidget {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        FlowyOptionTile.text(
-          showTopBorder: false,
-          text: '在 Github 上报告问题',
-          onTap: () {
-            final String os = Platform.operatingSystem;
-            afLaunchUrlString(
-              'https://github.com/AppFlowy-IO/AppFlowy/issues/new?assignees=&labels=&projects=&template=bug_report.yaml&title=[Bug]%20Mobile:%20&version=$version&os=$os',
-            );
-          },
-        ),
         FlowyOptionTile.text(
           showTopBorder: false,
           text: '导出日志文件',

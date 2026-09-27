@@ -1,4 +1,3 @@
-import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/mobile/presentation/presentation.dart';
 import 'package:appflowy/shared/popup_menu/appflowy_popup_menu.dart';
@@ -11,8 +10,6 @@ import 'package:go_router/go_router.dart';
 enum _MobileSettingsPopupMenuItem {
   settings,
   trash,
-  help,
-  helpAndDocumentation,
 }
 
 class HomePageSettingsPopupMenu extends StatelessWidget {
@@ -50,18 +47,6 @@ class HomePageSettingsPopupMenu extends StatelessWidget {
           svg: FlowySvgs.trash_s,
           text: '回收站',
         ),
-        const PopupMenuDivider(height: 0.5),
-        _buildItem(
-          value: _MobileSettingsPopupMenuItem.helpAndDocumentation,
-          svg: FlowySvgs.help_and_documentation_s,
-          text: '说明与文档',
-        ),
-        const PopupMenuDivider(height: 0.5),
-        _buildItem(
-          value: _MobileSettingsPopupMenuItem.help,
-          svg: FlowySvgs.message_support_s,
-          text: '取得支持',
-        ),
       ],
       onSelected: (_MobileSettingsPopupMenuItem value) {
         switch (value) {
@@ -70,12 +55,6 @@ class HomePageSettingsPopupMenu extends StatelessWidget {
             break;
           case _MobileSettingsPopupMenuItem.settings:
             _openSettingsPage(context);
-            break;
-          case _MobileSettingsPopupMenuItem.help:
-            _openHelpPage(context);
-            break;
-          case _MobileSettingsPopupMenuItem.helpAndDocumentation:
-            _openHelpAndDocumentationPage(context);
             break;
         }
       },
@@ -107,17 +86,11 @@ class HomePageSettingsPopupMenu extends StatelessWidget {
     context.push(MobileHomeTrashPage.routeName);
   }
 
-  void _openHelpPage(BuildContext context) {
-    afLaunchUrlString('https://discord.com/invite/9Q2xaN37tV');
-  }
 
   void _openSettingsPage(BuildContext context) {
     context.push(MobileHomeSettingPage.routeName);
   }
 
-  void _openHelpAndDocumentationPage(BuildContext context) {
-    afLaunchUrlString('https://appflowy.com/guide');
-  }
 }
 
 class _PopupButton extends StatelessWidget {

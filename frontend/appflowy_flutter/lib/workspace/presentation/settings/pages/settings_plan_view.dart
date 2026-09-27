@@ -8,7 +8,6 @@ import 'package:appflowy/workspace/application/settings/appearance/appearance_cu
 import 'package:appflowy/workspace/application/settings/date_time/date_format_ext.dart';
 import 'package:appflowy/workspace/application/settings/plan/settings_plan_bloc.dart';
 import 'package:appflowy/workspace/application/settings/plan/workspace_subscription_ext.dart';
-import 'package:appflowy/workspace/application/settings/plan/workspace_usage_ext.dart';
 import 'package:appflowy/workspace/presentation/settings/pages/settings_plan_comparison_dialog.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/flowy_gradient_button.dart';
 import 'package:appflowy/workspace/presentation/settings/shared/settings_body.dart';

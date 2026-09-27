@@ -10,7 +10,6 @@ import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/code.pbenum.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/view.pb.dart';
-import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:appflowy_result/appflowy_result.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -192,10 +191,8 @@ class ShareBloc extends Bloc<ShareEvent, ShareState> {
 
   Future<void> _updatePublishStatus(Emitter<ShareState> emit) async {
     final publishInfo = await ViewBackendService.getPublishInfo(view);
-    final enablePublish = await UserBackendService.getCurrentUserProfile().fold(
-      (v) => v.workspaceType == WorkspaceTypePB.ServerW,
-      (p) => false,
-    );
+    // Local-only build: publishing to web is not supported.
+    const enablePublish = false;
 
     // skip the "Record not found" error, it's because the view is not published yet
     publishInfo.fold(

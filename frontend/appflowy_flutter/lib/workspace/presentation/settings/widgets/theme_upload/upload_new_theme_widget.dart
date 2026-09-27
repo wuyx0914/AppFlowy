@@ -29,7 +29,6 @@ class UploadNewThemeWidget extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           ThemeUploadWidget.elementSpacer,
-          const ThemeUploadLearnMoreButton(),
           ThemeUploadWidget.elementSpacer,
           const Divider(),
           ThemeUploadWidget.elementSpacer,

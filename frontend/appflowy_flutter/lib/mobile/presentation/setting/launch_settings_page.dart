@@ -1,4 +1,3 @@
-import 'package:appflowy/env/env.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar.dart';
 import 'package:appflowy/mobile/presentation/presentation.dart';
 import 'package:appflowy/workspace/application/settings/appearance/appearance_cubit.dart';

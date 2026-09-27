@@ -65,27 +65,7 @@ abstract class AuthService {
     Map<String, String> params,
   });
 
-  /// Authenticates a user with a magic link sent to their email.
-  ///
-  /// - `email`: The email address of the user.
-  /// - `params`: Additional parameters for authentication with magic link (optional).
-  ///
-  /// Returns [UserProfilePB] if the user is authenticated, otherwise returns [FlowyError].
-  Future<FlowyResult<void, FlowyError>> signInWithMagicLink({
-    required String email,
-    Map<String, String> params,
-  });
 
-  /// Authenticates a user with a passcode sent to their email.
-  ///
-  /// - `email`: The email address of the user.
-  /// - `passcode`: The passcode of the user.
-  ///
-  /// Returns [UserProfilePB] if the user is authenticated, otherwise returns [FlowyError].
-  Future<FlowyResult<GotrueTokenResponsePB, FlowyError>> signInWithPasscode({
-    required String email,
-    required String passcode,
-  });
 
   /// Signs out the currently authenticated user.
   Future<void> signOut();

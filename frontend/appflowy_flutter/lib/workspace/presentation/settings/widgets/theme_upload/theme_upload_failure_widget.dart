@@ -32,7 +32,6 @@ class ThemeUploadFailureWidget extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           ThemeUploadWidget.elementSpacer,
-          const ThemeUploadLearnMoreButton(),
           ThemeUploadWidget.elementSpacer,
           ThemeUploadButton(color: Theme.of(context).colorScheme.error),
           ThemeUploadWidget.elementSpacer,

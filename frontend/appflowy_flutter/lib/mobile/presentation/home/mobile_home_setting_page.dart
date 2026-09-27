@@ -1,4 +1,3 @@
-import 'package:appflowy/env/env.dart';
 import 'package:appflowy/features/workspace/data/repositories/rust_workspace_repository_impl.dart';
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
 import 'package:appflowy/mobile/presentation/base/app_bar/app_bar.dart';

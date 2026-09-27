@@ -1,4 +1,3 @@
-import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/mobile/presentation/base/animated_gesture.dart';
 import 'package:appflowy/plugins/document/presentation/editor_plugins/copy_and_paste/clipboard_service.dart';
@@ -7,7 +6,6 @@ import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-error/errors.pb.dart';
 import 'package:flowy_infra_ui/style_widget/text.dart';
 import 'package:flowy_infra_ui/widget/spacing.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:universal_platform/universal_platform.dart';
 
@@ -116,39 +114,10 @@ class _DesktopSyncErrorPage extends StatelessWidget {
             fontSize: 16,
           ),
           const VSpace(8.0),
-          RichText(
-            text: TextSpan(
-              children: [
-                TextSpan(
-                  text: '对于造成的不便，我们深感抱歉！在我们的...上提交问题。',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).hintColor,
-                  ),
-                ),
-                TextSpan(
-                  text: 'Github',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).colorScheme.primary,
-                    decoration: TextDecoration.underline,
-                  ),
-                  recognizer: TapGestureRecognizer()
-                    ..onTap = () {
-                      afLaunchUrlString(
-                        'https://github.com/AppFlowy-IO/AppFlowy/issues/new?template=bug_report.yaml',
-                      );
-                    },
-                ),
-                TextSpan(
-                  text: ' 页面描述您的错误。',
-                  style: TextStyle(
-                    fontSize: 14,
-                    color: Theme.of(context).hintColor,
-                  ),
-                ),
-              ],
-            ),
+          FlowyText.regular(
+            '对于造成的不便，我们深感抱歉！请复制上方错误信息以便排查。',
+            fontSize: 14,
+            color: Theme.of(context).hintColor,
           ),
           const VSpace(8.0),
           FlowyText.regular(

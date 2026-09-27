@@ -1,12 +1,9 @@
 import 'package:appflowy/core/frameless_window.dart';
-import 'package:appflowy/core/helpers/url_launcher.dart';
-import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/user/application/anon_user_bloc.dart';
 import 'package:appflowy/user/application/auth/auth_service.dart';
 import 'package:appflowy/user/presentation/router.dart';
 import 'package:appflowy/user/presentation/widgets/widgets.dart';
-import 'package:appflowy/workspace/application/settings/appearance/appearance_cubit.dart';
 import 'package:appflowy_backend/log.dart';
 import 'package:flowy_infra/size.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';
@@ -69,7 +66,6 @@ class _SkipLogInScreenState extends State<SkipLogInScreen> {
           ),
         ),
         const Spacer(),
-        const SkipLoginPageFooter(),
         const VSpace(20),
       ],
     );
@@ -86,76 +82,6 @@ class _SkipLogInScreenState extends State<SkipLogInScreen> {
   Future<void> _relaunchAppAndAutoRegister() async => runAppFlowy(isAnon: true);
 }
 
-class SkipLoginPageFooter extends StatelessWidget {
-  const SkipLoginPageFooter({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    // The placeholderWidth should be greater than the longest width of the LanguageSelectorOnWelcomePage
-    const double placeholderWidth = 180;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          if (!UniversalPlatform.isMobile) const HSpace(placeholderWidth),
-          const Expanded(child: SubscribeButtons()),
-          const SizedBox(width: placeholderWidth, height: 28),
-        ],
-      ),
-    );
-  }
-}
-
-class SubscribeButtons extends StatelessWidget {
-  const SubscribeButtons({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Wrap(
-      alignment: WrapAlignment.center,
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FlowyText.regular(
-              '您还可以',
-              fontSize: FontSizes.s12,
-            ),
-            FlowyTextButton(
-              '在 GitHub 上 Star',
-              padding: const EdgeInsets.symmetric(horizontal: 4),
-              fontWeight: FontWeight.w500,
-              fontColor: Theme.of(context).colorScheme.primary,
-              hoverColor: Colors.transparent,
-              fillColor: Colors.transparent,
-              onPressed: () =>
-                  afLaunchUrlString('https://github.com/AppFlowy-IO/appflowy'),
-            ),
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            FlowyText.regular('以及', fontSize: FontSizes.s12),
-            FlowyTextButton(
-              '消息订阅',
-              padding: const EdgeInsets.symmetric(horizontal: 4.0),
-              fontWeight: FontWeight.w500,
-              fontColor: Theme.of(context).colorScheme.primary,
-              hoverColor: Colors.transparent,
-              fillColor: Colors.transparent,
-              onPressed: () =>
-                  afLaunchUrlString('https://www.appflowy.io/blog'),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
-}
 
 class GoButton extends StatelessWidget {
   const GoButton({super.key, required this.onPressed});

@@ -1,12 +1,8 @@
-import 'package:appflowy/core/helpers/url_launcher.dart';
-import 'package:intl/intl.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
-import 'package:appflowy/shared/feature_flags.dart';
 import 'package:appflowy/startup/plugin/plugin.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/application/tabs/tabs_bloc.dart';
 import 'package:appflowy/workspace/presentation/home/menu/menu_shared_state.dart';
-import 'package:flowy_infra/theme_extension.dart';
 import 'package:flutter/material.dart';
 
 import 'sidebar_footer_button.dart';
@@ -20,10 +16,7 @@ class SidebarFooter extends StatelessWidget {
       children: [
         // Local-only build: no billing gate / plan toast.
         Row(
-          // mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Expanded(child: SidebarTemplateButton()),
-            _buildVerticalDivider(context),
             const Expanded(child: SidebarTrashButton()),
           ],
         ),
@@ -31,30 +24,6 @@ class SidebarFooter extends StatelessWidget {
     );
   }
 
-  Widget _buildVerticalDivider(BuildContext context) {
-    return Container(
-      width: 1.0,
-      height: 14,
-      margin: const EdgeInsets.symmetric(horizontal: 4),
-      color: AFThemeExtension.of(context).borderColor,
-    );
-  }
-}
-
-class SidebarTemplateButton extends StatelessWidget {
-  const SidebarTemplateButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return SidebarFooterButton(
-      leftIconSize: const Size.square(16.0),
-      leftIcon: const FlowySvg(
-        FlowySvgs.icon_template_s,
-      ),
-      text: '模板',
-      onTap: () => afLaunchUrlString('https://appflowy.com/templates'),
-    );
-  }
 }
 
 class SidebarTrashButton extends StatelessWidget {

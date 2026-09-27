@@ -1,5 +1,4 @@
 import 'package:appflowy/features/workspace/logic/workspace_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:appflowy/shared/appflowy_cache_manager.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/util/share_log_files.dart';
@@ -14,7 +13,6 @@ import 'package:appflowy/workspace/presentation/settings/widgets/feature_flags/f
 import 'package:appflowy/workspace/presentation/settings/widgets/settings_menu.dart';
 import 'package:appflowy/workspace/presentation/settings/widgets/settings_notifications_view.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
-import 'package:appflowy_backend/log.dart';
 import 'package:appflowy_backend/protobuf/flowy-user/protobuf.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
 import 'package:flowy_infra_ui/flowy_infra_ui.dart';

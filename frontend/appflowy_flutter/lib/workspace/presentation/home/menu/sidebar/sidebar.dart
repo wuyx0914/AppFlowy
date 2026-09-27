@@ -9,7 +9,6 @@ import 'package:appflowy/plugins/document/presentation/editor_notification.dart'
 import 'package:appflowy/shared/feature_flags.dart';
 import 'package:appflowy/shared/loading.dart';
 import 'package:appflowy/startup/startup.dart';
-import 'package:appflowy/startup/tasks/device_info_task.dart';
 import 'package:appflowy/workspace/application/action_navigation/action_navigation_bloc.dart';
 import 'package:appflowy/workspace/application/action_navigation/navigation_action.dart';
 import 'package:appflowy/workspace/application/command_palette/command_palette_bloc.dart';

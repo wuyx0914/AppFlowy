@@ -1,4 +1,3 @@
-import 'package:appflowy/core/helpers/url_launcher.dart';
 import 'package:appflowy/generated/flowy_svgs.g.dart';
 import 'package:appflowy/util/theme_extension.dart';
 import 'package:appflowy/workspace/application/settings/ai/local_ai_bloc.dart';
@@ -234,16 +233,7 @@ class _LackOfResource extends StatelessWidget {
           ),
           TextSpan(
             text: '指示',
-            style: textStyle?.copyWith(
-              fontWeight: FontWeight.w600,
-              decoration: TextDecoration.underline,
-            ),
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                afLaunchUrlString(
-                  "https://appflowy.com/guide/appflowy-local-ai-ollama",
-                );
-              },
+            style: textStyle,
           ),
           TextSpan(
             text: ' ',
@@ -269,18 +259,9 @@ class _LackOfResource extends StatelessWidget {
         style: textStyle,
       ),
       TextSpan(
-        text: '指示',
-        style: textStyle?.copyWith(
-          fontWeight: FontWeight.w600,
-          decoration: TextDecoration.underline,
-        ),
-        recognizer: TapGestureRecognizer()
-          ..onTap = () {
-            afLaunchUrlString(
-              "https://appflowy.com/guide/appflowy-local-ai-ollama",
-            );
-          },
-      ),
+            text: '指示',
+            style: textStyle,
+          ),
       TextSpan(text: ' ', style: textStyle),
       TextSpan(
         text: '来设置 Ollama 和 AppFlowy 本地 AI。',

@@ -4,6 +4,7 @@ import 'package:appflowy/plugins/shared/share/constants.dart';
 import 'package:appflowy/startup/startup.dart';
 import 'package:appflowy/workspace/presentation/widgets/dialogs.dart';
 import 'package:appflowy_backend/protobuf/flowy-folder/protobuf.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPageSitesConstants {

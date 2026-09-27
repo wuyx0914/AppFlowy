@@ -1,6 +1,4 @@
 PODS:
-  - app_links (6.4.1):
-    - FlutterMacOS
   - appflowy_backend (0.0.1):
     - FlutterMacOS
   - bitsdojo_window_macos (0.0.1):
@@ -52,7 +50,6 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - app_links (from `Flutter/ephemeral/.symlinks/plugins/app_links/macos`)
   - appflowy_backend (from `Flutter/ephemeral/.symlinks/plugins/appflowy_backend/macos`)
   - bitsdojo_window_macos (from `Flutter/ephemeral/.symlinks/plugins/bitsdojo_window_macos/macos`)
   - connectivity_plus (from `Flutter/ephemeral/.symlinks/plugins/connectivity_plus/macos`)
@@ -81,8 +78,6 @@ SPEC REPOS:
     - ReachabilitySwift
 
 EXTERNAL SOURCES:
-  app_links:
-    :path: Flutter/ephemeral/.symlinks/plugins/app_links/macos
   appflowy_backend:
     :path: Flutter/ephemeral/.symlinks/plugins/appflowy_backend/macos
   bitsdojo_window_macos:
@@ -127,7 +122,6 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/window_manager/macos
 
 SPEC CHECKSUMS:
-  app_links: 05a6ec2341985eb05e9f97dc63f5837c39895c3f
   appflowy_backend: 464aeb3e5c6966a41641a2111e5ead72ce2695f7
   bitsdojo_window_macos: 7959fb0ca65a3ccda30095c181ecb856fae48ea9
   connectivity_plus: e74b9f74717d2d99d45751750e266e55912baeb5

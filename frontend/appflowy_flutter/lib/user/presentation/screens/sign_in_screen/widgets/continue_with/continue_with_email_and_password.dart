@@ -1,6 +1,5 @@
 import 'package:appflowy/user/application/sign_in_bloc.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_email.dart';
-import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_magic_link_or_passcode_page.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_password.dart';
 import 'package:appflowy/user/presentation/screens/sign_in_screen/widgets/continue_with/continue_with_password_page.dart';
 import 'package:appflowy_ui/appflowy_ui.dart';
@@ -22,8 +21,6 @@ class _ContinueWithEmailAndPasswordState
   final controller = TextEditingController();
   final focusNode = FocusNode();
   final emailKey = GlobalKey<AFTextFieldState>();
-
-  bool _hasPushedContinueWithMagicLinkOrPasscodePage = false;
 
   @override
   void dispose() {
@@ -101,55 +98,8 @@ class _ContinueWithEmailAndPasswordState
       return;
     }
 
-    context
-        .read<SignInBloc>()
-        .add(SignInEvent.signInWithMagicLink(email: email));
-
-    _pushContinueWithMagicLinkOrPasscodePage(
-      context,
-      email,
-    );
-  }
-
-  void _pushContinueWithMagicLinkOrPasscodePage(
-    BuildContext context,
-    String email,
-  ) {
-    if (_hasPushedContinueWithMagicLinkOrPasscodePage) {
-      return;
-    }
-
-    final signInBloc = context.read<SignInBloc>();
-
-    // push the a continue with magic link or passcode screen
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => BlocProvider.value(
-          value: signInBloc,
-          child: ContinueWithMagicLinkOrPasscodePage(
-            email: email,
-            backToLogin: () {
-              Navigator.pop(context);
-
-              emailKey.currentState?.clearError();
-
-              _hasPushedContinueWithMagicLinkOrPasscodePage = false;
-            },
-            onEnterPasscode: (passcode) {
-              signInBloc.add(
-                SignInEvent.signInWithPasscode(
-                  email: email,
-                  passcode: passcode,
-                ),
-              );
-            },
-          ),
-        ),
-      ),
-    );
-
-    _hasPushedContinueWithMagicLinkOrPasscodePage = true;
+    // Local-only build: magic-link sign-in requires cloud services.
+    _pushContinueWithPasswordPage(context, email);
   }
 
   void _pushContinueWithPasswordPage(

@@ -24,7 +24,6 @@ pub fn init(user_manager: Weak<UserManager>) -> AFPlugin {
     .state(user_manager)
     .state(store_preferences)
     .event(UserEvent::SignInWithEmailPassword, sign_in_with_email_password_handler)
-    .event(UserEvent::MagicLinkSignIn, sign_in_with_magic_link_handler)
     .event(UserEvent::SignUp, sign_up)
     .event(UserEvent::InitUser, init_user_handler)
     .event(UserEvent::GetUserProfile, get_user_profile_handler)
@@ -36,9 +35,6 @@ pub fn init(user_manager: Weak<UserManager>) -> AFPlugin {
     .event(UserEvent::GetUserSetting, get_user_setting)
     .event(UserEvent::SetCloudConfig, set_cloud_config_handler)
     .event(UserEvent::GetCloudConfig, get_cloud_config_handler)
-    .event(UserEvent::OauthSignIn, oauth_sign_in_handler)
-    .event(UserEvent::GenerateSignInURL, gen_sign_in_url_handler)
-    .event(UserEvent::GetOauthURLWithProvider, sign_in_with_provider_handler)
     .event(UserEvent::OpenWorkspace, open_workspace_handler)
     .event(UserEvent::GetUserWorkspace, get_user_workspace_handler)
     .event(UserEvent::UpdateNetworkState, update_network_state_handler)
@@ -80,7 +76,6 @@ pub fn init(user_manager: Weak<UserManager>) -> AFPlugin {
     .event(UserEvent::UpdateWorkspaceSetting, update_workspace_setting_handler)
     .event(UserEvent::GetWorkspaceSetting, get_workspace_setting_handler)
     .event(UserEvent::NotifyDidSwitchPlan, notify_did_switch_plan_handler)
-    .event(UserEvent::PasscodeSignIn, sign_in_with_passcode_handler)
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Display, Hash, ProtoBuf_Enum, Flowy_Event)]
@@ -124,17 +119,6 @@ pub enum UserEvent {
   /// Get the settings of the user, such as the user storage folder
   #[event(output = "UserSettingPB")]
   GetUserSetting = 9,
-
-  #[event(input = "OauthSignInPB", output = "UserProfilePB")]
-  OauthSignIn = 10,
-
-  /// Get the OAuth callback url
-  /// Only use when the [AuthType] is AFCloud
-  #[event(input = "SignInUrlPayloadPB", output = "SignInUrlPB")]
-  GenerateSignInURL = 11,
-
-  #[event(input = "OauthProviderPB", output = "OauthProviderDataPB")]
-  GetOauthURLWithProvider = 12,
 
   #[event(input = "UpdateCloudConfigPB")]
   SetCloudConfig = 13,
@@ -230,9 +214,6 @@ pub enum UserEvent {
   #[event(input = "AcceptWorkspaceInvitationPB")]
   AcceptWorkspaceInvitation = 49,
 
-  #[event(input = "MagicLinkSignInPB", output = "UserProfilePB")]
-  MagicLinkSignIn = 50,
-
   #[event(input = "SubscribeWorkspacePB", output = "PaymentLinkPB")]
   SubscribeWorkspace = 51,
 
@@ -268,9 +249,6 @@ pub enum UserEvent {
 
   #[event()]
   DeleteAccount = 64,
-
-  #[event(input = "PasscodeSignInPB", output = "GotrueTokenResponsePB")]
-  PasscodeSignIn = 65,
 }
 
 #[async_trait]
